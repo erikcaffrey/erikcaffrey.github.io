@@ -30,47 +30,14 @@
     $('.search-field').simpleJekyllSearch();
   });
 
-  function close_search() {
+  bs.close.on('click', function() {
     $('.search-wrapper').toggleClass('active');
     bs.searchform.toggleClass('active');
     bs.canvas.removeClass('search-overlay');
-  }
-
-  bs.close.on('click', close_search);
-
-  // Closing menu with ESC
-  document.addEventListener('keyup', function(e){
-      if(e.keyCode == 27 && $('.search-overlay').length) {
-          close_search();
-      }
   });
-  if (document.getElementsByClassName('home').length >=1 ) {
-      new AnimOnScroll( document.getElementById( 'grid' ), {
-        minDuration : 0.4,
-        maxDuration : 0.7,
-        viewportFactor : 0.2
-      } );
-  }
 
+  // Scroll
   smoothScroll.init({
-      selectorHeader: '.bar-header', // Selector for fixed headers (must be a valid CSS selector)
-      speed: 500, // Integer. How fast to complete the scroll in milliseconds
-      updateURL: false, // Boolean. Whether or not to update the URL with the anchor hash on scroll
-  });
-
-function scrollBanner() {
-  var scrollPos;
-  var headerText = document.querySelector('.header-post .content')
-  scrollPos = window.scrollY;
-
-  if (scrollPos <= 500) {
-      headerText.style.transform =  "translateY(" + (-scrollPos/3) +"px" + ")";
-      headerText.style.opacity = 1-(scrollPos/500);
-  }
-}
-
-if (screen.width > 1024 && document.getElementsByClassName('header-post').length >=1) {
-  window.addEventListener('scroll', scrollBanner);
-}
-
+    updateURL: false
+  })
 })( Zepto, window );

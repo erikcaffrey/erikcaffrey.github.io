@@ -3,14 +3,14 @@ layout: compress
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br" itemscope itemtype="http://schema.org/WebPage" {% if page.main-class %}class="post-{{ page.main-class }}"{% endif %}>
+<html lang="pt-br">
     {% include head.html %}
     <body>
         {% include svg-icons.html %}
         {% include header-post.html %}
-        <section class="post">
+        <section class="post" itemscope itemtype="http://schema.org/WebPage">
 
-            <article id="post" class="post-content" role="main" itemprop="mainContentOfPage">
+            <article role="article" id="scroll" class="post-content" role="main" itemprop="mainContentOfPage">
                 {{ content }}
             </article>
 

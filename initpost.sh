@@ -4,6 +4,8 @@
 #
 # Program: initpost.sh
 # Author:  Vitor Britto
+# Modified by:  James Bowling
+# Author:  Vitor Britto (edited by Will)
 # Description: script to create an initial structure for my posts.
 #
 # Usage: ./initpost.sh [options] <post name>
@@ -11,6 +13,7 @@
 # Options:
 #   -h, --help        output instructions
 #   -c, --create      create post
+#   -d, --draft       create draft post
 #
 # Alias: alias ipost="bash ~/path/to/script/initpost.sh"
 #
@@ -33,7 +36,6 @@ POST_TITLE="${@:2:$(($#-1))}"
 POST_NAME="$(echo ${@:2:$(($#-1))} | sed -e 's/ /-/g' | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")"
 CURRENT_DATE="$(date +'%Y-%m-%d')"
 TIME=$(date +"%T")
-FILE_NAME="${CURRENT_DATE}-${POST_NAME}.md"
 # ----------------------------------------------------------------
 
 
@@ -43,10 +45,25 @@ FILE_NAME="${CURRENT_DATE}-${POST_NAME}.md"
 # Set your destination folder
 BINPATH=$(cd `dirname $0`; pwd)
 POSTPATH="${BINPATH}/_posts"
-DIST_FOLDER="$POSTPATH"
+DRAFTPATH="${BINPATH}/_drafts"
+
+if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
+    DIST_FOLDER="$POSTPATH"
+    FILE_NAME="${CURRENT_DATE}-${POST_NAME}.md"
+fi
+
+if [[ "${1}" == "-d" || "${1}" == "--draft" ]]; then
+    DIST_FOLDER="$DRAFTPATH"
+    FILE_NAME="${POST_NAME}.md"
+fi
+
+if [[ "${1}" == "-p" || "${1}" == "--publish" ]]; then
+    DIST_FOLDER="$POSTPATH"
+    FILE_NAME="${CURRENT_DATE}-${POST_NAME}.md"
+fi
 
 # Set your blog URL
-BLOG_URL="http://willianjusten.com.br"
+BLOG_URL="your_site"
 
 # Set your assets URL
 ASSETS_URL="assets/img/"
@@ -95,6 +112,9 @@ Usage: ./initpost.sh [options] <post name>
 Options:
   -h, --help        output instructions
   -c, --create      create post
+  -d, --draft       create draft post
+  -p, --publish     publish/promote a draft to a post
+
 Example:
   ./initpost.sh -c How to replace strings with sed
 Important Notes:
@@ -115,17 +135,14 @@ echo "title: \"${POST_TITLE}\""
 echo "date: ${CURRENT_DATE} ${TIME}"
 echo "image: '/assets/img/'"
 echo "description:"
-echo "main-class:"
-echo "color:"
 echo "tags:"
 echo "categories:"
 echo "twitter_text:"
-echo "introduction:"
 echo "---"
 
 }
 
-# Create file
+# Create post
 initpost_file() {
     if [ ! -f "$FILE_NAME" ]; then
         e_header "Creating template..."
@@ -138,7 +155,32 @@ initpost_file() {
 
 }
 
+# Create draft
+initdraft_file() {
+    if [ ! -f "$FILE_NAME" ]; then
+        e_header "Creating draft template..."
+        initpost_content > "${DIST_FOLDER}/${FILE_NAME}"
+        e_success "Initial draft successfully created!"
+    else
+        e_warning "File already exist."
+        exit 1
+    fi
 
+}
+
+# Promote draft
+promote_draft() {
+    if [ ! -f "$FILE_NAME" ]; then
+        e_header "Promoting draft..."
+        if mv "${DRAFTPATH}/${POST_NAME}.md" "${POSTPATH}/${CURRENT_DATE}-${POST_NAME}.md"; then
+            sed -i -e "s/date: .*/date: ${CURRENT_DATE} ${TIME}/" ${POSTPATH}/${CURRENT_DATE}-${POST_NAME}.md
+            e_success "Draft promoted successfully!"
+        else
+            e_warning "File already exists or draft promotion failed."
+            exit 1
+        fi
+    fi
+}
 
 # ------------------------------------------------------------------------------
 # | INITIALIZE PROGRAM                                                         |
@@ -155,6 +197,18 @@ main() {
     # Create
     if [[ "${1}" == "-c" || "${1}" == "--create" ]]; then
         initpost_file $*
+        exit
+    fi
+
+    # Draft
+    if [[ "${1}" == "-d" || "${1}" == "--draft" ]]; then
+        initdraft_file $*
+        exit
+    fi
+
+    # Promote
+    if [[ "${1}" == "-p" || "${1}" == "--promote" ]]; then
+        promote_draft $*
         exit
     fi
 
