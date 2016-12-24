@@ -1,18 +1,12 @@
 # Site settings
-title: A blog about lorem ipsum dolor sit amet
-description: A blog about lorem ipsum dolor sit amet
-baseurl: "/will-jekyll-template" # the subpath of your site, e.g. /blog
-url: "https://willianjusten.com.br" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
-
-# User settings
-username: Lorem Ipsum
-user_description: Anon Developer at Lorem Ipsum Dolor
-user_title: Anon Developer
-email: anon@anon.com
-twitter_username: lorem_ipsum
-github_username:  lorem_ipsum
-gplus_username:  lorem_ipsum
-disqus_username: lorem_ipsum
+title: Willian Justen - Desenvolvedor Front End
+email: willianjustenqui@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Um blog de um desenvolvedor Front End e entusiasta de novas tecnologias.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://willianjusten.com.br" # the base hostname & protocol for your site
+twitter_username: willian_justen
+github_username:  willianjusten
 
 # Build settings
 markdown: kramdown
@@ -32,12 +26,17 @@ compress_html:
 links:
   - title: Home
     url: /
-  - title: Series
+  - title: Cursos
+    url: /cursos
+  - title: Séries
     url: /series
   - title: Tags
     url: /tags
-  - title: About Me
+  - title: Sobre mim
     url: /about
 
+collections:
+  - cursos
+
 # exclude my node related stuff
-exclude: ['package.json', 'src', 'node_modules']
+exclude: ['package.json', 'src', 'node_modules', 'vendor/bundle/ruby']

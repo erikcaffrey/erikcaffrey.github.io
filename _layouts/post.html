@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" itemscope itemtype="http://schema.org/BlogPosting" {% if page.main-class %}class="post-{{ page.main-class }}"{% endif %}>
     {% include head.html %}
     <body>
         {% include svg-icons.html %}
         {% include header-post.html %}
-        <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <section class="post">
 
-            <article role="article" id="scroll" class="post-content" itemprop="articleBody">
+            <article role="article" id="post" class="post-content" itemprop="articleBody">
                 {{ content }}
             </article>
 
+            {% include pre-venda-js.html %}
             {% include share.html %}
             {% include author.html %}
             {% include comments.html %}
