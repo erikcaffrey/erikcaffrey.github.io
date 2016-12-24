@@ -5,7 +5,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://erikcaffrey.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Erik Jhordan Rey 1
+username: Erik Jhordan Rey 
 user_description: Mobile Engineer at Schibsted-Segundamano
 user_title: Mobile Engineer
 email: erikcaffrey10@gmail.com
