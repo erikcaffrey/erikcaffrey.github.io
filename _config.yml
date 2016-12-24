@@ -32,9 +32,9 @@ compress_html:
 links:
   - title: Home
     url: /
-  - title: Series
+  - title: Talks
     url: /series
-  - title: Tags
+  - title: Course
     url: /tags
   - title: About Me
     url: /about
