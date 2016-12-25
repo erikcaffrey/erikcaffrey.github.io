@@ -371,7 +371,7 @@ aside {
     left: -15rem;
     background: #3f3f3f;
     z-index: 20;
-    box-shadow: inset -10px -1px 15px -9px rgba(0, 0, 0, 0.5);
+    box-shadow: inset -10px -1px 15px -9px rgba(255, 255, 255, 0);
 }
 
 aside h2 {
