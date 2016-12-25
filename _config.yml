@@ -38,8 +38,6 @@ links:
     url: /tags
   - title: About Me
     url: /about
-  - title: Training
-    url: /training
 
 # exclude my node related stuff
 exclude: ['package.json', 'src', 'node_modules']
