@@ -858,7 +858,7 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     font-style: normal;
-    color: #ED304B;
+    color: #212121;
     font-size: 5rem;
     line-height: 1.6;
 }
@@ -934,7 +934,7 @@ html, body {
 }
 
 .post-item .content .post-title {
-    color: #727272;
+    color: #212121;
     font-size: 2rem;
 }
 
@@ -945,7 +945,7 @@ html, body {
 }
 
 .post-item .content .description {
-    color: #333;
+    color: #424242;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -1472,7 +1472,7 @@ pre span {
 
 .author .email {
     text-decoration: none;
-    color: #0562dc
+    color: #ED304B
 }
 
 .comments {
