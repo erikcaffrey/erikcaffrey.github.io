@@ -369,7 +369,7 @@ aside {
     padding: 2.5rem 0 0;
     top: 0;
     left: -15rem;
-    background: #3f3f3f;
+    background: #212121;
     z-index: 20;
     box-shadow: inset -10px -1px 15px -9px rgba(255, 255, 255, 0);
 }
@@ -401,8 +401,8 @@ aside nav li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #b3b3b1;
-    border-top: 1px solid #797979;
+    color: #ffffff;
+    border-top: 0px;
 }
 
 aside nav li a:hover {
