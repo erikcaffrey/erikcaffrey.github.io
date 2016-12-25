@@ -279,7 +279,7 @@ h1, h2, h3, h4 {
 }
 
 .icons-home a:hover .icon {
-    fill: #0562dc
+    fill: #ED304B
 }
 
 .down {
@@ -632,9 +632,9 @@ body.search-overlay:after {
 
 .tags a {
     font-size: .875rem;
-    color: #0562dc;
+    color: #424242;
     display: inline-block;
-    border: 1px solid #0562dc;
+    border: 1px solid #424242;
     border-radius: .313rem;
     padding: .25rem .625rem;
     margin-right: .125rem;
@@ -643,8 +643,8 @@ body.search-overlay:after {
 }
 
 .tags a:hover {
-    color: #03316e;
-    border: 1px solid #03316e
+    color: #ED304B;
+    border: 1px solid #ED304B
 }
 
 .img-rounded {
@@ -881,7 +881,7 @@ html, body {
 }
 
 .post-item .datetime .month-year {
-    color: #000;
+    color: #727272;
     font-size: 1.125rem
 }
 
@@ -934,7 +934,7 @@ html, body {
 }
 
 .post-item .content .post-title {
-    color: #000;
+    color: #727272;
     font-size: 2rem;
 }
 
@@ -1215,6 +1215,7 @@ table th, table td {
     margin-left: auto;
     padding-left: 0;
     padding-right: 0;
+    color: #212121;
 }
 
 .tag-title:before, .tag-title:after {
