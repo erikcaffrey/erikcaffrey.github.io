@@ -334,7 +334,7 @@ a.slideButton, .dosearch {
 
 .dosearch {
     right: 10px;
-    background: #0558c6;
+    background: #ED304B;
     border-radius: .188rem;
     padding: .125rem .188rem
 }
@@ -405,8 +405,8 @@ aside nav li a {
 }
 
 aside nav li a:hover {
-    color: #191918;
-    background: #fff
+    color: #ED304B;
+    background: #212121
 }
 
 aside nav .feed {

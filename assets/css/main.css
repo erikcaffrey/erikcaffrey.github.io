@@ -334,7 +334,7 @@ a.slideButton, .dosearch {
 
 .dosearch {
     right: 10px;
-    background: #0558c6;
+    background: #ED304B;
     border-radius: .188rem;
     padding: .125rem .188rem
 }
@@ -401,12 +401,12 @@ aside nav li a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #b3b3b1;
+    color: #ffffff;
 }
 
 aside nav li a:hover {
-    color: #191918;
-    background: #fff
+    color: #ED304B;
+    background: #212121
 }
 
 aside nav .feed {
