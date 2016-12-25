@@ -32,9 +32,9 @@ compress_html:
 links:
   - title: Home
     url: /
-  - title: Mobile Android/IOS
-    url: /series
   - title: Android
+    url: /series
+  - title: IOS ¬ Android
     url: /tags
   - title: About Me
     url: /about
