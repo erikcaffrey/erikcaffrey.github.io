@@ -1014,9 +1014,9 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #0562dc;
+    color: #757575;
     text-decoration: none;
-    border-bottom: 2px solid #0562dc
+    border-bottom: 1px solid #757575
 }
 
 .post-content iframe {
