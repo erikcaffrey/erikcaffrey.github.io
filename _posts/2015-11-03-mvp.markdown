@@ -6,8 +6,10 @@ cover_image: '/content/images/2015/11/mvp_.png'
 tags:
 - android
 categories:
-- Model View Presenter on Android
+- Android UI patterns
 ---
+
+![mvp-android](/content/images/2015/11/mvp_.png){: .center-image }
 
 Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikcaffrey.github.io/2015/12/16/databinding-android/).
 
