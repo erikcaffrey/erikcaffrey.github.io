@@ -2,6 +2,10 @@
 layout: post
 title: 'Dagger 2 Kata para android developers'
 date: '2016-07-08 10:32:10'
+tags:
+- android
+categories:
+- Android Patterns
 ---
 
 ![dagger2-android](/content/images/2016/7/mario-kart.png){: .center-image }
