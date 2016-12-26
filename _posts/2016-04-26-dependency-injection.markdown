@@ -45,11 +45,8 @@ Cuando tenemos dos componentes (clases) y uno de ellos depende del otro lo que s
 **¿Pero cuál es el verdadero problema de hacer esto?**
 
 * El principal problema de hacer esto es que comenzamos a acoplar nuestras clases y el acoplamiento es uno de los mayores problemas del   software, ya que la idea es que una clase no tenga que crear sus propios objetos.
-
 * Nuestras clases no son flexibles porque no podemos sustituir componentes de forma sencilla.
-
 * No se puede testar una clase acoplada si no hay forma de sustituir su comportamiento por test doubles y por ende no se podrá testar una clase acoplada de forma aislada.
-
 * Si es un proyecto en el cual se necesitan cambios constantes la mantenibilidad de nuestro software va  a ser un tanto doloroso.
 
 
@@ -100,13 +97,9 @@ En concreto la inyección de dependencias nos permite proveer una dependencia fu
 La Inyección de dependencias en algunas ocasiones puede contraer nuevos problemas y es que si he logrado transmitirte bien los conceptos esperaria que te estés haciendo estas preguntas:
 
 * Si una clase no puede crear sus propios objetos, ¿Entonces debería existir un lugar en donde se crean instancias de los módulos?
-
 * ¿Qué hago si un módulo tiene un montón de dependencias?
-
 * ¿Puedo tener constructores con muchas dependencias?
-
 * ¿Cómo reutilizar dependencias entre objetos ?
-
 
 Un **inyector de dependencias** es aquel que se va encargar de administrar y proveer todas las dependencias que le configuremos y que haremos uso dentro de nuestra aplicación.
 
