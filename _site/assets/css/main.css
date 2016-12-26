@@ -858,7 +858,7 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     font-style: normal;
-    color: #212121;
+    color: #424242;
     font-size: 5rem;
     line-height: 1.6;
 }
@@ -881,7 +881,7 @@ html, body {
 }
 
 .post-item .datetime .month-year {
-    color: #727272;
+    color: #757575;
     font-size: 1.125rem
 }
 
@@ -945,7 +945,7 @@ html, body {
 }
 
 .post-item .content .description {
-    color: #424242;
+    color: #757575;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
