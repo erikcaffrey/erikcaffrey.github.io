@@ -14,8 +14,6 @@ En la actualidad como lo he mencionado en mi artículo anterior la comunidad est
 
 Hoy quiero incitar al debate y sobre todo explicar otra alternativa para trabajar en la capa de presentación mediante el uso de Model View ViewModel.
 
-![data-binding-android](/content/images/2015/12/mvvm.png){: .center-image }
-
 ## Model View ViewModel
 
 Es una derivación del patrón [Presentation Model](http://martinfowler.com/eaaDev/PresentationModel.html) descrito por el gran Martin Fowler y desarrollador por Ken Cooper and Ted Peters dos arquitectos de software de Microsoft  quienes convirtieron este patrón en la base del desarrollo de apliciones dentro de esta famosa compañia.

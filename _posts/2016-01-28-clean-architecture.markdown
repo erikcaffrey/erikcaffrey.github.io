@@ -96,6 +96,12 @@ Las principales aportaciones que esta arquitectura seguirá motivando son:
 * Independendiente de nuestra DB
 * Independendiente de cualquier herramienta externa
 
+## Clean-Architecture-Android
+
+Es un ejemplo de Clean Architecture que lo cree con la intención de explicar cómo funciona esta arquitectura dentro de nuestras aplicaciones android también puedes encontrár el código en la parte final del post.
+
+![mvp](/content/images/2016/1/euro_app.png){: .center-image }
+
 ### Conclusion
 
 Como ya lo he mencionado arriba solo quedarnos con la idea que Clean Architecture sólo son una serie de reglas a cumplir para crear software por capas dando origen a un código flexible, mantenible y testable. Otro aspecto importante que debemos tener en mente  es que no hay camino a seguir que sea el correcto para implementar esta arquitectura  crea la implementación que mejor te guste y que resuelva tu problema de la mejor forma pero no olvidar generar código que esconda detalles de implementación.
@@ -117,4 +123,4 @@ Como ya lo he mencionado arriba solo quedarnos con la idea que Clean Architectur
 
 [Clean-Architecture-Android en Github](https://github.com/erikcaffrey/Euro-CleanArchitecture)
 
-![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/Telecine_2016-04-11-09-46-01.gif)
+![](/content/images/2016/1/Telecine_2016-04-11-09-46-01.gif)

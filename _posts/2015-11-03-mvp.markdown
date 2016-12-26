@@ -73,6 +73,12 @@ Las actividades suelen estar muy acopladas a nuestra interfaz y nuestra lógica 
 
 Si aplicamos el **MVP** de una forma limpia la vista jamas sabra de donde se obtienen los datos y solo se enfocara en renderizarlos independizando la vista de la forma de conseguir esos datos.
 
+## Android-Spotify-MVP
+
+Es un ejemplo de Model View Presenter que lo cree con la intención de explicar cómo funciona este patrón dentro de nuestras aplicaciones android también puedes encontrár el código en la parte final del post.
+
+![mvp](/content/images/2015/11/spotify-mvp.png){: .center-image }
+
 ### Conclusión
 
 **Implementar el MVP** suele ser muy confuso ya que no existe una camino o una forma estandarizada de cómo se debe implementar en nuestros proyectos, más bien cada uno es responsable de cómo usar el patrón y hacer cumplir la necesidad o el problema que se tenga que resolver.
