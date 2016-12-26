@@ -131,7 +131,7 @@ Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pi
 
 [Dependency-Injection-Android en Github](https://github.com/erikcaffrey/Dependency-Injection-Android)
 
-![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/battery.png)
+![](/content/images/2016/4/battery.png)
 
 
 ## Acknowledgment
