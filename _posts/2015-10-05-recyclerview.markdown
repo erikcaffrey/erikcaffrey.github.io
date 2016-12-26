@@ -6,7 +6,7 @@ cover_image: '/content/images/2015/10/recycler_view_concep.jpg'
 tags:
 - android
 categories:
-- Android Development
+- RecyclerView
 ---
 
 El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un [RecyclerView](https://developer.android.com/training/material/lists-cards.html) he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.
