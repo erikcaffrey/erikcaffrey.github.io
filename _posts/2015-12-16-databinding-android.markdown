@@ -3,6 +3,10 @@ layout: post
 title: 'Escribiendo android apps con Data Binding'
 date: '2015-12-16 10:19:16'
 cover_image: '/content/images/2016/1/mvvm.png'
+tags:
+- android
+categories:
+- Android UI Patterns
 ---
 
 ![data-binding-android](/content/images/2015/12/mvvm.png){: .center-image }
