@@ -2,11 +2,10 @@
 layout: post
 title: 'Una aplicación android utilizando Inyección de dependencias'
 date: '2016-04-26 11:45:27'
-cover_image: '/content/images/2016/4/depen.png'
 tags:
 - android
 categories:
-- Android Design Patterns
+- Android Patterns
 ---
 
 ![di-android](/content/images/2016/4/depen.png){: .center-image }

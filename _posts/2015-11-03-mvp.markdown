@@ -2,11 +2,10 @@
 layout: post
 title: 'Model View Presenter en Android'
 date: '2015-11-03 20:47:27'
-cover_image: '/content/images/2015/11/mvp_.png'
 tags:
 - android
 categories:
-- Android UI Patterns
+- Android Patterns
 ---
 
 ![mvp-android](/content/images/2015/11/mvp_.png){: .center-image }

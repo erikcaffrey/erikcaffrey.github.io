@@ -2,7 +2,6 @@
 layout: post
 title: 'Aplicando Clean Architecture en Android'
 date: '2016-01-28 10:19:16'
-cover_image: '/content/images/2015/12/clean.png'
 tags:
 - android
 categories:
