@@ -1215,7 +1215,7 @@ table th, table td {
     margin-left: auto;
     padding-left: 0;
     padding-right: 0;
-    color: #212121;
+    color: #424242;
 }
 
 .tag-title:before, .tag-title:after {
@@ -1248,7 +1248,7 @@ table th, table td {
 
 .post-list a {
     display: block;
-    border-bottom: 1px solid #dadada;
+    border-bottom: 1px solid #424242;
     padding: .625rem 0;
     text-decoration: none;
     transition: all .5s;
