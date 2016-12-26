@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Recycler View"
+title: "Welcome to Jekyll"
 date: 2015-08-04 03:21:35
 image: '/assets/img/'
 description: 'Put your description here.'
@@ -8,7 +8,7 @@ tags:
 - jekyll
 - web
 categories:
-- Androide
+- Demo 2
 twitter_text: 'Put your twitter description here.'
 ---
 

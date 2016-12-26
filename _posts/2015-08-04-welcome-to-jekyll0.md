@@ -8,7 +8,7 @@ tags:
 - jekyll
 - web
 categories:
-- Jekyll is awesome
+- Demo 1
 twitter_text: 'Put your twitter description here.'
 ---
 
