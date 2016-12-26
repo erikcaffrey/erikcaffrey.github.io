@@ -1248,7 +1248,7 @@ table th, table td {
 
 .post-list a {
     display: block;
-    border-bottom: 1px solid #424242;
+    border-bottom: 1px solid #BDBDBD;
     padding: .625rem 0;
     text-decoration: none;
     transition: all .5s;
