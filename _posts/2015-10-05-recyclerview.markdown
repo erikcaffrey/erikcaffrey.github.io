@@ -321,5 +321,4 @@ RecyclerView es una vista con mucho potencial que fue incorporada con el propós
 
 [RecyclerView-Examples en Github](https://github.com/erikcaffrey/RecyclerView-Examples)
 
-
-![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/Telecine_2015-10-18-21-56-43.gif)
+![](/content/images/2015/10/Telecine_2015-10-18-21-56-43.gif){: .center-image }
