@@ -6,7 +6,7 @@ cover_image: '/content/images/2015/11/mvp_.png'
 tags:
 - android
 categories:
-- Android UI patterns
+- Android UI Patterns
 ---
 
 ![mvp-android](/content/images/2015/11/mvp_.png){: .center-image }
@@ -21,10 +21,10 @@ Recordar que el [MVC](https://teamtreehouse.com/library/build-a-blog-reader-andr
 
 ### ¿Cómo se aplica actualmente el MVC en Android?
 
-##### Modelos
+#### Modelos
 El encargado de encapsular y mantener la lógica de negocio lo que tiene que hacer nuestra aplicación (Que vamos a mostrar).
 
-##### Vistas
+#### Vistas
 Los encargados de dibujar las vistas de nuestra aplicación ese conjunto de layouts creados en xml. (Cómo lo vamos a mostrar).
 
 #### Controladores

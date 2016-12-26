@@ -9,6 +9,8 @@ categories:
 - RecyclerView
 ---
 
+![recycler-android](/content/images/2015/10/recycler_view_concep.jpg){: .center-image }
+
 El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un [RecyclerView](https://developer.android.com/training/material/lists-cards.html) he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.
 
 Sabemos que muchas personas están familiarizadas con este componente debido a que fue integrado al SDK de android con la llegada de la nueva versión android 5.0 "L" "Lollipop", la cual fue anunciada en el [Google I/O 2014](https://www.youtube.com/watch?v=wtLJPvx7-ys) lo que significa que estamos hablando que esto tiene ya poco más de un año.
