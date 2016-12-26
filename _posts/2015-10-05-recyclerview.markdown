@@ -6,7 +6,7 @@ cover_image: '/content/images/2015/10/recycler_view_concep.jpg'
 tags:
 - android
 categories:
-- RecyclerView
+- Android Material Design
 ---
 
 ![recycler-android](/content/images/2015/10/recycler_view_concep.jpg){: .center-image }
