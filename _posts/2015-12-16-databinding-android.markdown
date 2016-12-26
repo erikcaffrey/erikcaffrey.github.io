@@ -14,6 +14,7 @@ En la actualidad como lo he mencionado en mi artículo anterior la comunidad est
 
 Hoy quiero incitar al debate y sobre todo explicar otra alternativa para trabajar en la capa de presentación mediante el uso de Model View ViewModel.
 
+![data-binding-android](/content/images/2015/12/mvvm.png){: .center-image }
 
 ## Model View ViewModel
 
@@ -21,7 +22,7 @@ Es una derivación del patrón [Presentation Model](http://martinfowler.com/eaaD
 
 MVVM se enfoca en abstraer la implementación concreta de la vista, es decir su comportamiento y estado, lo que nos permitirá separar las vistas de nuestra lógica de negocio y capa de datos. Básicamente la forma en que se logra es mediante un ViewModel que permite exponer los objetos de datos de un modelo y maneja la lógica de cómo se tienen que pintar nuestros datos dentro de las vistas.
 
-![mvvm](/content/images/2015/2/mvvm_flow.png){: .center-image }
+![mvvm](/content/images/2015/12/mvvm_flow.png){: .center-image }
 
 Al igual que **MVC** y [MVP](https://erikcaffrey.github.io/2015/11/03/mvp/) el **MVVM** se compone de tres componentes principales:
 
@@ -51,13 +52,13 @@ Es un ejemplo de Model View View Model que lo cree con la intención de explicar
 
 También lo utilice para una plática que di hace unos dias en el  [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) que organizó en la Ciudad de México, aquí puedes encontrar los [slides](https://speakerdeck.com/erikcaffrey/mvvm-android) y por supuesto el código esta disponible esta en la parte final del post.
 
-![people](/content/images/2012/12/people.png){: .center-image }
+![people](/content/images/2015/12/people.png){: .center-image }
 
 Para dar un pequeño contexto y entender cómo funciona el data binding explicare brevemente únicamente como funciona el [item_people.xml](https://github.com/erikcaffrey/People-MVVM/blob/master/app/src/main/res/layout/item_people.xml) de la lista recuerda que en el código podrás verlo más de cerca.
 
 Cada instancia **People** se muestra mediante una vista dentro del Recyclerview.
 
-![item_people](/content/images/2012/12/item_people.png){: .center-image }
+![item_people](/content/images/2015/12/item_people.png){: .center-image }
 
 #### Model
 
@@ -252,4 +253,4 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 [People-MVVM en Github](https://github.com/erikcaffrey/People-MVVM)
 
-![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/Telecine_2016-03-15-23-23-27.gif)
+![](/content/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
