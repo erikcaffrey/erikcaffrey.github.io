@@ -8,7 +8,7 @@ tags:
 - jekyll
 - web
 categories:
-- Jekyll is awesome
+- Androide
 twitter_text: 'Put your twitter description here.'
 ---
 
