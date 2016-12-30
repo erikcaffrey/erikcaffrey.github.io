@@ -6,11 +6,8 @@ image: '/assets/img/series.png'
 description: "This section is focused on share experiences and knowledge about android development making strong emphasis in raise discussion and technical level in Latin America the content is written in spanish"
 ---
 
-{% assign tags_list = site.tags %}
-{% for tag in tags_list %}
-  {{ tag }}
-{% endfor %}
-  {% for tag in site.categories %}
+
+{% for tag in site.categories %}
         <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
           <ul class="post-list">
             {% assign pages_list = tag[1] %}
