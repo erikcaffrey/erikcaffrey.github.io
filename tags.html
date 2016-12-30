@@ -25,7 +25,7 @@ description: "The goal of this section is talking about android and iOS developm
 
 {% for tag in site.tags  %}
   {% if tag[0] != "android" %}
-    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
+    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }} development</span>
   {% endif %}
     <ul class="post-list">
         {% assign pages_list = tag[1] %}
