@@ -3,13 +3,13 @@ layout: post
 title: 'TEST IOS'
 date: '2016-01-28 10:19:16'
 tags:
-- ios
+- mobile
 categories:
 - ios
 ---
 ![data-binding-android](/content/images/2016/1/clean.png){: .center-image }
 
-## TEST IOS
+## TEST MOBILE
 Hace ya un tiempo que comencé a desarrollar aplicaciones móviles para android (si cuando android era feo '2.2' y no existía material design) y a lo largo de este proceso he aprendido infinidad de cosas y es que diario aprendo algo nuevo mientras trabajo en mi día a día escribiendo aplicaciones ;pero llegó un momento en el que me sentí preocupado por la calidad de mi código y comencé a cuestionarme:
 
 * ¿Cómo es que se escriben aplicaciones de la calidad?
