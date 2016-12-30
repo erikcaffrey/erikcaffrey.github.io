@@ -9,11 +9,15 @@ description: "The goal of this section is talking about android and iOS developm
 {% assign tags_list = site.tags %}
   {% if tags_list.first[0] == null %}
     {% for tag in tags_list %}
+    {% if tag[0] != "android" %}
         <a data-scroll href="#{{ tag | slugify }}">{{ tag }}</a>
+    {% endif %}
     {% endfor %}
   {% else %}
     {% for tag in tags_list %}
+      {% if tag[0] != "android" %}
         <a data-scroll href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+      {% endif %}
     {% endfor %}
   {% endif %}
 {% assign tags_list = nil %}
