@@ -7,7 +7,9 @@ description: "This section is focused on share experiences and knowledge about a
 ---
 
 {% for tag in site.categories %}
-  <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
+  {% if tag[0] != "mobile" %}
+    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
+  {% endif %}
   <ul class="post-list">
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
