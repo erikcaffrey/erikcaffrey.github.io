@@ -12,7 +12,7 @@ description: "This section is focused on share experiences and knowledge about a
   {% endif %}
     <ul class="post-list">
         {% assign pages_list = tag[1] %}
-        {% for post in pages_list reversed %}
+        {% for post in pages_list%}
             {% if post.title != null %}
             {% if group == null or group == post.group %}
               {% if tag[0] == "android" %}

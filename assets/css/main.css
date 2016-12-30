@@ -1442,12 +1442,12 @@ pre span {
     font-weight: 800;
     font-style: normal;
     text-decoration: none;
-    color: #000;
+    color: #424242;
     font-size: 1.875rem;
 }
 
 .author .name a:hover {
-    color: #0562dc
+    color: #ED304B
 }
 
 @media only screen and (min-width:37.5rem) {
@@ -1472,7 +1472,7 @@ pre span {
 
 .author .email {
     text-decoration: none;
-    color: #ED304B
+    color: #424242
 }
 
 .comments {
