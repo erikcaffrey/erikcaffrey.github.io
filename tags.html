@@ -29,7 +29,7 @@ description: "The goal of this section is talking about android and iOS developm
   {% endif %}
     <ul class="post-list">
         {% assign pages_list = tag[1] %}
-        {% for post in pages_list reversed %}
+        {% for post in pages_list%}
             {% if post.title != null %}
             {% if group == null or group == post.group %}
               {% if tag[0] != "android" %}
