@@ -6,13 +6,13 @@ image: '/assets/img/series.png'
 description: "This section is focused on share experiences and knowledge about android development making strong emphasis in raise discussion and technical level in Latin America the content is written in spanish"
 ---
 
-{% for tag in site.categories %}
+{% assign tags_list = site.tags %}
+{% for tagName in tags_list %}
+{% if tagName[0] == "android" %}
 
-{% assign foo = tag[0] %}
-{{ foo }}
-  {% if tag[0] == 'android' %}
-    <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
-  {% endif %}
+{% for tag in site.categories %}
+   <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
+
   <ul class="post-list">
     {% assign pages_list = tag[1] %}
     {% for post in pages_list reversed %}
@@ -28,4 +28,7 @@ description: "This section is focused on share experiences and knowledge about a
     {% assign pages_list = nil %}
     {% assign group = nil %}
   </ul>
+{% endfor %}
+
+{% endif %}
 {% endfor %}
