@@ -2,7 +2,7 @@
 title: ErikJhordan_Rey
 description: A blog about Software Engineering
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://erikcaffrey.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+url: "https://erikcaffrey.github.io" # the base hostname & protocol for your site e.g. 
 
 # User settings
 username: Erik Jhordan Rey
