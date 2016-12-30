@@ -20,13 +20,17 @@ description: "The goal of this section is talking about android and iOS developm
 </div>
 
 {% for tag in site.tags  %}
+  {% if tag[0] != "android" %}
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
+  {% endif %}
     <ul class="post-list">
         {% assign pages_list = tag[1] %}
         {% for post in pages_list reversed %}
             {% if post.title != null %}
             {% if group == null or group == post.group %}
+              {% if tag[0] != "android" %}
             <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></a></li>
+              {% endif %}
             {% endif %}
             {% endif %}
         {% endfor %}
