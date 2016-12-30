@@ -7,7 +7,7 @@ description: "This section is focused on share experiences and knowledge about a
 ---
 
 {% for tag in site.categories %}
-  {% if tag[0] == "android" %}
+  {% if tag[0] != "mobile" %}
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
   {% endif %}
   <ul class="post-list">
@@ -16,7 +16,7 @@ description: "This section is focused on share experiences and knowledge about a
 
       {% if post.title != null %}
           {% if group == null or group == post.group %}
-            {% if tag[0] == "android" %}
+            {% if tag[0] != "mobile" %}
               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></a></li>
             {% endif %}
           {% endif %}
