@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'android and ios developers working together'
-date: '2016-01-28 10:19:16'
+date: '2016-12-30 12:28:18'
 tags:
 - mobile
 categories:
