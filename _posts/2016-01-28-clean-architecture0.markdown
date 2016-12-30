@@ -5,7 +5,7 @@ date: '2016-01-28 10:19:16'
 tags:
 - mobile
 categories:
-- ios
+- mobile
 ---
 ![data-binding-android](/content/images/2016/1/clean.png){: .center-image }
 
