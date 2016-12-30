@@ -6,24 +6,6 @@ image: '/assets/img/series.png'
 description: "This section is focused on share experiences and knowledge about android development making strong emphasis in raise discussion and technical level in Latin America the content is written in spanish"
 ---
 
-<div class="tags">
-{% assign tags_list = site.tags %}
-  {% if tags_list.first[0] == null %}
-    {% for tag in tags_list %}
-    {% if tag[0] == "android" %}
-        <a data-scroll href="#{{ tag | slugify }}">{{ tag }}</a>
-    {% endif %}
-    {% endfor %}
-  {% else %}
-    {% for tag in tags_list %}
-      {% if tag[0] == "android" %}
-        <a data-scroll href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-{% assign tags_list = nil %}
-</div>
-
 {% for tag in site.tags  %}
   {% if tag[0] == "android" %}
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
