@@ -7,8 +7,10 @@ description: "This section is focused on share experiences and knowledge about a
 ---
 
 {% assign tags_list = site.tags %}
+{% for tag in tags_list.tags %}
+  {{ tag }}
+{% endfor %}
   {% for tag in site.categories %}
-      {% if site.categories[0] == "android" %}
         <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
           <ul class="post-list">
             {% assign pages_list = tag[1] %}
@@ -22,5 +24,4 @@ description: "This section is focused on share experiences and knowledge about a
           {% assign pages_list = nil %}
           {% assign group = nil %}
           </ul>
-       {% endif %}
   {% endfor %}
