@@ -5,7 +5,7 @@ date: '2016-07-08 10:32:10'
 tags:
 - android
 categories:
-- Android Patterns
+- Android Architecture
 ---
 
 ![dagger2-android](/content/images/2016/7/mario-kart.png){: .center-image }

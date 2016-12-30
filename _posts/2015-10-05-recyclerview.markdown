@@ -5,7 +5,7 @@ date: '2015-10-05 18:13:27'
 tags:
 - android
 categories:
-- Android Material Design
+- Android Ui
 ---
 
 ![recycler-android](/content/images/2015/10/recycler_view_concep.jpg){: .center-image }

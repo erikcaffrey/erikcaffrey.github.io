@@ -5,7 +5,7 @@ date: '2015-12-16 10:19:16'
 tags:
 - android
 categories:
-- Android Patterns
+- Android Architecture
 ---
 
 ![data-binding-android](/content/images/2015/12/mvvm.png){: .center-image }

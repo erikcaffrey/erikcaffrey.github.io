@@ -5,7 +5,7 @@ date: '2016-04-26 11:45:27'
 tags:
 - android
 categories:
-- Android Patterns
+- Android Architecture
 ---
 
 ![di-android](/content/images/2016/4/depen.png){: .center-image }
