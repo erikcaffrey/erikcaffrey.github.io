@@ -7,7 +7,7 @@ description: "This section is focused on share experiences and knowledge about a
 ---
 
 {% for tag in site.categories %}
-  {% if tag[0] == "android" %}
+  {% if tag[0] === "android" %}
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] | capitalize }}</span>
   {% endif %}
   <ul class="post-list">
