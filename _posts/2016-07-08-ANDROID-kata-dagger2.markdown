@@ -51,8 +51,6 @@ Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso
 
 ### Setup Dagger 2
 
-Android studio no reconoce el código generado por Dagger 2 pero agregando el plugin de android-apt permite que eso pueda ser utilizado sin problema.
-
 Para poder hacer uso de Dagger 2 en android studio necesitamos configurar el procesador de anotaciones simplemente usando el plugin de gradle `android-apt` afortunadamente con la versión `android gradle plugin 2.2` esto ya no es necesario ya que viene contenido ya en el nuevo plugin.
 
 {% highlight java %}
@@ -65,9 +63,12 @@ dependencies {
 
 {% endhighlight %}
 
-El compilador de Dagger genera código que es usado para crear un grafo el cual será el encargado de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
+El compilador de Dagger genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
 
 ### Annotations of Dagger 2
+
+* <@Module>
+
 
 # Great moment to start the challenge
 
