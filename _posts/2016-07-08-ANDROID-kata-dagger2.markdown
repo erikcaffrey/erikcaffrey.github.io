@@ -65,7 +65,7 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 ### Annotations of Dagger 2
 
-## Basic Annotations
+### Basic Annotations
 
 #### @Module
 
@@ -75,7 +75,7 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 #### @Component
 
-## Other Annotations
+### Other Annotations
 
 #### @Singleton
 
@@ -98,8 +98,7 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 * Implementa tu objeto de dominio de nombre [Character](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.java) con los siguientes atributos name, photo, cover, description.
 * Crea un objeto de dominio de nombre [Abilities](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.java) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
-* Agrega un tu objeto Character un atributo de tipo Abilities
-
+* Agrega a tu objeto Character un atributo de tipo Abilities
 
 ### Task 3
 
