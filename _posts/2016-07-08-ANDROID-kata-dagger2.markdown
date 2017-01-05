@@ -91,16 +91,35 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 ### Task 1
 
+* Leer sobre [clean architecture](https://erikcaffrey.github.io/ANDROID-clean-architecture/) ya que esta kata sigue sus principios (solo si no sabes nada de Clean Architecture).
 * Crea un proyecto nuevo de android en android studio
 * Configura tu proyecto para poder hacer uso de la librería de dagger 2
 
 ### Task 2
 
 * Implementa tu objeto de dominio de nombre [Character](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.java) con los siguientes atributos name, photo, cover, description.
-* Crea un objeto de dominio de nombre [Abilities](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.java) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
+* Implementa un objeto de dominio de nombre [Abilities](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.java) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
 * Agrega a tu objeto Character un atributo de tipo Abilities
 
 ### Task 3
+
+* Implementa una clase FAKE DATA SOURCE responsable de generar una lista de personajes
+* Implementa una clase REPOSITORY que tendrá una dependencia con FAKE DATA SOURCE
+
+### Task 4
+
+* Implementa un GET ALL CHARACTERS USE CASE que obtenga TODOS los personajes con una dependencia a REPOSITORY
+* Implementa un GET A CHARACTER USE CASE que obtenga UN personaje por su nombre con una dependencia a REPOSITORY
+
+### Task 5
+
+* Implementa un CHARACTERS PRESENTER para mostrar una lista de personajes en una vista con una dependencia a GET ALL CHARACTERS USE CASE
+* Implementa un CHARACTER PRESENTER para mostrar un personaje en una vista con una dependencia a GET A CHARACTER USE CASE
+
+### Task 6
+
+* Implementa una vista activity o fragment con una dependencia a CHARACTERS PRESENTER
+* Implementa una vista activity o fragment con una dependencia a CHARACTER PRESENTER
 
 I'm cooking this post
 
