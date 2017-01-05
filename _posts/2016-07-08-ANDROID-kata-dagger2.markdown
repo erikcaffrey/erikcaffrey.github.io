@@ -67,7 +67,10 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 ### Annotations of Dagger 2
 
-* <@Module>
+#### @Module
+#### @Provides
+#### @Inject
+#### @Component
 
 
 # Great moment to start the challenge
