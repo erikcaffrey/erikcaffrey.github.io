@@ -51,7 +51,7 @@ Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso
 
 ### Setup Dagger 2
 
-Para poder hacer uso de Dagger 2 en android studio necesitamos configurar el procesador de anotaciones simplemente usando el plugin de gradle `android-apt` afortunadamente con la versión `android gradle plugin 2.2` esto ya no es necesario ya que viene contenido ya en el nuevo plugin.
+Para poder hacer uso de Dagger 2 en android studio necesitamos configurar el procesador de anotaciones simplemente usando el plugin de gradle `android-apt` afortunadamente con la versión `android gradle plugin 2.2` ya que viene contenido.
 
 ```gradle
 dependencies {
@@ -65,6 +65,8 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 ### Annotations of Dagger 2
 
+## Basic Annotations
+
 #### @Module
 
 #### @Provides
@@ -73,21 +75,31 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 #### @Component
 
+## Other Annotations
+
 #### @Singleton
 
 #### @Named
 
+#### @Scope
+
+#### @Qualifier
+
+### Putting everything together
 
 # Great moment to start the challenge
-
 
 ### Task 1
 
 * Crea un proyecto nuevo de android en android studio
-* Configura tu proyecto para poder hacer uno de la librería de dagger 2
-
+* Configura tu proyecto para poder hacer uso de la librería de dagger 2
 
 ### Task 2
+
+* Implementa tu objeto de dominio de nombre [Character](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.java) con los siguientes atributos name, photo, cover, description.
+* Crea un objeto de dominio de nombre [Abilities](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.java) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
+* Agrega un tu objeto Character un atributo de tipo Abilities
+
 
 ### Task 3
 
