@@ -64,9 +64,11 @@ dependencies {
 El compilador de Dagger genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
 
 ### Annotations of Dagger 2
-
+I'm cooking this post
+wait for it very soon!
 ### Basic Annotations
-
+I'm cooking this post
+wait for it very soon!
 #### @Module
 
 #### @Provides
@@ -76,7 +78,8 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 #### @Component
 
 ### Other Annotations
-
+I'm cooking this post
+wait for it very soon!
 #### @Singleton
 
 #### @Named
@@ -86,6 +89,8 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 #### @Qualifier
 
 ### Putting everything together
+I'm cooking this post
+wait for it very soon!
 
 # Great moment to start the challenge
 
@@ -103,26 +108,26 @@ El compilador de Dagger genera código que es usado para crear un grafo, el cual
 
 ### Task 3
 
-* Implementa una clase FAKE DATA SOURCE responsable de generar una lista de personajes
-* Implementa una clase REPOSITORY que tendrá una dependencia con FAKE DATA SOURCE
+* Implementa una clase `FAKE DATA SOURCE` responsable de generar una lista de personajes
+* Implementa una clase `REPOSITORY` que tendrá una dependencia con `FAKE DATA SOURCE`
 
 ### Task 4
 
-* Implementa un GET ALL CHARACTERS USE CASE que obtenga TODOS los personajes con una dependencia a REPOSITORY
-* Implementa un GET A CHARACTER USE CASE que obtenga UN personaje por su nombre con una dependencia a REPOSITORY
+* Implementa un `GET ALL CHARACTERS USE CASE` que obtenga `TODOS` los personajes con dependencia a `REPOSITORY`
+* Implementa un `GET A CHARACTER USE CASE` que obtenga `UN` personaje por su nombre con dependencia a `REPOSITORY`
 
 ### Task 5
 
-* Implementa un CHARACTERS PRESENTER para mostrar una lista de personajes en una vista con una dependencia a GET ALL CHARACTERS USE CASE
-* Implementa un CHARACTER PRESENTER para mostrar un personaje en una vista con una dependencia a GET A CHARACTER USE CASE
+* Implementa un `CHARACTERS PRESENTER` para mostrar una lista de personajes en una vista con dependencia a `GET ALL CHARACTERS USE CASE`
+* Implementa un `CHARACTER PRESENTER` para mostrar un personaje en una vista con dependencia a `GET A CHARACTER USE CASE`
 
 ### Task 6
 
-* Implementa una vista activity o fragment con una dependencia a CHARACTERS PRESENTER
-* Implementa una vista activity o fragment con una dependencia a CHARACTER PRESENTER
+* Implementa una vista android activity, fragment u otra con dependencia a `CHARACTERS PRESENTER`
+* Implementa una vista android activity, fragment u otra con dependencia a `CHARACTER PRESENTER`
+
 
 I'm cooking this post
-
 wait for it very soon!
 
 **"Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie"**
