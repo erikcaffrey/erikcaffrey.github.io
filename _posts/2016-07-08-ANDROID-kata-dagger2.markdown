@@ -10,6 +10,8 @@ categories:
 
 ![dagger2-android](/content/images/2016/7/mario-kart.png){: .center-image }
 
+## Where is Princess Peach?
+
 En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Princesa Peach fue raptada por un degenerado Bowser quien le ha preparado una serie de planes nada buenos para ella.
 
 Después de un largo camino recorrido en diferentes arenas, mundos y ciudades gracias a la colaboración de Luigi han dado con el paradero de la princesa, para recuperarla esta vez no es necesario que Mario tenga pasar a través de castillos como un bandido destruyendo y derribando cuanto hongo se ponga en el camino o asesinando tortugas lanza martillos, ni mucho menos aniquilando peces voladores, esta vez se trata de ganar una carrera contra el malvado de Bowser.
@@ -18,9 +20,11 @@ Después de un largo camino recorrido en diferentes arenas, mundos y ciudades gr
 
 Tu misión es desarrollar una aplicación android que muestre una lista de los competidores utilizando el inyector de dependencias Dagger 2 y con ello ayudar a que Mario Bros pueda conocer las habilidades de sus rivales, sin duda alguna tu colaboración será de utilidad para recuperar a la aterrada Princesa Peach.
 
+# Understanding dagger 2 before to start the challenge
+
 ## Introduction to Dependency Injection
 
-En mi [capítulo anterior](https://erikcaffrey.github.io/2016/04/26/dependency-injection/) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un inyector de dependencias.
+En mi [capítulo anterior](https://erikcaffrey.github.io/ANDROID-dependency-injection/) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un inyector de dependencias.
 
 Pues bien hoy es el gran día para aprender [Dagger 2](http://google.github.io/dagger/) mediante un divertido ejemplo y aunque se que usar Dagger 2  es complejo en un principio y difícil de entender, intentaré enseñarte de una forma fácil y espero lograrlo.
 
@@ -33,7 +37,7 @@ deseas utilizar otro inyector de dependencias asegurate que cuente con el están
 
 Es un framework que permite aplicar el patrón de inyección de dependencias en java y android viene a solucionar algunos problemas de otros inyectores y sobre todo con la intención de mejorar la experiencia de los desarrolladores la usar un inyector.
 
-### Characteristics
+### Features
 
 * Configuración basada en Componentes, adiós a los grafos.
 * El código generado es legible y fácil de entender.
@@ -45,7 +49,16 @@ Es un framework que permite aplicar el patrón de inyección de dependencias en 
 
 Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para la conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming)).
 
+### Annotations of Dagger 2
+
+# Great moment to start the challenge
+
+
 ### Task 1
+
+### Task 2
+
+### Task 3
 
 I'm cooking this post
 
