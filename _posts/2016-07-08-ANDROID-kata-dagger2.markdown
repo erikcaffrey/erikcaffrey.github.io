@@ -49,12 +49,28 @@ Es un framework que permite aplicar el patrón de inyección de dependencias en 
 
 Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para la conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming)).
 
+### Setup Dagger 2
+
+{% highlight java %}
+
+dependencies {
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+    compile 'com.google.dagger:dagger:2.8'
+    provided 'javax.annotation:jsr250-api:1.0'
+}
+
+{% endhighlight %}
+
 ### Annotations of Dagger 2
 
 # Great moment to start the challenge
 
 
 ### Task 1
+
+* Crea un proyecto nuevo de android
+* Configura tu proyecto para poder hacer uno de la librería de dagger 2
+
 
 ### Task 2
 
