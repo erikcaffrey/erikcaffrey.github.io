@@ -64,11 +64,15 @@ dependencies {
 El compilador de Dagger genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
 
 ### Annotations of Dagger 2
+
 I'm cooking this post
 wait for it very soon!
+
 ### Basic Annotations
+
 I'm cooking this post
 wait for it very soon!
+
 #### @Module
 
 #### @Provides
@@ -78,8 +82,10 @@ wait for it very soon!
 #### @Component
 
 ### Other Annotations
+
 I'm cooking this post
 wait for it very soon!
+
 #### @Singleton
 
 #### @Named
@@ -89,6 +95,7 @@ wait for it very soon!
 #### @Qualifier
 
 ### Putting everything together
+
 I'm cooking this post
 wait for it very soon!
 
