@@ -79,7 +79,7 @@ Es la forma en que pedimos dependencias y le comunicamos a Dagger que la clase o
 
 * **@Component**
 
-Se usa para marcar a una interfaz como un componente ya que es necesario para que Dagger pueda generar código o mejor dicho una clase con el prefijo “Dagger” (Si tu declaras un component ExampleApiComponent dagger te va a generar DaggerExampleApiComponent) esta clase generada es la responsable de instanciar una dependencia de nuestro grafo y usarla para inyectarla en los fields marcados con **@Inject**.
+Se usa para marcar a una interfaz como un componente ya que es necesario para que Dagger pueda generar código o mejor dicho una clase con el prefijo *Dagger* (Si tu declaras un component ExampleApiComponent dagger te va a generar DaggerExampleApiComponent) esta clase generada es la responsable de instanciar una dependencia de nuestro grafo y usarla para inyectarla en los fields marcados con **@Inject**.
 
 * **@Singleton**
 
@@ -154,10 +154,10 @@ wait for it very soon!
 
 ### Demo
 
+I'm cooking this post
+wait for it very soon!
+
 #### El código está disponible
 
 I'm cooking this post
-I'm cooking this post
-I'm cooking this post
-I'm cooking this post
-I'm cooking this post
+wait for it very soon!

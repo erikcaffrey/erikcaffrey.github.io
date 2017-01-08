@@ -563,7 +563,7 @@ body.search-overlay:after {
 
 @media only screen and (max-width:37.5rem) {
     body.search-overlay:after {
-        background-color: #0562dc
+        background-color: #1ABC54
     }
 }
 
@@ -930,7 +930,7 @@ html, body {
 }
 
 .post-item .content .date {
-    color: #0562dc
+    color: #1ABC54
 }
 
 .post-item .content .post-title {
@@ -953,7 +953,7 @@ html, body {
 }
 
 .post-item .content .description a {
-    color: #0562dc;
+    color: #1ABC54;
     text-decoration: underline
 }
 
@@ -1090,7 +1090,7 @@ html, body {
     margin-left: auto;
     padding-left: 0;
     padding-right: 0;
-    border-left: .313rem solid #0562dc;
+    border-left: .313rem solid #1ABC54;
     padding: 0 1.875rem;
     margin: 3.125rem auto;
 }
@@ -1181,7 +1181,7 @@ html, body {
 }
 
 .share a:hover svg {
-    fill: #0562dc
+    fill: #1ABC54
 }
 
 table {
