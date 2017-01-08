@@ -1247,15 +1247,13 @@ table th, table td {
 
 .post-list a {
     display: block;
-    border-bottom: 1px solid #BDBDBD;
     padding: .625rem 0;
     text-decoration: none;
     transition: all .5s;
 }
 
 .post-list a:hover {
-    color: #1ED760;
-    border-bottom: 1px solid #1ED760
+    color: #424242;
 }
 
 .post-list .entry-date {
