@@ -47,7 +47,7 @@ Es un framework que permite aplicar el patrón de inyección de dependencias en 
 * Incrementa el performance 13% de acuerdo con Gegrory Kick.
 * El grafo es validado en tiempo de build.
 
-Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para la conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming)).
+Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming))(si esto es un poco coñazo).
 
 ### Setup Dagger 2
 
@@ -99,11 +99,15 @@ Es de las anotaciones más poderosas de dagger 2 ya que permite crear custom sco
 
 El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean de una misma interfaz. Imagina que debes proveer un una instancia de MusicApi y esta tiene dos clases hijas Spotify Api y otra por SoundCloud Api usando qualifier te ayuda a identificar cada una **@SpotifyApi** **@SoundCloudApi** y de esta forma decirle a dagger cual es la que debe proveer ya que ambas son del tipo **MusicApi**. Recuerda que se deben nombrar en donde se proveen **@Provides** y en donde se inyectarán **@Inject**.
 
+Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.
+
+![dagger2](/content/images/2016/7/dagger_general.png){: .center-image }
+
+
 
 ### Putting everything together
 
-I'm cooking this post
-wait for it very soon!
+
 
 # Great moment to start the challenge
 
