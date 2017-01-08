@@ -61,38 +61,44 @@ dependencies {
 }
 ```
 
-El compilador de Dagger genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
+El compilador de Dagger 2 genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa `provided` para referenciar las dependencias que son necesitadas en tiempo de compilación y `annotationProcessor` procesa las notaciones de nuestras clases  sin agregarlas al [class path](https://docs.oracle.com/javase/tutorial/essential/environment/paths.html).
 
 ### Annotations of Dagger 2
 
-I'm cooking this post
-wait for it very soon!
-
-### Basic Annotations
-
-I'm cooking this post
-wait for it very soon!
-
 #### @Module
+
+Se usa para marcar una clase como proveedora de dependencias ya que dentro contendrá métodos con la notación @Provides de tal forma que al momento de crear una instancia de una clase y esta requiera dependencias dagger sabrá en qué lugar ir a buscar dichos objetos.
 
 #### @Provides
 
+Cada método utilizando para proveer dependencias deben ser marcados con esta anotación ya que serán los objetos que usará dagger para resolver las dependencias entre nuestras clases. Para evitar el exceso de métodos con esta anotación dagger 2 puede buscar una dependencia en el constructor de la clase simplemente marcándolo con la anotación **@Inject**.
+
 #### @Inject
+
+Es la forma en que pedimos dependencias y le comunicamos a Dagger que la clase o campo marcado con esta anotación será parte de la inyección de dependencias. Así, Dagger construirá instancias de estas clases anotadas y satisfará sus dependencias.
 
 #### @Component
 
-### Other Annotations
-
-I'm cooking this post
-wait for it very soon!
+Se usa para marcar a una interfaz como un componente ya que es necesario para que Dagger pueda generar código o mejor dicho una clase con el prefijo “Dagger” (Si tu declaras un component ExampleApiComponent dagger te va a generar DaggerExampleApiComponent) esta clase generada es la responsable de instanciar una dependencia de nuestro grafo y usarla para inyectarla en los fields marcados con @Inject.
 
 #### @Singleton
 
+Simplemente se usa para decirle a Dagger que debe crear una sola instancia de un objeto, tal cual el patrón de diseño [singleton](http://www.oodesign.com/singleton-pattern.html).
+
 #### @Named
+
+Hay veces en que debes proveer una misma dependencia con diferentes implementaciones para ello hay que decirle a dagger que instancia es la que necesitamos que sea inyectada.
+
+Básicamente es una forma de nombrar nuestras dependencias y así poder diferenciarlas se deben nombrar en donde se proveen **@Provides** y en donde se inyectarán **@Inject**.
 
 #### @Scope
 
+Es de las anotaciones más poderosas de dagger 2 ya que permite crear custom scopes que son algo parecido a un **@Singleton** solo que van relacionadas al ciclo de vida de un componente no de la aplicación. Por ejemplo podría crear un **@LifeActivity** annotation y se usaría para que una instancia viva solo mientras una activity sea requerida.
+
 #### @Qualifier
+
+El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean de una misma interfaz. Imagina que debes proveer un una instancia de MusicApi y esta tiene dos clases hijas Spotify Api y otra por SoundCloud Api usando qualifier te ayuda a identificar cada una **@SpotifyApi** **@SoundCloudApi** y de esta forma decirle a dagger cual es la que debe proveer ya que ambas son del tipo **MusicApi**. Recuerda que se deben nombrar en donde se proveen **@Provides** y en donde se inyectarán **@Inject**.
+
 
 ### Putting everything together
 
