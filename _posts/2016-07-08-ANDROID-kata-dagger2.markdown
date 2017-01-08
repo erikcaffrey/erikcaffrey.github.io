@@ -99,15 +99,16 @@ Es de las anotaciones más poderosas de dagger 2 ya que permite crear custom sco
 
 El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean de una misma interfaz. Imagina que debes proveer un una instancia de MusicApi y esta tiene dos clases hijas Spotify Api y otra por SoundCloud Api usando qualifier te ayuda a identificar cada una **@SpotifyApi** **@SoundCloudApi** y de esta forma decirle a dagger cual es la que debe proveer ya que ambas son del tipo **MusicApi**. Recuerda que se deben nombrar en donde se proveen **@Provides** y en donde se inyectarán **@Inject**.
 
+### Injections Overview
+
 Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.
 
 ![dagger2](/content/images/2016/7/dagger_general.png){: .center-image }
 
-
-
 ### Putting everything together
 
-
+I'm cooking this post
+wait for it very soon!
 
 # Great moment to start the challenge
 
