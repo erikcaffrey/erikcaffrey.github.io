@@ -112,6 +112,8 @@ Ya que hemos comprendido para qué sirven algunos de los elementos veamos un sim
 **Objetivo:** Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach.
 
 
+Empezamos creando el objeto **PrincessPeach** con dos atributos un nombre y una foto de perfil ambos los obtenemos usando resources.
+
 {% highlight java %}
 public class PrincessPeach {
 
@@ -132,6 +134,123 @@ public class PrincessPeach {
   }
 }
 {% endhighlight %}
+
+Simularemos que estamos haciendo una llamada a una api y devolveremos una instancia de tipo **PrincessPeach** con un simple método llamado **getPrincesPeach()**.
+
+{% highlight java %}
+public class PrincessPeachApi {
+
+  public PrincessPeach getPrincesPeach() {
+    return new PrincessPeach();
+  }
+}
+{% endhighlight %}
+
+Definimos un módulo que será el encargado de proveer una instancia de **PrincessPeach**.
+
+{% highlight java %}
+@Module public class PrincessPeachApiModule {
+
+  @Provides @Singleton PrincessPeachApi providesPeachApi() {
+    return new PrincessPeachApi();
+  }
+}
+{% endhighlight %}
+
+Creamos un componente para indicar en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.
+
+{% highlight java %}
+
+@Singleton @Component(modules = { PrincessPeachApiModule.class })
+public interface PrincessPeachComponent {
+
+  void inject(PrincessPeachActivity princessPeachActivity);
+}
+{% endhighlight %}
+
+Es necesario crear una clase que herede de [Application](https://developer.android.com/reference/android/app/Application.html) para que dagger pueda inicializar el grafo y asegurarnos que nuestra instancia está creada durante el ciclo de vida de nuestra aplicación.
+Tip: Asegúrate que dar un rebuild project en caso de que no puedas referenciar el componente de dagger en nuestro caso **DaggerPrincessPeachComponent** (Android Studio, select Build > Rebuild Project).
+
+{% highlight java %}
+public class PrincessPeachApplication extends Application {
+
+  private PrincessPeachComponent princessPeachComponent;
+
+  @Override public void onCreate() {
+    super.onCreate();
+    initializeInjector();
+  }
+
+  private void initializeInjector() {
+    princessPeachComponent = DaggerPrincessPeachComponent.builder()
+        .princessPeachApiModule(new PrincessPeachApiModule())
+        .build();
+  }
+
+  public PrincessPeachComponent getPrincessPeachComponent() {
+    return princessPeachComponent;
+  }
+}
+{% endhighlight %}
+
+Por supuesto también es necesario declarar el nombre de nuestro application en el manifest.
+
+{% highlight xml %}
+<application
+     android:name=".PrincessPeachApplication"
+     android:allowBackup="true"
+     android:icon="@mipmap/ic_launcher"
+     android:label="@string/app_name"
+     android:supportsRtl="true"
+     android:theme="@style/AppTheme">
+{% endhighlight %}
+
+Lo único por hacer es inyectar nuestra dependencia en nuestra actividad **PrincessPeachActivity** como se lo indicamos al componente **PrincessPeachComponent** que a su vez este hará uso del módulo **PrincessPeachApiModule** para obtener la instancia de la clase solicitada **PrincessPeachApi**.
+
+{% highlight java %}
+public class PrincessPeachActivity extends BaseActivity {
+
+  @Inject PrincessPeachApi princessPeachApi;
+
+  @BindView(R.id.label_peach) MarioKartLabel peachLabel;
+  @BindView(R.id.picture_peach) ImageView peachImage;
+
+  @Override protected int getLayoutResID() {
+    return R.layout.activity_princess_peach;
+  }
+
+  @Override protected void onPrepareActivity() {
+    super.onPrepareActivity();
+    initializeDagger();
+    PrincessPeach princessPeach = getPrincesPeachFromApi();
+    renderPrincesPeach(princessPeach);
+  }
+
+  private void renderPrincesPeach(PrincessPeach princessPeach) {
+    renderName(princessPeach.getName());
+    renderPicture(princessPeach.getPhoto());
+  }
+
+  private void renderName(@StringRes int name) {
+    peachLabel.setText(name);
+  }
+
+  private void renderPicture(@DrawableRes int picture) {
+    peachImage.setImageDrawable(ContextCompat.getDrawable(this, picture));
+  }
+
+  private PrincessPeach getPrincesPeachFromApi() {
+    return princessPeachApi.getPrincesPeach();
+  }
+
+  private void initializeDagger() {
+    PrincessPeachApplication application = (PrincessPeachApplication) getApplication();
+    application.getPrincessPeachComponent().inject(this);
+  }
+}
+{% endhighlight %}
+
+
 
 # Great moment to start the challenge
 
