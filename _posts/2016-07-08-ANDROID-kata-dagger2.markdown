@@ -257,7 +257,13 @@ public class PrincessPeachActivity extends BaseActivity {
 }
 {% endhighlight %}
 
-<img src="/content/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 200px;"/>
+<img src="/content/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 300px;"/>
+
+#### El código está disponible
+
+Este ejemplo puedes encontrarlo en el mismo repositorio en el que se encuentra la kata en el *branch* **sample/princess-peach-dagger2**.
+
+[Sample-Princess-Peach en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/tree/sample/princess-peach-dagger2)
 
 # Great moment to start the challenge
 
