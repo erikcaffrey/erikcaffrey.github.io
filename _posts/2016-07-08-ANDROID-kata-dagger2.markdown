@@ -146,6 +146,8 @@ public class PrincessPeachApi {
 }
 {% endhighlight %}
 
+####@Module,@Provides
+
 Definimos un módulo que será el encargado de proveer una instancia de **PrincessPeach**.
 
 {% highlight java %}
@@ -157,9 +159,11 @@ Definimos un módulo que será el encargado de proveer una instancia de **Prince
 }
 {% endhighlight %}
 
-Creamos un componente para indicar en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.
+Creamos un componente para indicarle a Dagger en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.
 
 {% highlight java %}
+
+####@Component,@Singleton
 
 @Singleton @Component(modules = { PrincessPeachApiModule.class })
 public interface PrincessPeachComponent {
@@ -169,7 +173,8 @@ public interface PrincessPeachComponent {
 {% endhighlight %}
 
 Es necesario crear una clase que herede de [Application](https://developer.android.com/reference/android/app/Application.html) para que dagger pueda inicializar el grafo y asegurarnos que nuestra instancia está creada durante el ciclo de vida de nuestra aplicación.
-Tip: Asegúrate que dar un rebuild project en caso de que no puedas referenciar el componente de dagger en nuestro caso **DaggerPrincessPeachComponent** (Android Studio, select Build > Rebuild Project).
+
+Asegúrate dar un rebuild project en caso de que no puedas referenciar el componente de dagger en nuestro caso **DaggerPrincessPeachComponent** (Android Studio, select Build > Rebuild Project).
 
 {% highlight java %}
 public class PrincessPeachApplication extends Application {
@@ -204,6 +209,8 @@ Por supuesto también es necesario declarar el nombre de nuestro application en 
      android:supportsRtl="true"
      android:theme="@style/AppTheme">
 {% endhighlight %}
+
+####@Inject
 
 Lo único por hacer es inyectar nuestra dependencia en nuestra actividad **PrincessPeachActivity** como se lo indicamos al componente **PrincessPeachComponent** que a su vez este hará uso del módulo **PrincessPeachApiModule** para obtener la instancia de la clase solicitada **PrincessPeachApi**.
 
