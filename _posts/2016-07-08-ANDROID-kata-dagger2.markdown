@@ -258,7 +258,7 @@ public class PrincessPeachActivity extends BaseActivity {
 {% endhighlight %}
 
 
-![peach-dagger2-android](/content/images/2016/7/device-peach-sample.png = 100x100){: .center-image }
+![peach-dagger2-android](/content/images/2016/7/device-peach-sample.png =100x100){: .center-image }
 
 
 # Great moment to start the challenge
