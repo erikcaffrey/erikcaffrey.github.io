@@ -159,12 +159,11 @@ Definimos un módulo que será el encargado de proveer una instancia de **Prince
 }
 {% endhighlight %}
 
+**@Component, @Singleton**
+
 Creamos un componente para indicarle a Dagger en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.
 
 {% highlight java %}
-
-**@Component, @Singleton**
-
 @Singleton @Component(modules = { PrincessPeachApiModule.class })
 public interface PrincessPeachComponent {
 
