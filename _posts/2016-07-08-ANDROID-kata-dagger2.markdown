@@ -109,10 +109,10 @@ Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que nece
 
 Ya que hemos comprendido para qué sirven algunos de los elementos veamos un simple ejemplo para reafirmar el conocimiento adquirido ya que te será de utilidad para resolver la kata que he preparado para tí.
 
-**Objetivo:** Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach
+**Objetivo:** Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach.
 
 
-``java
+{% highlight java %}
 public class PrincessPeach {
 
   private int name;
@@ -131,7 +131,8 @@ public class PrincessPeach {
     return photo;
   }
 }
-``
+{% endhighlight %}
+
 # Great moment to start the challenge
 
 ### Task 1
