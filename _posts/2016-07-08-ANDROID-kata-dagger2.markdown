@@ -146,7 +146,7 @@ public class PrincessPeachApi {
 }
 {% endhighlight %}
 
-####@Module,@Provides
+**@Module, @Provides**
 
 Definimos un módulo que será el encargado de proveer una instancia de **PrincessPeach**.
 
@@ -163,7 +163,7 @@ Creamos un componente para indicarle a Dagger en qué lugar debemos inyectar la 
 
 {% highlight java %}
 
-####@Component,@Singleton
+**@Component, @Singleton**
 
 @Singleton @Component(modules = { PrincessPeachApiModule.class })
 public interface PrincessPeachComponent {
@@ -210,7 +210,7 @@ Por supuesto también es necesario declarar el nombre de nuestro application en 
      android:theme="@style/AppTheme">
 {% endhighlight %}
 
-####@Inject
+**@Inject**
 
 Lo único por hacer es inyectar nuestra dependencia en nuestra actividad **PrincessPeachActivity** como se lo indicamos al componente **PrincessPeachComponent** que a su vez este hará uso del módulo **PrincessPeachApiModule** para obtener la instancia de la clase solicitada **PrincessPeachApi**.
 
@@ -257,6 +257,8 @@ public class PrincessPeachActivity extends BaseActivity {
 }
 {% endhighlight %}
 
+
+![peach-dagger2-android](/content/images/2016/7/device-peach-sample.png = 100x100){: .center-image }
 
 
 # Great moment to start the challenge
