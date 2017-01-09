@@ -24,7 +24,7 @@ Tu misión es desarrollar una aplicación android que muestre una lista de los c
 
 ## Introduction to Dependency Injection
 
-En mi [capítulo anterior](https://erikcaffrey.github.io/ANDROID-dependency-injection/) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un inyector de dependencias.
+En mi [capítulo anterior](https://erikcaffrey.github.io/ANDROID-dependency-injection/) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un **inyector de dependencias**.
 
 Pues bien hoy es el gran día para aprender [Dagger 2](http://google.github.io/dagger/) mediante un divertido ejemplo y aunque se que usar Dagger 2  es complejo en un principio y difícil de entender, intentaré enseñarte de una forma fácil y espero lograrlo.
 
@@ -107,9 +107,31 @@ Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que nece
 
 ### Putting everything together
 
-I'm cooking this post
-wait for it very soon!
+Ya que hemos comprendido para qué sirven algunos de los elementos veamos un simple ejemplo para reafirmar el conocimiento adquirido ya que te será de utilidad para resolver la kata que he preparado para tí.
 
+**Objetivo:** Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach
+
+
+``java
+public class PrincessPeach {
+
+  private int name;
+  private int photo;
+
+  public PrincessPeach() {
+    this.name = R.string.princess_name;
+    this.photo = R.drawable.ic_peach;
+  }
+
+  public int getName() {
+    return name;
+  }
+
+  public int getPhoto() {
+    return photo;
+  }
+}
+``
 # Great moment to start the challenge
 
 ### Task 1
