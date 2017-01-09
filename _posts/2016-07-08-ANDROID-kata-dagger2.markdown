@@ -317,5 +317,4 @@ wait for it very soon!
 
 #### El código está disponible
 
-I'm cooking this post
-wait for it very soon!
+[Kata-Dagger2-MarioKart en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart)
