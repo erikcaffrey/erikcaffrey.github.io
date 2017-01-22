@@ -279,7 +279,7 @@ h1, h2, h3, h4 {
 }
 
 .icons-home a:hover .icon {
-    fill: #1ED760
+    fill: #3E83F8
 }
 
 .down {
@@ -334,7 +334,7 @@ a.slideButton, .dosearch {
 
 .dosearch {
     right: 10px;
-    background: #1ED760;
+    background: #3E83F8;
     border-radius: .188rem;
     padding: .125rem .188rem
 }
@@ -343,7 +343,7 @@ a.slideButton, .dosearch {
     cursor: pointer;
     padding: .313rem;
     border-radius: .188rem;
-    background: #1ED760;
+    background: #3E83F8;
     width: 2.5rem;
     height: 2.5rem;
     fill: #fff
@@ -405,7 +405,7 @@ aside nav li a {
 }
 
 aside nav li a:hover {
-    color: #1ED760;
+    color: #3E83F8;
     background: #212121
 }
 
@@ -643,8 +643,8 @@ body.search-overlay:after {
 }
 
 .tags a:hover {
-    color: #1ED760;
-    border: 1px solid #1ED760
+    color: #3E83F8;
+    border: 1px solid #3E83F8
 }
 
 .img-rounded {
@@ -656,7 +656,7 @@ html, body {
 }
 
 .header-site, .header-post {
-    background: #1ED760;
+    background: #3E83F8;
     height: 100%;
 }
 
@@ -1444,7 +1444,7 @@ pre span {
 }
 
 .author .name a:hover {
-    color: #1ED760
+    color: #3E83F8
 }
 
 @media only screen and (min-width:37.5rem) {
@@ -1500,7 +1500,7 @@ pre span {
 }
 
 footer {
-    background: #1ED760;
+    background: #3E83F8;
     padding: 1.563rem 0;
     margin-top: 100px;
 }
