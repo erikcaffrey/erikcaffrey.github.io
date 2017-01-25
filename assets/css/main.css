@@ -256,13 +256,13 @@ h1, h2, h3, h4 {
     padding: .938rem;
     margin: .125rem;
     border-radius: 50%;
-    border: .125rem solid #fff;
+    border: .125rem solid #21FD8F;
     line-height: 0;
     transition: all .7s;
 }
 
 .icons-home a .icon {
-    fill: #fff;
+    fill: #21FD8F;
     width: 18px;
     height: 18px;
 }
@@ -275,7 +275,7 @@ h1, h2, h3, h4 {
 }
 
 .icons-home a:hover {
-    background: #fff;
+    background: #21FD8F;
 }
 
 .icons-home a:hover .icon {
