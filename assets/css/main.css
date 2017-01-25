@@ -279,7 +279,7 @@ h1, h2, h3, h4 {
 }
 
 .icons-home a:hover .icon {
-    fill: #3E83F8
+    fill: #025AE2
 }
 
 .down {
@@ -334,7 +334,7 @@ a.slideButton, .dosearch {
 
 .dosearch {
     right: 10px;
-    background: #3E83F8;
+    background: #025AE2;
     border-radius: .188rem;
     padding: .125rem .188rem
 }
@@ -343,7 +343,7 @@ a.slideButton, .dosearch {
     cursor: pointer;
     padding: .313rem;
     border-radius: .188rem;
-    background: #3E83F8;
+    background: #025AE2;
     width: 2.5rem;
     height: 2.5rem;
     fill: #fff
@@ -369,7 +369,7 @@ aside {
     padding: 2.5rem 0 0;
     top: 0;
     left: -15rem;
-    background: #212121;
+    background: #036CEA;
     z-index: 20;
     box-shadow: inset -10px -1px 15px -9px rgba(255, 255, 255, 0);
 }
@@ -405,8 +405,8 @@ aside nav li a {
 }
 
 aside nav li a:hover {
-    color: #3E83F8;
-    background: #212121
+    color: #025AE2;
+    background: #036CEA
 }
 
 aside nav .feed {
@@ -643,8 +643,8 @@ body.search-overlay:after {
 }
 
 .tags a:hover {
-    color: #3E83F8;
-    border: 1px solid #3E83F8
+    color: #025AE2;
+    border: 1px solid #025AE2
 }
 
 .img-rounded {
@@ -656,7 +656,7 @@ html, body {
 }
 
 .header-site, .header-post {
-    background: #3E83F8;
+    background: #025AE2;
     height: 100%;
 }
 
@@ -1444,7 +1444,7 @@ pre span {
 }
 
 .author .name a:hover {
-    color: #3E83F8
+    color: #025AE2
 }
 
 @media only screen and (min-width:37.5rem) {
@@ -1500,7 +1500,7 @@ pre span {
 }
 
 footer {
-    background: #3E83F8;
+    background: #025AE2;
     padding: 1.563rem 0;
     margin-top: 100px;
 }
