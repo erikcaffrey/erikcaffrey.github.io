@@ -282,7 +282,7 @@ h1, h2, h3, h4 {
     fill: #fff
 }
 
-#025AE2 {
+.down {
     position: absolute;
     bottom: 50px;
     width: 100%;
@@ -1014,7 +1014,7 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #3070F6;
+    color: #005AE0;
     text-decoration: none;
 }
 
@@ -1510,7 +1510,7 @@ footer p, footer a {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-style: normal;
-    color: #fff;
+    color:#21FD8F;
     text-align: center;
     margin: 0
 }
