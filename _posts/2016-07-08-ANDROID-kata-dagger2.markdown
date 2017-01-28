@@ -310,9 +310,6 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 
 ### Demo
 
-I'm cooking this post
-wait for it very soon!
-
 #### El código está disponible
 
 [Kata-Dagger2-MarioKart en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart)
