@@ -280,25 +280,24 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 
 * Implementa una clase `FAKE DATA SOURCE` responsable de generar una lista de personajes
 * Implementa una clase `REPOSITORY` que tendrá una dependencia con `FAKE DATA SOURCE`
+* Implementa un modulo de dagger para proveer una dependencia de tu `REPOSITORY`
+* Implementa un componente para especificar en donde se van a inyectar tus dependencias.
 
 ### Task 4
 
 * Implementa un `GET ALL CHARACTERS USE CASE` que obtenga `TODOS` los personajes con dependencia a `REPOSITORY`
-* Implementa un `GET A CHARACTER USE CASE` que obtenga `UN` personaje por su nombre con dependencia a `REPOSITORY`
+* Configura tu caso de uso para que dagger pueda inyectar una dependencia de `REPOSITORY`
 
 ### Task 5
 
 * Implementa un `CHARACTERS PRESENTER` para mostrar una lista de personajes en una vista con dependencia a `GET ALL CHARACTERS USE CASE`
-* Implementa un `CHARACTER PRESENTER` para mostrar un personaje en una vista con dependencia a `GET A CHARACTER USE CASE`
+* Configura tu presenter para que dagger pueda inyectar una dependencia de `GET ALL CHARACTERS USE CASE`
 
 ### Task 6
 
 * Implementa una vista android activity, fragment u otra con dependencia a `CHARACTERS PRESENTER`
-* Implementa una vista android activity, fragment u otra con dependencia a `CHARACTER PRESENTER`
-
-
-I'm cooking this post
-wait for it very soon!
+* Configura tu vista android para que dagger pueda inyectar una dependencia de `CHARACTERS PRESENTER`
+* Muestra a los personajes de la forma que mas te guste.
 
 **"Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie"**
 
