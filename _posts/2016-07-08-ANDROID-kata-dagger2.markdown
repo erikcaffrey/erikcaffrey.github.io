@@ -315,4 +315,4 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 [Kata-Dagger2-MarioKart en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart)
 
 
-![](/content/images/2016/1/Telecine_2017-01-29-22-52-19.gif)
+![](/content/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
