@@ -124,10 +124,10 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [Cle
 
 #### El código está disponible
 
-##### Android
+#### Android
 [Clean-Architecture-Android en Github](https://github.com/erikcaffrey/Euro-CleanArchitecture)
 
 ![](/content/images/2016/1/Telecine_2016-04-11-09-46-01.gif)
 
-##### IOS
+#### IOS
 [Clean-Architecture-IOS en Github](https://github.com/ivanhoe/clean-architecture-spotify)
