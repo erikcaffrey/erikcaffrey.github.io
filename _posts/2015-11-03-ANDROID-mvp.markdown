@@ -10,7 +10,7 @@ categories:
 
 ![mvp-android](/content/images/2015/11/mvp_.png){: .center-image }
 
-Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikcaffrey.github.io/2015/12/16/databinding-android/).
+Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikcaffrey.github.io/ANDROID-databinding-android/).
 
 Antes de comenzar a hablar sobre el MVP *recordaremos* la manera en que muchos desarrolladores solemos o solíamos trabajar en el desarrollo de aplicaciones android.
 
@@ -84,6 +84,8 @@ Es un ejemplo de Model View Presenter que lo cree con la intención de explicar 
 **Implementar el MVP** suele ser muy confuso ya que no existe una camino o una forma estandarizada de cómo se debe implementar en nuestros proyectos, más bien cada uno es responsable de cómo usar el patrón y hacer cumplir la necesidad o el problema que se tenga que resolver.
 La clave del patrón varía en función de la cantidad de responsabilidades que deleguemos en el presentador, hacer que nuestras vistas sean lo más tontas posibles esto quiere decir que tomen la menor cantidad de decisiones para que el presenter pueda ser reutilizado además si las entidades del SDK de android quedan fuera de el, será más sencillo hacer unit test.
 
+### Talk UI Patterns
+
 He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG Open Lima Hangout #6 - El Android del Pasado, Presente / Futuro](https://www.youtube.com/watch?v=_e7aACEAfv4).
 
 **"Clean code always looks like it was written by someone who cares. by Michael Feathers"**
@@ -98,9 +100,15 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 #### El código está disponible
 
+#### Android
+
 [SpotifyMVP en Github](https://github.com/erikcaffrey/SpotifyMVP)
 
 ![](/content/images/2015/11/Telecine_2015-11-25-17-19-04.gif)
+
+#### IOS
+
+[MarioKart Kata MVP](https://github.com/erikcaffrey/Swift-ModelViewPresenter)
 
 ### Bonus
 

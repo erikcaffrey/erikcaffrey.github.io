@@ -114,7 +114,7 @@ Particularmente para mi estos temas desde mi punto de vista es de la parte más 
 
 En este post solo quería demostrar y dejar muy claros algunos conceptos antes de utilizar un inyector de dependencias sin tener idea del por qué lo usamos y terminar haciéndolo sólo porque está de moda para mí la parte más interesante es conocer la motivación del por qué usarlo.
 
-Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas [este artículo](https://erikcaffrey.github.io/2016/07/08/kata-dagger2/) que estoy preparado para tí en donde mediante una kata explico el uso de Dagger2.
+Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas [mi siguiente artículo](https://erikcaffrey.github.io/ANDROID-kata-dagger2/) que he preparado para tí en donde mediante una kata explico el uso de Dagger2.
 
 **"Depend upon abstractions. Do not depend upon concrete classes"**
 

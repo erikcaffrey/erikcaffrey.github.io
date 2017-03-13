@@ -62,7 +62,7 @@ Aquí es donde residen los detalles y todo ese conjunto de plataformas externas 
 
 ![android_archi](/content/images/2016/1/android_archi.png){: .center-image }
 
-Este esquema es una representación de cómo se aplica el **Clean Architecture** en una aplicación **android** ya que gracias a la gran participación de muchos desarrolladores de la comunidad android alrededor del mundo se ha ido mejorando en estos últimos meses ya que se le han agregado dos componentes importantes el primero un patrón en la capa de presentación que puede ser [MVP](https://erikcaffrey.github.io/2015/11/03/mvp/), [MVVM](https://erikcaffrey.github.io/2015/12/16/databinding-android/), MVC o el que prefieras y el segundo se ha agregado el [Repository Pattern](http://martinfowler.com/eaaCatalog/repository.html) en la capa de datos para abstraer el origen de datos y destacar que estos patrones no están dentro de la arquitectura que **Uncle Bob** describe, es trabajo de una comunidad con el único objetivo de mejorar el desarrollo de nuestras aplicaciones android y si estoy seguro que te encontraras diferentes implementaciones porque realmente no hay un camino a seguir pero particularmente es la que más me gusta y es la que se ha adaptado a mis problemas.
+Este esquema es una representación de cómo se aplica el **Clean Architecture** en una aplicación **android** ya que gracias a la gran participación de muchos desarrolladores de la comunidad android alrededor del mundo se ha ido mejorando en estos últimos meses ya que se le han agregado dos componentes importantes el primero un patrón en la capa de presentación que puede ser [MVP](https://erikcaffrey.github.io/ANDROID-mvp/), [MVVM](https://erikcaffrey.github.io/ANDROID-databinding-android/), MVC o el que prefieras y el segundo se ha agregado el [Repository Pattern](http://martinfowler.com/eaaCatalog/repository.html) en la capa de datos para abstraer el origen de datos y destacar que estos patrones no están dentro de la arquitectura que **Uncle Bob** describe, es trabajo de una comunidad con el único objetivo de mejorar el desarrollo de nuestras aplicaciones android y si estoy seguro que te encontraras diferentes implementaciones porque realmente no hay un camino a seguir pero particularmente es la que más me gusta y es la que se ha adaptado a mis problemas.
 
 He escrito un ejemplo para demostrar el uso de esta arquitectura el cual he llamado [Euro-CleanArchitecture](https://github.com/erikcaffrey/Euro-CleanArchitecture) y todo el código está disponible en **github**.
 
@@ -71,7 +71,7 @@ He escrito un ejemplo para demostrar el uso de esta arquitectura el cual he llam
 Es la capa en donde ocurre todo lo relacionado a cómo funcionan la vistas normalmente activities y fragmentos los cuales contienen lógica pero únicamente enfocada en cómo funciona la vistas es decir el que debo mostrarle al usuario y cuando debe hacerlo.
 Para lograr un mejor manejo de vistas en esta capa se suelen usar patrones de UI (en el ejemplo que he escrito encontrarás MVP).
 
-Yo he escrito un post acerca del [MVP](https://erikcaffrey.github.io/2015/11/03/mvp/) y otro sobre [MVVM](https://erikcaffrey.github.io/2015/12/16/databinding-android/) si solo has utilizado MVC dale una mirada a estos posts por que te ayudarán a separar tus vistas de la lógica de negocio de una forma elegante.
+Yo he escrito un post acerca del [MVP](https://erikcaffrey.github.io/ANDROID-mvp/)) y otro sobre [MVVM](https://erikcaffrey.github.io/ANDROID-databinding-android/) si solo has utilizado MVC dale una mirada a estos posts por que te ayudarán a separar tus vistas de la lógica de negocio de una forma elegante.
 
 
 ### Domain Layer
@@ -106,6 +106,9 @@ Es un ejemplo de Clean Architecture que lo cree con la intención de explicar c�
 
 Como ya lo he mencionado arriba solo quedarnos con la idea que Clean Architecture sólo son una serie de reglas a cumplir para crear software por capas dando origen a un código flexible, mantenible y testable. Otro aspecto importante que debemos tener en mente  es que no hay camino a seguir que sea el correcto para implementar esta arquitectura  crea la implementación que mejor te guste y que resuelva tu problema de la mejor forma pero no olvidar generar código que esconda detalles de implementación.
 
+### Talk Clean Architecture IOS
+
+He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [Clean Architecture IOS](https://youtu.be/3wCyFvAiX04).
 
 **"Bad code affect to your Customer. by Martin Fowler"**
 
@@ -121,6 +124,10 @@ Como ya lo he mencionado arriba solo quedarnos con la idea que Clean Architectur
 
 #### El código está disponible
 
+##### Android
 [Clean-Architecture-Android en Github](https://github.com/erikcaffrey/Euro-CleanArchitecture)
 
 ![](/content/images/2016/1/Telecine_2016-04-11-09-46-01.gif)
+
+##### IOS
+[Clean-Architecture-IOS en Github](https://github.com/ivanhoe/clean-architecture-spotify)
