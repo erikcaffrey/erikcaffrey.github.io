@@ -2,12 +2,12 @@
 title: ErikJhordan_Rey
 description: A blog about Software Engineering
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://erikcaffrey.github.io" # the base hostname & protocol for your site e.g. 
+url: "https://erikcaffrey.github.io" # the base hostname & protocol for your site e.g.
 
 # User settings
 username: Erik Jhordan Rey
 user_description: Mobile Engineer at Schibsted-Segundamano
-user_title: Mobile Engineer
+user_title: Software Engineer
 email: erikcaffrey10@gmail.com
 twitter_username: ErikJhordan_Rey
 github_username:  erikcaffrey
