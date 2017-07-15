@@ -22,8 +22,7 @@ The last Google I/O 2017, the Android team announced the [official support of Ko
 
 The [Kotlin plugin](https://plugins.jetbrains.com/plugin/6954-kotlin), developed by JetBrains, is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team. Android Studio 3.0 is already available -and usable- as a Preview version.
 
-![kotlin-support](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/master/content/images/2017/5/kotlin_support.jpg{: .center-image }
-
+![kotlin-annunce](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/775e33add7e712a474f12b5e88ec6f52fd21591f/content/images/2017/5/kotlin_annunce.jpg){: .center-image }
 If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
 
 ### Resources to start with Kotlin on Android
