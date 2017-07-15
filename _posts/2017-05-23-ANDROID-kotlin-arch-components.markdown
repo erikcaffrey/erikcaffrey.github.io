@@ -40,17 +40,18 @@ We know that writing quality software is hard and complex, it is not only about 
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
-The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
+The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another relevant feature, is focused in solve the problem of configuration changes such as screen rotations (another change of lifecycle).
 
 Basically is composed to **four core components**:
 
-**Handling lifecycles**
+#### Handling lifecycles
 Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
-**Live Data**
-Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
-**ViewModel**
-A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 
+#### Live Data
+Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
+
+#### ViewModel
+A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 
 ```gradle
 
@@ -61,8 +62,8 @@ A class designed to store and manage UI-related data so that the data survives c
   kapt "android.arch.lifecycle:compiler:1.0.0-alpha4"
   ```
 
-**Room**
-Abstraction or wrapper over SQLite to allow a easy database access.
+#### Room
+Abstraction or wrapper over SQLite to allow a easy database access ().
 
 ```graldle
   //Room
@@ -83,9 +84,9 @@ Abstraction or wrapper over SQLite to allow a easy database access.
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
 
-## View
+## View
 
-## ViewModel
+## ViewModel
 
 ## Repository
 
