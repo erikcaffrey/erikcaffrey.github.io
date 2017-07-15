@@ -88,8 +88,6 @@ La clave del patrón varía en función de la cantidad de responsabilidades que 
 
 He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG Open Lima Hangout #6 - El Android del Pasado, Presente / Futuro](https://www.youtube.com/watch?v=_e7aACEAfv4).
 
-**"Clean code always looks like it was written by someone who cares. by Michael Feathers"**
-
 ### Demo
 
 #### El código está disponible
@@ -116,3 +114,5 @@ Si quieres aprender más sobre **MVP** también puedes darle un vistazo al gran 
 * **Antonio Leiva** - [MVP for Android](http://antonioleiva.com/mvp-android/)
 * **Pedro Gómez** - [Effective Android UI](https://www.youtube.com/watch?v=N6yqe88ysNw)
 * **Ivan Carballo** - [archi](https://github.com/ivacf/archi)
+
+**"Clean code always looks like it was written by someone who cares. by Michael Feathers"**

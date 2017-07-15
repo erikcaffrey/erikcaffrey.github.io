@@ -116,8 +116,6 @@ En este post solo quería demostrar y dejar muy claros algunos conceptos antes d
 
 Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas [mi siguiente artículo](https://erikcaffrey.github.io/ANDROID-kata-dagger2/) que he preparado para tí en donde mediante una kata explico el uso de Dagger2.
 
-**"Depend upon abstractions. Do not depend upon concrete classes"**
-
 ### Demo
 
 #### El código está disponible
@@ -136,3 +134,5 @@ Un especial agradecimiento a [Chiu-Ki Chan](https://developers.google.com/expert
 * **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
 * **Antonio Leiva** - [Dependency Injection-android-dagger](http://antonioleiva.com/dependency-injection-android-dagger-part-1/)
 * **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)
+
+**"Depend upon abstractions. Do not depend upon concrete classes"**

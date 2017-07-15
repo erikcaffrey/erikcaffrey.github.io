@@ -306,8 +306,6 @@ if (animator instanceof SimpleItemAnimator)
 
 RecyclerView es una vista con mucho potencial que fue incorporada con el propósito de mostrar vistas de una forma sencilla y eficiente. No sólo mejora las tareas de ListView y GridView sino también sustituye a estas vistas en la mayoría de ocasiones ya que aporta mucha flexibilidad que puede suplir la funcionalidad de ambos controles, si aun lo estas dudando o quieres aprovechar al máximo cada elemento que proporciona estas en el momento indicado,  aunque la curva de aprendizaje de este control no ha sido tarea sencilla por la complejidad que tiene crear algunos de sus elementos. Solo se trata de entender cada componente que nos brinda y aprovecharlo a nuestro favor.
 
-**"if you're afraid to change something it is clearly poorly designed. by Martin Fowler"**
-
 ### Demo
 
 #### El código está disponible
@@ -322,3 +320,5 @@ RecyclerView es una vista con mucho potencial que fue incorporada con el propós
 * **Dave Smith** - [Mastering RecyclerView layouts](https://www.youtube.com/watch?v=gs_C1E8HwvE)
 * **Fernando Cejas & Jorge Barroso** - [Material for old school](http://es.slideshare.net/flipper83/material-old-school)
 * **Chiu-Ki Chan** - [android-recyclerview repository](https://github.com/chiuki/android-recyclerview)
+
+**"if you're afraid to change something it is clearly poorly designed. by Martin Fowler"**

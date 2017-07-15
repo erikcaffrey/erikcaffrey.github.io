@@ -299,8 +299,6 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 * Configura tu vista android para que dagger pueda inyectar una dependencia de `CHARACTERS PRESENTER`
 * Muestra a los personajes de la forma que mas te guste.
 
-**"Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie"**
-
 ### Demo
 
 #### El código está disponible
@@ -316,3 +314,5 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 * **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
 * **Daniel Lew** - [Dependency Injection Made Simple](https://realm.io/news/daniel-lew-dependency-injection-dagger/)
 * **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)
+
+**"Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie"**

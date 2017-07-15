@@ -124,8 +124,6 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [Cle
 #### IOS
 [Clean-Architecture-IOS en Github](https://github.com/ivanhoe/clean-architecture-spotify)
 
-**"Bad code affect to your Customer. by Martin Fowler"**
-
 ### Resources
 * **Robert Martin (Uncle-bob)** - [The Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 * **Robert Martin (Uncle-bob)** - [Architecture the Lost Years](https://www.youtube.com/watch?v=WpkDN78P884)
@@ -133,3 +131,5 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [Cle
 * **Karumi** - [Clean Architecture Hangouts (karumi is the biggest contributors to Clean Architecture with wonderful projects, talks and post.)](https://www.youtube.com/watch?v=31lWMsCeoSA)
 * **Fernando Cejas** - [Android-CleanArchitecture (Github Example and Blog Posts)](https://github.com/android10/Android-CleanArchitecture)
 * **Jorge Barroso** [Forgetting Android](https://www.youtube.com/watch?v=ROdIvrLL1ao)
+
+**"Bad code affect to your Customer. by Martin Fowler"**

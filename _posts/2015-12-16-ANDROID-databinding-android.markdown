@@ -237,8 +237,6 @@ Recuerda que lo mejor siempre es usar el que mejor entiendas ya que con ambos pu
 
 He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG Open Lima Hangout #6 - El Android del Pasado, Presente / Futuro](https://www.youtube.com/watch?v=_e7aACEAfv4).
 
-**"The Future of Programming"** [Bret Victor](https://www.youtube.com/watch?v=8pTEmbeENF4)
-
 ### Demo
 
 #### El código está disponible
@@ -252,3 +250,5 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 * **George Mount & Yigit Boyar** - [Data Binding -- Write Apps Faster](https://www.youtube.com/watch?v=NBbeQMOcnZ0)
 * **Github Example by hitherejoe** - [MVVM_Hacker_News](https://github.com/hitherejoe/MVVM_Hacker_News)
 * **Android documentation** [Data Binding Guide](https://developer.android.com/intl/es/tools/data-binding/guide.html)
+
+**"The Future of Programming"** [Bret Victor](https://www.youtube.com/watch?v=8pTEmbeENF4)
