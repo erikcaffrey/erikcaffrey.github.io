@@ -40,61 +40,38 @@ We know that writing quality software is hard and complex, it is not only about 
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
-The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another relevant feature, is focused in solve the problem of configuration changes such as screen rotations (another change of lifecycle).
-
 Basically is composed to **four core components**:
 
-#### Handling lifecycles
-Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
+* **Handling lifecycles:** Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
 
-#### Live Data
-Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
+* **Live Data:** Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
 
-#### ViewModel
-A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
+* **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 
-```gradle
-
-  //Lifecycles, LiveData and ViewModel
-
-  compile "android.arch.lifecycle:runtime:1.0.0-alpha4"
-  compile "android.arch.lifecycle:extensions:1.0.0-alpha4"
-  kapt "android.arch.lifecycle:compiler:1.0.0-alpha4"
-  ```
-
-#### Room
-Abstraction or wrapper over SQLite to allow a easy database access ().
-
-```graldle
-  //Room
-
-  compile "android.arch.persistence.room:runtime:1.0.0-alpha4"
-  kapt "android.arch.persistence.room:compiler:1.0.0-alpha4"
-  testCompile "android.arch.persistence.room:testing:1.0.0-alpha4"
-
-  // Room RxJava 2
-  compile "android.arch.persistence.room:rxjava2:$archVersion"
-
-```
-
-**Note:** you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
+* **Room:** Abstraction or wrapper over SQLite to allow a easy database access (another ORM).
 
 # Kotlin Devises architecture
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
+## Goal
 
-## View
+Write an application to show a dataset stored in a sqlite database to display them in a spinner widget using *android architecture components*.
+
+### View
+
+
 
 ## ViewModel
 
+
 ## Repository
+
 
 ## Room
 
 
 # IN PROGRESS ....
-
 
 The following diagram shows all the modules that Google recommended and how they interact with one another:
 
