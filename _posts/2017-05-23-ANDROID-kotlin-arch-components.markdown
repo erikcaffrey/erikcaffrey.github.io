@@ -25,7 +25,7 @@ The [Kotlin plugin](https://plugins.jetbrains.com/plugin/6954-kotlin), developed
 ![kotlin-annunce](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/master/content/images/2017/5/kotlin_support.jpg){: .center-image }
 If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
 
-### Resources to start with Kotlin on Android
+#### Resources to start with Kotlin on Android
 
 * [Getting started with Android and Kotlin by Jetbrains](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
 * [Get Started with Kotlin on Android by Google](https://developer.android.com/kotlin/get-started.html)
@@ -36,9 +36,9 @@ If you are interested in learning more about the Kotlin programming language to 
 
 # Android Architecture Components
 
-We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released [Android Architecture Blue Prints](https://github.com/googlesamples/android-architecture), a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers round the world.
+We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released [Android Architecture Blue Prints](https://github.com/googlesamples/android-architecture) a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers round the world.
 
-Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
+Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
 The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
 
@@ -78,24 +78,25 @@ dependencies {
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
+
+# IN PROGRESS ....
+
+# IN PROGRESS ....
+
+# IN PROGRESS ....
+
 The following diagram shows all the modules that Google recommended and how they interact with one another:
 
 ![kotlin-arch](/content/images/2017/5/currency-arch.png){: .center-image }
 
-
-# IN PROGRESS ....
-
 ### Demo
-
-I created an android Sample **Kotlin Devises** used to practice Kotlin and Android Architecture Components.
-
-#### Source Code on Github
-
-[Android-Architecture-Components-Kotlin](https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin)
-
 ![](https://raw.githubusercontent.com/erikcaffrey/Android-Architecture-Components-Kotlin/master/art/demo.png)
 
-### Resources to start with Android Architecture Components
+#### Source Code on Github
+[Android-Architecture-Components-Kotlin](https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin).
+
+
+#### Resources to start with Android Architecture Components
 
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
 * [Adding Components to your Project](https://developer.android.com/topic/libraries/architecture/adding-components.html)
