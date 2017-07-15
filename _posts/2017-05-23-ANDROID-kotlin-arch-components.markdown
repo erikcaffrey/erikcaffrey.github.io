@@ -51,22 +51,134 @@ Basically is composed to **four core components**:
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
+### IN PROGRESS ….
+
 ### View
 
- IN PROGRESS ....
+```kotlin
+
+class CurrencyFragment : LifecycleFragment() {
+
+  companion object {
+    fun newInstance() = CurrencyFragment()
+  }
+
+  private var currenciesAdapter: ArrayAdapter<String>? = null
+  private var currencyViewModel: CurrencyViewModel? = null
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    initViewModel()
+    populateSpinnerAdapter()
+  }
+
+  private fun initViewModel() {
+    currencyViewModel = ViewModelProviders.of(this).get(CurrencyViewModel::class.java)
+  }
+
+  private fun populateSpinnerAdapter() {
+    val currencies = ArrayList<String>()
+    currenciesAdapter = ArrayAdapter(activity, R.layout.item_spinner, currencies)
+    currencyViewModel?.getCurrencyList()?.observe(this, Observer { currencyList ->
+      currencyList!!.forEach {
+        currencies.add(it.code + "  " + it.country)
+      }
+      currenciesAdapter!!.setDropDownViewResource(R.layout.item_spinner);
+      currenciesAdapter!!.notifyDataSetChanged()
+    })
+
+  }
+}
+
+```
 
 ### ViewModel
 
- IN PROGRESS ....
+```kotlin
 
+class CurrencyViewModel : ViewModel() {
+
+  @Inject lateinit var currencyRepository: CurrencyRepository
+
+  private var liveCurrencyData: LiveData<List<Currency>>? = null
+
+  init {
+    initializeDagger()
+    loadCurrencyList()
+  }
+
+  fun getCurrencyList(): LiveData<List<Currency>>? {
+    return liveCurrencyData
+  }
+
+  private fun loadCurrencyList() {
+    if (liveCurrencyData == null) {
+      liveCurrencyData = MutableLiveData<List<Currency>>()
+      liveCurrencyData = currencyRepository.getCurrencyList()
+    }
+  }
+
+  private fun initializeDagger() = CurrencyApplication.appComponent.inject(this)
+
+}
+```
 ### Repository
 
- IN PROGRESS ....
+```kotlin
+class CurrencyRepository @Inject constructor(
+   val roomCurrencyDataSource: RoomCurrencyDataSource,
+   val remoteCurrencyDataSource: RemoteCurrencyDataSource
+) : Repository {
+
+ override fun getCurrencyList(): LiveData<List<Currency>> {
+   val roomCurrencyDao = roomCurrencyDataSource.currencyDao()
+   val mutableLiveData = MutableLiveData<List<Currency>>()
+   roomCurrencyDao.getAllCurrencies()
+       .subscribeOn(Schedulers.io())
+       .observeOn(AndroidSchedulers.mainThread())
+       .subscribe { currencyList ->
+         mutableLiveData.value = transform(currencyList)
+       }
+
+   return mutableLiveData
+ }
+}
+```
 
 ### Room
 
- IN PROGRESS ....
+```kotlin
+@Database(
+    entities = arrayOf(CurrencyEntity::class),
+    version = 1)
+abstract class RoomCurrencyDataSource : RoomDatabase() {
 
+  abstract fun currencyDao(): RoomCurrencyDao
+
+  companion object {
+
+    fun buildPersistentCurrency(context: Context): RoomCurrencyDataSource = Room.databaseBuilder(
+        context.applicationContext,
+        RoomCurrencyDataSource::class.java,
+        RoomContract.DATABASE_CURRENCY
+    ).build()
+  }
+}
+```
+
+
+```kotlin
+@Dao
+interface RoomCurrencyDao {
+  @Insert
+  fun insertAll(currencies: List<CurrencyEntity>)
+
+  @Query(RoomContract.SELECT_CURRENCIES)
+  fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
+
+}
+```
+### IN PROGRESS ….
 
 **The following diagram shows all the modules that Google recommended and how they interact with one another:**
 
