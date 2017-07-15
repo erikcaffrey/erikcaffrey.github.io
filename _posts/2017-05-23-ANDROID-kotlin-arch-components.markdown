@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Support of Kotlin & Architecture Components'
-date: '2017-23-05 14:28:10'
+date: '2017-05-23 14:28:10'
 tags:
 - android
 categories:
