@@ -34,15 +34,13 @@ If you are interested in learning more about the Kotlin programming language to 
 * [Kotlin Kapt Annotation processing](https://kotlinlang.org/docs/reference/kapt.html)
 * [Kotlin for Android Developers by Antonio Leiva](https://antonioleiva.com/kotlin-android-developers-book/)
 
-# Android Architecture
+# Android Architecture Components
 
 We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released [Android Architecture Blue Prints](https://github.com/googlesamples/android-architecture), a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers round the world.
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
-# Android Architecture Components
-
-The android architecture components is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
+The *Android Architecture Components* is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
 
 Basically is composed to four core components:
 
@@ -51,7 +49,7 @@ Basically is composed to four core components:
 * **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 * **Room:** Abstraction or wrapper over SQLite to allow a easy database access.
 
-Adding architecture components on `build.gradle`:
+**Adding architecture components on `build.gradle`:**
 
 ```gradle
 dependencies {
@@ -74,7 +72,7 @@ dependencies {
  }
 ```
 
-You should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
+*Note:* you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
 
 # Kotlin Devises architecture
 
