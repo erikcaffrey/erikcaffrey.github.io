@@ -42,27 +42,16 @@ Couple moths ago, Google Launched the [Android Architecture Components Framework
 
 # Android Architecture Components
 
-The android architecture components is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
+The android architecture components is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
 
 Basically is composed to four core components:
 
-* Handling lifecycles: Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
-* Live Data: Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
-* ViewModel: A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
-* Room: Abstraction or wrapper over SQLite to allow a easy database access.
+* **Handling lifecycles:** Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
+* **Live Data:** Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
+* **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
+* **Room:** Abstraction or wrapper over SQLite to allow a easy database access.
 
-I'm not going to spend a lot time trying explain each component in detail because my goal is give you an overview with the sample I created but if you are interested to know more about it you can visit the official [documentation](https://developer.android.com/topic/libraries/architecture/index.html).  
-
-## Android Components to your Project
-
-First of all you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
-
-**Add Google's Maven repository**
-
-```gradle
-      maven { url 'https://maven.google.com' }
-```
-**Add the dependencies that you need on `build.gradle`.**
+Adding architecture components on `build.gradle`:
 
 ```gradle
 dependencies {
@@ -84,6 +73,8 @@ dependencies {
   compile "android.arch.persistence.room:rxjava2:$archVersion"
  }
 ```
+
+You should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
 
 # Kotlin Devises architecture
 
