@@ -22,7 +22,7 @@ The Kotlin plugin, developed by JetBrains, is available for the current version 
 
 If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
 
-## Resources to start with Kotlin on Android
+### Resources to start with Kotlin on Android
 
 * [Getting started with Android and Kotlin by Jetbrains](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
 * [Get Started with Kotlin on Android by Google](https://developer.android.com/kotlin/get-started.html)
@@ -37,23 +37,21 @@ We know that writing quality software is hard and complex, it is not only about 
 
 Couple moths ago, Google Launched the Android Architecture Components Framework. It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
+## Handling lifecycles
+
+## Live Data
+
+## ViewModel
+
+## Room
+
 ## IN PROGRESS...
 
-# The Kotlin Devises architecture 
+# Kotlin Devises architecture
 
 The following diagram shows all the modules that Google recommended and how they interact with one another:
 
 ![kotlin-arch](/content/images/2017/5/currency-arch.png){: .center-image }
-
-**"Truth can only be found in one place: the code. by Robert C. Martin"**
-
-## Resources to start with Android Architecture Components
-
-* [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
-* [Adding Components to your Project](https://developer.android.com/topic/libraries/architecture/adding-components.html)
-* [Android Architecture Components Samples](https://github.com/googlesamples/android-architecture-components)
-* [Android Architecture Components CodeLabs](https://codelabs.developers.google.com/?cat=Android)
-* [Android Conferences - Google I/O 2017](https://www.youtube.com/results?search_query=google+I%2FO+android+components)
 
 ### Demo
 
@@ -63,5 +61,14 @@ I created an android Sample **Kotlin Devises** used to practice Kotlin and Andro
 
 [Android-Architecture-Components-Kotlin](https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin)
 
-
 ![](https://raw.githubusercontent.com/erikcaffrey/Android-Architecture-Components-Kotlin/master/art/demo.png)
+
+**"Truth can only be found in one place: the code. by Robert C. Martin"**
+
+### Resources to start with Android Architecture Components
+
+* [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
+* [Adding Components to your Project](https://developer.android.com/topic/libraries/architecture/adding-components.html)
+* [Android Architecture Components Samples](https://github.com/googlesamples/android-architecture-components)
+* [Android Architecture Components CodeLabs](https://codelabs.developers.google.com/?cat=Android)
+* [Android Conferences - Google I/O 2017](https://www.youtube.com/results?search_query=google+I%2FO+android+components)

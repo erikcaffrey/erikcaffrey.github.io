@@ -118,13 +118,6 @@ Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pi
 
 **"Depend upon abstractions. Do not depend upon concrete classes"**
 
-### Resources
-* **Martin Fowler** - [InversionOfControl](http://martinfowler.com/bliki/InversionOfControl.html)
-* **Chiu-Ki Chan** - [Daggerless Dependency Injection for Testing](https://github.com/chiuki/daggerless-di-testing/tree/master)
-* **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
-* **Antonio Leiva** - [Dependency Injection-android-dagger](http://antonioleiva.com/dependency-injection-android-dagger-part-1/)
-* **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)
-
 ### Demo
 
 #### El código está disponible
@@ -133,7 +126,13 @@ Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pi
 
 ![](/content/images/2016/4/battery.png)
 
-
 ## Acknowledgment
 
 Un especial agradecimiento a [Chiu-Ki Chan](https://developers.google.com/experts/people/chiu-ki-chan) Google Developer Expert por su gran trabajo en [Daggerless Dependency Injection for Testing](https://github.com/chiuki/daggerless-di-testing/tree/master) de donde he tomado su genial ejemplo haciendole unas pequeñas modificaciones.
+
+### Resources
+* **Martin Fowler** - [InversionOfControl](http://martinfowler.com/bliki/InversionOfControl.html)
+* **Chiu-Ki Chan** - [Daggerless Dependency Injection for Testing](https://github.com/chiuki/daggerless-di-testing/tree/master)
+* **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
+* **Antonio Leiva** - [Dependency Injection-android-dagger](http://antonioleiva.com/dependency-injection-android-dagger-part-1/)
+* **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)

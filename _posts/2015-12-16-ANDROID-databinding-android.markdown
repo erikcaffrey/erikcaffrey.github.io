@@ -239,12 +239,6 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 **"The Future of Programming"** [Bret Victor](https://www.youtube.com/watch?v=8pTEmbeENF4)
 
-### Resources
-* **Microsoft** - [The MVVM Pattern](https://msdn.microsoft.com/en-us/library/hh848246.aspx)
-* **George Mount & Yigit Boyar** - [Data Binding -- Write Apps Faster](https://www.youtube.com/watch?v=NBbeQMOcnZ0)
-* **Github Example by hitherejoe** - [MVVM_Hacker_News](https://github.com/hitherejoe/MVVM_Hacker_News)
-* **Android documentation** [Data Binding Guide](https://developer.android.com/intl/es/tools/data-binding/guide.html)
-
 ### Demo
 
 #### El código está disponible
@@ -252,3 +246,9 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 [People-MVVM en Github](https://github.com/erikcaffrey/People-MVVM)
 
 ![](/content/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
+
+### Resources
+* **Microsoft** - [The MVVM Pattern](https://msdn.microsoft.com/en-us/library/hh848246.aspx)
+* **George Mount & Yigit Boyar** - [Data Binding -- Write Apps Faster](https://www.youtube.com/watch?v=NBbeQMOcnZ0)
+* **Github Example by hitherejoe** - [MVVM_Hacker_News](https://github.com/hitherejoe/MVVM_Hacker_News)
+* **Android documentation** [Data Binding Guide](https://developer.android.com/intl/es/tools/data-binding/guide.html)

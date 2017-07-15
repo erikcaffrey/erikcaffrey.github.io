@@ -90,12 +90,6 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 **"Clean code always looks like it was written by someone who cares. by Michael Feathers"**
 
-
-### Resources
-* **Antonio Leiva** - [MVP for Android](http://antonioleiva.com/mvp-android/)
-* **Pedro Gómez** - [Effective Android UI](https://www.youtube.com/watch?v=N6yqe88ysNw)
-* **Ivan Carballo** - [archi](https://github.com/ivacf/archi)
-
 ### Demo
 
 #### El código está disponible
@@ -117,3 +111,8 @@ Si quieres aprender más sobre **MVP** también puedes darle un vistazo al gran 
 * **MVP + Dagger 2** - [Charla for Android Talks](https://www.youtube.com/watch?v=_yVE1DRY1v8)
 * **Introducción al Modelo Vista Presentador en Android** - [Charla for Platzi](https://www.youtube.com/watch?v=qWh1QlRpKxk)
 * **Spotify Streamer** - [source code](https://github.com/silmood/Spotify-Streamer)
+
+### Resources
+* **Antonio Leiva** - [MVP for Android](http://antonioleiva.com/mvp-android/)
+* **Pedro Gómez** - [Effective Android UI](https://www.youtube.com/watch?v=N6yqe88ysNw)
+* **Ivan Carballo** - [archi](https://github.com/ivacf/archi)

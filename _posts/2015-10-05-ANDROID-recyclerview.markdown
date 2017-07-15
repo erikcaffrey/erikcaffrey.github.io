@@ -308,13 +308,6 @@ RecyclerView es una vista con mucho potencial que fue incorporada con el propós
 
 **"if you're afraid to change something it is clearly poorly designed. by Martin Fowler"**
 
-### Resources
-
-* **Android** - [Creating Lists and Cards](https://developer.android.com/training/material/lists-cards.html)
-* **Dave Smith** - [Mastering RecyclerView layouts](https://www.youtube.com/watch?v=gs_C1E8HwvE)
-* **Fernando Cejas & Jorge Barroso** - [Material for old school](http://es.slideshare.net/flipper83/material-old-school)
-* **Chiu-Ki Chan** - [android-recyclerview repository](https://github.com/chiuki/android-recyclerview)
-
 ### Demo
 
 #### El código está disponible
@@ -322,3 +315,10 @@ RecyclerView es una vista con mucho potencial que fue incorporada con el propós
 [RecyclerView-Examples en Github](https://github.com/erikcaffrey/RecyclerView-Examples)
 
 ![](/content/images/2015/10/Telecine_2015-10-18-21-56-43.gif){: .center-image }
+
+### Resources
+
+* **Android** - [Creating Lists and Cards](https://developer.android.com/training/material/lists-cards.html)
+* **Dave Smith** - [Mastering RecyclerView layouts](https://www.youtube.com/watch?v=gs_C1E8HwvE)
+* **Fernando Cejas & Jorge Barroso** - [Material for old school](http://es.slideshare.net/flipper83/material-old-school)
+* **Chiu-Ki Chan** - [android-recyclerview repository](https://github.com/chiuki/android-recyclerview)

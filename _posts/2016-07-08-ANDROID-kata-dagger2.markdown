@@ -301,13 +301,6 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 
 **"Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie"**
 
-### Resources
-* **Gregory Kick** - [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)
-* **Fernando Cejas** - [Tasting Dagger 2 on Android](http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/)
-* **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
-* **Daniel Lew** - [Dependency Injection Made Simple](https://realm.io/news/daniel-lew-dependency-injection-dagger/)
-* **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)
-
 ### Demo
 
 #### El código está disponible
@@ -316,3 +309,10 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 
 
 ![](/content/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
+
+### Resources
+* **Gregory Kick** - [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)
+* **Fernando Cejas** - [Tasting Dagger 2 on Android](http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/)
+* **Jake Wharton** - [The Future of Dependency Injection with Dagger 2](https://www.youtube.com/watch?v=plK0zyRLIP8)
+* **Daniel Lew** - [Dependency Injection Made Simple](https://realm.io/news/daniel-lew-dependency-injection-dagger/)
+* **Pedro Gómez** - [Dependency Injection on Android](https://www.youtube.com/watch?v=XY2fHxqEBeo)
