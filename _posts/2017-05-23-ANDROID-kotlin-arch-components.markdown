@@ -34,11 +34,17 @@ If you are interested in learning more about the Kotlin programming language to 
 * [Kotlin Kapt Annotation processing](https://kotlinlang.org/docs/reference/kapt.html)
 * [Kotlin for Android Developers by Antonio Leiva](https://antonioleiva.com/kotlin-android-developers-book/)
 
-# Android Architecture Components
+# Android Architecture
 
 We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released [Android Architecture Blue Prints](https://github.com/googlesamples/android-architecture), a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers round the world.
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
+
+# Android Architecture Components
+
+The android architecture components is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps.
+
+Basically is composed to four core components:
 
 ## Handling lifecycles
 
@@ -47,6 +53,41 @@ Couple moths ago, Google Launched the [Android Architecture Components Framework
 ## ViewModel
 
 ## Room
+
+## Android Components to your Project
+
+First of all you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
+
+Architecture Components are available from Google's Maven repository
+
+``` Groovy
+
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://maven.google.com' }
+  }
+}
+
+```
+Add the dependencies that you need on `build.gradle`.
+
+``` Groovy
+ String archVersion = '1.0.0-alpha4'
+
+ //Lifecycles, LiveData and ViewModel
+ compile "android.arch.lifecycle:runtime:$archVersion"
+ compile "android.arch.lifecycle:extensions:$archVersion"
+ kapt "android.arch.lifecycle:compiler:$archVersion"
+
+ //Room
+ compile "android.arch.persistence.room:runtime:$archVersion"
+ kapt "android.arch.persistence.room:compiler:$archVersion"
+ testCompile "android.arch.persistence.room:testing:$archVersion"
+
+ //Room RxJava 2
+ compile "android.arch.persistence.room:rxjava2:$archVersion"
+```
 
 ## IN PROGRESS...
 
