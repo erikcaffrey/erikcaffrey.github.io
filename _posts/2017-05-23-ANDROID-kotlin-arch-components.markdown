@@ -51,9 +51,6 @@ Basically is composed to **four core components**:
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
-## Goal
-Write an application to show a dataset stored in a sqlite database to display them in a spinner widget using *android architecture components*.
-
 ### View
 
  IN PROGRESS ....
