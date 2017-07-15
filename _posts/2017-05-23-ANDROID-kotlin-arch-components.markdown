@@ -40,7 +40,7 @@ We know that writing quality software is hard and complex, it is not only about 
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
-The *Android Architecture Components* is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
+The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
 
 Basically is composed to four core components:
 
@@ -49,7 +49,7 @@ Basically is composed to four core components:
 * **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 * **Room:** Abstraction or wrapper over SQLite to allow a easy database access.
 
-**Adding architecture components on `build.gradle`:**
+Adding architecture components on `build.gradle`:
 
 ```gradle
 dependencies {
@@ -72,7 +72,7 @@ dependencies {
  }
 ```
 
-*Note:* you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
+**Note:** you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
 
 # Kotlin Devises architecture
 
