@@ -43,37 +43,35 @@ Couple moths ago, Google Launched the [Android Architecture Components Framework
 Basically is composed to **four core components**:
 
 * **Handling lifecycles:** Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
-
 * **Live Data:** Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
-
 * **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
-
 * **Room:** Abstraction or wrapper over SQLite to allow a easy database access (another ORM).
 
 # Kotlin Devises architecture
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
-## Goal
-
+## Goal
 Write an application to show a dataset stored in a sqlite database to display them in a spinner widget using *android architecture components*.
 
 ### View
 
+ IN PROGRESS ....
+
+### ViewModel
+
+ IN PROGRESS ....
+
+### Repository
+
+ IN PROGRESS ....
+
+### Room
+
+ IN PROGRESS ....
 
 
-## ViewModel
-
-
-## Repository
-
-
-## Room
-
-
-# IN PROGRESS ....
-
-The following diagram shows all the modules that Google recommended and how they interact with one another:
+**The following diagram shows all the modules that Google recommended and how they interact with one another:**
 
 ![kotlin-arch](/content/images/2017/5/currency-arch.png){: .center-image }
 
