@@ -46,47 +46,36 @@ The android architecture components is a collection of libraries and guidelines 
 
 Basically is composed to four core components:
 
-## Handling lifecycles
-
-## Live Data
-
-## ViewModel
-
-## Room
+* Handling lifecycles
+* Live Data
+* ViewModel
+* Room
 
 ## Android Components to your Project
 
 First of all you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
 
-Architecture Components are available from Google's Maven repository
+Architecture Components are available from Google's Maven repository `maven { url 'https://maven.google.com' }` only add the dependencies that you need on `build.gradle`.
 
-``` Groovy
+```gradle
+dependencies {
+  String archVersion = '1.0.0-alpha4'
 
-allprojects {
-  repositories {
-    ...
-    maven { url 'https://maven.google.com' }
-  }
-}
+  //Lifecycles, LiveData and ViewModel
 
-```
-Add the dependencies that you need on `build.gradle`.
+  compile "android.arch.lifecycle:runtime:$archVersion"
+  compile "android.arch.lifecycle:extensions:$archVersion"
+  kapt "android.arch.lifecycle:compiler:$archVersion"
 
-``` Groovy
- String archVersion = '1.0.0-alpha4'
+  //Room
 
- //Lifecycles, LiveData and ViewModel
- compile "android.arch.lifecycle:runtime:$archVersion"
- compile "android.arch.lifecycle:extensions:$archVersion"
- kapt "android.arch.lifecycle:compiler:$archVersion"
+  compile "android.arch.persistence.room:runtime:$archVersion"
+  kapt "android.arch.persistence.room:compiler:$archVersion"
+  testCompile "android.arch.persistence.room:testing:$archVersion"
 
- //Room
- compile "android.arch.persistence.room:runtime:$archVersion"
- kapt "android.arch.persistence.room:compiler:$archVersion"
- testCompile "android.arch.persistence.room:testing:$archVersion"
-
- //Room RxJava 2
- compile "android.arch.persistence.room:rxjava2:$archVersion"
+  // Room RxJava 2
+  compile "android.arch.persistence.room:rxjava2:$archVersion"
+ }
 ```
 
 ## IN PROGRESS...
