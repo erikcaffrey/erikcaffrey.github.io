@@ -16,21 +16,11 @@ The last Google I/O 2017, the Android team announced the official support of Kot
 
 Kotlin was created by JetBrains, the team behind IntelliJ, which is the base for Android Studio. Kotlin team started the journey 6 years ago, and 2 years ago the Android community and industry around the world started to experiment with this language. Companies like Expedia, Flipboard, Pinterest or Square are using Kotlin in their production apps already. Kotlin official support by Google is a very good news and a chance to use a modern and powerful language. It's another way to create Android apps, that will help solving common headaches such as runtime exceptions (NPE) and source code verbosity. Kotlin is easy to get started and it has already been adopted by several major developers. It also plays well with the Java programming language; the effortless interoperation between the two languages has been a large part of Kotlin's appeal can be introduced gradually into existing projects, which means that your existing skills and technology investments are preserved.
 
-# Interested to start with Kotlin
+# Getting started With Kotlin
 
 The Kotlin plugin, developed by JetBrains, is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team. Android Studio 3.0 is already available -and usable- as a Preview version.
 
-If you are interested in learning more about the Kotlin programming language to create or modify your Android apps, you can find excellent training material and references that I recommend on the end of post.
-
-# Android Architecture Components
-
-We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released Android Architecture Blue Prints, a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers around the world.
-
-Some days ago, Google Launched the Android Architecture Components Framework. It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
-
-## IN PROGRESS...
-
-**"Truth can only be found in one place: the code. by Robert C. Martin"**
+If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
 
 ## Resources to start with Kotlin on Android
 
@@ -40,6 +30,22 @@ Some days ago, Google Launched the Android Architecture Components Framework. It
 * [Kotlin Blog by Jetbrains](https://blog.jetbrains.com/kotlin/)
 * [Kotlin Kapt Annotation processing](https://kotlinlang.org/docs/reference/kapt.html)
 * [Kotlin for Android Developers by Antonio Leiva](https://antonioleiva.com/kotlin-android-developers-book/)
+
+# Android Architecture Components
+
+We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released Android Architecture Blue Prints, a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers around the world.
+
+Couple moths ago, Google Launched the Android Architecture Components Framework. It is a set of libraries and guidelines that will help you design flexible, testable, and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
+
+## IN PROGRESS...
+
+# The Kotlin Devises architecture 
+
+The following diagram shows all the modules that Google recommended and how they interact with one another:
+
+![kotlin-arch](/content/images/2017/5/currency-arch.png){: .center-image }
+
+**"Truth can only be found in one place: the code. by Robert C. Martin"**
 
 ## Resources to start with Android Architecture Components
 
