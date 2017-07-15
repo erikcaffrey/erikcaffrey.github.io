@@ -14,11 +14,15 @@ categories:
 
 The last Google I/O 2017, the Android team announced the [official support of Kotlin programming language](https://developer.android.com/kotlin/index.html). Kotlin is a JVM based object-oriented language that includes many ideas from functional programming. It is a brilliantly designed, mature language that will make Android development faster and as enjoyable and fun as possible.
 
+![kotlin-annunce](/content/images/2017/5/kotlin-annunce.png){: .center-image }
+
 [Kotlin](https://kotlinlang.org/) was created by JetBrains, the team behind IntelliJ, which is the base for Android Studio. Kotlin team started the journey 6 years ago, and 2 years ago the Android community and industry around the world started to experiment with this language. Companies like Expedia, Flipboard, Pinterest or Square are using Kotlin in their production apps already. Kotlin official support by Google is a very good news and a chance to use a modern and powerful language. It's another way to create Android apps, that will help solving common headaches such as runtime exceptions (NPE) and source code verbosity. Kotlin is easy to get started and it has already been adopted by several major developers. It also plays well with the Java programming language; the effortless interoperation between the two languages has been a large part of Kotlin's appeal can be introduced gradually into existing projects, which means that your existing skills and technology investments are preserved.
 
 # Getting started With Kotlin
 
 The [Kotlin plugin](https://plugins.jetbrains.com/plugin/6954-kotlin), developed by JetBrains, is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team. Android Studio 3.0 is already available -and usable- as a Preview version.
+
+![kotlin-support](/content/images/2017/5/kotlin-support.png){: .center-image }
 
 If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
 
