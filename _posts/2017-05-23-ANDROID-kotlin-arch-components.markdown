@@ -42,34 +42,38 @@ Couple moths ago, Google Launched the [Android Architecture Components Framework
 
 The **Android Architecture Components** is a collection of libraries and guidelines proposed by Google to create testable and maintainable android apps but this framework too has another big feature (the most important for me) is focused in solve the problem of configuration changes such as screen rotations.
 
-Basically is composed to four core components:
+Basically is composed to **four core components**:
 
-* **Handling lifecycles:** Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
-* **Live Data:** Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
-* **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
-* **Room:** Abstraction or wrapper over SQLite to allow a easy database access.
+**Handling lifecycles**
+Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
+**Live Data**
+Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
+**ViewModel**
+A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 
-Adding architecture components on `build.gradle`:
 
 ```gradle
-dependencies {
-  String archVersion = '1.0.0-alpha4'
 
   //Lifecycles, LiveData and ViewModel
 
-  compile "android.arch.lifecycle:runtime:$archVersion"
-  compile "android.arch.lifecycle:extensions:$archVersion"
-  kapt "android.arch.lifecycle:compiler:$archVersion"
+  compile "android.arch.lifecycle:runtime:1.0.0-alpha4"
+  compile "android.arch.lifecycle:extensions:1.0.0-alpha4"
+  kapt "android.arch.lifecycle:compiler:1.0.0-alpha4"
+  ```
 
+**Room**
+Abstraction or wrapper over SQLite to allow a easy database access.
+
+```graldle
   //Room
 
-  compile "android.arch.persistence.room:runtime:$archVersion"
-  kapt "android.arch.persistence.room:compiler:$archVersion"
-  testCompile "android.arch.persistence.room:testing:$archVersion"
+  compile "android.arch.persistence.room:runtime:1.0.0-alpha4"
+  kapt "android.arch.persistence.room:compiler:1.0.0-alpha4"
+  testCompile "android.arch.persistence.room:testing:1.0.0-alpha4"
 
   // Room RxJava 2
   compile "android.arch.persistence.room:rxjava2:$archVersion"
- }
+
 ```
 
 **Note:** you should consider architecture components libraries are still in alpha so I don't recommend use it on production can be risky, usually alpha versions are changing constantly before the release version but can be very useful for you understand how architecture components works if you want to use them in a future.
@@ -79,11 +83,17 @@ dependencies {
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
 
-# IN PROGRESS ....
+## View
+
+## ViewModel
+
+## Repository
+
+## Room
+
 
 # IN PROGRESS ....
 
-# IN PROGRESS ....
 
 The following diagram shows all the modules that Google recommended and how they interact with one another:
 
