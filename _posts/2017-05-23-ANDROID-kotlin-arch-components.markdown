@@ -55,7 +55,7 @@ The libraries are available from Google's Maven repository `https://maven.google
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
-### View
+## View
 
 ```java
 class CurrencyFragment : LifecycleFragment() {
@@ -92,7 +92,7 @@ class CurrencyFragment : LifecycleFragment() {
 }
 ```
 
-### ViewModel
+## ViewModel
 
 {% highlight java %}
 class CurrencyViewModel : ViewModel() {
@@ -123,7 +123,7 @@ class CurrencyViewModel : ViewModel() {
 {% endhighlight %}
 
 
-### Repository
+## Repository
 
 ```java
 class CurrencyRepository @Inject constructor(
@@ -145,6 +145,7 @@ class CurrencyRepository @Inject constructor(
  }
 }
 ```
+<space><space>
 
 ## Room
 
@@ -167,8 +168,7 @@ In the sample I created `RoomsCurrencyDataSource` to storage all world currencie
 
 ```java
 @Database(
-    entities = arrayOf(CurrencyEntity::class),
-    version = 1)
+    entities = arrayOf(CurrencyEntity::class), version = 1)
 abstract class RoomCurrencyDataSource : RoomDatabase() {
 
   abstract fun currencyDao(): RoomCurrencyDao
@@ -183,7 +183,7 @@ abstract class RoomCurrencyDataSource : RoomDatabase() {
   }
 }
 ```
-
+<space><space>
 
 ### Entity
 
@@ -199,6 +199,7 @@ data class CurrencyEntity(
 {% endhighlight %}
 
 Use the annotation `@ColumnInfo` to customize the name of a field.
+<space><space>
 
 ### Data Access Object (DAO)
 
@@ -215,6 +216,7 @@ This component represents and define the contract to access on Database, should 
   @Query("SELECT * FROM currencies")
   fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
 ```
+<space><space>
 
 There are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`.
 
