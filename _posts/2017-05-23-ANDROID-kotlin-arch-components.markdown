@@ -159,6 +159,7 @@ Room is a new powerful object Mapping for SQLite to allow easy databases access 
 
 ### Room Components
 
+-----------------------------
 ### Database
 
 It's the way to define our database basically it should be an abstract class that extends `RoomDatabase` and with annotation `@Database` to define the list of entities and expose the list of data access objects.
@@ -182,7 +183,7 @@ abstract class RoomCurrencyDataSource : RoomDatabase() {
   }
 }
 ```
-
+-----------------------------
 ### Entity
 
 This component represents a class that holds a database row. For each class with annotation `@Entity` a database table is created to hold the items.
@@ -198,10 +199,10 @@ data class CurrencyEntity(
 
 Use the annotation `@ColumnInfo` to customize the name of a field.
 
+-----------------------------
 ### Data Access Object (DAO)
 
 This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`.
-
 
 ```java
   @Query("SELECT COUNT(*) FROM currencies")
