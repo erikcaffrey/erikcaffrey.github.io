@@ -163,7 +163,6 @@ Room is a new powerful object Mapping for SQLite to allow easy databases access 
 
 ### Room Components
 
------------------------------
 ### Database
 
 It's the way to define our database basically it should be an abstract class that extends `RoomDatabase` and with annotation `@Database` to define the list of entities and expose the list of data access objects.
@@ -206,16 +205,22 @@ data class CurrencyEntity(
 
 This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`. Create a query is easy there are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`.
 
-```java
-  @Query("SELECT COUNT(*) FROM currencies")
+
+{% highlight java %}
+@Dao
+interface RoomCurrencyDao {
+
+  @Query(RoomContract.SELECT_CURRENCIES_COUNT)
   fun getCurrenciesTotal(): Flowable<Int>
 
   @Insert
   fun insertAll(currencies: List<CurrencyEntity>)
 
-  @Query("SELECT * FROM currencies")
+  @Query(RoomContract.SELECT_CURRENCIES)
   fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
-```
+
+}
+{% endhighlight %}
 
 I know there are a lot good libraries like realm that can help you with all this stuffs but SQLite was released since android 1 and works in all devices is a tested technology.
 
