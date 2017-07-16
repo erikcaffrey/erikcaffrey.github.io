@@ -55,6 +55,8 @@ The libraries are available from Google's Maven repository `https://maven.google
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
+IN PROGRESS ...
+
 ## View
 
 ```java
@@ -91,7 +93,7 @@ class CurrencyFragment : LifecycleFragment() {
   }
 }
 ```
-
+-----------------------------
 ## ViewModel
 
 {% highlight java %}
@@ -122,7 +124,7 @@ class CurrencyViewModel : ViewModel() {
 }
 {% endhighlight %}
 
-
+-----------------------------
 ## Repository
 
 ```java
@@ -150,6 +152,8 @@ class CurrencyRepository @Inject constructor(
 
 Room is a new powerful object Mapping for SQLite to allow easy databases access in android applications.
 
+### Room Features
+
 * Boilerplate free code
 * Type Adapters (`@TypeConverters` to convert object types that aren't supported by sqlite)
 * Supports LiveData objects wich means you can subscribe to receive updates.
@@ -168,7 +172,7 @@ In the sample I created `RoomsCurrencyDataSource` to storage all world currencie
 
 ```java
 @Database(
-    entities = arrayOf(CurrencyEntity::class), version = 1)
+    entities = arrayOf(CurrencyEntity::class) , version = 1)
 abstract class RoomCurrencyDataSource : RoomDatabase() {
 
   abstract fun currencyDao(): RoomCurrencyDao
@@ -186,7 +190,7 @@ abstract class RoomCurrencyDataSource : RoomDatabase() {
 -----------------------------
 ### Entity
 
-This component represents a class that holds a database row. For each class with annotation `@Entity` a database table is created to hold the items.
+This component represents a class that holds a database row. For each class with annotation `@Entity` a database table is created to hold the items. (Use the annotation `@ColumnInfo` to customize the name of a field.)
 
 {% highlight java %}
 @Entity(tableName = "currencies")
@@ -197,12 +201,10 @@ data class CurrencyEntity(
 )
 {% endhighlight %}
 
-Use the annotation `@ColumnInfo` to customize the name of a field.
-
 -----------------------------
 ### Data Access Object (DAO)
 
-This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`.
+This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`. Create a query is easy there are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`.
 
 ```java
   @Query("SELECT COUNT(*) FROM currencies")
@@ -215,9 +217,9 @@ This component represents and define the contract to access on Database, should 
   fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
 ```
 
-There are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`.
-
 I know there are a lot good libraries like realm that can help you with all this stuffs but SQLite was released since android 1 and works in all devices is a tested technology.
+
+-----------------------------
 
 # Conclusion
 
