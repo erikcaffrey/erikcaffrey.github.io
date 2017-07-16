@@ -12,7 +12,7 @@ categories:
 
 # Official support of Kotlin on Android
 
-The last Google I/O 2017, the Android team announced the [official support of Kotlin programming language](https://developer.android.com/kotlin/index.html). Kotlin is a JVM based object-oriented language that includes many ideas from functional programming. It is a brilliantly designed, mature language that will make Android development faster and as enjoyable and fun as possible.
+The last Google I/O 2017 like you know the Android team announced the [official support of Kotlin programming language](https://developer.android.com/kotlin/index.html). Kotlin is a JVM based object-oriented language that includes many ideas from functional programming. It is a brilliantly designed, mature language that will make Android development faster and as enjoyable and fun as possible.
 
 ![kotlin-annunce](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/master/content/images/2017/5/kotlin_support.jpg){: .center-image }
 
@@ -20,9 +20,9 @@ The last Google I/O 2017, the Android team announced the [official support of Ko
 
 ## Getting started With Kotlin
 
-The [Kotlin plugin](https://plugins.jetbrains.com/plugin/6954-kotlin) is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team. Android Studio 3.0 is already available -and usable- as a Preview version.
+The [Kotlin plugin](https://plugins.jetbrains.com/plugin/6954-kotlin) is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team.
 
-If you are interested in learning more about the Kotlin programming language to create or modify your Android apps here I added some resources that can be useful.
+If you are interested to learn more about the Kotlin programming language, I added some resources that can be useful.
 
 #### Resources to start with Kotlin on Android
 
@@ -39,19 +39,24 @@ We know that writing quality software is hard and complex, it is not only about 
 
 Couple moths ago, Google Launched the [Android Architecture Components Framework](https://developer.android.com/topic/libraries/architecture/index.html). It is a set of libraries and guidelines that will help you design flexible, testable and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).
 
-**Architecture Components**
+## Basics about Architecture Components
 
 * **Handling lifecycles:** Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.
+* **Lifecycle:** Is a abstract class that contains the information about the lifecycle state of a component.
+* **LifecycleRegistry:** Is an explicit interface allows register an object to get the lifecycle state (looks LifecycleFragment or LifecycleActivity).
+* **LifecycleOwner:** An interface with a single method to know that a component has a Lifecycle.
 * **Live Data:** Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.
 * **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
-* **Room:** Abstraction over SQLite to allow a easy database access (another ORM or SQLite Mapper).
+* **Room:** Abstraction over SQLite to allow an easy database access (like an ORM or Object Mapping for SQLite).
+
+The libraries are available from Google's Maven repository `maven { url 'https://maven.google.com' }` only add the artifacts that you need in your project other advantage is can be used standalone.
 
 ## Kotlin Devises architecture
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
 ### View
-
+In progress...
 ```kotlin
 
 class CurrencyFragment : LifecycleFragment() {
@@ -90,7 +95,7 @@ class CurrencyFragment : LifecycleFragment() {
 ```
 
 ### ViewModel
-
+In progress...
 ```kotlin
 
 class CurrencyViewModel : ViewModel() {
@@ -120,7 +125,7 @@ class CurrencyViewModel : ViewModel() {
 }
 ```
 ### Repository
-
+In progress...
 ```kotlin
 class CurrencyRepository @Inject constructor(
    val roomCurrencyDataSource: RoomCurrencyDataSource,
@@ -144,6 +149,23 @@ class CurrencyRepository @Inject constructor(
 
 ### Room
 
+Room is a new powerful object Mapping for SQLite to allow easy databases access in android applications.
+
+* Boilerplate free code
+* Type Adapters ("@TypeConverters" to convert object types that aren't supported by sqlite)
+* Supports LiveData objects wich means you can subscribe to receive updates.
+* Support Rx Java (only can return a Flowable)
+* Room understand what you are trying to do (Querys)
+* Room doesn’t allow you to access to database on the main thread
+
+### Room Components
+
+#### Database
+
+It's the way to define our database basically it should be an abstract class that extends `RoomDatabase` and with annotation `@Database` to define the list of entities and expose the list of data access objects.
+
+In the sample I created `RoomsCurrencyDataSource` to storage all world currencies.
+
 ```kotlin
 @Database(
     entities = arrayOf(CurrencyEntity::class),
@@ -157,25 +179,49 @@ abstract class RoomCurrencyDataSource : RoomDatabase() {
     fun buildPersistentCurrency(context: Context): RoomCurrencyDataSource = Room.databaseBuilder(
         context.applicationContext,
         RoomCurrencyDataSource::class.java,
-        RoomContract.DATABASE_CURRENCY
+        "currency.db"
     ).build()
   }
 }
 ```
 
+#### Entity
+
+This component represents a class that holds a database row. For each class with annotation `@Entity` a database table is created to hold the items.
 
 ```kotlin
-@Dao
-interface RoomCurrencyDao {
+@Entity(tableName = "currencies")
+data class CurrencyEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long,
+    var countryCode: String,
+    var countryName: String
+)
+```
+
+Use the annotation `@ColumnInfo` to customize the name of a field.
+
+#### Data Access Object (DAO)
+
+This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`.
+
+```kotlin
+  @Query("SELECT COUNT(*) FROM currencies")
+  fun getCurrenciesTotal(): Flowable<Int>
+
   @Insert
   fun insertAll(currencies: List<CurrencyEntity>)
 
-  @Query(RoomContract.SELECT_CURRENCIES)
+  @Query("SELECT * FROM currencies")
   fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
-
-}
 ```
-### IN PROGRESS ….
+
+There are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`. 
+
+I know there are a lot good libraries like realm that can help you with all this stuffs but SQLite was released since android 1 and works in all devices is a tested technology.
+
+# Conclusion
+
+In progress...
 
 **The following diagram shows all the modules that Google recommended and how they interact with one another:**
 
