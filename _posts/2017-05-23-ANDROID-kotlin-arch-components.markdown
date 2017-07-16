@@ -49,16 +49,15 @@ Couple moths ago, Google Launched the [Android Architecture Components Framework
 * **ViewModel:** A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.
 * **Room:** Abstraction over SQLite to allow an easy database access (like an ORM or Object Mapping for SQLite).
 
-The libraries are available from Google's Maven repository `maven { url 'https://maven.google.com' }` only add the artifacts that you need in your project other advantage is can be used standalone.
+The libraries are available from Google's Maven repository `https://maven.google.com` only add the artifacts that you need in your project other advantage is can be used standalone.
 
 ## Kotlin Devises architecture
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
 ### View
-In progress...
-```kotlin
 
+```java
 class CurrencyFragment : LifecycleFragment() {
 
   companion object {
@@ -91,13 +90,11 @@ class CurrencyFragment : LifecycleFragment() {
 
   }
 }
-
 ```
 
 ### ViewModel
-In progress...
-```kotlin
 
+{% highlight java %}
 class CurrencyViewModel : ViewModel() {
 
   @Inject lateinit var currencyRepository: CurrencyRepository
@@ -123,10 +120,12 @@ class CurrencyViewModel : ViewModel() {
   private fun initializeDagger() = CurrencyApplication.appComponent.inject(this)
 
 }
-```
+{% endhighlight %}
+
+
 ### Repository
-In progress...
-```kotlin
+
+```java
 class CurrencyRepository @Inject constructor(
    val roomCurrencyDataSource: RoomCurrencyDataSource,
    val remoteCurrencyDataSource: RemoteCurrencyDataSource
@@ -147,27 +146,26 @@ class CurrencyRepository @Inject constructor(
 }
 ```
 
-
-### Room
+## Room
 
 Room is a new powerful object Mapping for SQLite to allow easy databases access in android applications.
 
 * Boilerplate free code
-* Type Adapters ("@TypeConverters" to convert object types that aren't supported by sqlite)
+* Type Adapters (`@TypeConverters` to convert object types that aren't supported by sqlite)
 * Supports LiveData objects wich means you can subscribe to receive updates.
 * Support Rx Java (only can return a Flowable)
-* Room understand what you are trying to do (Querys)
+* Room understand what you are trying to do (Query's)
 * Room doesn’t allow you to access to database on the main thread
 
 ### Room Components
 
-#### Database
+### Database
 
 It's the way to define our database basically it should be an abstract class that extends `RoomDatabase` and with annotation `@Database` to define the list of entities and expose the list of data access objects.
 
 In the sample I created `RoomsCurrencyDataSource` to storage all world currencies.
 
-```kotlin
+```java
 @Database(
     entities = arrayOf(CurrencyEntity::class),
     version = 1)
@@ -187,28 +185,27 @@ abstract class RoomCurrencyDataSource : RoomDatabase() {
 ```
 
 
-#### Entity
+### Entity
 
 This component represents a class that holds a database row. For each class with annotation `@Entity` a database table is created to hold the items.
 
-
-```kotlin
+{% highlight java %}
 @Entity(tableName = "currencies")
 data class CurrencyEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     var countryCode: String,
     var countryName: String
 )
-```
+{% endhighlight %}
 
 Use the annotation `@ColumnInfo` to customize the name of a field.
 
-#### Data Access Object (DAO)
+### Data Access Object (DAO)
 
 This component represents and define the contract to access on Database, should be an interface with annotation `@Dao`.
 
 
-```kotlin
+```java
   @Query("SELECT COUNT(*) FROM currencies")
   fun getCurrenciesTotal(): Flowable<Int>
 
@@ -218,7 +215,6 @@ This component represents and define the contract to access on Database, should 
   @Query("SELECT * FROM currencies")
   fun getAllCurrencies(): Flowable<List<CurrencyEntity>>
 ```
-
 
 There are some already defined annotations in which you only have to create your `SQL query` like `@Query, @Insert, @Delete`.
 
