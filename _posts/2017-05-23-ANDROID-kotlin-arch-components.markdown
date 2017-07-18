@@ -96,6 +96,11 @@ class CurrencyFragment : LifecycleFragment() {
 -----------------------------
 ## ViewModel
 
+Is an abstract class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations, which means that our activity or fragment no longer needs retaining the data state as the ViewModel takes on this responsibility basically when you rotate a device his Observer is connected with the same `ViewModel`.
+
+You can see the code below how create a `ViewModel` although *architecture components* provides an observable called `LiveData` which has an important role into the *ViewModel* because is a data holder class that can be observed within a given lifecycle. 
+
+
 {% highlight java %}
 class CurrencyViewModel : ViewModel() {
 
