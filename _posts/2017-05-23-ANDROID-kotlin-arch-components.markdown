@@ -55,8 +55,6 @@ The libraries are available from Google's Maven repository `https://maven.google
 
 Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.
 
-IN PROGRESS ...
-
 ## View
 
 ```java
@@ -98,7 +96,7 @@ class CurrencyFragment : LifecycleFragment() {
 
 Is an abstract class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations, which means that our activity or fragment no longer needs retaining the data state as the ViewModel takes on this responsibility basically when you rotate a device his Observer is connected with the same `ViewModel`.
 
-You can see the code below how create a `ViewModel` although *architecture components* provides an observable called `LiveData` which has an important role into the *ViewModel* because is a data holder class that can be observed within a given lifecycle. 
+You can see the code below how create a `ViewModel` although *architecture components* provides an observable called `LiveData` which has an important role into the *ViewModel* because is a data holder class that can be observed within a given lifecycle.
 
 
 {% highlight java %}
@@ -228,12 +226,6 @@ interface RoomCurrencyDao {
 {% endhighlight %}
 
 I know there are a lot good libraries like realm that can help you with all this stuffs but SQLite was released since android 1 and works in all devices is a tested technology.
-
------------------------------
-
-# Conclusion
-
-In progress...
 
 **The following diagram shows all the modules that Google recommended and how they interact with one another:**
 

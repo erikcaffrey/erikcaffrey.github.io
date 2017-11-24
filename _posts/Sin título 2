@@ -1,9 +1,0 @@
-<style name="NorthstarDialogStyle" parent="RocketTheme.Base">
-        <item name="android:windowMinWidthMajor">97%</item>
-        <item name="android:windowMinWidthMinor">97%</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="colorPrimaryDark">@color/northstarStatusBarTemporary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlNormal">@color/northstarGrey</item>
-        <item name="android:windowAnimationStyle">@style/NorthstarDialogStyle.Window</item>
-    </style>
