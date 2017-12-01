@@ -25,13 +25,13 @@ I started to migrate our android project for two main reasons: first I noticed s
 
 I’m working at Schibsted Media Group, on one Android project with different product flavors, so for you to understand better how was our experience, I want to give you a little description of our project:
 
-    * Hundreds of lines of code (it’s a big project)
-    * Directories and files for configuration, like checkstyle, Linters, internal tools to measure quality of our project, continuous integration, scripts for release process, and more.
-    * We use a lot of popular open source libraries
-    * 8 modules: features & utils modules, app module
-    * 8 product flavors
-    * We have a lot of types of tests: Unit tests, integration tests, UI tests.
-    * We are a lot of Android engineers: more than 30, with 10 daily active contributors
+* Hundreds of lines of code (it’s a big project)
+* Directories and files for configuration, like checkstyle, Linters, internal tools to measure quality of our project, continuous integration, scripts for release process, and more.
+* We use a lot of popular open source libraries
+* 8 modules: features & utils modules, app module
+* 8 product flavors
+* We have a lot of types of tests: Unit tests, integration tests, UI tests.
+* We are a lot of Android engineers: more than 30, with 10 daily active contributors
 
 As you can see, it’s not a simple project in which making this change can take only a few minutes.
 
@@ -41,7 +41,7 @@ First of all I recommend that you create a new branch (if you are using git), or
 
 You need to add Google’s Maven repository to download the new plugin.
 
-```
+```gradle
 repositories {
         ...
         google()
@@ -51,11 +51,12 @@ Upgrade to the version that you need in the build.gradle file on the root of pro
 
 **/build.gradle**
 
-``` classpath ‘com.android.tools.build:gradle:3.?.?’  
+```gradle
+classpath ‘com.android.tools.build:gradle:3.?.?’  
 ```
 Are you ready to solve problems? First we need to do a build to see if our project is working like we expected after doing these changes.
 
-```
+```gradle
 ./gradlew build --info
 ```
 ## Which issues we found while doing the migration?
@@ -67,12 +68,13 @@ We were using the Lint class in a custom gradle task which applies to all our fl
 
 Remove:
 
-```import com.android.build.gradle.tasks.Lint
+```gradle
+import com.android.build.gradle.tasks.Lint
 ```
 
 Use:
 
-```
+```gradle
 import com.android.build.gradle.tasks.LintPerVariantTask
 ```
 
@@ -91,14 +93,14 @@ Surely one of the most common changes which you noticed was deprecated compile. 
 
 Upgrade to the last version of Kotlin. In our case it was **1.1.51**.
 
-```
+```gradle
 ext.kotlin_version = '1.1.51'
 ```
 
 ## Upgrade Jacoco
 
 We use Jacoco to measure java code coverage so it was great moment to update it too.
-```
+```gradle
 classpath "org.jacoco:org.jacoco.core:0.7.7.201606060606"
 ```
 
@@ -108,7 +110,7 @@ We were using Retrolambda plugin to get java lambda support in Android but with 
 
 Remove:
 
-```
+```gradle
 // Remove Jack Options
 jackOptions {
   enabled true
@@ -121,7 +123,8 @@ classpath ‘me.tatarka:gradle-retrolambda:3.6.0’
 ```
 
 Use:
-```
+
+```gradle
 compileOptions {
   sourceCompatibility JavaVersion.VERSION_1_8
   targetCompatibility JavaVersion.VERSION_1_8
@@ -133,13 +136,13 @@ Butterknife Gradle plugin issue
 
 We use the famous Butterknife Library specifically the version 8.8.1.
 
-```
+```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
 ```
 
 With the upgrade of Android Gradle plugin, it seems something was broken:
 
-```
+```gradle
 Error:A problem occurred configuring project ':app'.
 > Failed to notify project evaluation listener.
    > com.android.build.gradle.api.BaseVariant.getOutputs()Ljava/util/List;
@@ -152,14 +155,14 @@ You have two ways to solve it:
 
     Use the version where it was fixed 9.0.0-SNAPSHOT .
 
-```
+```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
 ```
    Use a workaround solution:
 
 Downgrade using the 8.4.0 version.
 
-```
+```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
 ```
 
@@ -170,7 +173,7 @@ In some cases, you may want to combine configurations from multiple product flav
 
 The new plugin now requires that all flavors belong to a named flavor dimension even if you intend to use only a single dimension.
 
-```
+```gradle
 flavorDimensions "marketplaceA", "marketplaceB"
 
 productFlavors {
@@ -197,7 +200,7 @@ productFlavors {
 ```
 if you don’t really need flavor dimensions:
 
-```
+```gradle
 android {
     ...
     flavorDimensions "default"
