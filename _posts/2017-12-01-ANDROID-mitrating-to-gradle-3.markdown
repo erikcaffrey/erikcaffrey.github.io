@@ -62,9 +62,9 @@ Are you ready to solve problems? First we need to do a build to see if our proje
 ## Which issues we found while doing the migration?
 I’m gonna try to give you some advices to do a safe migration.
 
-Lint class disappear
+## Lint class disappear
 
-We were using the Lint class in a custom gradle task which applies to all our flavors but in gradle 3 this class was removed, and was no changelog published about this, we discovered it when upgrading to the new Gradle plugin version.
+We were using the [Lint](https://android.googlesource.com/platform/tools/build/+/143d17a4ade4f4af8f0269a4f7fc4238fcc60c68/gradle/src/main/groovy/com/android/build/gradle/tasks/Lint.groovy) class in a custom gradle task which applies to all our flavors but in *gradle 3* this class was removed, and was no changelog published about this, we discovered it when upgrading to the new Gradle plugin version.
 
 **Remove:**
 
@@ -80,13 +80,13 @@ import com.android.build.gradle.tasks.LintPerVariantTask
 
 ## Dependency configurations
 
-Surely one of the most common changes which you noticed was deprecated compile. It might look like a trivial change, but you should be carefully when you start to modify it on your build.gradle, if you have some transitive dependencies it can be catastrophic like was for us. That’s why I would like to give you some recommendations to do it more easily.
+Surely one of the most common changes which you noticed was deprecated **compile**. It might look like a trivial change, but you should be carefully when you start to modify it on your build.gradle, if you have some transitive dependencies it can be catastrophic like was for us. That’s why I would like to give you some recommendations to do it more easily.
 
-    * Read & understand the difference between compile, compileOnly, api, runtimeOnly & implementation.
+    * [Read & understand](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#new_configurations) the difference between **compile**, **compileOnly**, **api**, **runtimeOnly** & **implementation**.
     * Identify dependencies between feature modules.
     * Identify dependencies between feature modules & external dependencies.
-    * Use Android Studio IDE tools like cmd + R to replace between different dependency configurations.
-    * Identify dependencies compiled with provided.
+    * Use Android Studio IDE tools like **cmd + R** to replace between different dependency configurations.
+    * Identify dependencies compiled with **provided**.
     * Be carefully removing transitive dependencies. You can save a lot time understanding compilation problems
 
 ## Upgrade Kotlin
@@ -99,7 +99,7 @@ ext.kotlin_version = '1.1.51'
 
 ## Upgrade Jacoco
 
-We use Jacoco to measure java code coverage so it was great moment to update it too.
+We use [Jacoco](http://www.jacoco.org/jacoco/trunk/index.html) to measure java code coverage so it was great moment to update it too.
 ```gradle
 classpath "org.jacoco:org.jacoco.core:0.7.7.201606060606"
 ```
@@ -131,10 +131,11 @@ compileOptions {
 }
 ```
 
-If you want to get more details about this change, you can see Android Studio 3.0: Java 8 Language Features Support video.
-Butterknife Gradle plugin issue
+If you want to get more details about this change, you can see Android Studio 3.0: [Java 8 Language Features Support](https://www.youtube.com/watch?v=LhaSi6_i2bo) video.
 
-We use the famous Butterknife Library specifically the version 8.8.1.
+## Butterknife Gradle plugin issue
+
+We use the famous Butterknife Library specifically the version **8.8.1**.
 
 ```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
@@ -147,20 +148,20 @@ Error:A problem occurred configuring project ':app'.
 > Failed to notify project evaluation listener.
    > com.android.build.gradle.api.BaseVariant.getOutputs()Ljava/util/List;
 ```
-In ButterKnifePlugin.kt is the offending line it calls **variant.outputs.forEach**, but the new Android Gradle 3.0 plugin requires **variants.outputs.all**.
+In **ButterKnifePlugin.kt** is the offending line it calls **variant.outputs.forEach**, but the new Android Gradle 3.0 plugin requires **variants.outputs.all**.
 
 ### How should I fix it?
 
 You have two ways to solve it:
 
-* Use the version where it was fixed 9.0.0-SNAPSHOT .
+* Use the version where it was fixed **9.0.0-SNAPSHOT**.
 
 ```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
 ```
 Use a workaround solution:
 
-* Downgrade using the 8.4.0 version.
+* Downgrade using the **8.4.0 version**.
 
 ```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
@@ -170,7 +171,7 @@ classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
 
 ## Flavor Dimensions*
 
-In some cases, you may want to combine configurations from multiple product flavors. For example, you may want to create different configurations for the “premium” and “free”. To do this, you should use flavor dimensions.
+In some cases, you may want to combine configurations from multiple product flavors. For example, you may want to create different configurations for the “premium” and “free”. To do this, you should use [flavor dimensions](http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.AppExtension.html#com.android.build.gradle.AppExtension:flavorDimensions%28java.lang.String[]%29).
 
 The new plugin now requires that all flavors belong to a named flavor dimension even if you intend to use only a single dimension.
 
@@ -215,9 +216,9 @@ Remove buildToolsVersions from your modules: It’s no longer needed 🎉.
 
 ## Support for legacy multidex test APK
 
-Maybe you will found some issues about multidex on test Apk to solved it you should use 3.1.0-alpha04.
+Maybe you will found some issues about multidex on test Apk to solved it you should use **3.1.0-alpha04**.
 
-The issue will be fixed on android gradle plugin 3.1.0 version (more info about it: https://issuetracker.google.com/issues/37324038)
+The issue will be fixed on **android gradle plugin 3.1.0** version (more info about it: https://issuetracker.google.com/issues/37324038)
 
 ## Conclusion
 
