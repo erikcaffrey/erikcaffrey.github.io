@@ -11,7 +11,7 @@ categories:
 
 ![kotlin-arch](/content/images/2017/5/kotlin-arch.png){: .center-image }
 
-# Migrate to New Android Plugin for Gradle 3.?.?
+# Migrate to Android Plugin for Gradle 3.?.?
 
 Our happy history migrating an existing android project using gradle 2.3 to new gradle version.
 
@@ -66,13 +66,13 @@ Lint class disappear
 
 We were using the Lint class in a custom gradle task which applies to all our flavors but in gradle 3 this class was removed, and was no changelog published about this, we discovered it when upgrading to the new Gradle plugin version.
 
-Remove:
+**Remove:**
 
 ```gradle
 import com.android.build.gradle.tasks.Lint
 ```
 
-Use:
+**Use:**
 
 ```gradle
 import com.android.build.gradle.tasks.LintPerVariantTask
@@ -108,7 +108,7 @@ classpath "org.jacoco:org.jacoco.core:0.7.7.201606060606"
 
 We were using Retrolambda plugin to get java lambda support in Android but with Android Studio 3.0, not everything is about Kotlin, there are projects written in Java or Java & Kotlin mixed, as in our case. Also Android Studio support java 8 languages features in the default toolchain.
 
-Remove:
+**Remove:**
 
 ```gradle
 // Remove Jack Options
@@ -122,7 +122,7 @@ jackOptions {
 classpath ‘me.tatarka:gradle-retrolambda:3.6.0’
 ```
 
-Use:
+**Use:**
 
 ```gradle
 compileOptions {
@@ -153,21 +153,22 @@ In ButterKnifePlugin.kt is the offending line it calls **variant.outputs.forEach
 
 You have two ways to solve it:
 
-    Use the version where it was fixed 9.0.0-SNAPSHOT .
+* Use the version where it was fixed 9.0.0-SNAPSHOT .
 
 ```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
 ```
-   Use a workaround solution:
+Use a workaround solution:
 
-Downgrade using the 8.4.0 version.
+* Downgrade using the 8.4.0 version.
 
 ```gradle
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
 ```
 
-Note: it doesn’t resolve the compatibility issue with Feature Module.
-Flavor Dimensions
+*Note: it doesn't resolve the compatibility issue with Feature Module.*
+
+## Flavor Dimensions*
 
 In some cases, you may want to combine configurations from multiple product flavors. For example, you may want to create different configurations for the “premium” and “free”. To do this, you should use flavor dimensions.
 
@@ -198,6 +199,7 @@ productFlavors {
     }
 }
 ```
+
 if you don’t really need flavor dimensions:
 
 ```gradle
@@ -206,6 +208,7 @@ android {
     flavorDimensions "default"
 }
 ```
+
 ## Bye BuildToolsVersions
 
 Remove buildToolsVersions from your modules: It’s no longer needed 🎉.
@@ -216,16 +219,16 @@ Maybe you will found some issues about multidex on test Apk to solved it you sho
 
 The issue will be fixed on android gradle plugin 3.1.0 version (more info about it: https://issuetracker.google.com/issues/37324038)
 
-## Conclusion
+## Conclusion
 
 The complexity of doing this migration depends a lot of the project and the tools you use. I recommend doing the changes step by step, keeping your calm to avoid spending a lot time trying to get a successful compilation. In our case, we spent hours of research. With this post I want to try saving you time. Thanks for reading and also to all my team who was involved in this funny adventure. I hope it’s useful!
 
 #### Further Reading
 
-    * [Android Studio 3.0]()
-    * [About Android Gradle Plugin]()
-    * [Migrate to Android Plugin for Gradle 3.0.0]()
-    * [Speeding Up Your Android Gradle Builds]()
-    * [Java 8 Language Features Support]()
+* [Android Studio 3.0]()
+* [About Android Gradle Plugin]()
+* [Migrate to Android Plugin for Gradle 3.0.0]()
+* [Speeding Up Your Android Gradle Builds]()
+* [Java 8 Language Features Support]()
 
 **"Truth can only be found in one place: the code. by Robert C. Martin"**
