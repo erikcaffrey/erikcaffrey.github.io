@@ -62,7 +62,7 @@ I’m gonna try to give you some advices to do a safe migration.
 
 ## Lint class disappear
 
-We were using the [Lint](https://android.googlesource.com/platform/tools/build/+/143d17a4ade4f4af8f0269a4f7fc4238fcc60c68/gradle/src/main/groovy/com/android/build/gradle/tasks/Lint.groovy) class in a custom gradle task which applies to all our flavors but in *gradle 3* this class was removed, and was no changelog published about this, we discovered it when upgrading to the new Gradle plugin version.
+We were using the [Lint](https://goo.gl/RctgLD) class in a custom gradle task which applies to all our flavors but in *gradle 3* this class was removed, and was no changelog published about this, we discovered it when upgrading to the new Gradle plugin version.
 
 **Remove:**
 
@@ -80,7 +80,7 @@ import com.android.build.gradle.tasks.LintPerVariantTask
 
 Surely one of the most common changes which you noticed was deprecated **compile**. It might look like a trivial change, but you should be carefully when you start to modify it on your build.gradle, if you have some transitive dependencies it can be catastrophic like was for us. That’s why I would like to give you some recommendations to do it more easily.
 
-    * [Read & understand](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#new_configurations) the difference between **compile**, **compileOnly**, **api**, **runtimeOnly** & **implementation**.
+    * [Read & understand](https://goo.gl/oQJwkQ)the difference between **compile**, **compileOnly**, **api**, **runtimeOnly** & **implementation**.
     * Identify dependencies between feature modules.
     * Identify dependencies between feature modules & external dependencies.
     * Use Android Studio IDE tools like **cmd + R** to replace between different dependency configurations.
@@ -224,10 +224,10 @@ The complexity of doing this migration depends a lot of the project and the tool
 
 #### Further Reading
 
-* [Android Studio 3.0]()
-* [About Android Gradle Plugin]()
-* [Migrate to Android Plugin for Gradle 3.0.0]()
-* [Speeding Up Your Android Gradle Builds]()
-* [Java 8 Language Features Support]()
+* [Android Studio 3.0](https://android-developers.googleblog.com/2017/10/android-studio-30.html)
+* [About Android Gradle Plugin](https://developer.android.com/studio/build/gradle-plugin-3-0-0.html)
+* [Migrate to Android Plugin for Gradle 3.0.0](https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#new_configurations)
+* [Speeding Up Your Android Gradle Builds](https://www.youtube.com/watch?v=7ll-rkLCtyk)
+* [Java 8 Language Features Support](https://www.youtube.com/watch?v=LhaSi6_i2bo)
 
-**"Truth can only be found in one place: the code. by Robert C. Martin"**
+**"If you're a technical lead, you need to be coding.. by Martin Fowler"**
