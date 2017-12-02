@@ -9,15 +9,13 @@ categories:
 - Gradle
 ---
 
-![kotlin-arch](/content/images/2017/5/kotlin-arch.png){: .center-image }
+![kotlin-arch](/content/images/2017/12/gradle.png){: .center-image }
 
 # Migrate to Android Plugin for Gradle 3.?.?
 
 Our happy history migrating an existing android project using gradle 2.3 to new gradle version.
 
 One of the most important announcements on the last Google I/O was [Android Studio 3](https://android-developers.googleblog.com/2017/10/android-studio-30.html) and with it the version 3 of [Android Gradle Plugin](https://developer.android.com/studio/build/gradle-plugin-3-0-0.html) which brings significant performance improvements to large multi-module projects. Unfortunately it contains some breaking changes so you must have to make some updates on your gradle configuration when switching to the new gradle plugin. This post is about sharing our experiences trying to migrate our project to new android Gradle 3.?.? plugin.
-
-![kotlin-annunce](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/master/content/images/2017/5/kotlin_support.jpg){: .center-image }
 
 I started to migrate our android project for two main reasons: first I noticed several improvements “to large multi-module projects” and second one is that I had seen a talk [Speeding Up Your Android Gradle Builds](https://www.youtube.com/watch?v=7ll-rkLCtyk) when I attended the Google I/O this year, so 17 days ago, I took the awesome decision to start to migrating the project where I’m currently working, because I was eager to try everything I’ve already seen. The first time I tried to do the upgrade was in a small fake project, only to learn and practice, and I only spent about 30 minutes or less on it. But this article is here to tell you what happen when you want to apply the knowledge you learned in real life.
 
