@@ -80,12 +80,12 @@ import com.android.build.gradle.tasks.LintPerVariantTask
 
 Surely one of the most common changes which you noticed was deprecated **compile**. It might look like a trivial change, but you should be carefully when you start to modify it on your build.gradle, if you have some transitive dependencies it can be catastrophic like was for us. That’s why I would like to give you some recommendations to do it more easily.
 
-    * [Read & understand](https://goo.gl/oQJwkQ)the difference between **compile**, **compileOnly**, **api**, **runtimeOnly** & **implementation**.
-    * Identify dependencies between feature modules.
-    * Identify dependencies between feature modules & external dependencies.
-    * Use Android Studio IDE tools like **cmd + R** to replace between different dependency configurations.
-    * Identify dependencies compiled with **provided**.
-    * Be carefully removing transitive dependencies. You can save a lot time understanding compilation problems
+* [Read & understand](https://goo.gl/oQJwkQ)the difference between **compile**, **compileOnly**, **api**, **runtimeOnly** & **implementation**.
+* Identify dependencies between feature modules.
+* Identify dependencies between feature modules & external dependencies.
+* Use Android Studio IDE tools like **cmd + R** to replace between different dependency configurations.
+* Identify dependencies compiled with **provided**.
+* Be carefully removing transitive dependencies. You can save a lot time understanding compilation problems
 
 ## Upgrade Kotlin
 
