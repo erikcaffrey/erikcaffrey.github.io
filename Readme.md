@@ -1,30 +1,27 @@
-# Hydejack Starter Kit
+[![portfolYOU](https://github.com/YoussefRaafatNasry/portfolYOU/blob/master/docs/header.png?raw=true)](https://youssefraafatnasry.github.io/portfolYOU/)
 
-A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
+<div align="center">
+    <i>A beautiful portfolio Jekyll theme that works with GitHub Pages.</i><br><br>
+</div>
 
-## Quick Start
-### Running locally
-1. Clone repository (git users), or [download] and unzip.
-2. Open terminal, `cd` into root directory (where `_config.yml` is located)
-3. `bundle install` [^1]
-4. `bundle exec jekyll serve`
-5. Open <http://localhost:4000/hy-starter-kit/>
+[![screenshots](https://github.com/YoussefRaafatNasry/portfolYOU/blob/master/docs/portfolYOU.gif?raw=true)](https://youssefraafatnasry.github.io/portfolYOU/)
 
-### GitHub Pages
-1. Fork this repository.
-2. Go to **Settings**, rename repository to `<your github username>.github.io` (without the `<` `>`)
-3. Edit `_config.yml` (you can do this directly on GitHub)
-    1. Change `url` to `https://<your github username>.github.io` (without the `<` `>`)
-    2. Change `baseurl` to `''` (empty string)
-    3. **Commit changes**.
-4. Go to **Settings** again, look for **GitHub Pages**, set **Source** to **master branch**.
-5. Click **Save** and wait for GitHub to set up your new blag.
+<div align="center">
+    <sub><sup>© 2019 portfolYOU, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
+</div>
 
-## What's next?
-* Open files and read the comments
-* Read the [docs](https://hydejack.com/docs/)
-* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
+## Installation
 
-[^1]: Requires Bundler. Install with `gem install bundler`.
+Just check the [Documentation](https://youssefraafatnasry.github.io/portfolYOU/docs).
 
-[download]: https://github.com/qwtel/hy-starter-kit/archive/master.zip
+## Contributing
+
+1. [Fork](https://youssefraafatnasry.github.io/portfolYOU/fork) and clone the repository.
+1. Create a new branch based on `master`: `git checkout -b <my-branch-name>`
+1. Make your changes, and make sure the site still builds.
+1. Push to your fork and [submit a pull request](https://youssefraafatnasry.github.io/portfolYOU/compare) from your branch to `master`
+1. Pat yourself on the back and wait for your pull request to be reviewed.
+1. *Here are a few things you have to do:*
+   - Write a good commit message.
+   - Follow the style guide where possible.
+   - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
