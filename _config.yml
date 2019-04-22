@@ -14,13 +14,13 @@ sharethis: '<script type="text/javascript" src="//platform-api.sharethis.com/js/
 # Authors
 authors:
   john:
-    name: john
-    display_name: John Doe
+    name: Erik Jhordan Rey
+    display_name: Erik Jhordan Rey
     image: /assets/images/john.jpg
     email: hello@john.doe
     web: example.com
     twitter:
-    description: Hi, I am John Doe.
+    description: Hi, I am Erik Jhordan Rey.
 
 # Plugins
 plugins:
