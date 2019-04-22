@@ -328,7 +328,7 @@ span.post-name a,span.post-read-more a:hover {
 	margin-bottom:1rem;
 }
 .intro {
-    background-image:url(../images/header_home.jpg);
+    background-color: #000000;
     background-size:cover;
     padding: 9rem 0;
     margin-top:-87px;
