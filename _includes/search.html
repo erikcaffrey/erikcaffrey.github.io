@@ -1,9 +1,17 @@
-<!-- Simple-Jekyll-Search https://github.com/christian-fei/Simple-Jekyll-Search -->
-
-<div class="input-group mt-5 px-3">
-  <input id="search-input" type="text" class="form-control search-box" placeholder="Search articles..">
-  <div class="input-group-append">
-    <span class="input-group-text border border-primary bg-primary text-white"><i class="fas fa-search"></i></span>
-  </div>
+<!-- Html Elements for Search -->
+<div id="search-container">
+  <input type="text" style="width: 100%;
+  padding: 8px;
+  border: 1px solid black;" id="search-input" placeholder="Search posts here...">
+<ul id="results-container"></ul>
 </div>
-<ul class="px-3" id="results-container"></ul>
+<!-- Script pointing to search-script.js -->
+<script src="/assets/js/search.js" type="text/javascript"></script>
+<!-- Configuration -->
+<script>
+SimpleJekyllSearch({
+searchInput: document.getElementById('search-input'),
+resultsContainer: document.getElementById('results-container'),
+json: '/search.json'
+})
+</script>

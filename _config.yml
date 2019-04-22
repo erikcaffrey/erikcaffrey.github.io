@@ -1,54 +1,62 @@
-# Site settings
-title: portfolYOU
-description: >- # this means to ignore newlines until "baseurl:"
-  Always code as if the guy who ends up maintaining your code
-  will be a violent psychopath who knows where you live.
-baseurl: "/portfolYOU"  # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-repository: YoussefRaafatNasry/portfolYOU
+# Site
+name: John Doe
+description: Just another website
+meta_description: Just another website
+logo: /assets/images/logo.png
+favicon: /assets/images/favicon.ico
+paginate: 6
+baseurl:
+email: 'hello@john.doe'
+google_analytics:
+disqus: xjekyll
+sharethis: '<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a1a46b37b0f3600122c23bc&product=sticky-share-buttons"></script>'
 
+# Authors
+authors:
+  john:
+    name: john
+    display_name: John Doe
+    image: /assets/images/john.jpg
+    email: hello@john.doe
+    web: example.com
+    twitter:
+    description: Hi, I am John Doe.
 
-# Build settings
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-archives
+  - jekyll-seo-tag
+
+permalinks: pretty
+
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: 'category/:name/'
+
+# Other
 markdown: kramdown
-# plugins:
-# - jekyll-feed
+highlighter: rouge
 
+# SEO
+twitter:
+  username: john
+  card: summary
 
-# Author Info
-author:
-  name     : John Doe
-  image    : https://i2.cdn.turner.com/cnnnext/dam/assets/140926165711-john-sutter-profile-image-large-169.jpg
-  email    : username@xyz.com
-  github   : username
-  twitter  : username
-  linkedin : username
-  facebook : username
+facebook:
+  app_id:
+  publisher: john.com
+  admins:
 
-
-# Collections
-collections:
-  projects:
-    output: true
-    permalink: /projects/:name
-
-
-# Default values for collections
-defaults:
-  - scope:
-      path: ""
-      type: "projects"
-    values:
-      layout: "page"
-
-
-# Posts default Permalink
-permalink: articles/:title
-
-
-# Exclude from processing.
-exclude:
-- README.md
-- CONTRIBUTING.md
-- LICENSE
-- Gemfile
-- Gemfile.lock
+social:
+name: John Doe
+links:
+    - https://twitter.com/
+    - https://www.facebook.com/
+    - https://www.linkedin.com/
+    - https://plus.google.com/
+    - https://github.com/
