@@ -6,7 +6,7 @@ logo: /assets/images/logo.png
 favicon: /assets/images/favicon.ico
 paginate: 6
 baseurl:
-email: 'hello@john.doe'
+email: 'erikjhordan.rey@gmail.com'
 google_analytics:
 disqus: xjekyll
 sharethis: '<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a1a46b37b0f3600122c23bc&product=sticky-share-buttons"></script>'
@@ -16,8 +16,8 @@ authors:
   john:
     name: Erik Jhordan Rey
     display_name: Erik Jhordan Rey
-    image: /assets/images/john.jpg
-    email: hello@john.doe
+    image: /assets/images/profile.jpg
+    email: erikjhordan.rey@gmail.com
     web: example.com
     twitter:
     description: Hi, I am Erik Jhordan Rey.
@@ -44,7 +44,7 @@ highlighter: rouge
 
 # SEO
 twitter:
-  username: john
+  username: ErikJhordan_Rey
   card: summary
 
 facebook:
@@ -53,7 +53,7 @@ facebook:
   admins:
 
 social:
-name: John Doe
+name: ErikJhordan_Rey
 links:
     - https://twitter.com/
     - https://www.facebook.com/
