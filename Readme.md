@@ -1,63 +1,30 @@
-# nandomoreira.me jekyll theme
+# Hydejack Starter Kit
 
+A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
 
+## Quick Start
+### Running locally
+1. Clone repository (git users), or [download] and unzip.
+2. Open terminal, `cd` into root directory (where `_config.yml` is located)
+3. `bundle install` [^1]
+4. `bundle exec jekyll serve`
+5. Open <http://localhost:4000/hy-starter-kit/>
 
-### [Preview](https://nandomoreirame.github.io/nandomoreira-jekyll-theme/)
+### GitHub Pages
+1. Fork this repository.
+2. Go to **Settings**, rename repository to `<your github username>.github.io` (without the `<` `>`)
+3. Edit `_config.yml` (you can do this directly on GitHub)
+    1. Change `url` to `https://<your github username>.github.io` (without the `<` `>`)
+    2. Change `baseurl` to `''` (empty string)
+    3. **Commit changes**.
+4. Go to **Settings** again, look for **GitHub Pages**, set **Source** to **master branch**.
+5. Click **Save** and wait for GitHub to set up your new blag.
 
-## Setup
+## What's next?
+* Open files and read the comments
+* Read the [docs](https://hydejack.com/docs/)
+* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
 
-### In the terminal run the commands
+[^1]: Requires Bundler. Install with `gem install bundler`.
 
-```
-$ sudo npm i -g gulp bower browser-sync
-$ sudo gem install bundler
-$ bundle install
-$ npm install
-```
-
-## Using Rake tasks
-
-```
-$ rake post title="TITLE OF THE POST"
-$ rake page name="about.md"
-$ rake category title="Programing"
-$ rake tag title="Jekyll"
-```
-
-## Using Jekyll
-
-### Running the server:
-
-```
-$ jekyll server
-```
-
-Access, [localhost:4000](http://localhost:4000/)
-
-## Using Gulp
-
-### Rum gulp
-
-```
-$ gulp
-```
-
----
-
-## Deploy in Github pages in 2 steps
-
-1. Change the variables `GITHUB_REPONAME` and `GITHUB_REPO_BRANCH` in `Rakefile`
-2. Run `rake` or `rake publish` for build and publish on Github
-
----
-
-* [Jekyll](http://jekyllrb.com/)
-* [Jekyll Documentation](http://jekyllrb.com/docs/home/)
-
----
-
-### Copyright and license
-
-It is under [the MIT license](/LICENSE).
-
-Enjoy! :yum:
+[download]: https://github.com/qwtel/hy-starter-kit/archive/master.zip
