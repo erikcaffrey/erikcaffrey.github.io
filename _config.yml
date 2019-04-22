@@ -8,8 +8,7 @@ paginate: 6
 baseurl:
 email: 'erikjhordan.rey@gmail.com'
 google_analytics:
-disqus: xjekyll
-sharethis: '<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a1a46b37b0f3600122c23bc&product=sticky-share-buttons"></script>'
+disqus: erikcaffreyblog
 
 # Authors
 authors:
@@ -49,7 +48,7 @@ twitter:
 
 facebook:
   app_id:
-  publisher: john.com
+  publisher: Erik Jhordan Rey
   admins:
 
 social:
