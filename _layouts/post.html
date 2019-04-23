@@ -22,7 +22,7 @@ post_class: post-template
                         {% assign sortedCategories = page.categories | sort %}
                         {% for category in sortedCategories %}
                         <li>
-                         <a href="{{ site.baseurl }}/category/{{ category | slugify }}/">{{ category }}</a>
+                         <a href="{{ site.baseurl }}/">{{ category }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -102,15 +102,6 @@ post_class: post-template
 
 		</div>
 		<!-- End Post -->
-
-        <!-- Sidebar -->
-
-        <div class="col-sm-4">
-
-        {% include sidebar.html %}
-
-        </div>
-
 	</div>
 
 <!-- End Article
