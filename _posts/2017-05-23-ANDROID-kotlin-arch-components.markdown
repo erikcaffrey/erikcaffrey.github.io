@@ -230,7 +230,7 @@ I know there are a lot good libraries like realm that can help you with all this
 ![kotlin-arch](/assets/images/2017/5/currency-arch.png){: .center-image }
 
 ### Demo
-![](https://github.com/erikjhordan-rey/Android-Architecture-Components-Kotlin/blob/master/art/demo.png)
+![arch-demo](https://raw.githubusercontent.com/erikjhordan-rey/Android-Architecture-Components-Kotlin/master/art/demo.png)
 
 #### Source Code on Github
 [Android-Architecture-Components-Kotlin](https://github.com/erikjhordan-rey/Android-Architecture-Components-Kotlin).
