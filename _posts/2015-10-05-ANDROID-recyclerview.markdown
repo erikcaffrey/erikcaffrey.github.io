@@ -2,8 +2,8 @@
 layout: post
 cover:  assets/images/2015/10/recycler_view_concep.jpg
 title: ¿Por qué deberíamos usar un RecyclerView?
-date: 2015-10-05 18:13:27
-categories: Android UI
+date: 2015-10-05 00:00:00 +0545
+categories: blog
 author: erik
 ---
 
