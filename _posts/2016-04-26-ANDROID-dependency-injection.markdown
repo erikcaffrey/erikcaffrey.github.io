@@ -7,16 +7,16 @@ categories: blog
 author: erik
 ---
 
-Después de unas semanas con jornadas de trabajo intensas hoy he vuelto con un tema muy interesante y que desde hace un tiempo he tenido muchas ganas de escribir ya que pienso que es la base y una de las partes fundamentales para escribir un buen software pero en el caso de android su uso no es tan común es por eso que quiero hablar sobre esos beneficios que contrae el usar la inyección de dependencias.
+Después de unas semanas con jornadas de trabajo intensas, hoy he vuelto con un tema muy interesante y que desde hace un tiempo he tenido muchas ganas de escribir ya que pienso que es la base y una de las partes fundamentales para escribir un buen software ;pero en el caso de android su uso no es tan común es por eso que quiero hablar sobre esos beneficios que contrae el usar la inyección de dependencias.
 
 Antes de comenzar con la Inyección de dependencias hay dos principios que debemos conocer para comprender mejor la motivación de usar este patrón y recordar que esto puede ser aplicado en alguna otra plataforma dentro del mundo del software.
 
 
 ## Inversion of Control (IoC)
 
-En los comienzos del desarrollo software cuando los programas eran lineales el flujo de ejecución estaba bajo control absoluto del programador ya que él era la persona que especificaba la secuencia y los procedimientos que se tenían que ejecutar con el paso del tiempo comenzaron a aparecer librerías y frameworks con la finalidad de diseñar de una forma modular y reutilizable lo que dio origen a la inversión de control.
+En los comienzos del desarrollo software cuando los programas eran lineales el flujo de ejecución estaba bajo control absoluto del programador, ya que él era la persona que especificaba la secuencia y los procedimientos que se tenían que ejecutar con el paso del tiempo comenzaron a aparecer librerías y frameworks con la finalidad de diseñar de una forma modular y reutilizable lo que dio origen a la inversión de control.
 
-La **IoC (Inversión de control)** es cuando el flujo de ejecución de un software está bajo el control de algún framework o librería y ya no por el desarrollador. En el caso de android la inversión de control se da en los métodos del ciclo de vida de una [Activity](https://developer.android.com/training/basics/activity-lifecycle/starting.html), [Fragment](https://developer.android.com/guide/components/fragments.html) y un [Service](https://developer.android.com/guide/components/services.html) ya que son los que dirigen cómo se deben ir ejecutando ciertas partes de una aplicación. Lo que realmente debemos entender es que todo el software que escribimos nosotros o al menos en android no somos nosotros los desarrolladores quien tenemos el control completo del flujo de ejecución si no el framework y será él mismo quien nos esté diciendo el usuario ha lanzando una activity, el usuario pulsó un checkbox, el usuario pulso un botón, etc.
+La **IoC (Inversión de control)** es cuando el flujo de ejecución de un software está bajo el control de algún framework o librería y ya no por el desarrollador. En el caso de android la inversión de control se da en los métodos del ciclo de vida de una [Activity](https://developer.android.com/training/basics/activity-lifecycle/starting.html), [Fragment](https://developer.android.com/guide/components/fragments.html) y un [Service](https://developer.android.com/guide/components/services.html), ya que son los que dirigen cómo se deben ir ejecutando ciertas partes de una aplicación. Lo que realmente debemos entender es que todo el software que escribimos nosotros o al menos en android no somos nosotros los desarrolladores quien tenemos el control completo del flujo de ejecución si no el framework y será él mismo quien nos esté diciendo: el usuario ha lanzando una activity, el usuario pulsó un checkbox, el usuario pulso un botón, etc.
 
 
 En un [post del gran Martin Fowler](http://martinfowler.com/bliki/InversionOfControl.html) llama a este fenómeno como el
@@ -36,7 +36,7 @@ La idea de este principio es la reducción de dependencias a clases concretas de
 
 ## Coupled classes
 
-Cuando tenemos dos componentes (clases) y uno de ellos depende del otro lo que solemos hacer de forma habitual es crear una instancia dentro de esa clase y hacer lo que tengamos que hacer de una forma muy natural se ve como algo normal y es que en verdad está cumpliendo el objetivo (aunque no de la mejor forma) proveer de sus implementaciones a el componente que las necesite por medio de la creación de una instancia.
+Cuando tenemos dos componentes (clases) y uno de ellos depende del otro lo que solemos hacer de forma habitual es crear una instancia dentro de esa clase y hacer lo que tengamos que hacer de una forma muy natural, se ve como algo normal y es que en verdad está cumpliendo el objetivo (aunque no de la mejor forma) proveer de sus implementaciones a el componente que las necesite por medio de la creación de una instancia.
 
 **¿Pero cuál es el verdadero problema de hacer esto?**
 
@@ -99,25 +99,25 @@ La Inyección de dependencias en algunas ocasiones puede contraer nuevos problem
 
 Un **inyector de dependencias** es aquel que se va encargar de administrar y proveer todas las dependencias que le configuremos y que haremos uso dentro de nuestra aplicación.
 
-En android especialmente son de gran utilidad y aportan grandes beneficios, ya que nosotros no podemos acceder al constructor de una Activity o un  Fragment por ejemplo lo que inyectar una dependencia mediante un constructor sería casi imposible aun que se puede tambien simular un inyector otras desventajas de no usar un inyector es que nuestro código se vuelve sucio e ilegible más cuando se tiene un exceso de dependencias pasadas por el constructor (si cuando ves clases con muchos “new”) y otra cosa importante es que permite proveer objetos que se utilizan por toda la aplicación de una forma simple.
+En android especialmente son de gran utilidad y aportan grandes beneficios, ya que nosotros no podemos acceder al constructor de una Activity o un  Fragment por ejemplo lo que inyectar una dependencia mediante un constructor sería casi imposible, aun que se puede tambien simular un inyector otras desventajas de no usar un inyector es que nuestro código se vuelve sucio e ilegible más cuando se tiene un exceso de dependencias pasadas por el constructor (si cuando ves clases con muchos “new”) y otra cosa importante es que permite proveer objetos que se utilizan por toda la aplicación de una forma simple.
 
 Yo te recomiendo que utilices el inyector que más te guste y mejor entiendas de preferencia que cumpla con el estándar  *javax.inject annotations (JSR-330)* algunos de los más conocidos que funcionan en android son [Guice](https://github.com/google/guice),  [Dagger](http://square.github.io/dagger/), [Dagger2](http://google.github.io/dagger/)(yo uso este).
 
-**Algo que quiero que tengas en mente y muy claro es que no es obligatorio el uso de un inyector de dependencias para aplicar la inyección de dependencias, ya que solo es una herramienta más que facilita la aplicación de este patrón te recomiendo usar un inyector si en verdad lo necesitas y si lo entiendes completamente (es complicado pero no imposible la curva de aprendizaje de dagger 2 por ejemplo no es del todo simple pero es cuestión de dedicarle tiempo) de lo contrario se podría convertir hasta en un anti patrón.**
+**Algo que quiero que tengas en mente y muy claro es que no es obligatorio el uso de un inyector de dependencias para aplicar la inyección de dependencias, ya que solo es una herramienta más que facilita la aplicación de este patrón te recomiendo usar un inyector si en verdad lo necesitas y si lo entiendes completamente (es complicado pero no imposible la curva de aprendizaje de dagger 2 por ejemplo no es del todo simple pero es cuestión de dedicarle tiempo) de lo contrario se podría convertir en un anti patrón.**
 
 ## Conclusion
 
-Particularmente para mi estos temas desde mi punto de vista es de la parte más complicada en el mundo del software ya que requiere un nivel de abstracción complejo por eso te invito a que tengas paciencia cuando vayas aprendiendo ;pero una vez que lo entiendes te darás cuenta que la parte más importante de aplicar IoC, Dependency Inversion y Dependency Injection es que te va proveer desacoplamiento,modularidad, mantenibilidad, testabilidad lo que es magnífico para nuestro software haciendo tu día a día como desarrollador más sencillo.
+Particularmente desde mi punto de vista es la parte más complicada de entender en el mundo del software, ya que requiere un nivel de abstracción complejo por eso te invito a que tengas paciencia cuando vayas aprendiendo ;pero una vez que lo entiendes te darás cuenta que la parte más importante de aplicar IoC, Dependency Inversion y Dependency Injection es que te va proveer desacoplamiento, modularidad, mantenibilidad, testabilidad lo que es magnífico para nuestro software haciendo tu día a día como desarrollador más sencillo.
 
 En este post solo quería demostrar y dejar muy claros algunos conceptos antes de utilizar un inyector de dependencias sin tener idea del por qué lo usamos y terminar haciéndolo sólo porque está de moda para mí la parte más interesante es conocer la motivación del por qué usarlo.
 
-Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas [mi siguiente artículo](https://erikcaffrey.github.io/ANDROID-kata-dagger2/) que he preparado para tí en donde mediante una kata explico el uso de Dagger2.
+Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas [mi siguiente artículo](https://erikjhordan-rey.github.io/blog/2016/07/07/ANDROID-kata-dagger2.html) que he preparado para tí en donde mediante una kata explico el uso de Dagger2.
 
 ### Demo
 
 #### El código está disponible
 
-[Dependency-Injection-Android en Github](https://github.com/erikcaffrey/Dependency-Injection-Android)
+[Dependency-Injection-Android en Github](https://github.com/erikjhordan-rey/Dependency-Injection-Android)
 
 ![](/content/images/2016/4/battery.png)
 

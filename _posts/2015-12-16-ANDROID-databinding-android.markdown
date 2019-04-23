@@ -19,7 +19,7 @@ MVVM se enfoca en abstraer la implementación concreta de la vista, es decir su 
 
 ![mvvm](/assets/images/2015/12/mvvm_flow.png){: .center-image }
 
-Al igual que **MVC** y [MVP](https://erikcaffrey.github.io/ANDROID-mvp/) el **MVVM** se compone de tres componentes principales:
+Al igual que **MVC** y [MVP](https://erikjhordan-rey.github.io/blog/2015/11/02/ANDROID-mvp.html) el **MVVM** se compone de tres componentes principales:
 
 #### Model
 
@@ -238,7 +238,7 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 #### El código está disponible
 
-[People-MVVM en Github](https://github.com/erikcaffrey/People-MVVM)
+[People-MVVM en Github](https://github.com/erikjhordan-rey/People-MVVM)
 
 ![](/assets/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
 

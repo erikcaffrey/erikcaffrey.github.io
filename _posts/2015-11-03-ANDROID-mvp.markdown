@@ -7,7 +7,7 @@ categories: blog
 author: erik
 ---
 
-Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikcaffrey.github.io/ANDROID-databinding-android/).
+Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikjhordan-rey.github.io/blog/2015/12/15/ANDROID-databinding-android.html).
 
 Antes de comenzar a hablar sobre el MVP *recordaremos* la manera en que muchos desarrolladores solemos o solíamos trabajar en el desarrollo de aplicaciones android.
 
@@ -91,7 +91,7 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 #### Android
 
-[SpotifyMVP en Github](https://github.com/erikcaffrey/SpotifyMVP)
+[SpotifyMVP en Github](https://github.com/erikjhordan-rey/Android-Spotify-MVP)
 
 ![](/assets/images/2015/11/Telecine_2015-11-25-17-19-04.gif)
 

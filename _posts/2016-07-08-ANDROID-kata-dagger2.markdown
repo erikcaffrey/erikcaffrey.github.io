@@ -19,7 +19,7 @@ Tu misión es desarrollar una aplicación android que muestre una lista de los c
 
 ## Introduction to Dependency Injection
 
-En mi [capítulo anterior](https://erikcaffrey.github.io/ANDROID-dependency-injection/) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un **inyector de dependencias**.
+En mi [capítulo anterior](https://erikjhordan-rey.github.io/blog/2016/04/25/ANDROID-dependency-injection.html) estuve hablando sobre que era la [inversión de control](http://martinfowler.com/bliki/InversionOfControl.html), la inversión de dependencias y [la inyección de dependencias](https://www.youtube.com/watch?v=plK0zyRLIP8), que si no has leído te invito a que lo hagas antes de hacer esta [kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata), ya que es fundamental que comprendas el porqué y la motivación de usar un **inyector de dependencias**.
 
 Pues bien hoy es el gran día para aprender [Dagger 2](http://google.github.io/dagger/) mediante un divertido ejemplo y aunque se que usar Dagger 2  es complejo en un principio y difícil de entender, intentaré enseñarte de una forma fácil y espero lograrlo.
 
@@ -255,20 +255,20 @@ public class PrincessPeachActivity extends BaseActivity {
 
 #### El código está disponible
 
-Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart) repositorio en el que se encuentra la kata en el *branch* **sample/princess-peach-dagger2** [Sample-Princess-Peach en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/tree/sample/princess-peach-dagger2).
+Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart) repositorio en el que se encuentra la kata en el *branch* **sample/princess-peach-dagger2** [Sample-Princess-Peach en Github](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/tree/sample/princess-peach-dagger2).
 
 # Great moment to start the challenge
 
 ### Task 1
 
-* Leer sobre [clean architecture](https://erikcaffrey.github.io/ANDROID-clean-architecture/) ya que esta kata sigue sus principios (solo si no sabes nada de Clean Architecture).
+* Leer sobre [clean architecture](https://erikjhordan-rey.github.io/blog/2016/01/27/ANDROID-clean-architecture.html) ya que esta kata sigue sus principios (solo si no sabes nada de Clean Architecture).
 * Crea un proyecto nuevo de android en android studio
 * Configura tu proyecto para poder hacer uso de la librería de dagger 2
 
 ### Task 2
 
-* Implementa tu objeto de dominio de nombre [Character](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.java) con los siguientes atributos name, photo, cover, description.
-* Implementa un objeto de dominio de nombre [Abilities](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.java) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
+* Implementa tu objeto de dominio de nombre [Character](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.kt) con los siguientes atributos name, photo, cover, description.
+* Implementa un objeto de dominio de nombre [Abilities](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.kt) con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;
 * Agrega a tu objeto Character un atributo de tipo Abilities
 
 ### Task 3
@@ -298,10 +298,10 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikcaffrey/Kat
 
 #### El código está disponible
 
-[Kata-Dagger2-MarioKart en Github](https://github.com/erikcaffrey/Kata-Dagger2-MarioKart)
+[Kata-Dagger2-MarioKart en Github](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart)
 
 
-![](/content/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
+![](/assets/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
 
 ### Resources
 * **Gregory Kick** - [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)

@@ -12,7 +12,7 @@ author: erik
 
 The last Google I/O 2017 like you know the Android team announced the [official support of Kotlin programming language](https://developer.android.com/kotlin/index.html). Kotlin is a JVM based object-oriented language that includes many ideas from functional programming. It is a brilliantly designed, mature language that will make Android development faster and as enjoyable and fun as possible.
 
-![kotlin-annunce](https://raw.githubusercontent.com/erikcaffrey/erikcaffrey.github.io/master/content/images/2017/5/kotlin_support.jpg){: .center-image }
+![kotlin-annunce](/assets/images/2017/5/kotlin_support.jpg){: .center-image }
 
 [Kotlin](https://kotlinlang.org/) was created by JetBrains, the team behind IntelliJ, which is the base for Android Studio. Kotlin team started the journey 6 years ago, and 2 years ago the Android community and industry around the world started to experiment with this language. Companies like Expedia, Flipboard, Pinterest or Square are using Kotlin in their production apps already. Kotlin official support by Google is a very good news and a chance to use a modern and powerful language. It's another way to create Android apps, that will help solving common headaches such as runtime exceptions (NPE) and source code verbosity. Kotlin is easy to get started and it has already been adopted by several major developers. It also plays well with the Java programming language; the effortless interoperation between the two languages has been a large part of Kotlin's appeal can be introduced gradually into existing projects, which means that your existing skills and technology investments are preserved.
 
@@ -227,13 +227,13 @@ I know there are a lot good libraries like realm that can help you with all this
 
 **The following diagram shows all the modules that Google recommended and how they interact with one another:**
 
-![kotlin-arch](/content/images/2017/5/currency-arch.png){: .center-image }
+![kotlin-arch](/assets/images/2017/5/currency-arch.png){: .center-image }
 
 ### Demo
-![](https://raw.githubusercontent.com/erikcaffrey/Android-Architecture-Components-Kotlin/master/art/demo.png)
+![](https://github.com/erikjhordan-rey/Android-Architecture-Components-Kotlin/blob/master/art/demo.png)
 
 #### Source Code on Github
-[Android-Architecture-Components-Kotlin](https://github.com/erikcaffrey/Android-Architecture-Components-Kotlin).
+[Android-Architecture-Components-Kotlin](https://github.com/erikjhordan-rey/Android-Architecture-Components-Kotlin).
 
 
 #### Resources to start with Android Architecture Components
