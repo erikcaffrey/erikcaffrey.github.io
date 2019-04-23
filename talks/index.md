@@ -4,14 +4,6 @@
 
 ![logo](/assets/images/logo.png)
 
->You can view the full live site using this theme <a href="https://cdrrazan.com" target="_blank">
->HERE.</a> <br>
-
->If you need any help open the issue in <a href="https://github.com/cdrrazan/prasad/issues/new"
->target="_blank"> here.</a>
-
-Please refer to the [Theme setup in the demo site for full documentation of the theme.](https://prasad.cdrrazan.com/theme-setup)
-
 ## License
 
 [MIT](LICENSE.txt)

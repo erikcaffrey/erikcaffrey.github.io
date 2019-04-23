@@ -1,5 +1,7 @@
 # Site
-name: Erik Jhordan Rey 
+name: Erik Jhordan Rey
+description: Erik's Blog
+meta_description: Erik's Blog  
 logo: /assets/images/logo.png
 favicon: /assets/images/favicon.ico
 paginate: 6
