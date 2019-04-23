@@ -8,7 +8,7 @@ paginate: 6
 baseurl:
 email: 'erikjhordan.rey@gmail.com'
 google_analytics:
-disqus: erikcaffreyblog
+disqus: erikcaffrey-github-io
 
 # Authors
 authors:
@@ -17,7 +17,7 @@ authors:
     display_name: Erik Jhordan Rey
     image: /assets/images/profile.jpg
     email: erikjhordan.rey@gmail.com
-    web: erikjhordan-rey.github.io
+    web:
     twitter: ErikJhordan_Rey
     description: Team Lead / Mobile Tech Lead at Segundamano · Adevinta
 
