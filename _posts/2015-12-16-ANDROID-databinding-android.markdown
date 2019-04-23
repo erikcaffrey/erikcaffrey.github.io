@@ -1,14 +1,11 @@
 ---
 layout: post
-title: 'Escribiendo android apps con Data Binding'
-date: '2015-12-16 10:19:16'
-tags:
-- android
-categories:
-- Android Architecture
+cover:  assets/images/2015/12/mvvm.png
+title: Escribiendo android apps con Data Binding
+date: 2015-12-16 00:00:00 +0545
+categories: blog
+author: erik
 ---
-
-![data-binding-android](/content/images/2015/12/mvvm.png){: .center-image }
 
 En la actualidad como lo he mencionado en mi artículo anterior la comunidad está en el punto de madurez en donde todos o gran parte de los desarrolladores queremos hacer software [S.O.L.I.D](http://devexperto.com/principio-responsabilidad-unica/), aplicaciones que no se rompan, que funcionen, que sean mantenibles  y sobre todo testables lo que contrae a crear productos de calidad, a elevar el nivel técnico de la discusión dentro de la comunidad y sobre todo a mejorar el desarrollo de aplicaciones en este grandioso ecosistema android.
 
@@ -20,7 +17,7 @@ Es una derivación del patrón [Presentation Model](http://martinfowler.com/eaaD
 
 MVVM se enfoca en abstraer la implementación concreta de la vista, es decir su comportamiento y estado, lo que nos permitirá separar las vistas de nuestra lógica de negocio y capa de datos. Básicamente la forma en que se logra es mediante un ViewModel que permite exponer los objetos de datos de un modelo y maneja la lógica de cómo se tienen que pintar nuestros datos dentro de las vistas.
 
-![mvvm](/content/images/2015/12/mvvm_flow.png){: .center-image }
+![mvvm](/assets/images/2015/12/mvvm_flow.png){: .center-image }
 
 Al igual que **MVC** y [MVP](https://erikcaffrey.github.io/ANDROID-mvp/) el **MVVM** se compone de tres componentes principales:
 
@@ -48,19 +45,19 @@ En android este patrón está ganando terreno con la llegada de [Data Binding Li
 
 Es un ejemplo de Model View View Model que lo cree con la intención de explicar cómo funciona este patrón dentro de nuestras aplicaciones android.
 
-También lo utilice para una plática que di hace unos dias en el  [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) que organizó en la Ciudad de México, aquí puedes encontrar los [slides](https://speakerdeck.com/erikcaffrey/mvvm-android) y por supuesto el código esta disponible esta en la parte final del post.
+También lo utilice para una plática que di hace unos dias en el  [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) que organizó en la Ciudad de México, aquí puedes encontrar los [slides](https://speakerdeck.com/erikjhordan_rey/mvvm-android) y por supuesto el código esta disponible esta en la parte final del post.
 
-![people](/content/images/2015/12/people.png){: .center-image }
+![people](/assets/images/2015/12/people.png){: .center-image }
 
-Para dar un pequeño contexto y entender cómo funciona el data binding explicare brevemente únicamente como funciona el [item_people.xml](https://github.com/erikcaffrey/People-MVVM/blob/master/app/src/main/res/layout/item_people.xml) de la lista recuerda que en el código podrás verlo más de cerca.
+Para dar un pequeño contexto y entender cómo funciona el data binding explicare brevemente únicamente como funciona el [item_people.xml](https://github.com/erikjhordan-rey/People-MVVM/blob/master/app/src/main/res/layout/item_people.xm) de la lista recuerda que en el código podrás verlo más de cerca.
 
 Cada instancia **People** se muestra mediante una vista dentro del Recyclerview.
 
-![item_people](/content/images/2015/12/item_people.png){: .center-image }
+![item_people](/assets/images/2015/12/item_people.png){: .center-image }
 
 #### Model
 
-Muy simple modelo consiste en la lógica de negocio que corresponde a un ítem en este caso el modelo se llama [People](https://github.com/erikcaffrey/People-MVVM/blob/master/app/src/main/java/com/example/jhordan/people_mvvm/model/People.java)  y se representa de la siguiente forma.
+Muy simple modelo consiste en la lógica de negocio que corresponde a un ítem en este caso el modelo se llama [People](https://github.com/erikjhordan-rey/People-MVVM/blob/master/app/src/main/java/com/example/jhordan/people_mvvm/model/People.java)  y se representa de la siguiente forma.
 
 {% highlight java %}
 
@@ -170,7 +167,7 @@ Nuestra vista es la responsable de definir el diseño, la apariencia y la estruc
 {% endhighlight %}
 
 
-El tag **layout** indica que nuestro xml será una vista bindable o hará uso del data binding para que al pasar por el Layout Processor sea transformado a un xml que versiones anteriores puedan entender. Al hacer esto creará una clase Binding que es la que contendrá la referencia a nuestras vistas puedes ver un ejemplo de esa clase generada atravez de un layout bindable aquí [PeopleAdapter](https://github.com/erikcaffrey/People-MVVM/blob/master/app/src/main/java/com/example/jhordan/people_mvvm/PeopleAdapter.java).
+El tag **layout** indica que nuestro xml será una vista bindable o hará uso del data binding para que al pasar por el Layout Processor sea transformado a un xml que versiones anteriores puedan entender. Al hacer esto creará una clase Binding que es la que contendrá la referencia a nuestras vistas puedes ver un ejemplo de esa clase generada atravez de un layout bindable aquí [PeopleAdapter](https://github.com/erikjhordan-rey/People-MVVM/blob/master/app/src/main/java/com/example/jhordan/people_mvvm/view/PeopleAdapter.java).
 
 Otro aspecto importante es el tag *data* que es usado para especificar el ViewModel del cual estaremos trayendo datos del modelo y representandolos en la vista.
 
@@ -243,7 +240,7 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 [People-MVVM en Github](https://github.com/erikcaffrey/People-MVVM)
 
-![](/content/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
+![](/assets/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
 
 ### Resources
 * **Microsoft** - [The MVVM Pattern](https://msdn.microsoft.com/en-us/library/hh848246.aspx)

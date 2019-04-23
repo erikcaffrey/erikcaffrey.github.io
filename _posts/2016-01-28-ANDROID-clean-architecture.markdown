@@ -1,15 +1,12 @@
 ---
 layout: post
-title: 'Aplicando Clean Architecture en Android'
-date: '2016-01-28 10:19:16'
-tags:
-- android
-categories:
-- Android Architecture
+cover:  assets/images/2016/1/clean.png
+title: Aplicando Clean Architecture en Android
+date: 2016-01-28 00:00:00 +0545
+categories: blog
+author: erik
 ---
-![data-binding-android](/content/images/2016/1/clean.png){: .center-image }
 
-## Before starting
 Hace ya un tiempo que comencé a desarrollar aplicaciones móviles para android (si cuando android era feo '2.2' y no existía material design) y a lo largo de este proceso he aprendido infinidad de cosas y es que diario aprendo algo nuevo mientras trabajo en mi día a día escribiendo aplicaciones ;pero llegó un momento en el que me sentí preocupado por la calidad de mi código y comencé a cuestionarme:
 
 * ¿Cómo es que se escriben aplicaciones de la calidad?
@@ -34,7 +31,7 @@ Surge con la problemática que en la mayoría de los desarrollos en los cuales e
 
 El autor dice en varias de sus [charlas](https://www.youtube.com/watch?v=Nltqi7ODZTM) que más que una arquitectura sólo son una serie de condiciones que se deben cumplir para que una arquitectura de considere **”clean”**, solo son una serie de reglas que lo único que van a hacer es dividir el software en capas.
 
-![clean_archi](/content/images/2016/1/clean_archi.png){: .center-image }
+![clean_archi](/assets/images/2016/1/clean_archi.png){: .center-image }
 
 Antes de comenzar a describir los componentes importantes del esquema debes tener en cuenta que no es obligatorio ni mucho menos mandatorio usar solo 4 círculos ya que de acuerdo a Uncle Bob solo son esquemáticos y quizás tu problema necesita de más para poder ser resuelto.
 
@@ -60,7 +57,7 @@ Aquí es donde residen los detalles y todo ese conjunto de plataformas externas 
 
 ## Android Clean Architecture
 
-![android_archi](/content/images/2016/1/android_archi.png){: .center-image }
+![android_archi](/assets/images/2016/1/android_archi.png){: .center-image }
 
 Este esquema es una representación de cómo se aplica el **Clean Architecture** en una aplicación **android** ya que gracias a la gran participación de muchos desarrolladores de la comunidad android alrededor del mundo se ha ido mejorando en estos últimos meses ya que se le han agregado dos componentes importantes el primero un patrón en la capa de presentación que puede ser [MVP](https://erikcaffrey.github.io/ANDROID-mvp/), [MVVM](https://erikcaffrey.github.io/ANDROID-databinding-android/), MVC o el que prefieras y el segundo se ha agregado el [Repository Pattern](http://martinfowler.com/eaaCatalog/repository.html) en la capa de datos para abstraer el origen de datos y destacar que estos patrones no están dentro de la arquitectura que **Uncle Bob** describe, es trabajo de una comunidad con el único objetivo de mejorar el desarrollo de nuestras aplicaciones android y si estoy seguro que te encontraras diferentes implementaciones porque realmente no hay un camino a seguir pero particularmente es la que más me gusta y es la que se ha adaptado a mis problemas.
 
@@ -100,7 +97,7 @@ Las principales aportaciones que esta arquitectura seguirá motivando son:
 
 Es un ejemplo de Clean Architecture que lo cree con la intención de explicar cómo funciona esta arquitectura dentro de nuestras aplicaciones android también puedes encontrár el código en la parte final del post.
 
-![mvp](/content/images/2016/1/euro_app.png){: .center-image }
+![mvp](/assets/images/2016/1/euro_app.png){: .center-image }
 
 ### Conclusion
 
@@ -117,9 +114,9 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [Cle
 #### El código está disponible
 
 #### Android
-[Clean-Architecture-Android en Github](https://github.com/erikcaffrey/Euro-CleanArchitecture)
+[Clean-Architecture-Android en Github](https://github.com/erikjhordan-rey/Clean-Architecture-Android)
 
-![](/content/images/2016/1/Telecine_2016-04-11-09-46-01.gif)
+![](/assets/images/2016/1/Telecine_2016-04-11-09-46-01.gif)
 
 #### IOS
 [Clean-Architecture-IOS en Github](https://github.com/ivanhoe/clean-architecture-spotify)

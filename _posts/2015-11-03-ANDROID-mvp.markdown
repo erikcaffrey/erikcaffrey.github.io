@@ -1,14 +1,11 @@
 ---
 layout: post
-title: 'Model View Presenter en Android'
-date: '2015-11-03 20:47:27'
-tags:
-- android
-categories:
-- Android Architecture
+cover:  assets/images/2015/11/mvp_.png
+title: Model View Presenter en Android
+date: 2015-11-03 00:00:00 +0545
+categories: blog
+author: erik
 ---
-
-![mvp-android](/assets/images/2015/11/mvp_.png){: .center-image }
 
 Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a la forma en que se ha implementando el famoso **Model View Controller**, sin embargo desde hace un tiempo se viene hablando de nuevos caminos para conseguirlo, quizás ya haz escuchado acerca de **Model View Presenter y Model View View Model** por tal motivo quiero hablar sobre estas alternativas para trabajar en la capa de pintado comenzando por MVP y continuando con MVVM en mi [siguiente artículo](https://erikcaffrey.github.io/ANDROID-databinding-android/).
 
@@ -36,7 +33,7 @@ Una mala aplicación de este patrón comienza cuando decidimos usar una activity
 Si usamos una *Activity como controlador* y su lógica de presentación cambia necesitaremos agregar más código, si a eso le sumamos la lógica de controlador y si también tenemos actividades o fragmentos que hagan lo mismo tendremos que duplicar código porque el controlador no está desacoplado de la vista y es en ese momento en donde comenzamos a realizar una bola de nieve creciente y gigante con nuestro código terminando con clases que contienen miles de líneas de código volviéndose ilegibles e in mantenibles y por supuesto difícilmente podríamos testearlas.
 
 
-![mvc_tr](/content/images/2015/11/mvc-tr.png){: .center-image }
+![mvc_tr](/assets/images/2015/11/mvc-tr.png){: .center-image }
 
 Esto no quiere decir que el MVC sea malo sino que una mala aplicación de este patrón hace que se convierta en un anti-patrón ya que nos causa muchos problemas o errores en el desarrollo de nuestro día día, normalmente al implementar un controlador dentro de una Activity o un Fragment.
 
@@ -48,7 +45,7 @@ El [Model View Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80
 
 **MVP** permite separar la capa de pintado se enfoca en todo lo relacionado con cómo **funciona** la interfaz queda separado del cómo representarlo en nuestra UI, si se aprovecha la flexibilidad que nos ofrece se podría lograr que una misma lógica pudiera tener vistas totalmente diferentes así como mejorar la testabilidad del código de forma independiente.
 
-![mvp](/content/images/2015/11/mvp.png){: .center-image }
+![mvp](/assets/images/2015/11/mvp.png){: .center-image }
 
 #### View
 
@@ -77,7 +74,7 @@ Si aplicamos el **MVP** de una forma limpia la vista jamas sabra de donde se obt
 
 Es un ejemplo de Model View Presenter que lo cree con la intención de explicar cómo funciona este patrón dentro de nuestras aplicaciones android también puedes encontrár el código en la parte final del post.
 
-![mvp](/content/images/2015/11/spotify-mvp.png){: .center-image }
+![mvp](/assets/images/2015/11/spotify-mvp.png){: .center-image }
 
 ### Conclusión
 
@@ -96,11 +93,7 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 [SpotifyMVP en Github](https://github.com/erikcaffrey/SpotifyMVP)
 
-![](/content/images/2015/11/Telecine_2015-11-25-17-19-04.gif)
-
-#### IOS
-
-[MarioKart Kata MVP](https://github.com/erikcaffrey/Swift-ModelViewPresenter)
+![](/assets/images/2015/11/Telecine_2015-11-25-17-19-04.gif)
 
 ### Bonus
 
