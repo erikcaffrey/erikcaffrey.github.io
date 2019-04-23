@@ -1,16 +1,11 @@
 ---
 layout: post
-title: 'Dagger 2 Kata para android developers'
-date: '2016-07-08 10:32:10'
-tags:
-- android
-categories:
-- Android Architecture
+cover:  assets/images/2016/7/mario-kart.png
+title: Dagger 2 Kata para android developers
+date: 2016-07-08 00:00:00 +0545
+categories: blog
+author: erik
 ---
-
-![dagger2-android](/content/images/2016/7/mario-kart.png){: .center-image }
-
-## Where is Princess Peach?
 
 En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Princesa Peach fue raptada por un degenerado Bowser quien le ha preparado una serie de planes nada buenos para ella.
 

@@ -1,15 +1,11 @@
 ---
 layout: post
-title: 'Migrate to New Android Plugin for Gradle 3.?.?'
-date: '2017-12-01 17:28:10'
-tags:
-- android
-categories:
-- Android Studio
-- Gradle
+cover:  assets/images/2017/12/gradle.png
+title: Migrate to New Android Plugin for Gradle 3.?.?
+date: 2017-12-01 00:00:00 +0545
+categories: blog
+author: erik
 ---
-
-![kotlin-arch](/content/images/2017/12/gradle.png){: .center-image }
 
 # Migrate to Android Plugin for Gradle 3.?.?
 
