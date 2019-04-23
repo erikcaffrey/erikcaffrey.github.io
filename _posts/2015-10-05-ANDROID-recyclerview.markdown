@@ -1,16 +1,12 @@
 ---
 layout: post
-title: '¿Por qué deberíamos usar un RecyclerView?'
-date: '2015-10-05 18:13:27'
-tags:
-- android
 cover:  assets/images/2015/10/recycler_view_concep.jpg
+title: ¿Por qué deberíamos usar un RecyclerView?
+date: 2015-10-05 18:13:27
 categories: blog
 author: Erik Jhordan Rey
 summary: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 ---
-
-![recycler-android](/assets/images/2015/10/recycler_view_concep.jpg){: .center-image }
 
 El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un [RecyclerView](https://developer.android.com/training/material/lists-cards.html) he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.
 
