@@ -51,20 +51,22 @@ Existen tres implementaciones diferentes de LayoutManager que vienen incluidos d
 
 ![linearLayoutManager](/assets/images/2015/10/linear.png){: .center-image }
 
-{% highlight java %}
+
+```java
 
 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
             false);
 
-{% endhighlight %}
+```
 
 #### GridLayoutManager
 
 ![GridLayoutManager](/assets/images/2015/10/grid.png){: .center-image }
 
-{% highlight java %}
+
+```java
 
 GridLayoutManager gridLayoutManager = new GridLayoutManager(
               this,
@@ -72,8 +74,7 @@ GridLayoutManager gridLayoutManager = new GridLayoutManager(
               GridLayoutManager.VERTICAL,
               false);
 
-
-{% endhighlight %}
+```
 
 #### GridLayoutManager + SpanSizeLookup
 
@@ -81,7 +82,8 @@ Usando el metodo `setSpanSizeLookup(SpanSizeLookup spanSizeLookup)` establecemos
 
 ![CustomGridLayoutManager](/assets/images/2015/10/custom_grid.png){: .center-image }
 
-{% highlight java %}
+
+```java
 
 GridLayoutManager gridLayoutManager = new GridLayoutManager(
                this,
@@ -97,13 +99,14 @@ gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
     }
 });
 
-{% endhighlight %}
+```
 
 #### StaggeredGridLayoutManager
 
 ![StaggeredGridLayoutManager](/assets/images/2015/10/staggered.png){: .center-image }
 
-{% highlight java %}
+
+```java
 
 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(
               2, //number of grid columns
@@ -112,7 +115,7 @@ StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutM
 //Sets the gap handling strategy for StaggeredGridLayoutManager
 staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
 
-{% endhighlight %}
+```
 
 
 El potencial que brindan estos layouts por defecto es mas que suficiente para ser usados de forma directa en un RecyclerView, también puedes implementar un estilo de renderizado diferente a los que el framework te provee [creando tu propio LayoutManager](http://wiresareobsolete.com/2014/09/building-a-recyclerview-layoutmanager-part-1/) que se adapte a tu necesidad.
@@ -120,13 +123,14 @@ El potencial que brindan estos layouts por defecto es mas que suficiente para se
 
 ### Utiliza un tipo de LayoutManager
 
-{% highlight java %}
+
+```java
 
 RecyclerView recyclerView = new RecyclerView(this);
 recyclerView.setLayoutManager(...); // sets the type of layout (LayoutManager)
 setView(recyclerView);
 
-{% endhighlight %}
+```
 
 
 ### RecyclerView.Recycler
@@ -186,9 +190,10 @@ proveen mucha flexibilidad permitiendo decorar un ítem o un conjunto de ellos d
 
 * ItemDecoration para mostrar la famosa línea gris del ListView en un RecyclerView [aquí](https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/DividerDecoration.java).
 
-{% highlight java %}
+
+```java
 recyclerView.addItemDecoration(ItemDecoration decor);
-{% endhighlight %}
+```
 
 
 ### RecyclerView.ItemAnimator
@@ -199,9 +204,10 @@ Este componente no es sencillo de implementar al igual que `ItemDecoration`, per
 
 Es importante mencionar que el feedback que se percibe al tocar un row ya no está por defecto como sucedía en ListView ;pero basta con crear un [Selector](http://developer.android.com/guide/topics/resources/drawable-resource.html) y asignarlo como background de nuestro itemView, con la llegada de material design ahora trae un efecto muy interesanté de nombre [ripple](http://android-developers.blogspot.mx/2014/10/implementing-material-design-in-your.html) que seguro ya haz trabajado con el.
 
-{% highlight java %}
+
+```java
 recyclerView.setItemAnimator(ItemAnimator animator);
-{% endhighlight %}
+```
 
 ### ItemTypes
 
@@ -224,19 +230,20 @@ que son con las que he trabajado en donde GridLayoutManager juega un maginifico 
 Una forma fácil y sencilla para determinar el `spanCount` puede ser usando qualifiers, es tan simple como crear diferentes configuraciones tomando en cuenta el ancho mínimo , alto disponible y orientación del dispositivo .
 
 * **values**
-{% highlight xml %}
+```xml
    <integer name="number_of_columns">1</integer>
-{% endhighlight %}
+```
 * **values-sw600dp**
-{% highlight xml %}
+```xml
    <integer name="number_of_columns">2</integer>
-{% endhighlight %}
+```
 * **values-sw600dp-land**
-{% highlight xml %}
+```xml
    <integer name="number_of_columns">3</integer>
-{% endhighlight %}
+```
 
-{% highlight java %}
+
+```java
 
 final int spans = getResources().getInteger(R.integer.number_of_columns);
 GridLayoutManager gridLayoutManager = new GridLayoutManager(
@@ -244,9 +251,7 @@ GridLayoutManager gridLayoutManager = new GridLayoutManager(
               spans, //number of grid columns
               GridLayoutManager.VERTICAL,
               false);
-
-
-{% endhighlight %}
+```
 
 Por ejemplo si es un dispositivo como un **Moto E** hará uso de la carpeta *values* mostrando solo una columna ;pero si usamos una **Nexus 9** ahora mostrará dos columnas en orientación vertical usando la carpeta *values-sw600dp* y si el dispositivo es rotado quedando una orientación horizontal se hace uso *values-sw600dp-land* para mostrar tres columnas.
 
@@ -261,16 +266,14 @@ Sabemos que necesitamos establecer `columnWidth`en el método `onMeasure(int wid
 
 Puedes ver el código  de [ResponsiveRecyclerView.java](https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/ResponsiveRecyclerView.java).
 
-{% highlight xml %}
-
+```xml
 <your.package.widget.ResponsiveRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnWidth="@dimen/column_width"
         android:clipToPadding="false"/>
-{% endhighlight %}
-
+```
 
 ### RecyclerView new Features
 
@@ -286,18 +289,20 @@ Con la última versión de [Android Support Library (23.1)](https://developer.an
 
 * Ahora se provee un camino para el *backward-incompatible* de esta api y te darás cuenta de que algunos métodos se han eliminado por completo de ItemAnimator uno de ellos fue:
 
-{% highlight java %}
+
+```java
 recyclerView.getItemAnimator().setSupportsChangeAnimations(false)
-{% endhighlight %}
+```
 
 Fue reemplazado por:
 
-{% highlight java %}
+
+```java
 ItemAnimator animator = recyclerView.getItemAnimator();
 if (animator instanceof SimpleItemAnimator)
    ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
 
-{% endhighlight %}
+```
 
 ### Conclusión
 
