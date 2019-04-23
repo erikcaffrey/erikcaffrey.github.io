@@ -1,7 +1,6 @@
-# Prasad 
-<a href="https://jekyll-themes.com">
-    <img src="https://img.shields.io/badge/featured%20on-JT-red.svg" height="20" alt="Jekyll Themes Shield" >
-</a>
+# Prasad
+
+![logo](/assets/images/logo.png){: .center-image }
 
 > Prasad is a complete Jekyll theme designed for portfolio and blog for developers,  developed from forked version of Affiliate Jekyll theme.
 
