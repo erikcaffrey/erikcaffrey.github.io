@@ -42,7 +42,7 @@ Es un framework que permite aplicar el patrón de inyección de dependencias en 
 * Incrementa el performance 13% de acuerdo con Gegrory Kick.
 * El grafo es validado en tiempo de build.
 
-Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming))(si esto es un poco coñazo).
+Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa [reflexión](https://en.wikipedia.org/wiki/Reflection_(computer_programming)).
 
 ### Setup Dagger 2
 
@@ -98,7 +98,7 @@ El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean
 
 Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.
 
-![dagger2](/content/images/2016/7/dagger_general.png){: .center-image }
+![dagger2](/assets/images/2016/7/dagger_general.png){: .center-image }
 
 ### Putting everything together
 
@@ -251,7 +251,7 @@ public class PrincessPeachActivity extends BaseActivity {
 }
 {% endhighlight %}
 
-<img src="/content/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;"/>
+<img src="/assets/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;"/>
 
 #### El código está disponible
 
