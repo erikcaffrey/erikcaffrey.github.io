@@ -129,9 +129,9 @@ Un especial agradecimiento a [Chiu-Ki Chan](https://developers.google.com/expert
 
 if you want to learn how to apply DI using Dagger2 framework.
 
-https://raw.githubusercontent.com/erikjhordan-rey/Dagger2-MVP-Sample/master/art/2015-12-15.png
+![dagger2-demo](https://raw.githubusercontent.com/erikjhordan-rey/Dagger2-MVP-Sample/master/art/2015-12-15.png)
 
-![Dagger2-MVP-Sample](https://github.com/erikjhordan-rey/Dagger2-MVP-Sample)
+![Dagger2-MVP-Sample- Github](https://github.com/erikjhordan-rey/Dagger2-MVP-Sample)
 
 ### Resources
 * **Martin Fowler** - [InversionOfControl](http://martinfowler.com/bliki/InversionOfControl.html)
