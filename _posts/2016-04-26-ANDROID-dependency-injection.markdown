@@ -119,11 +119,19 @@ Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pi
 
 [Dependency-Injection-Android en Github](https://github.com/erikjhordan-rey/Dependency-Injection-Android)
 
-![](/content/images/2016/4/battery.png)
+![](/assets/images/2016/4/battery.png)
 
 ## Acknowledgment
 
 Un especial agradecimiento a [Chiu-Ki Chan](https://developers.google.com/experts/people/chiu-ki-chan) Google Developer Expert por su gran trabajo en [Daggerless Dependency Injection for Testing](https://github.com/chiuki/daggerless-di-testing/tree/master) de donde he tomado su genial ejemplo haciendole unas pequeñas modificaciones.
+
+### Bonus
+
+if you want to learn how to apply DI using Dagger2 framework.
+
+https://raw.githubusercontent.com/erikjhordan-rey/Dagger2-MVP-Sample/master/art/2015-12-15.png
+
+![Dagger2-MVP-Sample](https://github.com/erikjhordan-rey/Dagger2-MVP-Sample)
 
 ### Resources
 * **Martin Fowler** - [InversionOfControl](http://martinfowler.com/bliki/InversionOfControl.html)
