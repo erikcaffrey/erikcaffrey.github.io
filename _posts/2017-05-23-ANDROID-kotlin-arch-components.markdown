@@ -4,7 +4,6 @@ cover:  assets/images/2017/5/kotlin-arch.png
 title: Support of Kotlin & Architecture Components
 date: 2017-05-23 00:00:00 +0545
 categories: blog
-featured: true
 author: erik
 ---
 
