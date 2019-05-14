@@ -124,5 +124,6 @@ During your professional career, you will be facing different problems, your ski
 * [Organization culture and humanity](https://fernandocejas.com/2018/11/11/organization-culture-and-humanity/)
 * [Senior Developer](https://devexperto.com/senior-developer/)
 * [What-truly-makes-a-senior-developer](https://medium.com/s/story/what-truly-makes-a-senior-developer-74b608847d7e)
+* [el-muro-el-proyecto-que-nadie-quiere](https://www.erickcamacho.com/post/86903147016/el-muro-el-proyecto-que-nadie-quiere)
 
 **"In the software profession, sadly, nobody remembers the heroes" by @ecamacho**
