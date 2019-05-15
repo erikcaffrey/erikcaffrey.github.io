@@ -1,7 +1,7 @@
 # Site
 name: Erik Jhordan Rey
 description: Erik's Blog
-meta_description: Erik's Blog  
+meta_description: Erik's Blog
 logo: /assets/images/logo.png
 favicon: /assets/images/favicon.ico
 paginate: 6
@@ -19,7 +19,7 @@ authors:
     email: erikjhordan.rey@gmail.com
     web:
     twitter: ErikJhordan_Rey
-    description: Team Lead / Mobile Tech Lead at Segundamano · Adevinta
+    description: Software Engineer at Segundamano · Adevinta
 
 # Plugins
 plugins:
