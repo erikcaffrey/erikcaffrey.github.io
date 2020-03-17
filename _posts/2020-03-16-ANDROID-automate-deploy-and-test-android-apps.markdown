@@ -25,7 +25,7 @@ Para que un build llegue a Google Play Console hay un camino largo y en ocasione
 * El equipo de QA no sabe que probar y pregunta cada hora si ya esta listo el build.
 * Te preguntan qué incluye este nuevo build
 * No es sencillo generar otra versión tras una regresión si se encontraron errores y se repararon.
-* Necesitamos liberar mañana “ya como este no hay tiempo”
+* No puedes liberar en cualquier momento “ya con lo que tenga no hay tiempo”
 
 Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo solucionarlo aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
 
@@ -43,7 +43,7 @@ En experiencias pasadas me toco mirar que se lanzaban aplicaciones de producció
 * Todo el equipo puede y tiene el conocimiento para hacer un release
 * Podemos obtener feedback rápido 
 * Es fácil atender hotfixes 
-* Visibilidad para que todo el equipo pueda ir viendo avances
+* Visibilidad para que todo el equipo pueda ir viendo avances y saben que esta pasando
 * Personas no tech pueden probar la app de forma simple. 
 
 ## Understanding automation software strategies
@@ -55,11 +55,11 @@ Es aquí donde la compilación automatizada, verificación de code style, code a
 
 #### Continuous Delivery
 
-Es una disciplina y forma de hacer software en la cual tiene como objetivo que siempre se pueda llevar build a producción en cualquier momento. Es una práctica compleja dado que requiere de procesos internos y mejorar formas de trabajo dentro del equipo, como bien sabemos para distribuir una aplicación en Google Play requiere de ser firmada antes lo que lo dificulta un poco más la implementación.
+Es una disciplina y forma de hacer software en la cual tiene como objetivo que siempre se pueda llevar build a producción en cualquier momento. Es una práctica compleja dado que requiere de procesos internos y mejorar formas de trabajo dentro del equipo, como bien sabemos para distribuir una aplicación en Google Play requiere de ser firmada antes lo que dificulta un poco más la implementación.
 
 En este caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos **continuous development** por que cada cosa que integramos nuevo código no va a producción directamente, va a nuestro ambiente de pruebas.
 
-Así que para mantenerlo simple y sin ponernos un tanto filosóficos automatizar un release de android lo resumiría en la forma en la que mantenemos el producto de software en estado liberable, lo que permite llevar a producción funciones de manera rápida, así como responder ante cualquier falla que pueda ocurrir. 
+Así que para mantenerlo simple y sin ponernos un tanto filosóficos **automatizar un release de android** lo resumiría en la forma en la que mantenemos el producto de software en estado liberable, lo que permite llevar a producción funciones de manera rápida, así como responder ante cualquier falla que pueda ocurrir. 
 
 ## Tooling to automate android releases
 
@@ -79,7 +79,7 @@ Actualmente utilizamos [Travis CI](https://docs.travis-ci.com/) dado que tenemos
 
 ### App Distribution
 
-Desde hace unos años he utilizado [Fabric Beta](https://docs.fabric.io/android/beta/overview.html) para distribuir un apk con mi equipo y hacer todo tipo de pruebas antes de llegar a producción en Google Play. En el 2017 [Crashlytics](https://firebase.google.com/docs/crashlytics) fue adquirido por Google con Fabric incluido, al día de hoy Fabric está deprecated y está por cerrar el 31 de Marzo de 2020, así que si no lo sabías sugiero que migres a [Firebase](https://firebase.google.com/?hl=es-419) en los siguientes días.
+Desde hace unos años he utilizado [Fabric Beta](https://docs.fabric.io/android/beta/overview.html) para distribuir un apk con mi equipo y hacer todo tipo de pruebas antes de llegar a producción en Google Play. En el 2017 [Crashlytics](https://firebase.google.com/docs/crashlytics) fue adquirido por Google con Fabric incluido, al día de hoy Fabric está **deprecated** y está por cerrar el *31 de Marzo de 2020*, así que si no lo sabías sugiero que migres a [Firebase](https://firebase.google.com/?hl=es-419) en los siguientes días.
 
 ### Firebase App Distribution
 
@@ -100,16 +100,18 @@ Tener un flujo de trabajo establecido hará que el flujo de lanzamiento sea simp
 
 ### Debug Release
 
-Distribuye un apk de forma automática en firebase app distribution cada que se hace un merge a master y Travis CI termina de ejecutar el job. Es una versión inestable que contiene los últimos cambios en master y es completamente para el equipo de desarrollo.
+Distribuye un apk de forma automática en firebase app distribution cada que se hace un **merge a master** y Travis CI termina de ejecutar el job. Es una versión inestable que contiene los últimos cambios en master y es completamente para el equipo de desarrollo.
 
 ### Prod Release
 
-Distribuye un apk de forma automática en firebase app distribution cada que se hace un merge a release branch y Travis CI termina de ejecutar el job. Es una versión candidata para liberar en producción es probada por el equipo de QA y si no hay errores, se crea un tag que terminara deployando en Google Play. 
+Distribuye un apk de forma automática en firebase app distribution cada que se crea un **release branch** y Travis CI termina de ejecutar el job. Es una versión candidata para liberar en producción es probada por el equipo de QA y si no hay errores se crea un **tag** que terminara deployando en Google Play. 
 
 
 ![workflow](/assets/images/2020/3/work-flow.png){: .center-image }
 
-Usamos un branch **master** es el lugar donde se encuentra todo el código, para integrar código es necesario crear una pull requests contra master. El Job de **Travis CI** comenzará a ejecutar el build para asegurar que todo sigue compilando, verificará el código con la herramienta de análisis de código y ejecutara la suite de tests, si todo estuvo correcto y la **pull requests** fue aprobada por el equipo se hace el merge a master, automáticamente se va generar un build de desarrollo en firebase app distribution con un release notes que contiene el último commit del branch. Si se requiere liberar a producción primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción y si encontramos problemas reparamos en en release branch y hacemos el fix también en master para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
+Usamos un branch **master** es el lugar donde se encuentra todo el proyecto, para integrar código es necesario crear una pull requests contra master. El Job de **Travis CI** comenzará a ejecutar el build para asegurar que todo sigue compilando, se ejecutará el análisis de código y la suite de tests, si todo estuvo correcto y la **pull requests** fue aprobada por el equipo se hace el merge a master, automáticamente se va generar un build de desarrollo en [firebase app distribution](https://firebase.google.com/docs/app-distribution) con un release notes que contiene el último commit del branch, de esta forma el equipo puede probar en cualquier momento lo que existe en master.
+
+Si se requiere liberar a producción primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción, en ocasiones hay escenarios que solo suceden en producción por “alguna razón”, si encontramos problemas reparamos en en release branch y hacemos el fix también en **master** para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
 
 El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post compartiré algunos tips para que puedas implementarlo en tu proyecto. 
 
