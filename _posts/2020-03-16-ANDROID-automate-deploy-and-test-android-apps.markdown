@@ -31,6 +31,23 @@ Para que un build llegue a Google Play Console hay un camino largo y en ocasione
 
 Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo solucionarlo aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
 
+## Why automate the app release matters?
+
+En experiencias pasadas me toco mirar que se lanzaban aplicaciones de producción a Google Play sin ser probadas por diversos motivos, mucho tiempo en generar un build, ya se tiene que hacer el release, no hay tiempo, lánzalo y luego lo reparamos, etc. El resultado de aplicar estas malas prácticas es: muchos usuarios insatisfechos, uninstalls, malos ratings en google play, crashes en flujos core, baja el números de usuarios activos y como consecuencia termina afectado el negocio desafortunadamente. 
+
+Alguna razones más por la cuales importa automatizar: 
+
+* Podemos agregar valor más rápido a usuarios  
+* Tu equipo de QA le será más simple probar tu software 
+* Controlar cada versión de tu aplicación, mediante un tag o release branch
+* Evitar malos ratings y comentarios en Google Play por un build mal generado
+* Mantener un elevado crash-free users dado que se deben cumplir las pruebas automatizadas y en ocasiones pruebas del equipo de QA.
+* Todo el equipo puede y tiene el conocimiento para hacer un release
+* Podemos obtener feedback rápido 
+* Es fácil atender hotfixes 
+* Visibilidad para que todo el equipo pueda ir viendo avances
+* Personas no tech pueden probar la app de forma simple. 
+
 ## Understanding automation software strategies
 
 #### Continuous Integration
