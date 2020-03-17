@@ -113,6 +113,9 @@ Usamos un branch **master** es el lugar donde se encuentra todo el proyecto, par
 
 Si se requiere liberar a producción primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción, en ocasiones hay escenarios que solo suceden en producción por “alguna razón”, si encontramos problemas reparamos en en release branch y hacemos el fix también en **master** para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
 
+
+### Conclusion
+
 El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post compartiré algunos tips para que puedas implementarlo en tu proyecto. 
 
 #### Further reading
