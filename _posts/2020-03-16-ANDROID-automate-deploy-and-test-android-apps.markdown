@@ -1,6 +1,6 @@
 ---
 layout: post
-cover:  assets/images/2017/12/gradle.png
+cover:  assets/images/2020/3/automate-part1.png
 title: Automatiza, Distribuye y Prueba una Android App (Part 1)
 date: 2020-03-16 00:00:00 +0545
 categories: blog
@@ -13,7 +13,7 @@ En el día a día comúnmente los equipos de software (mobile) tenemos la respon
 
 Para que un build llegue a Google Play Console hay un camino largo y en ocasiones complicado, la falta de automatización de procesos, la no cultura de pruebas automatizadas/manuales o procesos complejos con el equipo de QA, son el tipo de problemas más recurrentes a los que me he enfrentado como developer en diversos proyectos.
 
-## Common Problems
+## Generating manually app release
 
 **No tienes un buen flujo de release, cuando:**
 
@@ -35,7 +35,7 @@ Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en t
 
 En experiencias pasadas me toco mirar que se lanzaban aplicaciones de producción a Google Play sin ser probadas por diversos motivos, mucho tiempo en generar un build, ya se tiene que hacer el release, no hay tiempo, lánzalo y luego lo reparamos, etc. El resultado de aplicar estas malas prácticas es: muchos usuarios insatisfechos, uninstalls, malos ratings en google play, crashes en flujos core, baja el números de usuarios activos y como consecuencia termina afectado el negocio desafortunadamente. 
 
-Alguna razones más por la cuales importa automatizar: 
+**Alguna razones más por la cuales importa automatizar:**
 
 * Podemos agregar valor más rápido a usuarios  
 * Tu equipo de QA le será más simple probar tu software 
