@@ -7,8 +7,6 @@ categories: blog
 author: erik
 ---
 
-# Automatiza, Distribuye y Prueba una Android App
-
 En el día a día comúnmente los equipos de software (mobile) tenemos la responsabilidad de implementar soluciones enfocadas en el negocio, proveer mejoras de funcionalidad, reparar bugs, cumplir con deadlines, entre otras y al final el objetivo es lograr que un usuario pueda disfrutar de nuestro producto de la mejor forma posible. 
 
 Para que un build llegue a Google Play Console hay un camino largo y en ocasiones complicado, la falta de automatización de procesos, la no cultura de pruebas automatizadas/manuales o procesos complejos con el equipo de QA, son el tipo de problemas más recurrentes a los que me he enfrentado como developer en diversos proyectos.
@@ -96,4 +94,28 @@ Existen 4 formas de distribuir una app en Firebase App Distribution:
 
 Si deseas integrarlo con tu servicio de [continuous integration](https://martinfowler.com/articles/continuousIntegration.html) la opción a utilizar es gradle o fastlane si tu proyecto lo utiliza. En nuestro caso utilizamos la configuración de gradle para integrar con [Travis CI](https://docs.travis-ci.com/).
 
-El objetivo de esta introducción es entender los problemas a los que nos enfrentamos en el día a día como mobile developers, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post muestro compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+## Launch workflow
+
+Tener un flujo de trabajo establecido hará que el flujo de lanzamiento sea simple y para garantizar la calidad de la aplicación suelo implementarlo con la siguiente estrategia. 
+
+### Debug Release
+
+Distribuye un apk de forma automática en firebase app distribution cada que se hace un merge a master y Travis CI termina de ejecutar el job. Es una versión inestable que contiene los últimos cambios en master y es completamente para el equipo de desarrollo.
+
+### Prod Release
+
+Distribuye un apk de forma automática en firebase app distribution cada que se hace un merge a release branch y Travis CI termina de ejecutar el job. Es una versión candidata para liberar en producción es probada por el equipo de QA y si no hay errores, se crea un tag que terminara deployando en Google Play. 
+
+
+![workflow](/assets/images/2020/3/work-flow.png){: .center-image }
+
+Usamos un branch **master** es el lugar donde se encuentra todo el código, para integrar código es necesario crear una pull requests contra master. El Job de **Travis CI** comenzará a ejecutar el build para asegurar que todo sigue compilando, verificará el código con la herramienta de análisis de código y ejecutara la suite de tests, si todo estuvo correcto y la **pull requests** fue aprobada por el equipo se hace el merge a master, automáticamente se va generar un build de desarrollo en firebase app distribution con un release notes que contiene el último commit del branch. Si se requiere liberar a producción primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción y si encontramos problemas reparamos en en release branch y hacemos el fix también en master para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
+
+El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+
+#### Further reading
+
+* [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html)
+* [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)
+* [A Branching and Releasing Strategy That Fits GitHub Flow](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2)
+* [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
