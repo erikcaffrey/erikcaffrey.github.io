@@ -38,7 +38,7 @@ ext {
         }
     }
 
-    signingProduction = {
+    signingProd = {
         def propertiesFile = loadPropertiesFile("release")
         android.signingConfigs.prod {
             storeFile loadFileFromGoogleDir("release.keystore")
@@ -163,7 +163,7 @@ private static def generateBuildTime() {
 
 ```
 
-Para usar el script gradle que hemos generado se aplica en el **build.gradle** de el modulo`app`.
+Para usar el script gradle que hemos generado se aplica en **build.gradle** del modulo `app`.
 
 ```gradle 
 
@@ -184,7 +184,7 @@ subprojects {
 
 ```
 
-Usa la variables **version_code** y **version_name** que declaradas en defaultConfig. 
+Usa las variables **version_code** y **version_name** en defaultConfig. 
 
 ```gradle
 
@@ -199,3 +199,112 @@ Usa la variables **version_code** y **version_name** que declaradas en defaultCo
 ```
 
 ## Firebase App Distribution + Travis CI
+
+Para comenzar la integración mediante gradle, es necesario agregar el plugin de `firebase-appdistribution-gradle` en el `build.gradle` del proyecto.
+
+```gradle
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:1.3.1'
+    }
+}
+
+```
+
+Aplicar el plugin en el **build.gradle** del modulo `app`.
+
+```gradle
+
+apply plugin: 'com.android.application'
+// ...
+apply plugin: 'com.google.firebase.appdistribution'
+
+
+```
+
+###  Configure Firebase App Distribution
+
+Para distribuir una aplicación en firebase es necesario configurar [firebaseAppDistribution](https://firebase.google.com/docs/app-distribution/android/distribute-gradle).
+
+```gradle
+       firebaseAppDistribution {
+                releaseNotesFile = "path/release-notes.txt"
+                groups = "internal-testers"
+                serviceCredentialsFile = rootProject.file("gradle-scripts/distribution/service-account.json")
+        }
+```
+
+### App Distribution Build Parameters
+
+En este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) puedes encontrar lista completa de parametros, en este punto quiero enfocarme en explicar solo los que necesitamos en este momento:
+
+**releaseNotesFile:** Se usa para especificar el archivo `.txt` que contendra nuestro release notes.
+**groups:** Es el grupo de testers para el que va dirigido el release, podrias utilizar `testers` pero implica poner la lista de correos te recomiendo crear un grupo de testers en la consola de firebase es más fácil de controlar quienes tienen acceso a ciertos builds,
+
+**serviceCredentialFile:** Es necesario especificar un [Service Account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase desde nuestro sistema de CI, si no estás familiarizado con un [service account](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate_using_a_service_account) puedes mirar en este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate_using_a_service_account). 
+
+**apkPath:** Se utiliza para especificarle a donde tiene que ir a buscar un APK generado, si no se especifica buscará en el default **build/outputs/apk/debug/app-yourbuildtype.apk**
+
+### BuildTypes + FirebaseAppDistribution
+
+#### Debug Release
+
+En el [flujo que definimos](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) cada merge a **master** tiene que distribuir un build en firebase con el último commit al termino de un Job de travis CI. 
+
+```gradle
+
+        debug {
+            def type = "debug"
+            applicationIdSuffix ".${type}"
+            versionNameSuffix "-${type}"
+            ....
+            signingConfig signingConfigs.debug
+
+            firebaseAppDistribution {
+                releaseNotesFile = "./release-notes.txt"
+                groups = "internal-testers"
+                serviceCredentialsFile = rootProject.file("gradle-scripts/distribution/service-account.json")
+            }
+        }
+
+```
+
+Para generar el release notes especificado en **releaseNotesFile** se hace mediante la task **generateReleaseNotes**, se encarga de crear el archivo `./release-notes.txt` con la información del commit del último merge a **master**.
+
+```gradle
+
+ task generateReleaseNotes {
+   doLast({
+       def releaseNotes = new File('release-notes.txt')
+       releaseNotes.delete()
+       releaseNotes << "Release Notes - Version $name_version (${date_version})\n\n"
+       releaseNotes << "Change Log \n\n"
+       def lastCommitCommand = "git log --format=%s --no-merges -n 1"
+       def commitMessageLines = lastCommitCommand.execute()
+       commitMessageLines.in.eachLine { line -> releaseNotes << "* " + line + "\n\n\n" }
+       releaseNotes << "This file was automatically generated."
+   })
+}
+
+
+```
+
+
+#### Prod Release
+
+```gradle 
+
+        release {
+            ...
+            firebaseAppDistribution {
+                releaseNotesFile = rootProject.file("gradle-scripts/distribution/release_notes.txt")
+                groups = "internal-testers"
+                serviceCredentialsFile = rootProject.file("gradle-scripts/distribution/service-account.json")
+            }
+        }
+
+```
