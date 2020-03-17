@@ -29,11 +29,9 @@ Para que un build llegue a Google Play Console hay un camino largo y en ocasione
 * No es sencillo generar otra versión tras una regresión si se encontraron errores y se repararon.
 * Necesitamos liberar mañana “ya como este no hay tiempo”
 
-Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo lo hemos solucionado aplicando estas prácticas en algunos proyectos para lograr mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
+Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo solucionarlo aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
 
 ## Understanding automation software strategies
-
-### Software Delivery
 
 #### Continuous Integration
 
@@ -81,6 +79,4 @@ Existen 4 formas de distribuir una app en Firebase App Distribution:
 
 Si deseas integrarlo con tu servicio de [continuous integration](https://martinfowler.com/articles/continuousIntegration.html) la opción a utilizar es gradle o fastlane si tu proyecto lo utiliza. En nuestro caso utilizamos la configuración de gradle para integrar con [Travis CI](https://docs.travis-ci.com/).
 
-El objetivo de esta introducción es entender los problemas a los que nos enfrentamos en el día a día como mobile developers, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. 
-
-En el siguiente post muestro compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+El objetivo de esta introducción es entender los problemas a los que nos enfrentamos en el día a día como mobile developers, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post muestro compartiré algunos tips para que puedas implementarlo en tu proyecto. 
