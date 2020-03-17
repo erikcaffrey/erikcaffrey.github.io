@@ -1,13 +1,11 @@
 ---
 layout: post
 cover:  assets/images/2017/12/gradle.png
-title: Automatiza, Distribuye y Prueba una Android App
+title: Automatiza, Distribuye y Prueba una Android App (Part 1)
 date: 2020-03-16 00:00:00 +0545
 categories: blog
 author: erik
 ---
-
-## WORK IN PROGRESS!!!
 
 # Automatiza, Distribuye y Prueba una Android App
 
@@ -15,14 +13,14 @@ En el día a día comúnmente los equipos de software en este caso mobile tenemo
 
 Para que un build llegue a Google Play Console hay un camino largo y en ocasiones complicado por cual debemos pasar, la falta de automatización de procesos, la no cultura de pruebas automatizadas/manuales o procesos complejos con el equipo de QA son el tipo de problemas más recurrentes a los que me he enfrentado como developer en diversos proyectos.
 
-No tienes un buen flujo de release android:
+No tienes un buen flujo de release, cuando:
 
-* Cuando el lead del equipo tiene que generar el build manualmente en su máquina.
-* Cuando solo un miembro del equipo sabe cómo hacer un release.
-* Cuando tienes que conectar un device a tu computadora para que alguien de tu equipo pueda probar esa versión del apk o el bundle
-* Cuando envías un apk por slack, drive, dropbox u otra. 
-* Cuando no puedes hacer de forma fácil hotfix, no tienes un release branch o un tag que te permita solucionarlo de forma fácil sin tener que pasar toda la regresión de la versión.
-* Cuando alguien de tu equipo necesita mostrar un avance prematuro y no se puede hacer el release por que se “rompe” en alguna parte.
+* El lead del equipo tiene que generar el build manualmente en su máquina.
+* Solo un miembro del equipo sabe cómo hacer un release.
+* Tienes que conectar un device a tu computadora para que alguien de tu equipo pueda probar esa versión del apk o el bundle
+* Envías un apk por slack, drive, dropbox u otra. 
+* No puedes hacer de forma fácil hotfix, no tienes un release branch o un tag que te permita solucionarlo de forma fácil sin tener que pasar toda la regresión de la versión.
+* Alguien de tu equipo necesita mostrar un avance prematuro y no se puede hacer el release por que se “rompe” en alguna parte.
 * Firmas manualmente el apk o bundle y luego arrastras a Google Play Console.
 * El equipo de QA no sabe que probar y pregunta cada hora si ya esta listo el build.
 * Te preguntan qué incluye este nuevo build
@@ -39,14 +37,14 @@ Antes de mostrar la implementación me gustaría sugerir que si estas en el cami
 
 #### Continuous Integration
 
-En la práctica significa que los miembros de un equipo tengan la facilidad de integrar su trabajo a un core (master, develop u otro) branch, normalmente se hace mediante un pull request para asegurar que la futura integración no contiene errores y si los tiene detectarlos de forma rápida. 
+En la práctica significa que los miembros de un equipo tengan la facilidad de integrar su trabajo a un core **(master, develop u otro)** branch, normalmente se hace mediante un pull request para asegurar que la futura integración no contiene errores y si los tiene detectarlos de forma rápida. 
 Es aquí donde la compilación automatizada, verificación de code style, code analysis, linters, y la suite de tests automatizados se ejecuta, es la forma que tienes para mantener tu repositorio core fuera de sorpresas.
 
 #### Continuous Delivery
 
 Es una disciplina y forma de hacer software en la cual tiene como objetivo que siempre se pueda llevar build a producción en cualquier momento. Es una práctica compleja dado que requiere de procesos internos y mejorar formas de trabajo dentro del equipo, como bien sabemos para distribuir una aplicación en Google Play requiere de ser firmada antes lo que lo dificulta un poco más la implementación.
 
-En nuestro caso podríamos decir que no hacemos del todo continuous delivery por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o Firebase App Distribution por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos continuous development por que cada cosa que integramos no va a producción directamente, va a nuestro ambiente de pruebas.
+En nuestro caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o Firebase App Distribution por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos **continuous development** por que cada cosa que integramos no va a producción directamente, va a nuestro ambiente de pruebas.
 
 Así que para mantenerlo simple y sin ponernos un tanto filosóficos automatizar un release de android lo resumiría en la forma en la que mantenemos el producto de software en estado liberable, lo que permite llevar a producción funciones de manera rápida, así como responder ante cualquier falla que pueda ocurrir. 
 
@@ -70,16 +68,17 @@ Actualmente utilizamos Travis CI dado que tenemos alojado el proyecto en github,
 
 ### App Distribution
 
-Desde hace unos años he utilizado Fabric Beta para distribuir un apk con mi equipo y hacer todo tipo de pruebas antes de llegar a producción en Google Play. En el 2017 Crashlytics fue adquirido por Google con Fabric incluido, al día de hoy Fabric está deprecated y está por cerrar el 31 de Marzo de 2020, así que si no lo sabías sugiero que migres a Firebase en los siguientes días.
+Desde hace unos años he utilizado [Fabric Beta](https://docs.fabric.io/android/beta/overview.html) para distribuir un apk con mi equipo y hacer todo tipo de pruebas antes de llegar a producción en Google Play. En el 2017 [Crashlytics](https://firebase.google.com/docs/crashlytics) fue adquirido por Google con Fabric incluido, al día de hoy Fabric está deprecated y está por cerrar el 31 de Marzo de 2020, así que si no lo sabías sugiero que migres a [Firebase](https://firebase.google.com/?hl=es-419) en los siguientes días.
 
 ### Firebase App Distribution
 
-Es la herramienta que nos permite compartir nuestra aplicación con otros testers externos o internos mediante de una forma muy simple, ya que basta con compartir un link de invitación para poder convertirte en tester de la aplicación. Si estás familiarizado con Fabric entenderlo será más simple.
+Es la herramienta que nos permite compartir nuestra aplicación con testers externos o internos de una forma simple, ya que basta con compartir un link de invitación para poder convertirte en tester de la aplicación. Si estás familiarizado con Fabric entenderlo será más simple.
+
 Existen 4 formas de distribuir una app en Firebase App Distribution: 
 
-* Firebase console 
-* Firebase CLI 
-* fastlane 
-* Gradle
+* [Firebase console](https://firebase.google.com/docs/app-distribution/android/distribute-console)
+* [Firebase CLI](https://firebase.google.com/docs/app-distribution/android/distribute-cli) 
+* [fastlane](https://firebase.google.com/docs/app-distribution/android/distribute-fastlane) 
+* [Gradle](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
 
-En nuestro caso hemos utilizado gradle para integrar con Travis CI, la otra alternativa era utilizar fastlane pero no lo usamos en el proyecto de android y nos parece más natural no agregar más complejidad a la configuración.  
+Si deseas integrarlo con tu servicio de continuous integration la opción a utilizar es gradle o fastlane si tu proyecto lo utiliza. En nuestro caso utilizamos la configuración de gradle para integrar con [Travis CI](https://docs.travis-ci.com/).
