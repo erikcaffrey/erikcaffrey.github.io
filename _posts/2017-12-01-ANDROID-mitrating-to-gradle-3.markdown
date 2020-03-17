@@ -7,8 +7,6 @@ categories: blog
 author: erik
 ---
 
-# Migrate to Android Plugin for Gradle 3.?.?
-
 Our happy history migrating an existing android project using gradle 2.3 to new gradle version.
 
 One of the most important announcements on the last Google I/O was [Android Studio 3](https://android-developers.googleblog.com/2017/10/android-studio-30.html) and with it the version 3 of [Android Gradle Plugin](https://developer.android.com/studio/build/gradle-plugin-3-0-0.html) which brings significant performance improvements to large multi-module projects. Unfortunately it contains some breaking changes so you must have to make some updates on your gradle configuration when switching to the new gradle plugin. This post is about sharing our experiences trying to migrate our project to new android Gradle 3.?.? plugin.
