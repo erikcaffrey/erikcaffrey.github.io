@@ -1,7 +1,7 @@
 ---
 layout: post
 cover:  assets/images/2020/3/automate-part1.jpg
-title: Automatiza, Distribuye y Prueba una Android App (Part 1)
+title: Automatiza y Prueba una Android App (Part 1)
 date: 2020-03-16 00:00:00 +0545
 categories: blog
 author: erik
@@ -27,7 +27,7 @@ Para que un build llegue a Google Play Console hay un camino largo y en ocasione
 * No es sencillo generar otra versión tras una regresión si se encontraron errores y se repararon.
 * No puedes liberar en cualquier momento “ya con lo que tenga no hay tiempo”
 
-Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo solucionarlo aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
+Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el [cómo solucionarlo](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)) aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
 
 ## Why automate the app release matters?
 
@@ -110,10 +110,11 @@ Distribuye un apk de forma automática en [firebase app distribution](https://fi
 
 Usamos un branch **master** es el lugar donde se encuentra todo el proyecto, para integrar código es necesario crear una pull requests contra master. El Job de **Travis CI** comenzará a ejecutar el build para asegurar que todo sigue compilando, se ejecutará el análisis de código y la suite de tests, si todo estuvo correcto y la **pull requests** fue aprobada por el equipo se hace el merge a master, automáticamente se va generar un build de desarrollo en [firebase app distribution](https://firebase.google.com/docs/app-distribution) con un release notes que contiene el último commit del branch, de esta forma el equipo puede probar en cualquier momento lo que existe en master. Cuando requiere liberar a **producción** primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción, en ocasiones hay escenarios que solo suceden en producción por “alguna razón”, si encontramos problemas reparamos en en release branch y hacemos el fix también en **master** para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
 
-
 ### Conclusion
 
-El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el siguiente post compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el [siguiente post](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html) compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+
+[Leer Parte 2](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)
 
 #### Further reading
 
