@@ -200,7 +200,7 @@ Usa las variables **version_code** y **version_name** en defaultConfig.
 
 ## Firebase App Distribution + Travis CI
 
-Para comenzar la integración mediante gradle, es necesario agregar el plugin de `firebase-appdistribution-gradle` en el `build.gradle` del proyecto.
+Para comenzar la integración mediante gradle, es necesario agregar el plugin de `firebase-appdistribution-gradle` en `build.gradle` del proyecto.
 
 ```gradle
 
@@ -245,15 +245,15 @@ En este [link](https://firebase.google.com/docs/app-distribution/android/distrib
 **releaseNotesFile:** Se usa para especificar el archivo `.txt` que contendra nuestro release notes.
 **groups:** Es el grupo de testers para el que va dirigido el release, podrias utilizar `testers` pero implica poner la lista de correos te recomiendo crear un grupo de testers en la consola de firebase es más fácil de controlar quienes tienen acceso a ciertos builds,
 
-**serviceCredentialFile:** Es necesario especificar un [Service Account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase desde nuestro sistema de CI, si no estás familiarizado con un [service account](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate_using_a_service_account) puedes mirar en este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate_using_a_service_account). 
+**serviceCredentialFile:** Es necesario especificar un [service account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase desde nuestro sistema de CI.
 
-**apkPath:** Se utiliza para especificarle a donde tiene que ir a buscar un APK generado, si no se especifica buscará en el default **build/outputs/apk/debug/app-yourbuildtype.apk**
+**apkPath:** Se utiliza para especificar a donde se tiene que buscar el APK generado, si no se especifica buscará en el default **build/outputs/apk/debug/app-yourbuildtype.apk**.
 
 ### BuildTypes + FirebaseAppDistribution
 
 #### Debug Release
 
-En el [flujo que definimos](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) cada merge a **master** tiene que distribuir un build en firebase con el último commit al termino de un Job de travis CI. 
+En el [flujo que definimos](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) cada merge a **master** tiene que distribuir un build en firebase con el último commit al termino de un Job en travis CI. 
 
 ```gradle
 
@@ -290,11 +290,23 @@ Para generar el release notes especificado en **releaseNotesFile** se hace media
    })
 }
 
+El archivo generado tiene la siguiente información:
 
+**./release-notes.txt**
+
+```gradle 
+Release Notes - Version 1.0.0 (16/03/2020 - 01:00 PM)
+
+Change Log 
+
+* Included awesome feature 
+
+This file was automatically generated.
 ```
 
-
 #### Prod Release
+
+Para el build de producción la configuración es realmente idéntica a diferencia que no generamos el release notes automáticamente, ya que la idea es que cuando creamos un release candidate lo modifiquemos con los mensajes necesarios dado que esos textos son los que se mostrarían en Google Play store y los que el usuario podría mirar.  
 
 ```gradle 
 
@@ -308,3 +320,5 @@ Para generar el release notes especificado en **releaseNotesFile** se hace media
         }
 
 ```
+
+# WORK IN PROGRESS!
