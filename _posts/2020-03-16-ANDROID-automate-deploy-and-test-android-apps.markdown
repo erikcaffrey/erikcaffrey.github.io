@@ -9,11 +9,13 @@ author: erik
 
 # Automatiza, Distribuye y Prueba una Android App
 
-En el día a día comúnmente los equipos de software en este caso mobile tenemos la responsabilidad de implementar soluciones enfocadas en el negocio, proveer mejoras de funcionalidad, reparar bugs, cumplir con deadlines, entre otras y al final el objetivo es lograr que un usuario pueda disfrutar de nuestro producto de la mejor forma posible. 
+En el día a día comúnmente los equipos de software (mobile) tenemos la responsabilidad de implementar soluciones enfocadas en el negocio, proveer mejoras de funcionalidad, reparar bugs, cumplir con deadlines, entre otras y al final el objetivo es lograr que un usuario pueda disfrutar de nuestro producto de la mejor forma posible. 
 
-Para que un build llegue a Google Play Console hay un camino largo y en ocasiones complicado por cual debemos pasar, la falta de automatización de procesos, la no cultura de pruebas automatizadas/manuales o procesos complejos con el equipo de QA son el tipo de problemas más recurrentes a los que me he enfrentado como developer en diversos proyectos.
+Para que un build llegue a Google Play Console hay un camino largo y en ocasiones complicado, la falta de automatización de procesos, la no cultura de pruebas automatizadas/manuales o procesos complejos con el equipo de QA, son el tipo de problemas más recurrentes a los que me he enfrentado como developer en diversos proyectos.
 
-No tienes un buen flujo de release, cuando:
+## Common Problems
+
+**No tienes un buen flujo de release, cuando:**
 
 * El lead del equipo tiene que generar el build manualmente en su máquina.
 * Solo un miembro del equipo sabe cómo hacer un release.
@@ -25,13 +27,11 @@ No tienes un buen flujo de release, cuando:
 * El equipo de QA no sabe que probar y pregunta cada hora si ya esta listo el build.
 * Te preguntan qué incluye este nuevo build
 * No es sencillo generar otra versión tras una regresión si se encontraron errores y se repararon.
+* Necesitamos liberar mañana “ya como este no hay tiempo”
 
-Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo lo hemos solucionado aplicando estas prácticas en algunos proyectos para lograr mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio flujo de trabajo, recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
+Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el cómo lo hemos solucionado aplicando estas prácticas en algunos proyectos para lograr mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
 
-
-## Intro to automated android releases
-
-Antes de mostrar la implementación me gustaría sugerir que si estas en el camino de automatizar, definas un git workflow con tu equipo ya que puede ser un primer paso y parte del éxito depende de esto, utiliza el que mejor se adapte al proyecto y vaya acorde a tus flujos de trabajo establecidos.
+## Understanding automation software strategies
 
 ### Software Delivery
 
@@ -44,19 +44,17 @@ Es aquí donde la compilación automatizada, verificación de code style, code a
 
 Es una disciplina y forma de hacer software en la cual tiene como objetivo que siempre se pueda llevar build a producción en cualquier momento. Es una práctica compleja dado que requiere de procesos internos y mejorar formas de trabajo dentro del equipo, como bien sabemos para distribuir una aplicación en Google Play requiere de ser firmada antes lo que lo dificulta un poco más la implementación.
 
-En nuestro caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o Firebase App Distribution por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos **continuous development** por que cada cosa que integramos no va a producción directamente, va a nuestro ambiente de pruebas.
+En este caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos **continuous development** por que cada cosa que integramos nuevo código no va a producción directamente, va a nuestro ambiente de pruebas.
 
 Así que para mantenerlo simple y sin ponernos un tanto filosóficos automatizar un release de android lo resumiría en la forma en la que mantenemos el producto de software en estado liberable, lo que permite llevar a producción funciones de manera rápida, así como responder ante cualquier falla que pueda ocurrir. 
 
-
 ## Tooling to automate android releases
-
 
 ### Continuous Integration Tool
 
-Existen algunas alternativas en el mercado que te pueden ayudar a implementar CI dependiendo las necesidades de tu proyecto. En mi experiencia he podido usar gran parte de estas herramientas, la complejidad de integración en ocasiones depende mucho de qué plataforma git utilizas bitbucket, gitlab, github u otro ;pero la mayoría de veces la configuración es similar. 
+Existen algunas alternativas en el mercado que te pueden ayudar a implementar CI dependiendo las necesidades de tu proyecto. En mi experiencia he podido usar gran parte de estas herramientas, la complejidad de integración en ocasiones depende mucho de qué plataforma git utilizas [bitbucket](https://bitbucket.org/product/), [gitlab](https://about.gitlab.com/), [github](https://github.com/) u otro ;pero la mayoría de veces la configuración es similar. 
 
-Actualmente utilizamos Travis CI dado que tenemos alojado el proyecto en github, y es la herramienta que mejor dominamos en el equipo, aún así  puedes mirar otras alternativas:
+Actualmente utilizamos [Travis CI](https://docs.travis-ci.com/) dado que tenemos alojado el proyecto en github, y es la herramienta que mejor dominamos en el equipo, aún así  puedes mirar otras alternativas:
 
 * [Travis CI](https://docs.travis-ci.com/)
 * [Jenkins](https://jenkins.io/doc/)
@@ -81,4 +79,8 @@ Existen 4 formas de distribuir una app en Firebase App Distribution:
 * [fastlane](https://firebase.google.com/docs/app-distribution/android/distribute-fastlane) 
 * [Gradle](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
 
-Si deseas integrarlo con tu servicio de continuous integration la opción a utilizar es gradle o fastlane si tu proyecto lo utiliza. En nuestro caso utilizamos la configuración de gradle para integrar con [Travis CI](https://docs.travis-ci.com/).
+Si deseas integrarlo con tu servicio de [continuous integration](https://martinfowler.com/articles/continuousIntegration.html) la opción a utilizar es gradle o fastlane si tu proyecto lo utiliza. En nuestro caso utilizamos la configuración de gradle para integrar con [Travis CI](https://docs.travis-ci.com/).
+
+El objetivo de esta introducción es entender los problemas a los que nos enfrentamos en el día a día como mobile developers, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. 
+
+En el siguiente post muestro compartiré algunos tips para que puedas implementarlo en tu proyecto. 
