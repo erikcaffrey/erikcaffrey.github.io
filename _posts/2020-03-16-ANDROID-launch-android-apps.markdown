@@ -524,6 +524,8 @@ La importancia de mantener un producto de software en estado liberable, en el cu
 
 [Leer Parte 1](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html)
 
+**¡Espero que sea de ayuda y si lo encuentras interesante ayúdame a compartirlo!**
+
 #### Further reading
 
 * [Build Script Basics](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)
