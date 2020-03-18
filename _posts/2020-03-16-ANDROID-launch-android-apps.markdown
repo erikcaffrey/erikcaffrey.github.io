@@ -9,7 +9,7 @@ author: erik
 
 # WORK IN PROGRESS!
 
-Antes de comenzar con la integración técnica te sugiero leer el [post anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para entender el **workflow** que estaremos implementando. 
+Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo la implementación. Para tener una mejor visión de lo que intento transmitir te será de ayuda revisar mi [articulo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener un contexto general.
 
 ## Sign your app automatically
 
@@ -251,7 +251,7 @@ En este [link](https://firebase.google.com/docs/app-distribution/android/distrib
 
 ### BuildTypes + FirebaseAppDistribution
 
-#### Debug Release
+#### Debug Build Type
 
 En el [flujo que definimos](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) cada merge a **master** tiene que distribuir un build en firebase con el último commit al termino de un Job en travis CI. 
 
@@ -305,7 +305,7 @@ Change Log
 This file was automatically generated.
 ```
 
-#### Prod Release
+#### Release Build Type
 
 Para el build de producción la configuración es realmente idéntica a diferencia que no generamos el release notes automáticamente, ya que la idea es que cuando creamos un release candidate lo modifiquemos con los textos necesarios y amigables dado que son los que se mostrarán en Google Play Store. 
 
@@ -322,22 +322,84 @@ Para el build de producción la configuración es realmente idéntica a diferenc
 
 ```
 
-###  Configure Travis Job
+###  Configure Android Travis Job
 
 Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con [Travis CI + Android](https://docs.travis-ci.com/user/languages/android/). Cada Job en Travis CI tiene un [ciclo de vida](https://docs.travis-ci.com/user/job-lifecycle/) y la parte que necesitamos enteder es conocida como `deploy`, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, solo se agrega esta fase si se necesita automatizar un deploy. 
+
+#### Debug Release
+
+Como he mencionado antes en nuestro [workflow](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html), cada merge a master debe hacer deploy automáticamente en firebase app distribution y para lograrlo es necesario especificarle al job de travis el branch de donde debe generar el build y el conjunto de tasks a ejecutar. 
 
 ```console 
 
 deploy:
   - provider: script
     script:
-      ./gradlew $RELEASE_NOTES_TASK assembleDebug appDistributionUploadDebug
+      ./gradlew generateReleaseNotes assembleDebug appDistributionUploadDebug
     on:
       branch: master
     skip_cleanup: true
 
+```
+
+#### Prod Release
+
+Para generar un build de release y distribuirlo en firebase solemos definir una condición `$TRAVIS_BRANCH =~ ^release-.*$` que lo que hace es validar que nuestro branch contenga un nombre como **release-1.0** para poder generar ejecutar el script. Es importante mencionar que este branch es generado a partir de **master** cuando el equipo decide hacer un release por lo que a partir de ese momento se convierte en un branch candidate. 
+
+```console 
+
+  - provider: script
+    script:
+      ./gradlew assembleRelease appDistributionUploadRelease
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^release-.*$
+    skip_cleanup: true
 
 ```
 
+### App Bundle in Firebase App Distribution
 
+Desafortunadamente aún**no** es posible distribuir un file `.aab` o mejor conocidos como [app bundles](https://developer.android.com/guide/app-bundle), la plataforma no lo soporta ;pero lo que hacemos en lugar de generar un bundle generamos un [apk universal](https://developer.android.com/studio/build/configure-apk-splits) mediante las tasks `packageDebugUniversalApk` y `packageReleaseUniversalApk` evitando instalar y administrar todo mediante el [bundletool](https://github.com/google/bundletool). Es una solución que nos permite hacer pruebas internas con un build de release de forma simple sin preocuparnos del todo por cómo probar un **app bundle** sin tener que ponerlo en Google Play. 
 
+La configuración utilizada es la siguiente: 
+
+Es importante entender que el output de ejecutar estas tareas cambia el path default por lo que es necesario utilizar el parámetro `apkPath` para especificar el lugar a donde debe ir a buscar el `apk` que normalmente es en el path **app/build/outputs/universal_apk/debug/app-debug-universal.apk** para el caso de debug. 
+
+**build.gradle**
+
+```gradle
+
+     firebaseAppDistribution {
+                releaseNotesFile = rootProject.file("gradle-scripts/distribution/release_notes.txt")
+                groups = "internal-testers"
+                apkPath = rootProject.file("app/build/outputs/universal_apk/debug/app-debug-universal.apk")
+                serviceCredentialsFile = rootProject.file("gradle-scripts/distribution/service-account.json")
+     }
+
+```
+
+**.travis.yml**
+
+```console
+
+script:
+  - ./gradlew packageDebugUniversalApk packageReleaseUniversalApk
+
+deploy:
+  - provider: script
+    script:
+      ./gradlew generateReleaseNotes appDistributionUploadDebug
+    on:
+      branch: master
+    skip_cleanup: true
+
+  - provider: script
+    script:
+      ./gradlew appDistributionUploadRelease
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^release-.*$
+    skip_cleanup: true
+
+```
