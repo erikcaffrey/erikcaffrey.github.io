@@ -117,6 +117,8 @@ El objetivo de este primer post es entender los problemas a los que nos enfrenta
 
 [Leer Parte 2](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)
 
+**¡Espero que sea de ayuda y si lo encuentras interesante ayúdame a compartirlo!**
+
 #### Further reading
 
 * [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html)
