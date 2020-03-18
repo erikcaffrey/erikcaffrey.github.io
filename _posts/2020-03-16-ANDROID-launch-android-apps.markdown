@@ -289,6 +289,7 @@ Para generar el release notes especificado en **releaseNotesFile** se hace media
        releaseNotes << "This file was automatically generated."
    })
 }
+``` 
 
 El archivo generado tiene la siguiente información:
 
@@ -306,7 +307,7 @@ This file was automatically generated.
 
 #### Prod Release
 
-Para el build de producción la configuración es realmente idéntica a diferencia que no generamos el release notes automáticamente, ya que la idea es que cuando creamos un release candidate lo modifiquemos con los mensajes necesarios dado que esos textos son los que se mostrarían en Google Play store y los que el usuario podría mirar.  
+Para el build de producción la configuración es realmente idéntica a diferencia que no generamos el release notes automáticamente, ya que la idea es que cuando creamos un release candidate lo modifiquemos con los textos necesarios y amigables dado que son los que se mostrarán en Google Play Store. 
 
 ```gradle 
 
@@ -321,4 +322,22 @@ Para el build de producción la configuración es realmente idéntica a diferenc
 
 ```
 
-# WORK IN PROGRESS!
+###  Configure Travis Job
+
+Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con [Travis CI + Android](https://docs.travis-ci.com/user/languages/android/). Cada Job en Travis CI tiene un [ciclo de vida](https://docs.travis-ci.com/user/job-lifecycle/) y la parte que necesitamos enteder es conocida como `deploy`, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, solo se agrega esta fase si se necesita automatizar un deploy. 
+
+```console 
+
+deploy:
+  - provider: script
+    script:
+      ./gradlew $RELEASE_NOTES_TASK assembleDebug appDistributionUploadDebug
+    on:
+      branch: master
+    skip_cleanup: true
+
+
+```
+
+
+
