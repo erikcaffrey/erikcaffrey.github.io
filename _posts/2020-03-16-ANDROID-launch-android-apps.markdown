@@ -8,11 +8,11 @@ featured: true
 author: erik
 ---
 
-Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo este tipo de implementaciones, de igual forma me gustaría recomendarte pasar por mi [articulo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener una visión general sobre el tema.
+Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo este tipo de implementaciones, de igual forma me gustaría recomendarte pasar por mi [artículo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener una visión general sobre el tema.
 
 ## Sign your app automatically
 
-Sabemos que android requiere que todos los APK o Bundle estén firmados digitalmente con un certificado antes de que se instalen en un dispositivo o se actualicen. Firmar una aplicación se puede hacer de distintas formas ;pero para poder integrar con nuestro servicio de integración continua y este pueda generar un build de forma automática necesitamos que la configuración local del proyecto sea compatible con Travis CI. 
+Sabemos que android requiere que todos los APK o Bundle estén firmados digitalmente con un certificado antes de que se instalen en un dispositivo o se actualicen. Firmar una aplicación se puede hacer de distintas formas; pero para poder integrar con nuestro servicio de integración continua y éste pueda generar un build de forma automática necesitamos que la configuración local del proyecto sea compatible con Travis CI. 
 
 Usualmente lo resuelvo creando un archivo **signing.gradle** ubicado en **/AndroidStudio/android-project/gradle-scripts/google**.
 
@@ -72,7 +72,7 @@ ext {
 
 ```
 
-En la función **signingDebug** y **signingProduction** sirven para asignar el **keyAlias**, **storePassword**, **keyPassword** y todo lo necesario para [firmar un build](https://developer.android.com/studio/publish/app-signing#generate-key). Puedes mirar que hay una validación **propertiesFile.exists()** encargada de validar si está ejecutando en local (AS) o en un Travis Job, ya que busca la configuración en local en el archivo `debug.properties` y `release.properties`(Estos archivos estan normalmente en el .gitignore) y si no encuentra lee las [variables de entorno declaradas](https://docs.travis-ci.com/user/environment-variables/) en Travis CI. 
+En la función **signingDebug** y **signingProduction** sirven para asignar el **keyAlias**, **storePassword**, **keyPassword** y todo lo necesario para [firmar un build](https://developer.android.com/studio/publish/app-signing#generate-key). Puedes mirar que hay una validación **propertiesFile.exists()** encargada de validar si está ejecutando en local (AS) o en un Travis Job, ya que busca la configuración en local en el archivo `debug.properties` y `release.properties`(Estos archivos están normalmente en el .gitignore) y si no encuentra lee las [variables de entorno declaradas](https://docs.travis-ci.com/user/environment-variables/) en Travis CI. 
 
 `debug.properties`
 
@@ -106,11 +106,11 @@ signingConfigs {
 
 ## Automate versionCode and versionName
 
-Una de las tareas que en ocasiones se vuelve tediosa de mantener es el número y nombre de una versión, cada que hacemos un release nuevo implica modificar esto de forma manual para evitarlo usualmente creamos un archivo **version.properties** el cual contiene el número de versión de la aplicación y un script **app-distribution.gradle** cuyo objetivo es leer el archivo properties y generar el nombre de la versión, ambos archivos estan ubicados en **/AndroidStudio/android-project/gradle-scripts/distribution**. 
+Una de las tareas que en ocasiones se vuelve tediosa de mantener es el número y nombre de una versión, cada que hacemos un release nuevo implica modificar esto de forma manual para evitarlo usualmente creamos un archivo **version.properties** el cual contiene el número de versión de la aplicación y un script **app-distribution.gradle** cuyo objetivo es leer el archivo properties y generar el nombre de la versión, ambos archivos están ubicados en **/AndroidStudio/android-project/gradle-scripts/distribution**. 
 
 **version.properties**
 
-Cada que realices un release solo tienes que incrementar alguno de estos valores. 
+Cada que realices un release sólo tienes que incrementar alguno de estos valores. 
 
 ```gradle
 MAJOR=1
@@ -162,7 +162,7 @@ private static def generateBuildTime() {
 
 ```
 
-Para usar el script gradle que hemos generado se aplica en **build.gradle** del modulo `app`.
+Para usar el script gradle que hemos generado se aplica en **build.gradle** del módulo `app`.
 
 ```gradle 
 
@@ -214,7 +214,7 @@ buildscript {
 
 ```
 
-Aplicar el plugin en el **build.gradle** del modulo `app`.
+Aplicar el plugin en el **build.gradle** del módulo `app`.
 
 ```gradle
 
@@ -239,11 +239,11 @@ Para distribuir una aplicación en firebase es necesario configurar [firebaseApp
 
 ### App Distribution Build Parameters
 
-En este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) puedes encontrar lista completa de parametros.
+En este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) puedes encontrar lista completa de parámetros.
 
-**releaseNotesFile:** Se usa para especificar el archivo `.txt` que contendra nuestro release notes.
+**releaseNotesFile:** Se usa para especificar el archivo `.txt` que contendrá nuestro release notes.
 
-**groups:** Es el grupo de testers para el que va dirigido el build, podrías utilizar otro parámetro llamado `testers` aún que implica ingresar una lista de correos, así que te recomiendo crear un grupo de testers en la consola de firebase y de esa forma controlar quienes tienen acceso a tus builds.
+**groups:** Es el grupo de testers para el que va dirigido el build, podrías utilizar otro parámetro llamado `testers` aúnque implica ingresar una lista de correos, así que te recomiendo crear un grupo de testers en la consola de firebase y de esa forma controlar quienes tienen acceso a tus builds.
 
 **serviceCredentialFile:** Es necesario especificar un [service account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase y Google Play desde nuestro sistema de CI.
 
@@ -324,7 +324,7 @@ Para el build de producción la configuración es realmente idéntica a diferenc
 
 ### Configure Travis Job
 
-Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con [Travis CI + Android](https://docs.travis-ci.com/user/languages/android/). Cada Job en Travis CI tiene un [ciclo de vida](https://docs.travis-ci.com/user/job-lifecycle/) y la parte que necesitamos enteder es conocida como `deploy`, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, solo se agrega esta fase si se necesita automatizar un deploy. 
+Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con [Travis CI + Android](https://docs.travis-ci.com/user/languages/android/). Cada Job en Travis CI tiene un [ciclo de vida](https://docs.travis-ci.com/user/job-lifecycle/) y la parte que necesitamos enteder es conocida como `deploy`, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, sólo se agrega esta fase si se necesita automatizar un deploy. 
 
 #### Debug Release
 
@@ -360,7 +360,7 @@ Para generar un build de release y distribuirlo en firebase solemos definir una 
 
 ### App Bundle in Firebase App Distribution
 
-La aplicación en la que trabajo actualmente esta diseñada para hacer uso de [dynamic features](https://developer.android.com/guide/app-bundle/dynamic-delivery) por lo que en Google Play solemos distribuir un [app bundle](https://developer.android.com/guide/app-bundle) ;pero desafortunadamente **aún no** es posible subir un file `.aab` en firebase app distribution, no es un formato soportado, así para darle la vuelta generamos un **apk universal** mediante las tasks`packageDebugUniversalApk` o `packageReleaseUniversalApk` evitando instalar el [bundletool](https://github.com/google/bundletool). Es una solución que nos permite hacer pruebas internas con un build de release de forma fácil sin preocuparnos del todo en este momento por cómo probar un app bundle, ya que ahora mismo la única forma de hacerlo es mediante Google Play. 
+La aplicación en la que trabajo actualmente está diseñada para hacer uso de [dynamic features](https://developer.android.com/guide/app-bundle/dynamic-delivery) por lo que en Google Play solemos distribuir un [app bundle](https://developer.android.com/guide/app-bundle) ;pero desafortunadamente **aún no** es posible subir un file `.aab` en firebase app distribution, no es un formato soportado, así para darle la vuelta generamos un **apk universal** mediante las tasks`packageDebugUniversalApk` o `packageReleaseUniversalApk` evitando instalar el [bundletool](https://github.com/google/bundletool). Es una solución que nos permite hacer pruebas internas con un build de release de forma fácil sin preocuparnos del todo en este momento por cómo probar un app bundle, ya que ahora mismo la única forma de hacerlo es mediante Google Play. 
 
 La configuración utilizada es la siguiente: 
 
@@ -520,7 +520,7 @@ Esta es una configuración que podría ayudarte de manera inicial aunque puedes 
 
 ### Conclusion
 
-La importancia de mantener un producto de software en estado liberable, en el cual obtener feedback sea simple, donde podamos responder a cualquier falla e iterar de forma rápida es una disciplina en la que se debe trabajar fuertemente como equipo para lograrlo. Asegurar la calidad de cada cosa que llega a producción, así como proveer mejores experiencias a nuestros usuarios son tareas que a veces como olvidamos ;pero recuerda nuestra misión es que el usuario disfrute y se ayude del producto que desarrollamos y automatizar es un gran paso para frenar todas esas fricciones manuales que vivimos en el día a día, es mejorar los procesos internos dentro de una compañía, es hacer nuestro trabajo de forma más profesional que contribuye y genera valor para todo el equipo. 
+La importancia de mantener un producto de software en estado liberable, en el cual obtener feedback sea simple, donde podamos responder a cualquier falla e iterar de forma rápida es una disciplina en la que se debe trabajar fuertemente como equipo para lograrlo. Asegurar la calidad de cada cosa que llega a producción, así como proveer mejores experiencias a nuestros usuarios son tareas que a veces como olvidamos; pero recuerda nuestra misión es que el usuario disfrute y se ayude del producto que desarrollamos y automatizar es un gran paso para frenar todas esas fricciones manuales que vivimos en el día a día, es mejorar los procesos internos dentro de una compañía, es hacer nuestro trabajo de forma más profesional que contribuye y genera valor para todo el equipo. 
 
 [Leer Parte 1](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html)
 
