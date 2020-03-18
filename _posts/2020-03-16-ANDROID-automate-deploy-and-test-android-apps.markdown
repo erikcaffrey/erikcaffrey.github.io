@@ -17,22 +17,22 @@ Para que un build llegue a Google Play Console hay un camino largo y en ocasione
 **No tienes un buen flujo de release, cuando:**
 
 * El lead del equipo tiene que generar el build manualmente en su máquina.
-* Solo un miembro del equipo sabe cómo hacer un release.
+* Sólo un miembro del equipo sabe cómo hacer un release.
 * Tienes que conectar un device a tu computadora para que alguien de tu equipo pueda probar esa versión del apk o el bundle
 * Envías un apk por slack, drive, dropbox u otra. 
 * No puedes hacer de forma fácil hotfix, no tienes un release branch o un tag que te permita solucionarlo de forma fácil sin tener que pasar toda la regresión de la versión.
 * Alguien de tu equipo necesita mostrar un avance prematuro y no se puede hacer el release por que se “rompe” en alguna parte.
 * Firmas manualmente el apk o bundle y luego arrastras a Google Play Console.
-* El equipo de QA no sabe que probar y pregunta cada hora si ya esta listo el build.
+* El equipo de QA no sabe qué probar y pregunta cada hora si ya está listo el build.
 * Te preguntan qué incluye este nuevo build
 * No es sencillo generar otra versión tras una regresión si se encontraron errores y se repararon.
 * No puedes liberar en cualquier momento “ya con lo que tenga no hay tiempo”
 
-Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el [cómo solucionarlo](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)) aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te de una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no solo a los mobile developers.
+Quizás alguno de estos puntos te parezca familiar y probablemente te pasen en tu día a día, por tal razón quiero mostrar el [cómo solucionarlo](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)) aplicando estrategias que ayuden a mejorar la experiencia de hacer un release, quizás te sea de utilidad y logres llevarlo a tu equipo, o te dé una idea para crear tu propio [flujo](https://nvie.com/posts/a-successful-git-branching-model/) de [trabajo](https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2), recuerda que cada release impacta a todo el equipo no sólo a los mobile developers.
 
 ## Why automate the app release matters?
 
-En experiencias pasadas me toco mirar que se lanzaban aplicaciones de producción a Google Play sin ser probadas por diversos motivos, mucho tiempo en generar un build, ya se tiene que hacer el release, no hay tiempo, lánzalo y luego lo reparamos, etc. El resultado de aplicar estas malas prácticas es: muchos usuarios insatisfechos, uninstalls, malos ratings en google play, crashes en flujos core, baja el números de usuarios activos y como consecuencia termina afectado el negocio desafortunadamente. 
+En experiencias pasadas me tocó mirar que se lanzaban aplicaciones de producción a Google Play sin ser probadas por diversos motivos, mucho tiempo en generar un build, ya se tiene que hacer el release, no hay tiempo, lánzalo y luego lo reparamos, etc. El resultado de aplicar estas malas prácticas es: muchos usuarios insatisfechos, uninstalls, malos ratings en google play, crashes en flujos core, baja el números de usuarios activos y como consecuencia termina afectado el negocio desafortunadamente. 
 
 **Alguna razones más por la cuales importa automatizar:**
 
@@ -44,7 +44,7 @@ En experiencias pasadas me toco mirar que se lanzaban aplicaciones de producció
 * Todo el equipo puede y tiene el conocimiento para hacer un release
 * Podemos obtener feedback rápido 
 * Es fácil atender hotfixes 
-* Visibilidad para que todo el equipo pueda ir viendo avances y saben que esta pasando
+* Visibilidad para que todo el equipo pueda ir viendo avances y saben qué está pasando
 * Personas no tech pueden probar la app de forma simple. 
 
 ## Understanding automation software strategies
@@ -58,7 +58,7 @@ Es aquí donde la compilación automatizada, verificación de code style, code a
 
 Es una disciplina y forma de hacer software en la cual tiene como objetivo que siempre se pueda llevar build a producción en cualquier momento. Es una práctica compleja dado que requiere de procesos internos y mejorar formas de trabajo dentro del equipo, como bien sabemos para distribuir una aplicación en Google Play requiere de ser firmada antes lo que dificulta un poco más la implementación.
 
-En este caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) por que el flujo de trabajo que usamos es enfocado más a desarrollar features ;pero tampoco hacemos **continuous development** por que cada cosa que integramos nuevo código no va a producción directamente, va a nuestro ambiente de pruebas.
+En este caso podríamos decir que no hacemos del todo [continuous delivery](https://martinfowler.com/bliki/ContinuousDelivery.html) por el simple hecho de poner un build de forma automatizada y requerir de presionar un botón para hacer el release en Google Play Store o [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) por que el flujo de trabajo que usamos es enfocado más a desarrollar features; pero tampoco hacemos **continuous development** porque cada cosa que integramos nuevo código no va a producción directamente, va a nuestro ambiente de pruebas.
 
 Así que para mantenerlo simple y sin ponernos un tanto filosóficos **automatizar un release de android** lo resumiría en la forma en la que mantenemos el producto de software en estado liberable, lo que permite llevar a producción funciones de manera rápida, así como responder ante cualquier falla que pueda ocurrir. 
 
@@ -66,7 +66,7 @@ Así que para mantenerlo simple y sin ponernos un tanto filosóficos **automatiz
 
 ### Continuous Integration Tool
 
-Existen algunas alternativas en el mercado que te pueden ayudar a implementar CI dependiendo las necesidades de tu proyecto. En mi experiencia he podido usar gran parte de estas herramientas, la complejidad de integración en ocasiones depende mucho de qué plataforma git utilizas [bitbucket](https://bitbucket.org/product/), [gitlab](https://about.gitlab.com/), [github](https://github.com/) u otro ;pero la mayoría de veces la configuración es similar. 
+Existen algunas alternativas en el mercado que te pueden ayudar a implementar CI dependiendo las necesidades de tu proyecto. En mi experiencia he podido usar gran parte de estas herramientas, la complejidad de integración en ocasiones depende mucho de qué plataforma git utilizas [bitbucket](https://bitbucket.org/product/), [gitlab](https://about.gitlab.com/), [github](https://github.com/) u otro; pero la mayoría de veces la configuración es similar. 
 
 Actualmente utilizamos [Travis CI](https://docs.travis-ci.com/) dado que tenemos alojado el proyecto en github, y es la herramienta que mejor dominamos en el equipo, aún así  puedes mirar otras alternativas:
 
