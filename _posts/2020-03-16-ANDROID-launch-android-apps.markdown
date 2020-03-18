@@ -7,8 +7,6 @@ categories: blog
 author: erik
 ---
 
-# WORK IN PROGRESS!
-
 Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo la implementación. Para tener una mejor visión de lo que intento transmitir te será de ayuda revisar mi [articulo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener un contexto general.
 
 ## Sign your app automatically
@@ -322,7 +320,7 @@ Para el build de producción la configuración es realmente idéntica a diferenc
 
 ```
 
-###  Configure Android Travis Job
+### Configure Travis Job
 
 Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con [Travis CI + Android](https://docs.travis-ci.com/user/languages/android/). Cada Job en Travis CI tiene un [ciclo de vida](https://docs.travis-ci.com/user/job-lifecycle/) y la parte que necesitamos enteder es conocida como `deploy`, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, solo se agrega esta fase si se necesita automatizar un deploy. 
 
@@ -360,11 +358,11 @@ Para generar un build de release y distribuirlo en firebase solemos definir una 
 
 ### App Bundle in Firebase App Distribution
 
-Desafortunadamente aún**no** es posible distribuir un file `.aab` o mejor conocidos como [app bundles](https://developer.android.com/guide/app-bundle), la plataforma no lo soporta ;pero lo que hacemos en lugar de generar un bundle generamos un [apk universal](https://developer.android.com/studio/build/configure-apk-splits) mediante las tasks `packageDebugUniversalApk` y `packageReleaseUniversalApk` evitando instalar y administrar todo mediante el [bundletool](https://github.com/google/bundletool). Es una solución que nos permite hacer pruebas internas con un build de release de forma simple sin preocuparnos del todo por cómo probar un **app bundle** sin tener que ponerlo en Google Play. 
+La aplicación en la que trabajo actualmente esta diseñada para hacer uso de [dynamic features](https://developer.android.com/guide/app-bundle/dynamic-delivery) por lo que en Google Play solemos distribuir un [app bundle](https://developer.android.com/guide/app-bundle) ;pero desafortunadamente **aún no** es posible subir un file `.aab` en firebase app distribution, no es un formato soportado, así para darle la vuelta generamos un **apk universal** mediante las tasks`packageDebugUniversalApk` o `packageReleaseUniversalApk` evitando instalar el [bundletool](https://github.com/google/bundletool). Es una solución que nos permite hacer pruebas internas con un build de release de forma fácil sin preocuparnos del todo en este momento por cómo probar un app bundle, ya que ahora mismo la única forma de hacerlo es mediante Google Play. 
 
 La configuración utilizada es la siguiente: 
 
-Es importante entender que el output de ejecutar estas tareas cambia el path default por lo que es necesario utilizar el parámetro `apkPath` para especificar el lugar a donde debe ir a buscar el `apk` que normalmente es en el path **app/build/outputs/universal_apk/debug/app-debug-universal.apk** para el caso de debug. 
+Es importante entender que el output de ejecutar estas tareas cambia el path default por lo que es necesario utilizar el parámetro `apkPath` para especificar el lugar a donde debe ir a buscar el `apk` que normalmente es en el path **app/build/outputs/universal_apk/release/app-release-universal.apk** para el caso de release. 
 
 **build.gradle**
 
@@ -373,7 +371,7 @@ Es importante entender que el output de ejecutar estas tareas cambia el path def
      firebaseAppDistribution {
                 releaseNotesFile = rootProject.file("gradle-scripts/distribution/release_notes.txt")
                 groups = "internal-testers"
-                apkPath = rootProject.file("app/build/outputs/universal_apk/debug/app-debug-universal.apk")
+                apkPath = rootProject.file("app/build/outputs/universal_apk/release/app-release-universal.apk")
                 serviceCredentialsFile = rootProject.file("gradle-scripts/distribution/service-account.json")
      }
 
@@ -384,6 +382,112 @@ Es importante entender que el output de ejecutar estas tareas cambia el path def
 ```console
 
 script:
+  - ./gradlew packageReleaseUniversalApk
+
+deploy:
+  
+  - provider: script
+    script:
+      ./gradlew appDistributionUploadRelease
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^release-.*$
+    skip_cleanup: true
+
+```
+
+## Google Play + Travis CI
+
+Generar un release a Google Play Store es medianamente simple si utilizas el conocido plugin [gradle-play-publisher](https://github.com/Triple-T/gradle-play-publisher), la configuración es sencilla y se integra de una forma rápida con Travis CI. En nuestro caso lo que hacemos es liberar un **app bundle** en nuestro stage “internal” cuando se crea un **tag** release `1.0.0`. Así que puedes iniciar pruebas con usuarios reales e ir pasando de stage hasta llegar al 100% en producción. 
+
+**build.gradle**
+
+```gradle
+
+classpath "com.github.triplet.gradle:play-publisher:2.7.2"
+
+...
+
+apply plugin: "com.github.triplet.play"
+
+...
+
+play {
+    serviceAccountCredentials = rootProject.file("gradle-scripts/distribution/service-account.json")
+    track = "internal"
+    userFraction = 0.5
+    releaseStatus = "inProgress"
+}
+
+
+```
+
+**.travis.yml**
+
+```console
+
+ deploy:
+
+  - provider: script
+    script:
+      ./gradlew publishReleaseBundle
+    on:
+      tags: true
+    skip_cleanup: true
+
+```
+
+### Android + Travis CI 
+
+Desde un enfoque más general un archivo `.travis.yml` tiene la siguiente estructura: 
+
+```console
+
+language: android
+jdk: oraclejdk8
+
+branches:
+ only:
+  - master
+  # Release Branches : "release-0.1"
+  - /^release-\d+\.\d+$/
+  # Release Tags: "0.1.0"
+  - /^\d+\.\d+\.\d+$/
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    - android-$ANDROID_API_LEVEL
+    - extra-android-support
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+licenses:
+  - 'android-sdk-preview-license-.+'
+  - 'android-sdk-license-.+'
+  - 'google-gdk-license-.+'
+
+script:
+  #execute checkstyles, tests suite, linters, code analysis.
   - ./gradlew packageDebugUniversalApk packageReleaseUniversalApk
 
 deploy:
@@ -402,4 +506,10 @@ deploy:
       condition: $TRAVIS_BRANCH =~ ^release-.*$
     skip_cleanup: true
 
+  - provider: script
+    script:
+      ./gradlew publishReleaseBundle
+    on:
+      tags: true
+    skip_cleanup: true
 ```
