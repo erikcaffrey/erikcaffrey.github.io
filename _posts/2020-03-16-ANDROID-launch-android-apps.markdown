@@ -4,6 +4,7 @@ cover:  assets/images/2020/3/launch-workflow.png
 title: Distribuye una Android App (Part 2)
 date: 2020-03-16 00:00:00 +0545
 categories: blog
+featured: true
 author: erik
 ---
 
@@ -520,6 +521,7 @@ Esta es una configuración que podría ayudarte de manera inicial aunque puedes 
 
 La importancia de mantener un producto de software en estado liberable, en el cual obtener feedback sea simple, donde podamos responder a cualquier falla e iterar de forma rápida es una disciplina en la que se debe trabajar fuertemente como equipo para lograrlo. Asegurar la calidad de cada cosa que llega a producción, así como proveer mejores experiencias a nuestros usuarios son tareas que a veces como olvidamos ;pero recuerda nuestra misión es que el usuario disfrute y se ayude del producto que desarrollamos y automatizar es un gran paso para frenar todas esas fricciones manuales que vivimos en el día a día, es mejorar los procesos internos dentro de una compañía, es hacer nuestro trabajo de forma más profesional que contribuye y genera valor para todo el equipo. 
 
+[Leer Parte 1](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html)
 
 #### Further reading
 

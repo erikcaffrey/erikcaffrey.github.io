@@ -4,7 +4,6 @@ cover:  assets/images/2016/1/clean.png
 title: Aplicando Clean Architecture en Android
 date: 2016-01-28 00:00:00 +0545
 categories: blog
-featured: true
 author: erik
 ---
 

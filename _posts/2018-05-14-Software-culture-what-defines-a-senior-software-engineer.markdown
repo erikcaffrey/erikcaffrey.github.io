@@ -4,7 +4,6 @@ cover:  assets/images/2018/5/senior_dev.png
 title: What Defines a Senior Software Engineer?
 date: 2018-05-14 00:00:00 +0545
 categories: blog
-featured: true
 author: erik
 ---
 

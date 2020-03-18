@@ -4,6 +4,7 @@ cover:  assets/images/2020/3/automate-part1.jpg
 title: Automatiza y Prueba una Android App (Part 1)
 date: 2020-03-16 00:00:00 +0545
 categories: blog
+featured: true
 author: erik
 ---
 
