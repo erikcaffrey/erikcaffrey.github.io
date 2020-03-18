@@ -72,7 +72,7 @@ ext {
 
 ```
 
-En la función **signingDebug** y **signingProduction** sirven para asignar el **keyAlias**, **storePassword**, **keyPassword** y todo lo necesario para [firmar un build](https://developer.android.com/studio/publish/app-signing#generate-key). Puedes mirar que hay una validación **propertiesFile.exists()** encargada de validar si está ejecutando en local (AS) o en un Travis Job, ya que va y busca la configuración en local en el archivo `debug.properties` y `release.properties`(Estos archivos estan normalmente en el .gitignore), si no encuentra lee las [variables de entorno declaradas](https://docs.travis-ci.com/user/environment-variables/) en Travis CI. 
+En la función **signingDebug** y **signingProduction** sirven para asignar el **keyAlias**, **storePassword**, **keyPassword** y todo lo necesario para [firmar un build](https://developer.android.com/studio/publish/app-signing#generate-key). Puedes mirar que hay una validación **propertiesFile.exists()** encargada de validar si está ejecutando en local (AS) o en un Travis Job, ya que busca la configuración en local en el archivo `debug.properties` y `release.properties`(Estos archivos estan normalmente en el .gitignore) y si no encuentra lee las [variables de entorno declaradas](https://docs.travis-ci.com/user/environment-variables/) en Travis CI. 
 
 `debug.properties`
 
@@ -239,12 +239,13 @@ Para distribuir una aplicación en firebase es necesario configurar [firebaseApp
 
 ### App Distribution Build Parameters
 
-En este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) puedes encontrar lista completa de parametros, en este punto quiero enfocarme en explicar solo los que necesitamos en este momento:
+En este [link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) puedes encontrar lista completa de parametros.
 
 **releaseNotesFile:** Se usa para especificar el archivo `.txt` que contendra nuestro release notes.
-**groups:** Es el grupo de testers para el que va dirigido el release, podrias utilizar `testers` pero implica poner la lista de correos te recomiendo crear un grupo de testers en la consola de firebase es más fácil de controlar quienes tienen acceso a ciertos builds,
 
-**serviceCredentialFile:** Es necesario especificar un [service account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase desde nuestro sistema de CI.
+**groups:** Es el grupo de testers para el que va dirigido el build, podrías utilizar otro parámetro llamado `testers` aún que implica ingresar una lista de correos, así que te recomiendo crear un grupo de testers en la consola de firebase y de esa forma controlar quienes tienen acceso a tus builds.
+
+**serviceCredentialFile:** Es necesario especificar un [service account](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts) ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase y Google Play desde nuestro sistema de CI.
 
 **apkPath:** Se utiliza para especificar a donde se tiene que buscar el APK generado, si no se especifica buscará en el default **build/outputs/apk/debug/app-yourbuildtype.apk**.
 
@@ -290,7 +291,7 @@ Para generar el release notes especificado en **releaseNotesFile** se hace media
 }
 ``` 
 
-El archivo generado tiene la siguiente información:
+El archivo generado contiene la siguiente información:
 
 **./release-notes.txt**
 
