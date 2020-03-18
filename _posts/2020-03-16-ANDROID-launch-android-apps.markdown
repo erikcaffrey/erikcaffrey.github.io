@@ -7,7 +7,7 @@ categories: blog
 author: erik
 ---
 
-Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo la implementación. Para tener una mejor visión de lo que intento transmitir te será de ayuda revisar mi [articulo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener un contexto general.
+Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo este tipo de implementaciones, de igual forma me gustaría recomendarte pasar por mi [articulo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener una visión general sobre el tema.
 
 ## Sign your app automatically
 
@@ -439,7 +439,7 @@ play {
 
 ### Android + Travis CI 
 
-Desde un enfoque más general un archivo `.travis.yml` tiene la siguiente estructura: 
+Desde un enfoque más general un archivo `.travis.yml` tiene la siguiente estructura:
 
 ```console
 
@@ -513,3 +513,20 @@ deploy:
       tags: true
     skip_cleanup: true
 ```
+
+Esta es una configuración que podría ayudarte de manera inicial aunque puedes mejorarla en cuanto a tiempos de build, conectar con una granja de dispositivos para ejecutar tus tests o a usar algún TestLab, meter más checkers son cosas que puedes ir agregando y mejorando a medida que tu proyecto va creciendo en conjunto con el número de contribuidores.
+
+### Conclusion
+
+La importancia de mantener un producto de software en estado liberable, en el cual obtener feedback sea simple, donde podamos responder a cualquier falla e iterar de forma rápida es una disciplina en la que se debe trabajar fuertemente como equipo para lograrlo. Asegurar la calidad de cada cosa que llega a producción, así como proveer mejores experiencias a nuestros usuarios son tareas que a veces como olvidamos ;pero recuerda nuestra misión es que el usuario disfrute y se ayude del producto que desarrollamos y automatizar es un gran paso para frenar todas esas fricciones manuales que vivimos en el día a día, es mejorar los procesos internos dentro de una compañía, es hacer nuestro trabajo de forma más profesional que contribuye y genera valor para todo el equipo. 
+
+
+#### Further reading
+
+* [Build Script Basics](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)
+* [Building an Android Project on Travis CI](https://docs.travis-ci.com/user/languages/android/)
+* [Firebase App Distribution](https://firebase.google.com/products/app-distribution)
+* [Gradle Play Publisher](https://github.com/Triple-T/gradle-play-publisher)
+* [BASH Programming - Introduction HOW-TO](https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html)
+
+**Redundant comments are just places to collect lies and misinformation. by Robert C. Martin**
