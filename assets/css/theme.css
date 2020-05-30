@@ -328,7 +328,7 @@ span.post-name a,span.post-read-more a:hover {
 	margin-bottom:1rem;
 }
 .intro {
-    background-color: #00363a;
+    background-color: #ffffff;
     background-size:cover;
     padding: 9rem 0;
     margin-top:-87px;
@@ -389,8 +389,8 @@ span.post-name a,span.post-read-more a:hover {
     margin-top: 10px;
 }
 .beforefooter {
-    background: #00363a;
-    color: #fff;
+    background: #ffffff;
+    color: #212121;
     padding: 50px 0;
     max-width: 100%;
     margin: 0px auto;
