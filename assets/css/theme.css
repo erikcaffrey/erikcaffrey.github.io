@@ -337,7 +337,7 @@ span.post-name a,span.post-read-more a:hover {
     position: relative;
 }
 .intro .btn {
-    background: #006064;
+    background: #ffffff;
     border: 0;
     color: #333;
     border-radius: 3px;
@@ -791,8 +791,8 @@ img {max-width:100%;height: auto;}
 
 }
 .bottompagination span.navigation a {
-	background: #006064;
-    color: #fff;
+	background: #ffffff;
+    color: #212121;
     padding: 5px;
     border-radius: 3px;
     text-transform: none;
