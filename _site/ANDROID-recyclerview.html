@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>¿Por qué deberíamos usar un RecyclerView?</title>
+  <meta name='description' content='Erik Jhordan Rey - Creative Personal Blog Theme for Jekyll'>
+
+  <link rel="canonical" href="/ANDROID-recyclerview">
+  <link rel="alternate" type="application/rss+xml" title="Erik Jhordan Rey" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:15px}ul li,ol li{margin-bottom:10px}.highlight{background:#f3f3f3}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1270px;padding-left:15px;padding-right:15px;margin:0 auto}@media only screen and (max-width: 1300px){.container{max-width:1100px}}@media only screen and (max-width: 1130px){.container{max-width:1000px}}@media only screen and (max-width: 1024px){.container{max-width:740px}}@media only screen and (max-width: 768px){.container{max-width:540px}}@media only screen and (max-width: 576px){.container{max-width:380px}}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-15px;margin-right:-15px}.col{padding-left:15px;padding-right:15px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#fff;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate{animation:animateElement cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.5s;animation-iteration-count:1;transition:transform .15s}@keyframes animateElement{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}*,*::after,*::before{box-sizing:border-box}body{font-family:"Inter",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18px;line-height:34px;border:10px solid #f9f9fc;color:#17181e;background-color:#f9f9fc;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body.dark .footer__head{background:#f9f9fc}@media only screen and (max-width: 768px){body.dark .footer__head{padding:40px}}@media only screen and (max-width: 576px){body.dark .footer__head{padding:30px}}body.dark .subscribe-form .subscribe-email{background:#fff}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px;border-width:5px}}*::selection{color:#fff;background-color:rgba(61,90,254,0.8)}h1,h2,h3,h4,h5,h6{font-family:"Inter",Helvetica Neue,Helvetica,Arial,sans-serif;font-weight:700;line-height:1.3;letter-spacing:-1px}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}blockquote{position:relative;margin-top:30px;padding:25px 25px 15px 60px;font-size:30px;line-height:45px;font-weight:600;font-style:normal}blockquote::before{content:'\201C';position:absolute;top:0.35em;left:0.05em;font-size:3.5em;color:#3d5afe}blockquote p{margin-bottom:10px}blockquote cite{display:inline-block;margin-top:7px;font-size:15px;font-style:normal;color:#657388}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 1024px){blockquote{font-size:24px;line-height:37px}}@media only screen and (max-width: 576px){blockquote{padding:38px 0 15px 35px;font-size:21px;line-height:31px}}pre{overflow:auto;padding:15px;margin-bottom:0;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;margin-top:15px;font-size:14px;line-height:22px;font-style:normal;font-weight:normal;text-align:center;color:#17181e}img+em a,.zoom-img-wrap+em a{border-bottom:1px solid #17181e}img+em a:hover,.zoom-img-wrap+em a:hover{color:#17181e;border-color:#3d5afe}a{text-decoration:none;color:#17181e;transition:all 0.35s}a:hover{color:#17181e}hr{display:block;height:1px;width:100px;margin:50px 0;border:0;background:#ededf3}.wrapper-page{margin-bottom:70px}@media only screen and (max-width: 768px){.wrapper-page{margin-bottom:60px}}@media only screen and (max-width: 576px){.wrapper-page{margin-bottom:40px}}.button{display:inline-block;height:45px;padding:0 20px;font-size:15px;font-weight:700;border:none;outline:none;color:#fff;background:#3d5afe;transition:all 0.35s;cursor:pointer}.button:hover{color:#fff;background:#2444fe}.lazy{opacity:0;transition:0.3s}.lazy.loaded{opacity:1}.top{position:fixed;bottom:40px;right:-100px;z-index:1;width:28px;height:40px;font-size:28px;line-height:40px;text-align:center;border-radius:6px;background-color:#fff;color:#17181e;cursor:pointer;transition:all .25s ease;box-shadow:0px 0px 20px rgba(0,0,0,0.05)}.top:hover{color:#fff;background-color:#3d5afe}.top.is-active{right:40px}@media only screen and (max-width: 768px){.top{bottom:25px}.top.is-active{right:30px}}.header{height:auto;border-bottom:1px solid #ededf3;background:#fff;transition:all 0.35s}.header .header__overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:15;background-color:rgba(17,17,17,0.7);cursor:pointer;opacity:0;visibility:hidden;transition:all 0.5s ease}@media only screen and (max-width: 1024px){.header .header__overlay.is-visible{opacity:1;visibility:visible}}.header__inner{position:relative;display:flex;align-items:center;min-height:80px}.logo__link{font-size:20px;line-height:26px;font-weight:700}.logo__link:hover{color:#3d5afe}.logo__image{max-height:50px}.main-nav{margin-left:80px}@media only screen and (max-width: 1024px){.main-nav{position:fixed;top:0;left:inherit;right:-300px;bottom:0;transform:none;z-index:100;width:300px;height:100vh;padding:40px 30px 30px;border:10px solid #f9f9fc;transition:right 0.5s cubic-bezier(0.7, 0.4, 0, 1);background:#fff}.main-nav.is-open{right:0}.main-nav .nav__list{width:100%}.main-nav .nav__list .nav__item{display:block;margin:0 10px}.main-nav .nav__list .nav__item:last-child{margin-right:10px}.main-nav .nav__list .nav__item .nav__link{display:block;padding:10px 0;font-size:16px;line-height:26px;font-weight:500}}@media only screen and (max-width: 576px){.main-nav{padding:20px 30px;border-width:5px}}.main-nav__box{display:flex;align-items:center}.main-nav__box .nav__icon-close{display:none;font-size:24px;text-align:right}.main-nav__box .nav__icon-close .ion-md-close{transition:all 0.35s;cursor:pointer}.main-nav__box .nav__icon-close .ion-md-close:hover{color:#3d5afe}.main-nav__box .nav__title{display:none}@media only screen and (max-width: 1024px){.main-nav__box{display:block}.main-nav__box .nav__icon-close{display:block}.main-nav__box .nav__title{display:block;margin:0 10px 15px;padding-bottom:15px;font-size:24px;font-weight:700;color:#17181e;border-bottom:1px solid #ededf3}}.nav__list .nav__item{display:inline-block;margin:0 20px}.nav__list .nav__item:last-child{margin-right:40px}.nav__list .nav__item .nav__link{font-size:15px;line-height:24px;font-weight:500}.nav__list .nav__item .nav__link:hover{color:#3d5afe}.nav-buttons{display:flex;align-items:center;margin-left:auto;font-size:21px;color:#17181e;cursor:pointer}.nav-buttons .nav__icon{transition:all 0.35s}.nav-buttons .nav__icon:hover{color:#3d5afe}.nav-buttons .nav__icon:first-child{margin-right:15px}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 1024px){.nav-buttons{margin-left:auto}.nav-buttons .nav__icon-menu{display:block}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;transform:scale(0.95);overflow:auto;opacity:0;background:#f9f9fc;transition:all .25s ease}.search.is-visible{transform:scale(1);z-index:100;opacity:1;transition:all .25s ease}.search__box{width:50%;margin:0 auto;padding-top:140px}@media only screen and (max-width: 1024px){.search__box{width:80%;padding-top:100px}}.search__group{position:relative;margin-bottom:50px}.search__group .search__close{position:absolute;right:20px;top:17px;font-size:27px;line-height:40px;cursor:pointer;transition:all .2s}.search__group .search__close:hover{color:#3d5afe}.search__group .search__text{width:100%;padding:20px;font-size:21px;line-height:31px;border:2px solid transparent;border-radius:4px;color:#17181e;background:#fff;outline:none;transition:all .2s}.search__group .search__text:focus{border-color:#3d5afe}.search__group .search__text::placeholder{font-weight:500;color:#17181e}.search__group .search__text::-ms-clear{display:none}.search-results-list .no-results{width:100%;font-size:21px;font-weight:600;text-align:center;color:#17181e}.pagination{margin-top:40px}@media only screen and (max-width: 768px){.pagination{margin-top:30px}}@media only screen and (max-width: 576px){.pagination{margin-top:20px}}.pagination__inner{display:flex;justify-content:center;align-items:center}.pagination__list{display:flex;font-weight:600;height:40px;padding:0 20px;font-size:14px;line-height:40px;border-radius:3px;box-shadow:0px 0px 20px rgba(0,0,0,0.05);color:#17181e;background-color:#fff}.pagination__count{display:inline-block;padding:0 15px;margin:0 15px;font-size:13px;border-left:1px solid rgba(23,24,30,0.1);border-right:1px solid rgba(23,24,30,0.1);color:#657388}.pagination__next i,.pagination__prev i{font-size:13px}.pagination__next:hover,.pagination__prev:hover{color:#3d5afe}.pagination__next.disabled,.pagination__prev.disabled{opacity:0.2;cursor:not-allowed;color:inherit}.pagination__next i{margin-left:4px}.pagination__prev i{margin-right:4px}.footer{padding-top:70px;background:#fff}.footer .row .col{flex-grow:1}.footer .footer__inner{padding:60px 0;margin:0 60px 0;background-image:-webkit-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-moz-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-ms-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);-webkit-background-size:15px 15px;-moz-background-size:15px 15px;background-size:15px 15px}.footer .footer__head{margin:0 -60px;padding:60px;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,0.07)}.footer .footer__content{padding:60px 0}@media only screen and (max-width: 1024px){.footer .row .col:last-child>.widget{margin-bottom:0}}@media only screen and (max-width: 768px){.footer{padding-top:60px}.footer .footer__inner{padding:0;margin:0;background-image:none}.footer .footer__head{margin:0;padding:0;box-shadow:none}}@media only screen and (max-width: 576px){.footer{padding-top:50px}}@media only screen and (max-width: 1024px){.widget{margin-bottom:30px}}@media only screen and (max-width: 576px){.widget{margin-bottom:40px}}.widget__head{margin-bottom:20px}.widget__head .widget__title{margin:0;font-size:24px;color:#17181e}.widget-gallery{padding:0 35px}@media only screen and (max-width: 1024px){.widget-gallery{padding:0}}.recent-posts{position:relative;display:flex;margin-bottom:15px}.recent-posts:last-child{margin-bottom:0}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#f9f9fc}.recent-posts__image img{position:absolute;top:0;width:100%;height:100%;object-fit:cover}.recent-posts__date{margin-bottom:5px;font-size:13px;line-height:16px;color:#657388}.recent-posts__title{margin-bottom:0;font-size:17px;line-height:22px;font-weight:700}.recent-posts__title a{color:#17181e}.recent-posts__title a:hover{color:#17181e}.widget-subscribe .subscribe__inner{display:flex;flex-direction:column;justify-content:space-between}.widget-subscribe .subscribe__group{margin-bottom:20px}.widget-subscribe .subscribe__group .subscribe__title{margin-bottom:15px;color:#17181e}.widget-subscribe .subscribe__group .subscribe__description{font-size:15px;line-height:22px;color:#657388}.widget-subscribe .subscribe-form{position:relative;height:60px}.widget-subscribe .subscribe-form .subscribe-email{width:100%;height:100%;padding:20px;font-size:14px;line-height:19px;font-weight:500;color:rgba(23,24,30,0.8);border:2px solid #ededf3;background:transparent;transition:border-color .2s ease-in-out;outline:0}.widget-subscribe .subscribe-form .subscribe-email::placeholder{color:rgba(23,24,30,0.8)}.widget-subscribe .subscribe-form .subscribe-email:focus{color:rgba(23,24,30,0.8);border-color:#3d5afe}.widget-subscribe .subscribe-form .subscribe-button{position:absolute;top:10px;right:10px;height:40px;padding:0 15px;font-size:14px}@media only screen and (max-width: 1130px){.widget-subscribe .subscribe-form .subscribe-email{font-size:13px}.widget-subscribe .subscribe-form .subscribe-button{font-size:14px}}.copyright{padding:0 0 30px;margin-top:10px;font-size:13px;font-weight:500;text-align:center;color:#657388}.copyright a:hover{color:#3d5afe}@media only screen and (max-width: 768px){.copyright{text-align:left}}.gallery-box{margin:40px 0}.gallery-box.gallery-footer{margin:0}.gallery-box em{display:block;margin-top:15px;font-size:14px;line-height:22px;font-style:normal;font-weight:normal;text-align:center;color:#17181e}.gallery-box em a{border-bottom:1px solid #17181e}.gallery-box em a:hover{color:#17181e;border-color:#3d5afe}.gallery{display:grid;grid-template-columns:repeat(3, auto);justify-content:center;align-content:center;grid-gap:10px}.gallery .gallery__image{background:#f9f9fc}.gallery .gallery__image img{display:block;width:100%;height:auto;object-fit:cover}.social{margin:60px 0 0;text-align:center}.social .social__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.social .social__item{display:inline-block;margin:0 2px}.social .social__link{position:relative;z-index:1;padding:0 10px;font-size:21px;line-height:1}.social .social__link:hover{color:#fff}.social .social__link:hover::after{transform:translate3d(-50%, -50%, 0) scale(1)}.social .social__link::after{content:'';display:block;position:absolute;z-index:-1;top:50%;left:50%;transform:translate3d(-50%, -50%, 0) scale(0);width:100%;height:0;padding-bottom:100%;border-radius:50%;background:#3d5afe;transition:all .25s}@media only screen and (max-width: 768px){.social{margin:50px 0 0;text-align:left}.social .social__list{justify-content:start}}.hero{padding:60px 0 70px;margin-bottom:70px;background:#fff}.hero.hero--post .article__meta{margin-bottom:13px;font-size:14px;font-weight:500}.hero.hero--post .article__meta .article__date::before{content:none}.hero.hero--post .article__author-link{font-size:14px;line-height:20px;font-weight:500;color:#657388}.hero.hero--post .article__author-link span{color:#657388}.hero.hero--post .article__author-link:hover{color:#17181e}.hero.hero--page .hero__title{margin-bottom:0}@media only screen and (max-width: 768px){.hero{padding:60px 0 60px;margin-bottom:60px}}@media only screen and (max-width: 576px){.hero{padding:40px 0 40px;margin-bottom:40px}}.hero__inner{display:flex;align-items:center}@media only screen and (max-width: 768px){.hero__inner{flex-direction:column}}.hero__left,.hero__right{width:50%}@media only screen and (max-width: 768px){.hero__left,.hero__right{width:100%}}.hero__left .hero__title,.hero__left .hero__job{font-size:50px;font-weight:700;letter-spacing:-2px;color:#17181e}@media only screen and (max-width: 1130px){.hero__left .hero__title,.hero__left .hero__job{font-size:40px;line-height:1.2}}@media only screen and (max-width: 1024px){.hero__left .hero__title,.hero__left .hero__job{font-size:33px}}@media only screen and (max-width: 576px){.hero__left .hero__title,.hero__left .hero__job{font-size:27px}}.hero__left .hero__title{margin-right:20px;margin-bottom:10px}@media only screen and (max-width: 768px){.hero__left .hero__title{margin-right:0}}.hero__left .hero__job{margin-bottom:20px}.hero__left .hero__name{position:relative;font-weight:400}.hero__left .hero__name::after{content:"";position:absolute;left:0;bottom:0px;width:100%;height:38%;background-color:rgba(61,90,254,0.1)}.hero__left .hero__description{max-width:550px;margin:0;font-size:21px;font-weight:500;color:#657388}@media only screen and (max-width: 1024px){.hero__left .hero__description{font-size:16px;line-height:26px}}.hero__left .hero__button{margin-top:20px;padding-right:12px;display:inline-block;font-size:16px;line-height:16px;font-weight:700;color:#17181e;outline:none;cursor:pointer;transition:all 0.35s}.hero__left .hero__button:hover{color:#fff;background:#2444fe}.hero__left .hero__button .button-arrow{display:inline-block;margin-right:10px;width:30px;height:30px;line-height:30px;text-align:center;color:#fff;background:#3d5afe}.hero__right{position:relative}.hero__right::after{content:"";position:absolute;top:50%;transform:translateY(-50%);display:block;width:100%;height:50%;background-image:-webkit-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-moz-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-ms-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);-webkit-background-size:15px 15px;-moz-background-size:15px 15px;background-size:15px 15px}.hero__right .hero__image{position:relative;z-index:10;width:370px;height:470px;margin:0 auto}.hero__right .hero__image::before{content:"";display:block;position:absolute;top:0;z-index:1;width:100%;height:100%;background:#f9f9fc}.hero__right .hero__image img{position:absolute;top:0;z-index:1;height:100%;width:100%;object-fit:cover;box-shadow:10px 10px 0 #3d5afe;background:#f9f9fc}@media only screen and (max-width: 1130px){.hero__right .hero__image{width:270px;height:370px}}@media only screen and (max-width: 1024px){.hero__right .hero__image{width:230px;height:330px}}@media only screen and (max-width: 768px){.hero__right{order:-1}.hero__right .hero__image{width:100%;height:330px;margin-bottom:40px}}@media only screen and (max-width: 576px){.hero__right .hero__image{height:270px;margin-bottom:30px}.hero__right .hero__image img{box-shadow:none}}.contact-head{margin-bottom:30px}.form-box{max-width:750px;margin:0 auto}.form__group{margin-bottom:20px}.form__group:last-child{margin-bottom:0}.form__input{width:100%;padding:20px;font-size:14px;font-weight:500;border:1px solid #ededf3;outline:none;transition:250ms;resize:vertical;color:rgba(23,24,30,0.8);background:#fff}.form__input::placeholder{color:rgba(23,24,30,0.8)}.form__input:focus{border:1px solid #3d5afe}.article{margin-bottom:30px;border-radius:3px;overflow:hidden;transition:transform .2s}.article:hover{transform:translateY(-3px)}.article__inner{box-shadow:0px 0px 20px rgba(0,0,0,0.05)}.image-wrap{padding:15px 15px 0 15px;background:#fff}.article__image{position:relative;display:block;height:0;padding-bottom:56.25%;background:#f9f9fc;overflow:hidden}.article__image img{position:absolute;width:100%;height:100%;object-fit:cover}.article__content{padding:25px;background:#fff}.article__title{margin-bottom:10px;font-size:22px;line-height:32px}.article__title a:hover{color:#17181e}.article__excerpt{font-size:15px;line-height:24px;font-weight:500;margin-bottom:20px;color:#657388}.article__meta{display:flex;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;font-weight:500;line-height:20px}.article__meta .article__author-link{color:#657388}.article__meta .article__author-link:hover{color:#17181e}.article__meta .article-tags__box{display:flex}.article__meta .article-tags__box::before{content:"/";display:inline-block;margin:0 5px;color:#657388}.article__meta .article-tags__box .article__tag{color:#657388}.article__meta .article-tags__box .article__tag:hover{color:#17181e}.article__meta .article-tags__box .article__tag::after{content:",";display:inline-block;margin:0 2px}.article__meta .article-tags__box .article__tag:last-child::after{content:none}.article__meta .article__date{color:#657388}.article__meta .article__date::before{content:"/";display:inline-block;margin:0 5px;color:#657388}.post,.page{max-width:850px;margin:0 auto;color:#17181e}.post__content a,.page__content a{border-bottom:1px solid #17181e}.post__content a:hover,.page__content a:hover{color:#17181e;border-color:#3d5afe}.image-box{margin:40px 0}.post__share{margin:50px 0}.post__share .share__list{display:flex;justify-content:center;align-items:center;width:100%}.post__share .share__item{margin:0 2px;text-align:center}.post__share .share__link{display:block;padding:2px 12px;font-size:18px;color:#fff}.post__share .share__link.share__facebook,.post__share .share__link.share__twitter,.post__share .share__link.share__linkedin,.post__share .share__link.share__pinterest{border:1px solid #ededf3;background:#fff}.post__share .share__link.share__facebook:hover,.post__share .share__link.share__twitter:hover,.post__share .share__link.share__linkedin:hover,.post__share .share__link.share__pinterest:hover{color:#fff}.post__share .share__link.share__facebook{color:#3b5998}.post__share .share__link.share__facebook:hover{background:#3b5998}.post__share .share__link.share__twitter{color:#55acee}.post__share .share__link.share__twitter:hover{background:#55acee}.post__share .share__link.share__linkedin{color:#0077b5}.post__share .share__link.share__linkedin:hover{background:#0077b5}.post__share .share__link.share__pinterest{color:#bd081c}.post__share .share__link.share__pinterest:hover{background:#bd081c}@media only screen and (max-width: 576px){.post__share{margin:40px 0}}.post__navigation{display:flex;justify-content:space-between;margin-bottom:20px}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;padding:25px;margin-bottom:30px;background:#fff;box-shadow:0px 0px 20px rgba(0,0,0,0.05);transition:transform .2s}.post__navigation .post__prev:hover,.post__navigation .post__next:hover{transform:translateY(-3px)}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;width:100px;min-width:100px;height:100px;background-color:#f9f9fc}.post__navigation .post__prev .prev__image img,.post__navigation .post__prev .next__image img,.post__navigation .post__next .prev__image img,.post__navigation .post__next .next__image img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:15px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:15px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:13px;line-height:1;font-weight:500;color:#657388}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:18px;line-height:24px}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#17181e}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation{margin-bottom:10px}.post__navigation .post__prev,.post__navigation .post__next{padding:20px}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{font-size:15px;line-height:20px}}.post__comments{padding:40px;box-shadow:0px 0px 20px rgba(0,0,0,0.05);background:#fff}@media only screen and (max-width: 576px){.post__comments{padding:30px}}.error{margin-bottom:30px;text-align:center}.error .error__title{margin-bottom:0;font-size:100px}.error .error__text{margin-bottom:20px;font-size:21px;color:#657388}.error .error__button{line-height:45px}.tag{padding:70px 0;margin-bottom:70px;text-align:center;background:#fff}.tag .tag__meta{font-size:16px;color:#657388}.tag .tag__title{margin:0;font-size:50px}@media only screen and (max-width: 768px){.tag{padding:60px 0;margin-bottom:60px}}@media only screen and (max-width: 576px){.tag{padding:40px 0;margin-bottom:40px}}
+
+  </style>
+</head>
+
+<body class="light">
+
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-06G51LVDJT', 'auto');
+  ga('send', 'pageview');
+</script>
+  
+
+    <!-- begin header -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="header__inner col col-12">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            Erik Jhordan Rey
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <div class="nav__title">Menu</div>
+            <ul class="nav__list list-reset">
+              <li class="nav__item">
+                <a href="/" class="nav__link">Home</a>
+              </li>
+              
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/about/" class="nav__link">About</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/podcast/" class="nav__link">Podcast</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/talks/" class="nav__link">Talks</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+            </ul>
+          </div>
+        </nav>
+
+        <div class="nav-buttons">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+          <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="header__overlay"></div>
+</header>
+<!-- end header -->
+
+<!-- begin search -->
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__group">
+            <div class="search__close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="row search-results-list" id="js-results-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end search -->
+    <!-- begin content -->
+    <main class="content" aria-label="Content">
+      <!-- begin wrapper-page -->
+      <div class="wrapper-page">
+        <!-- begin hero -->
+
+<section class="hero hero--post">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+          <div class="hero__left">
+            
+
+            <div class="article__meta">
+              <span class="article__date"><time datetime="2015-10-04T13:15:00-05:00">04 Oct 2015</time></span>
+              
+              <div class="article-tags__box">
+                
+                  <a href="/tag/android-old-school" class="article__tag">android-old-school</a>
+                
+              </div>
+              
+            </div>
+
+            <h1 class="hero__title">¿Por qué deberíamos usar un RecyclerView?</h1>
+            <a href="/about/" class="article__author-link"><span>By</span> Erik Jhordan Rey</a>
+
+            
+          </div>
+
+          <div class="hero__right">
+
+            
+            <div class="hero__image">
+              <img class="lazy" data-src="/images/2015/10/recycler_view_concep.jpg" alt="¿Por qué deberíamos usar un RecyclerView?">
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->
+
+<!-- begin post -->
+<div class="container">
+  <article class="post animate">
+
+    <div class="post__content">
+      <p>El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un <a href="https://developer.android.com/training/material/lists-cards.html">RecyclerView</a> he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.</p>
+
+<p>Sabemos que muchas personas están familiarizadas con este componente debido a que fue integrado al SDK de android con la llegada de la nueva versión android 5.0 “L” “Lollipop”, la cual fue anunciada en el <a href="https://www.youtube.com/watch?v=wtLJPvx7-ys">Google I/O 2014</a> lo que significa que estamos hablando que esto tiene ya poco más de un año.</p>
+
+<p>Pues bien ya has tenido tiempo para explorar a fondo este nuevo control, si lo has usado me gustaria que te preguntaras:</p>
+
+<ul>
+  <li><strong>¿Ya utilizas RecyclerView en tus proyectos, has dado el cambio y dejaste de usar ListView o GridView?</strong>.</li>
+  <li>Si si lo usas <strong>¿Aprovechas todos los recursos que te brinda este componente?</strong>.</li>
+  <li>Si no lo usas <strong>¿Qué esperas para hacer la transición?</strong> esto tiene más de un año no te quedes atrás!!.</li>
+  <li>Aun te preguntas <strong>¿Porque es más complicado usar un RecyclerView?</strong> piensas que es más sencillo y conveniente usar alguna librería que facilite esta tarea.</li>
+  <li><strong>¿Ya entendiste la importancia que tiene el utilizar un RecyclerView?</strong> o aun piensas que el equipo de android solo complicó la forma de mostrar un conjunto de datos.</li>
+  <li><strong>¿Como haces que tus listas se adapten de acuerdo al tamaño de pantalla del dispositivo?</strong></li>
+</ul>
+
+<p>Si no sabes las respuestas en este artículo intentaremos contestarlas.</p>
+
+<h1 id="recyclerview">RecyclerView</h1>
+
+<p>Para usar <strong>Recyclerview-v7</strong> recordar que hay que agregar la libreria mediante gradle <code class="language-plaintext highlighter-rouge">com.android.support:recyclerview-v7:+</code> es recomendable sustituir el símbolo “+” por el número especifico de versión.</p>
+
+<p>Sabemos que un <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html">RecyclerView</a> es una clase que hereda de <a href="http://developer.android.com/reference/android/view/ViewGroup.html">ViewGroup</a>, que al igual que <a href="http://developer.android.com/guide/topics/ui/layout/listview.html">ListView</a> y <a href="http://developer.android.com/guide/topics/ui/layout/gridview.html">GridView</a> nos va permitir mostrar grandes colecciones o conjuntos de datos con la única diferencia que solo se dedica a <em>reciclar</em> vistas delegando la tarea de renderizado a otros componentes que serán los que determinen la forma de acceder a los datos y cómo mostrarlos.</p>
+
+<h3 id="layoutmanager">LayoutManager</h3>
+
+<p>Es una clase estática abstracta que se encuentra dentro de la clase RecyclerView su tarea es definir el orden en que se mostrarán nuestras vistas de elementos y determinar la política de cuándo reciclar las vistas que ya no son visibles para el usuario.</p>
+
+<h3 id="filosofía">Filosofía</h3>
+
+<p>Ha dejado de ser una patrón por extensión recordar que las clases ListView y GridView heredan de la clase abstracta <a href="http://developer.android.com/reference/android/widget/AbsListView.html">AbsListView</a> (que a su vez está hereda de la clase abstracta <a href="http://developer.android.com/reference/android/widget/AdapterView.html">AdapterView</a> la cual hereda de ViewGroup.)  quien es la encargada de virtualizar una lista de elementos y delegar a sus subclases la decisión de cómo mostrar sus elementos, por esta razón un <a href="http://developer.android.com/reference/android/widget/ListView.html">ListView</a> es quien decide que los elementos deben ser mostrados de forma lineal y  en forma de cuadrícula en el caso de <a href="http://developer.android.com/reference/android/widget/GridView.html">GridView</a>.</p>
+
+<p>RecyclerView necesita del método <code class="language-plaintext highlighter-rouge">setLayoutManager(LayoutManager layout)</code> para asignar un tipo de layout que le indique cómo debe renderizar, dando origen a un patrón por composición.</p>
+
+<p>Es sensato mencionar que con la llegada de <strong>RecyclerView</strong> y la forma en que fue diseñada su implementación se cumple un Design Principle <em>“Favor composition over inheritance.”</em> el cual tiene como objetivo dar flexibilidad.</p>
+
+<h3 id="tipos-de-layoutmanager">Tipos de LayoutManager</h3>
+
+<p>Existen tres implementaciones diferentes de LayoutManager que vienen incluidos dentro de la librería <code class="language-plaintext highlighter-rouge">Recyclerview-v7</code> <a href="https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html">LinearLayoutManager</a>, <a href="https://developer.android.com/reference/android/support/v7/widget/GridLayoutManager.html">GridLayoutManager</a> y <a href="https://developer.android.com/reference/android/support/v7/widget/StaggeredGridLayoutManager.html">StaggeredGridLayoutManager</a>, tienen la habilidad de facilitar el uso de RecyclerView indicando la forma en que los elementos deben ser mostrados.</p>
+
+<h4 id="linearlayoutmanager">LinearLayoutManager</h4>
+
+<p><img src="/images/2015/10/linear.png" alt="linearLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">LinearLayoutManager</span> <span class="n">linearLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinearLayoutManager</span><span class="o">(</span>
+            <span class="k">this</span><span class="o">,</span>
+            <span class="nc">LinearLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+            <span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h4 id="gridlayoutmanager">GridLayoutManager</h4>
+
+<p><img src="/images/2015/10/grid.png" alt="GridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+              <span class="k">this</span><span class="o">,</span>
+              <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+              <span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h4 id="gridlayoutmanager--spansizelookup">GridLayoutManager + SpanSizeLookup</h4>
+
+<p>Usando el metodo <code class="language-plaintext highlighter-rouge">setSpanSizeLookup(SpanSizeLookup spanSizeLookup)</code> establecemos la cantidad de spans que debe ocupar cada elemento en el adaptador.</p>
+
+<p><img src="/images/2015/10/custom_grid.png" alt="CustomGridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+               <span class="k">this</span><span class="o">,</span>
+               <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+               <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+               <span class="kc">false</span><span class="o">);</span>
+
+<span class="n">gridLayoutManager</span><span class="o">.</span><span class="na">setSpanSizeLookup</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">SpanSizeLookup</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSpanSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">//stagger rows custom</span>
+      <span class="k">return</span> <span class="o">(</span><span class="n">position</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+</code></pre></div></div>
+
+<h4 id="staggeredgridlayoutmanager">StaggeredGridLayoutManager</h4>
+
+<p><img src="/images/2015/10/staggered.png" alt="StaggeredGridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">StaggeredGridLayoutManager</span> <span class="n">staggeredGridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StaggeredGridLayoutManager</span><span class="o">(</span>
+              <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">);</span>
+
+<span class="c1">//Sets the gap handling strategy for StaggeredGridLayoutManager</span>
+<span class="n">staggeredGridLayoutManager</span><span class="o">.</span><span class="na">setGapStrategy</span><span class="o">(</span><span class="nc">StaggeredGridLayoutManager</span><span class="o">.</span><span class="na">GAP_HANDLING_NONE</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<p>El potencial que brindan estos layouts por defecto es mas que suficiente para ser usados de forma directa en un RecyclerView, también puedes implementar un estilo de renderizado diferente a los que el framework te provee <a href="http://wiresareobsolete.com/2014/09/building-a-recyclerview-layoutmanager-part-1/">creando tu propio LayoutManager</a> que se adapte a tu necesidad.</p>
+
+<h3 id="utiliza-un-tipo-de-layoutmanager">Utiliza un tipo de LayoutManager</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">RecyclerView</span> <span class="n">recyclerView</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RecyclerView</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">recyclerView</span><span class="o">.</span><span class="na">setLayoutManager</span><span class="o">(...);</span> <span class="c1">// sets the type of layout (LayoutManager)</span>
+<span class="n">setView</span><span class="o">(</span><span class="n">recyclerView</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h3 id="recyclerviewrecycler">RecyclerView.Recycler</h3>
+
+<p>RecyclerView nos brinda un nuevo componente de nombre <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Recycler.html">Recycler</a> una clase encargada de gestionar si una vista será (desechada o separada) <code class="language-plaintext highlighter-rouge">scrapped or detached</code> para su reutilización.</p>
+
+<p><img src="/images/2015/10/recycler.png" alt="recycler" class="center-image" /></p>
+
+<p><a href="https://docs.google.com/document/d/1htu3vMmFMdMIUF-eg8JALXd9XijuR-OQ2ABxIUV42Ls/edit?usp=sharing">Recordarás que un ListView o GridView</a> es quien tiene que interactuar de forma directa con el adapter para obtener las vistas que debería renderizar con RecyclerView esto ya sucede así. Esto quiere decir que un <code class="language-plaintext highlighter-rouge">LayoutManager</code> será quien interactúa de forma directa con el Recycler para obtener una nueva vista o reciclar una vista y <code class="language-plaintext highlighter-rouge">Recycler</code> será quien esté hablando con él adapter.</p>
+
+<p>Si un vista es <code class="language-plaintext highlighter-rouge">scrapped</code> indica que continúa enlazada con el RecyclerView pero se ha marcado para su posible eliminación o reutilización. Cuando es reutilizada es considerada <code class="language-plaintext highlighter-rouge">dirty</code> y el adaptador es quien debe volver a enlazarla antes de ser mostrada.
+Recycler implementa toda esa lógica de cuando un <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html">Adapter</a> debe crear una nueva vista o volver a enlazar datos a una ya existente y lo más importante aquí es que el LayoutManager nunca debe tocar el adapter y debe ser el <code class="language-plaintext highlighter-rouge">Recycler</code> quien esté interactuando con el.</p>
+
+<h3 id="filosofía-1">Filosofía</h3>
+
+<p>Existen dos puntos importantes dentro de recycler que le permiten trabajar de manera eficiente.</p>
+
+<h4 id="scrap-heap">Scrap Heap</h4>
+
+<p>Es el lugar donde puedes interactuar con las vistas que no estás utilizando en el momento pero vas a volver a utilizar de forma inmediata y se consigue mediante el método
+<code class="language-plaintext highlighter-rouge">detachAndScrapView(View child, Recycler recycler)</code> tener en mente que una vista <code class="language-plaintext highlighter-rouge">Scrapping</code> permitirá ser reutilizada para mostrar datos actualizados o diferentes.</p>
+
+<h4 id="recyler-pool">Recyler Pool</h4>
+
+<p>Básicamente es donde encuentran las vistas que no necesitamos más y utilizando el método <code class="language-plaintext highlighter-rouge">removeAndRecycleView(View child, Recycler recycler)</code> removemos las vistas que no necesitamos con el diseño actual para que el método <code class="language-plaintext highlighter-rouge">recycleView(View view)</code> pueda re-enlazar y re-utilizar esas mismas vistas, cabe resaltar que siempre estarán pasando a través del adaptador para asegurar que los datos se encuentran enlazados a la vista  antes de que se devuelvan al LayoutManager.</p>
+
+<p>El uso de Recycler mejora el performance ya que estamos reutilizando vistas en lugar de crear nuevas vistas cada vez que el usuario está trayendo más elementos (haciendo scroll).</p>
+
+<h3 id="recyclerviewadapter">RecyclerView.Adapter</h3>
+
+<p>Adapter es una clase estática abstracta su principal objetivo es crear vistas para cada elemento de un RecyclerView.
+La novedad radica en el uso obligatorio del patrón <a href="http://developer.android.com/training/improving-layouts/smooth-scrolling.html">ViewHolder</a>  <code class="language-plaintext highlighter-rouge">Adapter&lt;VH extends ViewHolder&gt;</code> ya que siempre debe ser indicado en la declaración de la clase y dejar en claro que este patrón ya tiene su tiempo solo que esta vez no tenemos opción de elegir si se usa o no.</p>
+
+<p>Sin embargo podrías no usar este patrón quizas e intentarlo mediante otro patrón o una combinación de patrones de diseño ;pero no creo que sea necesario ya que cumple con su objetivo. En el caso de ListView y GridView no es obligatorio el uso de <code class="language-plaintext highlighter-rouge">ViewHolder</code> pero muy recomendado para tener un buen performance y evitar el uso frecuente de <code class="language-plaintext highlighter-rouge">findViewById</code> el uso de <code class="language-plaintext highlighter-rouge">ViewHolder</code> es la pura vitamina de las listas de acuerdo con Google.</p>
+
+<h4 id="oncreateviewholder">onCreateViewHolder</h4>
+
+<p>Se llama cuando RecyclerView necesita un nuevo <code class="language-plaintext highlighter-rouge">ViewHolder</code> del tipo dado para representar un elemento. <code class="language-plaintext highlighter-rouge">onCreateViewHolder(ViewGroup parent,int viewType)</code> es el encargado de inicializar y crear nuevos objetos ViewHolder para los elementos de una colección.</p>
+
+<h4 id="onbindviewholder">onBindViewHolder</h4>
+
+<p>Su tarea de este método <code class="language-plaintext highlighter-rouge">onBindViewHolder(ViewHolder holder, int position)</code> es mostrar los datos de una posición especificada, también configura el contenido de las vistas y actualiza los datos de un ViewHolder ya existente.</p>
+
+<p>Existe una librería muy chula de nombre <a href="https://github.com/pedrovgs/Renderers">Renderers</a> evita todo el boilerplate necesario al utilizar un RecyclerView o ListView con adaptadores, si tienes interés en usarla siempre recomiendo entender primero su funcionamiento a bajo nivel.</p>
+
+<h3 id="recyclerviewitemdecoration">RecyclerView.ItemDecoration</h3>
+
+<p><a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration.html">ItemDecoration</a> una super clase que permite agregar un decorator a cada elemento o todos los elementos de un RecyclerView mediante el método <code class="language-plaintext highlighter-rouge">addItemDecoration(ItemDecoration decor)</code>, existen muchas formas para crear un ItemDecoration lo más importante es que siempre hay que heredar de <code class="language-plaintext highlighter-rouge">RecyclerView.ItemDecoration</code>.</p>
+
+<p>Un ejemplo sencillo podría ser usando el método <code class="language-plaintext highlighter-rouge">outRect.set(int left, int top, int right, int bottom)</code> para insertar algo similar a un padding o margin a cada vista de nuestro RecyclerView sin necesidad de modificar los parámetros de un layout.</p>
+
+<p>Pensarás que no tiene nada de importancia crear un divider cuando el ListView ya tenia por defecto su propio divider  (esa famosa línea gris). Te haz preguntado o has visto <em>¿Qué sucede cuando querías tener un divider diferente para algún ítem o un conjunto de ellos dentro de un ListView?</em> la respuesta es que se se hacían o se hacen cosas espantosas como añadir un elemento <code class="language-plaintext highlighter-rouge">&lt;View … /&gt;</code> como parte de nuestro ItemView y era manipulado en el adapter para cumplir con los objetivos que el Product Manager requiere.</p>
+
+<p>Básicamente es decirle adiós a los dividers con el uso de los decoradores ya que
+proveen mucha flexibilidad permitiendo decorar un ítem o un conjunto de ellos de una manera elegante y si es importante saber que el uso de decoradores no es trivial pero sin duda un componente con mucha potencia.</p>
+
+<ul>
+  <li>ItemDecoration para mostrar la famosa línea gris del ListView en un RecyclerView <a href="https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/DividerDecoration.java">aquí</a>.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">addItemDecoration</span><span class="o">(</span><span class="nc">ItemDecoration</span> <span class="n">decor</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="recyclerviewitemanimator">RecyclerView.ItemAnimator</h3>
+
+<p>Un clase abstracta encargada de reflejar los cambios que se hacen a un adapter, permitiendo definir las animaciones que serán visualizadas en nuestro RecyclerView al crear un ItemAnimator.</p>
+
+<p>Este componente no es sencillo de implementar al igual que <code class="language-plaintext highlighter-rouge">ItemDecoration</code>, pero existe una implementación por defecto de nombre <code class="language-plaintext highlighter-rouge">DefaultItemAnimator</code> una clase que hereda de <code class="language-plaintext highlighter-rouge">RecyclerView.ItemAnimator</code> (la forma en que se crea un ItemAnimator) que permite mostrar una animación al realizar alguna acción sobre un ítem. Para asignar un ItemAnimator a un RecyclerView basta con usar el método <code class="language-plaintext highlighter-rouge">setItemAnimator()</code>.</p>
+
+<p>Es importante mencionar que el feedback que se percibe al tocar un row ya no está por defecto como sucedía en ListView ;pero basta con crear un <a href="http://developer.android.com/guide/topics/resources/drawable-resource.html">Selector</a> y asignarlo como background de nuestro itemView, con la llegada de material design ahora trae un efecto muy interesanté de nombre <a href="http://android-developers.blogspot.mx/2014/10/implementing-material-design-in-your.html">ripple</a> que seguro ya haz trabajado con el.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">setItemAnimator</span><span class="o">(</span><span class="nc">ItemAnimator</span> <span class="n">animator</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="itemtypes">ItemTypes</h3>
+
+<p>En algunas ocasiones es necesario tener listas con diferentes tipos de rows con la llegada de los <code class="language-plaintext highlighter-rouge">ItemTypes</code> será más fácil realizar esta tarea, esta nueva forma de trabajar implica dejar de usar el famoso Header y Footer que se encontraban en un ListView o gridview.
+Lo que han hecho es que ahora es que mediante el método <code class="language-plaintext highlighter-rouge">getItemViewType(int position)</code> para indicar que tipo de vista que debe renderizar en un RecyclerView de acuerdo a una posición validando en el <code class="language-plaintext highlighter-rouge">createViewHolder(ViewGroup parent, int viewType)</code> el tipo de vista recibido <code class="language-plaintext highlighter-rouge">viewType</code>.</p>
+
+<h3 id="onitemclick-doesnt-exist-any-more">OnItemClick doesn´t exist any more</h3>
+
+<p>Ahora somos los encargados de crear un listener para cada elemento de una colección, generalmente se implementa en el <code class="language-plaintext highlighter-rouge">ViewHolder</code> ya que en esa clase tenemos acceso al método <code class="language-plaintext highlighter-rouge">getAdapterPosition()</code> que devolverá la posición del item asociado al ViewHolder en la colección del Adapter.
+Debido a que este evento no viene más por defecto como sucedía en <code class="language-plaintext highlighter-rouge">ListView</code> usando <a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">AdapterView.OnItemClickListener</a>, esto no quiere decir que el código que se tenía en un activity o Fragment deba ser movido a un adaptador si no que debe ser delegado esta funcionalidad a nuestro ViewHolder para que se comunique con estas vistas.</p>
+
+<h3 id="recyclerview-using-responsive-grid">RecyclerView using Responsive grid</h3>
+
+<p>Los recursos son una de las herramientas más potentes que tiene Android para trabajar con UI y el uso de qualifiers permitirá aplicar diferentes configuraciones de recursos en función de densidad de pantalla, idioma, orientación, etc.
+Para definir la medida que cada elemento debe ocupar en relación al tamaño de pantalla se puede conseguir de diferentes formas yo me enfocaré en dos
+que son con las que he trabajado en donde GridLayoutManager juega un maginifico papel.</p>
+
+<h4 id="resources--qualifiers">Resources &amp; Qualifiers</h4>
+
+<p>Una forma fácil y sencilla para determinar el <code class="language-plaintext highlighter-rouge">spanCount</code> puede ser usando qualifiers, es tan simple como crear diferentes configuraciones tomando en cuenta el ancho mínimo , alto disponible y orientación del dispositivo .</p>
+
+<ul>
+  <li><strong>values</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>values-sw600dp</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>values-sw600dp-land</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">spans</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getInteger</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">integer</span><span class="o">.</span><span class="na">number_of_columns</span><span class="o">);</span>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+              <span class="k">this</span><span class="o">,</span>
+              <span class="n">spans</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+              <span class="kc">false</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Por ejemplo si es un dispositivo como un <strong>Moto E</strong> hará uso de la carpeta <em>values</em> mostrando solo una columna ;pero si usamos una <strong>Nexus 9</strong> ahora mostrará dos columnas en orientación vertical usando la carpeta <em>values-sw600dp</em> y si el dispositivo es rotado quedando una orientación horizontal se hace uso <em>values-sw600dp-land</em> para mostrar tres columnas.</p>
+
+<h4 id="custom-recyclerview">Custom RecyclerView</h4>
+
+<p>Debemos crear una <a href="https://developer.android.com/intl/es/training/custom-views/index.html">CustomView</a>, es decir crearemos una clase que herede de <code class="language-plaintext highlighter-rouge">RecyclerView</code> y definir el tamaño de cada elemento calculando el <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/GridLayoutManager.SpanSizeLookup.html">spanCount</a> automáticamente.</p>
+
+<p>La forma en que funciona es que al heredar de RecyclerView estamos accediendo a su width, recordar que <em>GridView</em> tiene acceso al atributo <code class="language-plaintext highlighter-rouge">android:numColumns="auto_fit"</code> que a su vez utiliza <code class="language-plaintext highlighter-rouge">android:columnWidth</code> para calcular el número de columnas, nosotros haremos uso de este atributo para leer el valor de <code class="language-plaintext highlighter-rouge">android:columnWidth</code> mediante el constructor y asignarlo en una variable miembro <code class="language-plaintext highlighter-rouge">columnWidth</code>.</p>
+
+<p>Sabemos que necesitamos establecer <code class="language-plaintext highlighter-rouge">columnWidth</code>en el método <code class="language-plaintext highlighter-rouge">onMeasure(int widthSpec, int heightSpec)</code> para calcular el <code class="language-plaintext highlighter-rouge">spanCount</code> de forma automática ;pero la aplicación podría tener un crash si esperamos hasta que se defina un <code class="language-plaintext highlighter-rouge">GridLayoutManager</code> por esta razón lo creamos en esta clase y de esta forma también accederemos a su método <code class="language-plaintext highlighter-rouge">setSpanCount(int spanCount)</code> para determinar el <code class="language-plaintext highlighter-rouge">spanCount</code>.</p>
+
+<p>Puedes ver el código  de <a href="https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/ResponsiveRecyclerView.java">ResponsiveRecyclerView.java</a>.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;your.package.widget.ResponsiveRecyclerView</span>
+        <span class="na">android:id=</span><span class="s">"@+id/recycler_view"</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+        <span class="na">android:columnWidth=</span><span class="s">"@dimen/column_width"</span>
+        <span class="na">android:clipToPadding=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h3 id="recyclerview-new-features">RecyclerView new Features</h3>
+
+<p>Con la última versión de <a href="https://developer.android.com/intl/es/tools/support-library/index.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">Android Support Library (23.1)</a> trae algunas mejoras para RecyclerView.</p>
+
+<p><code class="language-plaintext highlighter-rouge">compile 'com.android.support:design:23.1.0'</code></p>
+
+<ul>
+  <li>
+    <p><strong>ItemAnimator</strong> puede decidir mediante <code class="language-plaintext highlighter-rouge">canReuseUpdatedViewHolder()</code> si quiere volver a utilizar el mismo ViewHolder para animaciones o si RecyclerView debe crear una copia del ítem, dando como resultado que <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/RecyclerView.ItemAnimator.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">ItemAnimator</a> utilice ambos al mismo tiempo para ejecutar una animación.</p>
+  </li>
+  <li>
+    <p><a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/RecyclerView.ItemAnimator.ItemHolderInfo.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">ItemHolderInfo</a> es otra de las aportaciones en esta versión y es definida como una estructura de datos que contiene información acerca de los enlaces de un elemento. Esta información se utiliza en el cálculo de las animaciones de los ítems.</p>
+  </li>
+  <li>
+    <p>Si antes heredabas de la clase ItemAnimator ahora puedes hacer uso de <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/SimpleItemAnimator.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">SimpleItemAnimator</a> un wrapper para ItemAnimator que decide si debe ejecutar mover, cambiar, añadir o eliminar una animacion.</p>
+  </li>
+  <li>
+    <p>Ahora se provee un camino para el <em>backward-incompatible</em> de esta api y te darás cuenta de que algunos métodos se han eliminado por completo de ItemAnimator uno de ellos fue:</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">getItemAnimator</span><span class="o">().</span><span class="na">setSupportsChangeAnimations</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Fue reemplazado por:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ItemAnimator</span> <span class="n">animator</span> <span class="o">=</span> <span class="n">recyclerView</span><span class="o">.</span><span class="na">getItemAnimator</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">animator</span> <span class="k">instanceof</span> <span class="nc">SimpleItemAnimator</span><span class="o">)</span>
+   <span class="o">((</span><span class="nc">SimpleItemAnimator</span><span class="o">)</span> <span class="n">animator</span><span class="o">).</span><span class="na">setSupportsChangeAnimations</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h3 id="conclusión">Conclusión</h3>
+
+<p>RecyclerView es una vista con mucho potencial que fue incorporada con el propósito de mostrar vistas de una forma sencilla y eficiente. No sólo mejora las tareas de ListView y GridView sino también sustituye a estas vistas en la mayoría de ocasiones ya que aporta mucha flexibilidad que puede suplir la funcionalidad de ambos controles, si aun lo estas dudando o quieres aprovechar al máximo cada elemento que proporciona estas en el momento indicado,  aunque la curva de aprendizaje de este control no ha sido tarea sencilla por la complejidad que tiene crear algunos de sus elementos. Solo se trata de entender cada componente que nos brinda y aprovecharlo a nuestro favor.</p>
+
+<h3 id="demo">Demo</h3>
+
+<h4 id="el-código-está-disponible">El código está disponible</h4>
+
+<p><a href="https://github.com/erikcaffrey/RecyclerView-Examples">RecyclerView-Examples en Github</a></p>
+
+<p><img src="/images/2015/10/Telecine_2015-10-18-21-56-43.gif" alt="" class="center-image" /></p>
+
+<h3 id="resources">Resources</h3>
+
+<ul>
+  <li><strong>Android</strong> - <a href="https://developer.android.com/training/material/lists-cards.html">Creating Lists and Cards</a></li>
+  <li><strong>Dave Smith</strong> - <a href="https://www.youtube.com/watch?v=gs_C1E8HwvE">Mastering RecyclerView layouts</a></li>
+  <li><strong>Fernando Cejas &amp; Jorge Barroso</strong> - <a href="http://es.slideshare.net/flipper83/material-old-school">Material for old school</a></li>
+  <li><strong>Chiu-Ki Chan</strong> - <a href="https://github.com/chiuki/android-recyclerview">android-recyclerview repository</a></li>
+</ul>
+
+<p><strong>“if you’re afraid to change something it is clearly poorly designed. by Martin Fowler”</strong></p>
+
+    </div>
+
+    <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=/ANDROID-recyclerview"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%C2%BFPor%20qu%C3%A9%20deber%C3%ADamos%20usar%20un%20RecyclerView?&url=/ANDROID-recyclerview"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/ANDROID-recyclerview&title=%C2%BFPor%20qu%C3%A9%20deber%C3%ADamos%20usar%20un%20RecyclerView?&summary=&source=Erik%20Jhordan%20Rey"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <!-- <li class="share__item">
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=/ANDROID-recyclerview&amp;media=/images/2015/10/recycler_view_concep.jpg&amp;description=%C2%BFPor%20qu%C3%A9%20deber%C3%ADamos%20usar%20un%20RecyclerView?"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
+      rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li> -->
+  </ul>
+</div>
+
+    <div class="post__navigation">
+  
+
+  
+  <a class="post__next" href="/ANDROID-mvp">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">Model View Presenter en Android</h2>
+    </div>
+    <div class="next__image">
+      <img class="lazy" data-src="/images/2015/11/mvp_.png" alt="¿Por qué deberíamos usar un RecyclerView?">
+    </div>
+  </a>
+  
+</div>
+
+     <!-- begin comments -->
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'erikjhordanrey-dev',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- end comments --> 
+
+  </article>
+</div>
+<!-- end post -->
+      </div>
+      <!-- end wrapper-page -->
+    </main>
+    <!-- end content -->
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-round-up"></i></div>
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12 col-m-12">
+        <div class="footer__inner">
+
+          <div class="footer__head">
+            <div class="row">
+              <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-recent">
+    <div class="widget__head">
+      <h3 class="widget__title">Latest Posts</h3>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <a class="recent-posts__image" href="/ANDROID-launch-android-apps">
+        <img class="lazy" data-src="/images/2020/3/launch-workflow.png" alt="Distribuye una Android App (Part 2)">
+      </a>
+      
+      <div class="recent-posts__content">
+        <div class="recent-posts__date">
+          <time class="timeago" datetime="2020-03-15T12:15:00-06:00">Mar 15, 2020</time>
+        </div>
+        <h4 class="recent-posts__title"><a href="/ANDROID-launch-android-apps">Distribuye una Android App (Part 2)</a></h4>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <a class="recent-posts__image" href="/ANDROID-automate-deploy-and-test-android-apps">
+        <img class="lazy" data-src="/images/2020/3/automate-part1.jpg" alt="Automatiza y Prueba una Android App (Part 1)">
+      </a>
+      
+      <div class="recent-posts__content">
+        <div class="recent-posts__date">
+          <time class="timeago" datetime="2020-03-15T12:15:00-06:00">Mar 15, 2020</time>
+        </div>
+        <h4 class="recent-posts__title"><a href="/ANDROID-automate-deploy-and-test-android-apps">Automatiza y Prueba una Android App (Part 1)</a></h4>
+      </div>
+    </div>
+    
+  </div>
+</div>
+              <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-gallery">
+    <div class="widget__head">
+      <h3 class="widget__title">Recent Episode</h3>
+    </div>
+    
+    <div class="gallery-box gallery-footer">
+      <iframe src="https://open.spotify.com/embed/show/1j0I5AO7Xb6TY0pq8cDLVQ" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    
+  </div>
+</div>
+              <!-- <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-subscribe">
+    <div class="widget__head">
+      <h3 class="widget__title">Subscribe to new posts</h3>
+    </div>
+    <div class="subscribe__inner">
+      <div class="subscribe__group">
+        <div class="subscribe__description">Subscribe to our newsletter and we’ll send you the emails of latest posts.</div>
+      </div>
+      <form class="subscribe-form validate"
+        action="#" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+        <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+        <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL"
+          placeholder="Your email address">
+        <button class="button subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div> -->
+            </div>
+          </div>
+        </div>
+
+        
+  <div class="social">
+    <ul class="social__list list-reset">
+      
+      <li class="social__item">
+        <a class="social__link" href="https://twitter.com/ErikJhordan_Rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-twitter"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://github.com/erikjhordan-rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-github"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="linkedin.com/in/erik-jhordan-rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-linkedin"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://youtube.com/UC4IXcI9YWmMWoF6Yrdvrq5g" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-youtube"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://www.instagram.com/erikjhordanpodcast/" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-instagram"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://www.facebook.com/erikjhordanpodcast" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-facebook"></i></a>
+      </li>
+      
+    </ul>
+  </div>
+
+        <div class="copyright">2021 &copy; <a href="/">Erik Jhordan Rey</a>. ♡ </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,61 +1,118 @@
-# Site
-name: Erik Jhordan Rey
-description: Erik's Blog
-meta_description: Erik's Blog
-logo: /assets/images/logo.png
-favicon: /assets/images/favicon.ico
-paginate: 6
-baseurl:
-email: 'erikjhordan.rey@gmail.com'
-google_analytics:
-disqus: erikcaffrey-github-io
+#-------------------------------
+# General Site Settings
+title: Erik Jhordan Rey
+logo: # You can add own logo. For example '/images/logo.png'.
+description: Erik Jhordan Rey - Creative Personal Blog Theme for Jekyll
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
 
-# Authors
-authors:
-  erik:
-    name: Erik Jhordan Rey
-    display_name: Erik Jhordan Rey
-    image: /assets/images/profile.png
-    email: erikjhordan.rey@gmail.com
-    web:
-    twitter: ErikJhordan_Rey
-    description: Software Engineer at Segundamano · Adevinta
 
-# Plugins
+#-------------------------------
+# Author Settings
+author:
+  name: Erik Jhordan Rey
+  image: '/images/01.jpg'
+
+
+#-------------------------------
+# Hero Settings
+hero:
+  hero__title: Hi, I'm <span class="hero__name">Erik Jhordan Rey</span>.
+  hero__job: Software Engineer
+  hero__description: AndroidDev @GoogleDevExpert Enthusiast • Amateur Triathlete
+  hero__button__text: Read about me
+  hero__button__link: '/about'
+  hero__image: '/images/01.jpg'
+
+
+#-------------------------------
+# Newsletter (_includes/footer-widgets/widget-subscribe.html)
+mailchimp__title: Subscribe to new posts # Add your Title
+mailchimp__text: Subscribe to our newsletter and we’ll send you the emails of latest posts. # Add your description.
+mailchimp__identifier: aafbfc33a4 # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
+mailchimp__button__text: Subscribe # Add your button text
+
+
+#-------------------------------
+# Contact Settings
+contact:
+  email: erikjhordan.rey@email.com # Add your email for contant form
+  description: Atega comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
+
+# NOTE
+# Atega comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want.
+
+
+#-------------------------------
+# Social Links (Footer)
+# Example of adding a new link to the footer - {icon: "ion-logo-facebook", link: "https://facebook.com"}
+# Other icons can be found at https://ionicons.com/v4/
+social:
+- {icon: "ion-logo-twitter", link: "https://twitter.com/ErikJhordan_Rey"}
+- {icon: "ion-logo-github", link: "https://github.com/erikjhordan-rey"}
+- {icon: "ion-logo-linkedin", link: "linkedin.com/in/erik-jhordan-rey"}
+- {icon: "ion-logo-youtube", link: "https://youtube.com/UC4IXcI9YWmMWoF6Yrdvrq5g"}
+- {icon: "ion-logo-instagram", link: "https://www.instagram.com/erikjhordanpodcast/"}
+- {icon: "ion-logo-facebook", link: "https://www.facebook.com/erikjhordanpodcast"}
+
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: erikjhordanrey-dev
+ # add your shortname for Disqus Comment. For example mr-brown
+
+
+#-------------------------------
+# Gallery Footer Section
+gallery:
+  title: Recent Episode
+  images:
+    - alt: 'Minimalism'
+      url: '/images/2.jpg'
+    - alt: 'Minimalism'
+      url: '/images/05.jpg'
+    - alt: 'Minimalism'
+      url: '/images/08.jpg'
+    - alt: 'Minimalism'
+      url: '/images/03.jpg'
+    - alt: 'Minimalism'
+      url: '/images/09.jpg'
+    - alt: 'Minimalism'
+      url: '/images/04.jpg'
+
+
+#-------------------------------
+# Google Analytics
+google-analytics: G-06G51LVDJT # Add your identifier. For example UA-99631805-1.
+
+
+#-------------------------------
+# Build Settings
+markdown: kramdown
+permalink: /:title
 plugins:
   - jekyll-paginate
-  - jekyll-archives
-  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll/tagging
 
-permalinks: pretty
+paginate: 9
+paginate_path: "/page/:num"
 
-# Archives
-jekyll-archives:
-  enabled:
-    - categories
-  layout: archive
-  permalinks:
-    category: 'category/:name/'
+# Pages Path
+defaults:
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename:output_ext
 
-# Other
-markdown: kramdown
-highlighter: rouge
+include:
+  - _pages
 
-# SEO
-twitter:
-  username: ErikJhordan_Rey
-  card: summary
+# Tags
+tag_page_dir:         tag
+tag_page_layout:      tag_page
+tag_permalink_style:  /:title
 
-facebook:
-  app_id:
-  publisher: Erik Jhordan Rey
-  admins:
-
-social:
-name: ErikJhordan_Rey
-links:
-    - https://twitter.com/
-    - https://www.facebook.com/
-    - https://www.linkedin.com/
-    - https://plus.google.com/
-    - https://github.com/
+sass:
+  sass_dir: _sass
+  style: compressed

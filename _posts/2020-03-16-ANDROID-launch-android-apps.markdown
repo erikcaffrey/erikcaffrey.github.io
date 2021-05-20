@@ -1,11 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2020/3/launch-workflow.png
 title: Distribuye una Android App (Part 2)
-date: 2020-03-16 00:00:00 +0545
-categories: blog
-featured: true
-author: erik
+date:   2020-03-16 00:00:00 +0545
+image:  '/images/2020/3/launch-workflow.png'
+tags:   android-delivery
 ---
 
 Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo este tipo de implementaciones, de igual forma me gustaría recomendarte pasar por mi [artículo anterior](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html) para tener una visión general sobre el tema.

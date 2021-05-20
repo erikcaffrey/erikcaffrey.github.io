@@ -1,10 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2016/4/depen.png
-title: Una aplicación android utilizando Inyección de dependencias
-date: 2016-04-26 00:00:00 +0545
-categories: blog
-author: erik
+title:  Una aplicación android utilizando Inyección de dependencias
+date:   2016-04-26 00:00:00 +0545
+image:  '/images/2016/4/depen.png'
+tags:   android-patterns
 ---
 
 Después de unas semanas con jornadas de trabajo intensas, hoy he vuelto con un tema muy interesante y que desde hace un tiempo he tenido muchas ganas de escribir ya que pienso que es la base y una de las partes fundamentales para escribir un buen software ;pero en el caso de android su uso no es tan común es por eso que quiero hablar sobre esos beneficios que contrae el usar la inyección de dependencias.
@@ -119,7 +118,7 @@ Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pi
 
 [Dependency-Injection-Android en Github](https://github.com/erikjhordan-rey/Dependency-Injection-Android)
 
-![](/assets/images/2016/4/battery.png)
+![](/images/2016/4/battery.png)
 
 ## Acknowledgment
 

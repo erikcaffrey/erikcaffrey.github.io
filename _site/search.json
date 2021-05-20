@@ -1,0 +1,97 @@
+[
+  
+    {
+      "title"    : "Distribuye una Android App (Part 2)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-launch-android-apps'> <img src='/images/2020/3/launch-workflow.png' alt='Distribuye una Android App (Part 2)'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-launch-android-apps'>Distribuye una Android App (Part 2)</a> </h2> <p class='article__excerpt'> Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendacio... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2020-03-15T12:15:00-06:00'>15 Mar 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/android-delivery' class='article__tag'>android-delivery</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-delivery",
+      "url"      : "/ANDROID-launch-android-apps",
+      "date"     : "2020-03-15 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "Automatiza y Prueba una Android App (Part 1)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-automate-deploy-and-test-android-apps'> <img src='/images/2020/3/automate-part1.jpg' alt='Automatiza y Prueba una Android App (Part 1)'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-automate-deploy-and-test-android-apps'>Automatiza y Prueba una Android App (Part 1)</a> </h2> <p class='article__excerpt'> En el día a día comúnmente los equipos de software (mobile) tenemos la responsabilidad de implementar soluciones enfocadas... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2020-03-15T12:15:00-06:00'>15 Mar 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/android-delivery' class='article__tag'>android-delivery</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-delivery",
+      "url"      : "/ANDROID-automate-deploy-and-test-android-apps",
+      "date"     : "2020-03-15 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "Migrate to New Android Plugin for Gradle 3.?.?",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-mitrating-to-gradle-3'> <img src='/images/2017/12/gradle.png' alt='Migrate to New Android Plugin for Gradle 3.?.?'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-mitrating-to-gradle-3'>Migrate to New Android Plugin for Gradle 3.?.?</a> </h2> <p class='article__excerpt'> Our happy history migrating an existing android project using gradle 2.3 to new gradle version.
+
+One of the most important... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2017-11-30T12:15:00-06:00'>30 Nov 2017</time></span>  <div class='article-tags__box'>  <a href='/tag/android-old-school' class='article__tag'>android-old-school</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-old-school",
+      "url"      : "/ANDROID-mitrating-to-gradle-3",
+      "date"     : "2017-11-30 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "Support of Kotlin &amp; Architecture Components",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-kotlin-arch-components'> <img src='/images/2017/5/kotlin-arch.png' alt='Support of Kotlin & Architecture Components'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-kotlin-arch-components'>Support of Kotlin & Architecture Components</a> </h2> <p class='article__excerpt'> Official support of Kotlin on Android
+
+The last Google I/O 2017 like you know the Android team announced the official supp... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2017-05-22T13:15:00-05:00'>22 May 2017</time></span>  <div class='article-tags__box'>  <a href='/tag/android-new-era' class='article__tag'>android-new-era</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-new-era",
+      "url"      : "/ANDROID-kotlin-arch-components",
+      "date"     : "2017-05-22 13:15:00 -0500"
+    } ,
+  
+    {
+      "title"    : "Dagger 2 Kata para android developers",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-kata-dagger2'> <img src='/images/2016/7/mario-kart.png' alt='Dagger 2 Kata para android developers'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-kata-dagger2'>Dagger 2 Kata para android developers</a> </h2> <p class='article__excerpt'> En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Prince... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2016-07-07T13:15:00-05:00'>07 Jul 2016</time></span>  <div class='article-tags__box'>  <a href='/tag/android-dagger' class='article__tag'>android-dagger</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-dagger",
+      "url"      : "/ANDROID-kata-dagger2",
+      "date"     : "2016-07-07 13:15:00 -0500"
+    } ,
+  
+    {
+      "title"    : "Una aplicación android utilizando Inyección de dependencias",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-dependency-injection'> <img src='/images/2016/4/depen.png' alt='Una aplicación android utilizando Inyección de dependencias'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-dependency-injection'>Una aplicación android utilizando Inyección de dependencias</a> </h2> <p class='article__excerpt'> Después de unas semanas con jornadas de trabajo intensas, hoy he vuelto con un tema muy interesante y que desde hace un ti... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2016-04-25T13:15:00-05:00'>25 Apr 2016</time></span>  <div class='article-tags__box'>  <a href='/tag/android-patterns' class='article__tag'>android-patterns</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-patterns",
+      "url"      : "/ANDROID-dependency-injection",
+      "date"     : "2016-04-25 13:15:00 -0500"
+    } ,
+  
+    {
+      "title"    : "Aplicando Clean Architecture en Android",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-clean-architecture'> <img src='/images/2016/1/clean.png' alt='Aplicando Clean Architecture en Android'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-clean-architecture'>Aplicando Clean Architecture en Android</a> </h2> <p class='article__excerpt'> Hace ya un tiempo que comencé a desarrollar aplicaciones móviles para android (si cuando android era feo ‘2.2’ y no existí... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2016-01-27T12:15:00-06:00'>27 Jan 2016</time></span>  <div class='article-tags__box'>  <a href='/tag/android-patterns' class='article__tag'>android-patterns</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-patterns",
+      "url"      : "/ANDROID-clean-architecture",
+      "date"     : "2016-01-27 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "Escribiendo android apps con Data Binding",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-databinding-android'> <img src='/images/2015/12/mvvm.png' alt='Escribiendo android apps con Data Binding'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-databinding-android'>Escribiendo android apps con Data Binding</a> </h2> <p class='article__excerpt'> En la actualidad como lo he mencionado en mi artículo anterior la comunidad está en el punto de madurez en donde todos o g... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2015-12-15T12:15:00-06:00'>15 Dec 2015</time></span>  <div class='article-tags__box'>  <a href='/tag/android-patterns' class='article__tag'>android-patterns</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-patterns",
+      "url"      : "/ANDROID-databinding-android",
+      "date"     : "2015-12-15 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "Model View Presenter en Android",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-mvp'> <img src='/images/2015/11/mvp_.png' alt='Model View Presenter en Android'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-mvp'>Model View Presenter en Android</a> </h2> <p class='article__excerpt'> Estructurar el código de nuestras aplicaciones de una manera que sea mantenible y testable no es del todo simple debido a ... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2015-11-02T12:15:00-06:00'>02 Nov 2015</time></span>  <div class='article-tags__box'>  <a href='/tag/android-patterns' class='article__tag'>android-patterns</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-patterns",
+      "url"      : "/ANDROID-mvp",
+      "date"     : "2015-11-02 12:15:00 -0600"
+    } ,
+  
+    {
+      "title"    : "¿Por qué deberíamos usar un RecyclerView?",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/ANDROID-recyclerview'> <img src='/images/2015/10/recycler_view_concep.jpg' alt='¿Por qué deberíamos usar un RecyclerView?'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/ANDROID-recyclerview'>¿Por qué deberíamos usar un RecyclerView?</a> </h2> <p class='article__excerpt'> El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un RecyclerView h... </p> <div class='article__meta'> <a href='/about/' class='article__author-link'>Erik Jhordan Rey</a> <span class='article__date'><time datetime='2015-10-04T13:15:00-05:00'>04 Oct 2015</time></span>  <div class='article-tags__box'>  <a href='/tag/android-old-school' class='article__tag'>android-old-school</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "android-old-school",
+      "url"      : "/ANDROID-recyclerview",
+      "date"     : "2015-10-04 13:15:00 -0500"
+    } 
+  
+]

@@ -1,0 +1,62 @@
+== 1.1.0 [2017-03-07]
+
+* Added ability to append extra data to all tag pages. (tfe)
+* Provides compatibility to the current jekyll (3.4.1).
+* A few fixes. (felipe)
+* Some documentation improvements. (wsmoak, jonathanpberger)
+* Prooves who is the worst open source maintainer. (pattex ^__^)
+
+== 1.0.1 [2015-06-11]
+
+* Substitution of non ASCII characters and whitespaces, also when 'tag_permalink_style: pretty'.
+
+== 1.0.0 [2015-06-10]
+
+* Generate prettier urls for tag with whitespaces or non ASCII characters. ATTENTION: Your urls may change!
+* Added support for site.config["baseurl"]. (Tsukasa ŌMOTO)
+* Added trailing slashes to permalinks. (Pyry Kontio)
+
+== 0.6.0 [2014-09-03]
+
+* Pretty permalinks for tag pages. (Steve Valaitis)
+* Added support for keywords (allenlsy)
+
+== 0.5.0 [2013-06-06]
+
+* Added rel="tag" to posts' tag links. (Brandon Hicks)
+* Added support for ignored tags. (Zee Spencer)
+
+== 0.4.0 [2012-10-22]
+
+* Heavy refactoring to better support monkey patching.
+* Fixed issue when a number is used as a tag. (Fabrice Rossi)
+
+== 0.3.1 [2012-05-24]
+
+* Added support for Jekyll::Site#add_payload (custom extension).
+
+== 0.3.0 [2012-02-03]
+
+* Feed per tag feature added.
+
+== 0.2.0 [2011-03-10]
+
+* Added support for pretty tag page URLs.
+* Some bugs fixed.
+
+== 0.1.2 [2011-01-31]
+
+* Nothing to do when there are no tags.
+
+== 0.1.1 [2010-11-26]
+
+* Posts on tag pages are now sorted.
+
+== 0.1.0 [2010-10-28]
+
+* Added a <tt>tags</tt> filter.
+* Ease customization by adding additional layers.
+
+== 0.0.1 [2010-10-25]
+
+* Here I am!

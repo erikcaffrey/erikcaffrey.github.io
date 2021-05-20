@@ -1,108 +1,23 @@
 ---
 layout: default
-disqus: false
-archive: false
-post_class: post-template
 ---
 
-<!-- Begin Article
-================================================== -->
+{% include hero.html %}
 
-	<div class="row">
+<!-- begin post -->
+<div class="container">
+  <article class="post animate">
 
-		<!-- Post -->
-        {% assign author = site.authors[page.author] %}
+    <div class="post__content">
+      {{ content }}
+    </div>
 
-		<div class="col-sm-8">
-			<div class="mainheading">
+    {% include share.html %}
 
-                <!-- Post Categories -->
-                <div class="after-post-tags">
-                    <ul class="tags">
-                        {% assign sortedCategories = page.categories | sort %}
-                        {% for category in sortedCategories %}
-                        <li>
-                         <a href="{{ site.baseurl }}/">{{ category }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <!-- End Categories -->
+    {% include post-navigation.html %}
 
-                <!-- Post Title -->
-				<h1 class="posttitle">{{ page.title }}</h1>
-			</div>
+    {% if site.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
 
-			<!-- Post Featured cover -->
-			{% if page.cover %}<img class="featured-cover img-fluid" src="{{ site.baseurl }}/{{ page.cover }}" alt="{{ page.title }}" width="100%">{% endif %}
-			<!-- End Featured cover -->
-            <br><br>
-
-           <!-- Post Content -->
-            <div class="article-post">
-				{{content}}
-                <div class="clearfix"></div>
-			</div>
-
-            <!-- Post Date -->
-            <p>
-            <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>
-                {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
-                {% endif %}
-                </small>
-            </p>
-            <br><br>
-           <div class="sharethis-inline-share-buttons"></div>
-            <br>
-            <!-- Prev/Next -->
-            <div class="row PageNavigation mt-4 prevnextlinks">
-              {% if page.previous.url %}
-                <div class="col-md-6 rightborder pl-0">
-                    <a class="thepostlink" href="{{page.previous.url | absolute_url | strip_html }}">&laquo; {{page.previous.title}}</a>
-                </div>
-              {% endif %}
-              {% if page.next.url %}
-                <div class="col-md-6 text-right pr-0">
-                    <a class="thepostlink" href="{{page.next.url | absolute_url | strip_html }}">{{page.next.title}} &raquo;</a>
-                </div>
-              {% endif %}
-            </div>
-            <!-- End Prev/Next -->
-
-             <!-- Author Box -->
-                {% if page.author %}
-				<div class="row post-top-meta">
-					<div class="col-md-2">
-						<img class="author-thumb" src="{{ author.image }}" alt="{{ author.display_name }}">
-					</div>
-					<div class="col-md-10">
-						<a target="_blank" class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a><a target="_blank" href="https://twitter.com/ErikJhordan_Rey" class="btn follow">Follow</a><br>
-						<span class="author-description">{{ author.description }}</span>
-					</div>
-				</div>
-                {% endif %}
-
-             {% include related_posts.html %}
-
-            <!-- Begin Comments
-            ================================================== -->
-            <section>
-
-            <div id="comments">
-
-              {% include disqus.html %}
-
-            </div>
-
-            </section>
-            <!--End Comments
-            ================================================== -->
-
-		</div>
-		<!-- End Post -->
-	</div>
-
-<!-- End Article
-================================================== -->
+  </article>
+</div>
+<!-- end post -->

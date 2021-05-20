@@ -1,12 +1,11 @@
 ---
 layout: post
-cover:  assets/images/2020/3/automate-part1.jpg
-title: Automatiza y Prueba una Android App (Part 1)
-date: 2020-03-16 00:00:00 +0545
-categories: blog
-featured: true
-author: erik
+title:  Automatiza y Prueba una Android App (Part 1)
+date:   2020-03-16 00:00:00 +0545
+image:  '/images/2020/3/automate-part1.jpg'
+tags:   android-delivery
 ---
+
 
 En el día a día comúnmente los equipos de software (mobile) tenemos la responsabilidad de implementar soluciones enfocadas en el negocio, proveer mejoras de funcionalidad, reparar bugs, cumplir con deadlines, entre otras y al final el objetivo es lograr que un usuario pueda disfrutar de nuestro producto de la mejor forma posible. 
 
@@ -107,7 +106,7 @@ Distribuye un apk de forma automática en [firebase app distribution](https://fi
 
 Distribuye un apk de forma automática en [firebase app distribution](https://firebase.google.com/docs/app-distribution) cada que se crea un **release branch** y Travis CI termina de ejecutar el job. Es una versión candidata para liberar en producción es probada por el equipo de QA y si no hay errores se crea un **tag** que terminara deployando en [Google Play Store](https://play.google.com/store). 
 
-![workflow](/assets/images/2020/3/work-flow.png){: .center-image }
+![workflow](/images/2020/3/work-flow.png){: .center-image }
 
 Usamos un branch **master** es el lugar donde se encuentra todo el proyecto, para integrar código es necesario crear una pull requests contra master. El Job de **Travis CI** comenzará a ejecutar el build para asegurar que todo sigue compilando, se ejecutará el análisis de código y la suite de tests, si todo estuvo correcto y la **pull requests** fue aprobada por el equipo se hace el merge a master, automáticamente se va generar un build de desarrollo en [firebase app distribution](https://firebase.google.com/docs/app-distribution) con un release notes que contiene el último commit del branch, de esta forma el equipo puede probar en cualquier momento lo que existe en master. Cuando requiere liberar a **producción** primero se crea un **release branch** para que el equipo de QA pueda realizar una regresión con una versión de producción, en ocasiones hay escenarios que solo suceden en producción por “alguna razón”, si encontramos problemas reparamos en en release branch y hacemos el fix también en **master** para evitar crear otro release dado que en ocasiones ya se ha incluido más código que no es parte del release actual, cuando todo está correcto se genera un **tag** que termina deployando un build en Google Play en el stage “internal”, así nosotros controlamos a que stages liberar alfa, beta o producción y el porcentaje en el que lo queremos realizar.
 

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dagger 2 Kata para android developers</title>
+  <meta name='description' content='Erik Jhordan Rey - Creative Personal Blog Theme for Jekyll'>
+
+  <link rel="canonical" href="/ANDROID-kata-dagger2">
+  <link rel="alternate" type="application/rss+xml" title="Erik Jhordan Rey" href="/feed.xml">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <style>
+  
+  /*!------------------------------------------------------------------
+[MAIN STYLESHEET]
+-------------------------------------------------------------------*/.list-reset{list-style-type:none;margin:0;padding:0}.clearfix::after,.clearfix ::before{content:"";display:table;clear:both}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:30px}ul,ol,dd{margin-left:15px}ul li,ol li{margin-bottom:10px}.highlight{background:#f3f3f3}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}.container{max-width:1270px;padding-left:15px;padding-right:15px;margin:0 auto}@media only screen and (max-width: 1300px){.container{max-width:1100px}}@media only screen and (max-width: 1130px){.container{max-width:1000px}}@media only screen and (max-width: 1024px){.container{max-width:740px}}@media only screen and (max-width: 768px){.container{max-width:540px}}@media only screen and (max-width: 576px){.container{max-width:380px}}.row{display:flex;flex-wrap:wrap;flex:0 1 auto;flex-direction:row;box-sizing:border-box;margin-left:-15px;margin-right:-15px}.col{padding-left:15px;padding-right:15px}[class^="col-"]{flex:auto}.col-0{width:0%}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}.push-0{margin-left:0%}.push-1{margin-left:8.3333333333%}.push-2{margin-left:16.6666666667%}.push-3{margin-left:25%}.push-4{margin-left:33.3333333333%}.push-5{margin-left:41.6666666667%}.push-6{margin-left:50%}.push-7{margin-left:58.3333333333%}.push-8{margin-left:66.6666666667%}.push-9{margin-left:75%}.push-10{margin-left:83.3333333333%}.push-11{margin-left:91.6666666667%}.push-12{margin-left:100%}.pull-0{margin-right:0%}.pull-1{margin-right:8.3333333333%}.pull-2{margin-right:16.6666666667%}.pull-3{margin-right:25%}.pull-4{margin-right:33.3333333333%}.pull-5{margin-right:41.6666666667%}.pull-6{margin-right:50%}.pull-7{margin-right:58.3333333333%}.pull-8{margin-right:66.6666666667%}.pull-9{margin-right:75%}.pull-10{margin-right:83.3333333333%}.pull-11{margin-right:91.6666666667%}.pull-12{margin-right:100%}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}@media (max-width: 1024px){.col-d-0{width:0%}.col-d-1{width:8.3333333333%}.col-d-2{width:16.6666666667%}.col-d-3{width:25%}.col-d-4{width:33.3333333333%}.col-d-5{width:41.6666666667%}.col-d-6{width:50%}.col-d-7{width:58.3333333333%}.col-d-8{width:66.6666666667%}.col-d-9{width:75%}.col-d-10{width:83.3333333333%}.col-d-11{width:91.6666666667%}.col-d-12{width:100%}.push-d-0{margin-left:0%}.push-d-1{margin-left:8.3333333333%}.push-d-2{margin-left:16.6666666667%}.push-d-3{margin-left:25%}.push-d-4{margin-left:33.3333333333%}.push-d-5{margin-left:41.6666666667%}.push-d-6{margin-left:50%}.push-d-7{margin-left:58.3333333333%}.push-d-8{margin-left:66.6666666667%}.push-d-9{margin-left:75%}.push-d-10{margin-left:83.3333333333%}.push-d-11{margin-left:91.6666666667%}.push-d-12{margin-left:100%}.pull-d-0{margin-right:0%}.pull-d-1{margin-right:8.3333333333%}.pull-d-2{margin-right:16.6666666667%}.pull-d-3{margin-right:25%}.pull-d-4{margin-right:33.3333333333%}.pull-d-5{margin-right:41.6666666667%}.pull-d-6{margin-right:50%}.pull-d-7{margin-right:58.3333333333%}.pull-d-8{margin-right:66.6666666667%}.pull-d-9{margin-right:75%}.pull-d-10{margin-right:83.3333333333%}.pull-d-11{margin-right:91.6666666667%}.pull-d-12{margin-right:100%}}@media (max-width: 768px){.col-t-0{width:0%}.col-t-1{width:8.3333333333%}.col-t-2{width:16.6666666667%}.col-t-3{width:25%}.col-t-4{width:33.3333333333%}.col-t-5{width:41.6666666667%}.col-t-6{width:50%}.col-t-7{width:58.3333333333%}.col-t-8{width:66.6666666667%}.col-t-9{width:75%}.col-t-10{width:83.3333333333%}.col-t-11{width:91.6666666667%}.col-t-12{width:100%}.push-t-0{margin-left:0%}.push-t-1{margin-left:8.3333333333%}.push-t-2{margin-left:16.6666666667%}.push-t-3{margin-left:25%}.push-t-4{margin-left:33.3333333333%}.push-t-5{margin-left:41.6666666667%}.push-t-6{margin-left:50%}.push-t-7{margin-left:58.3333333333%}.push-t-8{margin-left:66.6666666667%}.push-t-9{margin-left:75%}.push-t-10{margin-left:83.3333333333%}.push-t-11{margin-left:91.6666666667%}.push-t-12{margin-left:100%}.pull-t-0{margin-right:0%}.pull-t-1{margin-right:8.3333333333%}.pull-t-2{margin-right:16.6666666667%}.pull-t-3{margin-right:25%}.pull-t-4{margin-right:33.3333333333%}.pull-t-5{margin-right:41.6666666667%}.pull-t-6{margin-right:50%}.pull-t-7{margin-right:58.3333333333%}.pull-t-8{margin-right:66.6666666667%}.pull-t-9{margin-right:75%}.pull-t-10{margin-right:83.3333333333%}.pull-t-11{margin-right:91.6666666667%}.pull-t-12{margin-right:100%}}@media (max-width: 576px){.col-m-0{width:0%}.col-m-1{width:8.3333333333%}.col-m-2{width:16.6666666667%}.col-m-3{width:25%}.col-m-4{width:33.3333333333%}.col-m-5{width:41.6666666667%}.col-m-6{width:50%}.col-m-7{width:58.3333333333%}.col-m-8{width:66.6666666667%}.col-m-9{width:75%}.col-m-10{width:83.3333333333%}.col-m-11{width:91.6666666667%}.col-m-12{width:100%}.push-m-0{margin-left:0%}.push-m-1{margin-left:8.3333333333%}.push-m-2{margin-left:16.6666666667%}.push-m-3{margin-left:25%}.push-m-4{margin-left:33.3333333333%}.push-m-5{margin-left:41.6666666667%}.push-m-6{margin-left:50%}.push-m-7{margin-left:58.3333333333%}.push-m-8{margin-left:66.6666666667%}.push-m-9{margin-left:75%}.push-m-10{margin-left:83.3333333333%}.push-m-11{margin-left:91.6666666667%}.push-m-12{margin-left:100%}.pull-m-0{margin-right:0%}.pull-m-1{margin-right:8.3333333333%}.pull-m-2{margin-right:16.6666666667%}.pull-m-3{margin-right:25%}.pull-m-4{margin-right:33.3333333333%}.pull-m-5{margin-right:41.6666666667%}.pull-m-6{margin-right:50%}.pull-m-7{margin-right:58.3333333333%}.pull-m-8{margin-right:66.6666666667%}.pull-m-9{margin-right:75%}.pull-m-10{margin-right:83.3333333333%}.pull-m-11{margin-right:91.6666666667%}.pull-m-12{margin-right:100%}}img[data-action="zoom"]{cursor:pointer;cursor:-webkit-zoom-in;cursor:-moz-zoom-in}.zoom-img,.zoom-img-wrap{position:relative;z-index:666;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}img.zoom-img{cursor:pointer;cursor:-webkit-zoom-out;cursor:-moz-zoom-out}.zoom-overlay{z-index:420;background:#fff;position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;-webkit-transition:opacity 300ms;-o-transition:opacity 300ms;transition:opacity 300ms}.zoom-overlay-open .zoom-overlay{opacity:1}.zoom-overlay-open,.zoom-overlay-transitioning{cursor:default}.animate{animation:animateElement cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;animation-duration:0.5s;animation-iteration-count:1;transition:transform .15s}@keyframes animateElement{0%{opacity:0;transform:translate(0px, 50px)}100%{opacity:1;transform:translate(0px, 0px)}}*,*::after,*::before{box-sizing:border-box}body{font-family:"Inter",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18px;line-height:34px;border:10px solid #f9f9fc;color:#17181e;background-color:#f9f9fc;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body.dark .footer__head{background:#f9f9fc}@media only screen and (max-width: 768px){body.dark .footer__head{padding:40px}}@media only screen and (max-width: 576px){body.dark .footer__head{padding:30px}}body.dark .subscribe-form .subscribe-email{background:#fff}@media only screen and (max-width: 576px){body{font-size:16px;line-height:29px;border-width:5px}}*::selection{color:#fff;background-color:rgba(61,90,254,0.8)}h1,h2,h3,h4,h5,h6{font-family:"Inter",Helvetica Neue,Helvetica,Arial,sans-serif;font-weight:700;line-height:1.3;letter-spacing:-1px}h1{font-size:36px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}blockquote{position:relative;margin-top:30px;padding:25px 25px 15px 60px;font-size:30px;line-height:45px;font-weight:600;font-style:normal}blockquote::before{content:'\201C';position:absolute;top:0.35em;left:0.05em;font-size:3.5em;color:#3d5afe}blockquote p{margin-bottom:10px}blockquote cite{display:inline-block;margin-top:7px;font-size:15px;font-style:normal;color:#657388}blockquote cite:before{content:'\2014' '\00a0'}@media only screen and (max-width: 1024px){blockquote{font-size:24px;line-height:37px}}@media only screen and (max-width: 576px){blockquote{padding:38px 0 15px 35px;font-size:21px;line-height:31px}}pre{overflow:auto;padding:15px;margin-bottom:0;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all}img,.zoom-img-wrap{max-width:100%;height:auto;vertical-align:middle}img+em,.zoom-img-wrap+em{display:block;margin-top:15px;font-size:14px;line-height:22px;font-style:normal;font-weight:normal;text-align:center;color:#17181e}img+em a,.zoom-img-wrap+em a{border-bottom:1px solid #17181e}img+em a:hover,.zoom-img-wrap+em a:hover{color:#17181e;border-color:#3d5afe}a{text-decoration:none;color:#17181e;transition:all 0.35s}a:hover{color:#17181e}hr{display:block;height:1px;width:100px;margin:50px 0;border:0;background:#ededf3}.wrapper-page{margin-bottom:70px}@media only screen and (max-width: 768px){.wrapper-page{margin-bottom:60px}}@media only screen and (max-width: 576px){.wrapper-page{margin-bottom:40px}}.button{display:inline-block;height:45px;padding:0 20px;font-size:15px;font-weight:700;border:none;outline:none;color:#fff;background:#3d5afe;transition:all 0.35s;cursor:pointer}.button:hover{color:#fff;background:#2444fe}.lazy{opacity:0;transition:0.3s}.lazy.loaded{opacity:1}.top{position:fixed;bottom:40px;right:-100px;z-index:1;width:28px;height:40px;font-size:28px;line-height:40px;text-align:center;border-radius:6px;background-color:#fff;color:#17181e;cursor:pointer;transition:all .25s ease;box-shadow:0px 0px 20px rgba(0,0,0,0.05)}.top:hover{color:#fff;background-color:#3d5afe}.top.is-active{right:40px}@media only screen and (max-width: 768px){.top{bottom:25px}.top.is-active{right:30px}}.header{height:auto;border-bottom:1px solid #ededf3;background:#fff;transition:all 0.35s}.header .header__overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:15;background-color:rgba(17,17,17,0.7);cursor:pointer;opacity:0;visibility:hidden;transition:all 0.5s ease}@media only screen and (max-width: 1024px){.header .header__overlay.is-visible{opacity:1;visibility:visible}}.header__inner{position:relative;display:flex;align-items:center;min-height:80px}.logo__link{font-size:20px;line-height:26px;font-weight:700}.logo__link:hover{color:#3d5afe}.logo__image{max-height:50px}.main-nav{margin-left:80px}@media only screen and (max-width: 1024px){.main-nav{position:fixed;top:0;left:inherit;right:-300px;bottom:0;transform:none;z-index:100;width:300px;height:100vh;padding:40px 30px 30px;border:10px solid #f9f9fc;transition:right 0.5s cubic-bezier(0.7, 0.4, 0, 1);background:#fff}.main-nav.is-open{right:0}.main-nav .nav__list{width:100%}.main-nav .nav__list .nav__item{display:block;margin:0 10px}.main-nav .nav__list .nav__item:last-child{margin-right:10px}.main-nav .nav__list .nav__item .nav__link{display:block;padding:10px 0;font-size:16px;line-height:26px;font-weight:500}}@media only screen and (max-width: 576px){.main-nav{padding:20px 30px;border-width:5px}}.main-nav__box{display:flex;align-items:center}.main-nav__box .nav__icon-close{display:none;font-size:24px;text-align:right}.main-nav__box .nav__icon-close .ion-md-close{transition:all 0.35s;cursor:pointer}.main-nav__box .nav__icon-close .ion-md-close:hover{color:#3d5afe}.main-nav__box .nav__title{display:none}@media only screen and (max-width: 1024px){.main-nav__box{display:block}.main-nav__box .nav__icon-close{display:block}.main-nav__box .nav__title{display:block;margin:0 10px 15px;padding-bottom:15px;font-size:24px;font-weight:700;color:#17181e;border-bottom:1px solid #ededf3}}.nav__list .nav__item{display:inline-block;margin:0 20px}.nav__list .nav__item:last-child{margin-right:40px}.nav__list .nav__item .nav__link{font-size:15px;line-height:24px;font-weight:500}.nav__list .nav__item .nav__link:hover{color:#3d5afe}.nav-buttons{display:flex;align-items:center;margin-left:auto;font-size:21px;color:#17181e;cursor:pointer}.nav-buttons .nav__icon{transition:all 0.35s}.nav-buttons .nav__icon:hover{color:#3d5afe}.nav-buttons .nav__icon:first-child{margin-right:15px}.nav-buttons .nav__icon-menu{display:none}@media only screen and (max-width: 1024px){.nav-buttons{margin-left:auto}.nav-buttons .nav__icon-menu{display:block}}.search{position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;transform:scale(0.95);overflow:auto;opacity:0;background:#f9f9fc;transition:all .25s ease}.search.is-visible{transform:scale(1);z-index:100;opacity:1;transition:all .25s ease}.search__box{width:50%;margin:0 auto;padding-top:140px}@media only screen and (max-width: 1024px){.search__box{width:80%;padding-top:100px}}.search__group{position:relative;margin-bottom:50px}.search__group .search__close{position:absolute;right:20px;top:17px;font-size:27px;line-height:40px;cursor:pointer;transition:all .2s}.search__group .search__close:hover{color:#3d5afe}.search__group .search__text{width:100%;padding:20px;font-size:21px;line-height:31px;border:2px solid transparent;border-radius:4px;color:#17181e;background:#fff;outline:none;transition:all .2s}.search__group .search__text:focus{border-color:#3d5afe}.search__group .search__text::placeholder{font-weight:500;color:#17181e}.search__group .search__text::-ms-clear{display:none}.search-results-list .no-results{width:100%;font-size:21px;font-weight:600;text-align:center;color:#17181e}.pagination{margin-top:40px}@media only screen and (max-width: 768px){.pagination{margin-top:30px}}@media only screen and (max-width: 576px){.pagination{margin-top:20px}}.pagination__inner{display:flex;justify-content:center;align-items:center}.pagination__list{display:flex;font-weight:600;height:40px;padding:0 20px;font-size:14px;line-height:40px;border-radius:3px;box-shadow:0px 0px 20px rgba(0,0,0,0.05);color:#17181e;background-color:#fff}.pagination__count{display:inline-block;padding:0 15px;margin:0 15px;font-size:13px;border-left:1px solid rgba(23,24,30,0.1);border-right:1px solid rgba(23,24,30,0.1);color:#657388}.pagination__next i,.pagination__prev i{font-size:13px}.pagination__next:hover,.pagination__prev:hover{color:#3d5afe}.pagination__next.disabled,.pagination__prev.disabled{opacity:0.2;cursor:not-allowed;color:inherit}.pagination__next i{margin-left:4px}.pagination__prev i{margin-right:4px}.footer{padding-top:70px;background:#fff}.footer .row .col{flex-grow:1}.footer .footer__inner{padding:60px 0;margin:0 60px 0;background-image:-webkit-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-moz-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-ms-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);-webkit-background-size:15px 15px;-moz-background-size:15px 15px;background-size:15px 15px}.footer .footer__head{margin:0 -60px;padding:60px;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,0.07)}.footer .footer__content{padding:60px 0}@media only screen and (max-width: 1024px){.footer .row .col:last-child>.widget{margin-bottom:0}}@media only screen and (max-width: 768px){.footer{padding-top:60px}.footer .footer__inner{padding:0;margin:0;background-image:none}.footer .footer__head{margin:0;padding:0;box-shadow:none}}@media only screen and (max-width: 576px){.footer{padding-top:50px}}@media only screen and (max-width: 1024px){.widget{margin-bottom:30px}}@media only screen and (max-width: 576px){.widget{margin-bottom:40px}}.widget__head{margin-bottom:20px}.widget__head .widget__title{margin:0;font-size:24px;color:#17181e}.widget-gallery{padding:0 35px}@media only screen and (max-width: 1024px){.widget-gallery{padding:0}}.recent-posts{position:relative;display:flex;margin-bottom:15px}.recent-posts:last-child{margin-bottom:0}.recent-posts__header{margin-right:15px}.recent-posts__image{position:relative;display:block;margin-right:15px;min-width:80px;height:80px;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#f9f9fc}.recent-posts__image img{position:absolute;top:0;width:100%;height:100%;object-fit:cover}.recent-posts__date{margin-bottom:5px;font-size:13px;line-height:16px;color:#657388}.recent-posts__title{margin-bottom:0;font-size:17px;line-height:22px;font-weight:700}.recent-posts__title a{color:#17181e}.recent-posts__title a:hover{color:#17181e}.widget-subscribe .subscribe__inner{display:flex;flex-direction:column;justify-content:space-between}.widget-subscribe .subscribe__group{margin-bottom:20px}.widget-subscribe .subscribe__group .subscribe__title{margin-bottom:15px;color:#17181e}.widget-subscribe .subscribe__group .subscribe__description{font-size:15px;line-height:22px;color:#657388}.widget-subscribe .subscribe-form{position:relative;height:60px}.widget-subscribe .subscribe-form .subscribe-email{width:100%;height:100%;padding:20px;font-size:14px;line-height:19px;font-weight:500;color:rgba(23,24,30,0.8);border:2px solid #ededf3;background:transparent;transition:border-color .2s ease-in-out;outline:0}.widget-subscribe .subscribe-form .subscribe-email::placeholder{color:rgba(23,24,30,0.8)}.widget-subscribe .subscribe-form .subscribe-email:focus{color:rgba(23,24,30,0.8);border-color:#3d5afe}.widget-subscribe .subscribe-form .subscribe-button{position:absolute;top:10px;right:10px;height:40px;padding:0 15px;font-size:14px}@media only screen and (max-width: 1130px){.widget-subscribe .subscribe-form .subscribe-email{font-size:13px}.widget-subscribe .subscribe-form .subscribe-button{font-size:14px}}.copyright{padding:0 0 30px;margin-top:10px;font-size:13px;font-weight:500;text-align:center;color:#657388}.copyright a:hover{color:#3d5afe}@media only screen and (max-width: 768px){.copyright{text-align:left}}.gallery-box{margin:40px 0}.gallery-box.gallery-footer{margin:0}.gallery-box em{display:block;margin-top:15px;font-size:14px;line-height:22px;font-style:normal;font-weight:normal;text-align:center;color:#17181e}.gallery-box em a{border-bottom:1px solid #17181e}.gallery-box em a:hover{color:#17181e;border-color:#3d5afe}.gallery{display:grid;grid-template-columns:repeat(3, auto);justify-content:center;align-content:center;grid-gap:10px}.gallery .gallery__image{background:#f9f9fc}.gallery .gallery__image img{display:block;width:100%;height:auto;object-fit:cover}.social{margin:60px 0 0;text-align:center}.social .social__list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}.social .social__item{display:inline-block;margin:0 2px}.social .social__link{position:relative;z-index:1;padding:0 10px;font-size:21px;line-height:1}.social .social__link:hover{color:#fff}.social .social__link:hover::after{transform:translate3d(-50%, -50%, 0) scale(1)}.social .social__link::after{content:'';display:block;position:absolute;z-index:-1;top:50%;left:50%;transform:translate3d(-50%, -50%, 0) scale(0);width:100%;height:0;padding-bottom:100%;border-radius:50%;background:#3d5afe;transition:all .25s}@media only screen and (max-width: 768px){.social{margin:50px 0 0;text-align:left}.social .social__list{justify-content:start}}.hero{padding:60px 0 70px;margin-bottom:70px;background:#fff}.hero.hero--post .article__meta{margin-bottom:13px;font-size:14px;font-weight:500}.hero.hero--post .article__meta .article__date::before{content:none}.hero.hero--post .article__author-link{font-size:14px;line-height:20px;font-weight:500;color:#657388}.hero.hero--post .article__author-link span{color:#657388}.hero.hero--post .article__author-link:hover{color:#17181e}.hero.hero--page .hero__title{margin-bottom:0}@media only screen and (max-width: 768px){.hero{padding:60px 0 60px;margin-bottom:60px}}@media only screen and (max-width: 576px){.hero{padding:40px 0 40px;margin-bottom:40px}}.hero__inner{display:flex;align-items:center}@media only screen and (max-width: 768px){.hero__inner{flex-direction:column}}.hero__left,.hero__right{width:50%}@media only screen and (max-width: 768px){.hero__left,.hero__right{width:100%}}.hero__left .hero__title,.hero__left .hero__job{font-size:50px;font-weight:700;letter-spacing:-2px;color:#17181e}@media only screen and (max-width: 1130px){.hero__left .hero__title,.hero__left .hero__job{font-size:40px;line-height:1.2}}@media only screen and (max-width: 1024px){.hero__left .hero__title,.hero__left .hero__job{font-size:33px}}@media only screen and (max-width: 576px){.hero__left .hero__title,.hero__left .hero__job{font-size:27px}}.hero__left .hero__title{margin-right:20px;margin-bottom:10px}@media only screen and (max-width: 768px){.hero__left .hero__title{margin-right:0}}.hero__left .hero__job{margin-bottom:20px}.hero__left .hero__name{position:relative;font-weight:400}.hero__left .hero__name::after{content:"";position:absolute;left:0;bottom:0px;width:100%;height:38%;background-color:rgba(61,90,254,0.1)}.hero__left .hero__description{max-width:550px;margin:0;font-size:21px;font-weight:500;color:#657388}@media only screen and (max-width: 1024px){.hero__left .hero__description{font-size:16px;line-height:26px}}.hero__left .hero__button{margin-top:20px;padding-right:12px;display:inline-block;font-size:16px;line-height:16px;font-weight:700;color:#17181e;outline:none;cursor:pointer;transition:all 0.35s}.hero__left .hero__button:hover{color:#fff;background:#2444fe}.hero__left .hero__button .button-arrow{display:inline-block;margin-right:10px;width:30px;height:30px;line-height:30px;text-align:center;color:#fff;background:#3d5afe}.hero__right{position:relative}.hero__right::after{content:"";position:absolute;top:50%;transform:translateY(-50%);display:block;width:100%;height:50%;background-image:-webkit-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-moz-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:-ms-repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);background-image:repeating-radial-gradient(center center, rgba(61,90,254,0.7), rgba(61,90,254,0.7) 2px, transparent 2px, transparent 100%);-webkit-background-size:15px 15px;-moz-background-size:15px 15px;background-size:15px 15px}.hero__right .hero__image{position:relative;z-index:10;width:370px;height:470px;margin:0 auto}.hero__right .hero__image::before{content:"";display:block;position:absolute;top:0;z-index:1;width:100%;height:100%;background:#f9f9fc}.hero__right .hero__image img{position:absolute;top:0;z-index:1;height:100%;width:100%;object-fit:cover;box-shadow:10px 10px 0 #3d5afe;background:#f9f9fc}@media only screen and (max-width: 1130px){.hero__right .hero__image{width:270px;height:370px}}@media only screen and (max-width: 1024px){.hero__right .hero__image{width:230px;height:330px}}@media only screen and (max-width: 768px){.hero__right{order:-1}.hero__right .hero__image{width:100%;height:330px;margin-bottom:40px}}@media only screen and (max-width: 576px){.hero__right .hero__image{height:270px;margin-bottom:30px}.hero__right .hero__image img{box-shadow:none}}.contact-head{margin-bottom:30px}.form-box{max-width:750px;margin:0 auto}.form__group{margin-bottom:20px}.form__group:last-child{margin-bottom:0}.form__input{width:100%;padding:20px;font-size:14px;font-weight:500;border:1px solid #ededf3;outline:none;transition:250ms;resize:vertical;color:rgba(23,24,30,0.8);background:#fff}.form__input::placeholder{color:rgba(23,24,30,0.8)}.form__input:focus{border:1px solid #3d5afe}.article{margin-bottom:30px;border-radius:3px;overflow:hidden;transition:transform .2s}.article:hover{transform:translateY(-3px)}.article__inner{box-shadow:0px 0px 20px rgba(0,0,0,0.05)}.image-wrap{padding:15px 15px 0 15px;background:#fff}.article__image{position:relative;display:block;height:0;padding-bottom:56.25%;background:#f9f9fc;overflow:hidden}.article__image img{position:absolute;width:100%;height:100%;object-fit:cover}.article__content{padding:25px;background:#fff}.article__title{margin-bottom:10px;font-size:22px;line-height:32px}.article__title a:hover{color:#17181e}.article__excerpt{font-size:15px;line-height:24px;font-weight:500;margin-bottom:20px;color:#657388}.article__meta{display:flex;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;font-weight:500;line-height:20px}.article__meta .article__author-link{color:#657388}.article__meta .article__author-link:hover{color:#17181e}.article__meta .article-tags__box{display:flex}.article__meta .article-tags__box::before{content:"/";display:inline-block;margin:0 5px;color:#657388}.article__meta .article-tags__box .article__tag{color:#657388}.article__meta .article-tags__box .article__tag:hover{color:#17181e}.article__meta .article-tags__box .article__tag::after{content:",";display:inline-block;margin:0 2px}.article__meta .article-tags__box .article__tag:last-child::after{content:none}.article__meta .article__date{color:#657388}.article__meta .article__date::before{content:"/";display:inline-block;margin:0 5px;color:#657388}.post,.page{max-width:850px;margin:0 auto;color:#17181e}.post__content a,.page__content a{border-bottom:1px solid #17181e}.post__content a:hover,.page__content a:hover{color:#17181e;border-color:#3d5afe}.image-box{margin:40px 0}.post__share{margin:50px 0}.post__share .share__list{display:flex;justify-content:center;align-items:center;width:100%}.post__share .share__item{margin:0 2px;text-align:center}.post__share .share__link{display:block;padding:2px 12px;font-size:18px;color:#fff}.post__share .share__link.share__facebook,.post__share .share__link.share__twitter,.post__share .share__link.share__linkedin,.post__share .share__link.share__pinterest{border:1px solid #ededf3;background:#fff}.post__share .share__link.share__facebook:hover,.post__share .share__link.share__twitter:hover,.post__share .share__link.share__linkedin:hover,.post__share .share__link.share__pinterest:hover{color:#fff}.post__share .share__link.share__facebook{color:#3b5998}.post__share .share__link.share__facebook:hover{background:#3b5998}.post__share .share__link.share__twitter{color:#55acee}.post__share .share__link.share__twitter:hover{background:#55acee}.post__share .share__link.share__linkedin{color:#0077b5}.post__share .share__link.share__linkedin:hover{background:#0077b5}.post__share .share__link.share__pinterest{color:#bd081c}.post__share .share__link.share__pinterest:hover{background:#bd081c}@media only screen and (max-width: 576px){.post__share{margin:40px 0}}.post__navigation{display:flex;justify-content:space-between;margin-bottom:20px}.post__navigation .post__prev,.post__navigation .post__next{display:flex;width:48%;padding:25px;margin-bottom:30px;background:#fff;box-shadow:0px 0px 20px rgba(0,0,0,0.05);transition:transform .2s}.post__navigation .post__prev:hover,.post__navigation .post__next:hover{transform:translateY(-3px)}.post__navigation .post__prev .prev__image,.post__navigation .post__prev .next__image,.post__navigation .post__next .prev__image,.post__navigation .post__next .next__image{position:relative;display:block;width:100px;min-width:100px;height:100px;background-color:#f9f9fc}.post__navigation .post__prev .prev__image img,.post__navigation .post__prev .next__image img,.post__navigation .post__next .prev__image img,.post__navigation .post__next .next__image img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}.post__navigation .post__prev .prev__image,.post__navigation .post__next .prev__image{margin-right:15px}.post__navigation .post__prev .next__image,.post__navigation .post__next .next__image{margin-left:15px}.post__navigation .post__prev .post__nav,.post__navigation .post__next .post__nav{display:inline-block;margin-bottom:5px;font-size:13px;line-height:1;font-weight:500;color:#657388}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{margin-bottom:0;font-size:18px;line-height:24px}.post__navigation .post__prev .post__nav__title a:hover,.post__navigation .post__next .post__nav__title a:hover{color:#17181e}.post__navigation .post__next{text-align:right;margin-left:auto;justify-content:flex-end}@media only screen and (max-width: 768px){.post__navigation{flex-wrap:wrap}.post__navigation .post__prev,.post__navigation .post__next{width:100%}.post__navigation .post__prev{margin-bottom:30px}.post__navigation .next__box{margin-left:auto}}@media only screen and (max-width: 576px){.post__navigation{margin-bottom:10px}.post__navigation .post__prev,.post__navigation .post__next{padding:20px}.post__navigation .post__prev .post__nav__title,.post__navigation .post__next .post__nav__title{font-size:15px;line-height:20px}}.post__comments{padding:40px;box-shadow:0px 0px 20px rgba(0,0,0,0.05);background:#fff}@media only screen and (max-width: 576px){.post__comments{padding:30px}}.error{margin-bottom:30px;text-align:center}.error .error__title{margin-bottom:0;font-size:100px}.error .error__text{margin-bottom:20px;font-size:21px;color:#657388}.error .error__button{line-height:45px}.tag{padding:70px 0;margin-bottom:70px;text-align:center;background:#fff}.tag .tag__meta{font-size:16px;color:#657388}.tag .tag__title{margin:0;font-size:50px}@media only screen and (max-width: 768px){.tag{padding:60px 0;margin-bottom:60px}}@media only screen and (max-width: 576px){.tag{padding:40px 0;margin-bottom:40px}}
+
+  </style>
+</head>
+
+<body class="light">
+
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-06G51LVDJT', 'auto');
+  ga('send', 'pageview');
+</script>
+  
+
+    <!-- begin header -->
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="header__inner col col-12">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            Erik Jhordan Rey
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <div class="nav__title">Menu</div>
+            <ul class="nav__list list-reset">
+              <li class="nav__item">
+                <a href="/" class="nav__link">Home</a>
+              </li>
+              
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/about/" class="nav__link">About</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/podcast/" class="nav__link">Podcast</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                  <li class="nav__item">
+                    <a href="/talks/" class="nav__link">Talks</a>
+                  </li>
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+                
+                  
+                
+              
+            </ul>
+          </div>
+        </nav>
+
+        <div class="nav-buttons">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+          <i class="nav__icon nav__icon-search ion ion-md-search"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="header__overlay"></div>
+</header>
+<!-- end header -->
+
+<!-- begin search -->
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__group">
+            <div class="search__close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="row search-results-list" id="js-results-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end search -->
+    <!-- begin content -->
+    <main class="content" aria-label="Content">
+      <!-- begin wrapper-page -->
+      <div class="wrapper-page">
+        <!-- begin hero -->
+
+<section class="hero hero--post">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+          <div class="hero__left">
+            
+
+            <div class="article__meta">
+              <span class="article__date"><time datetime="2016-07-07T13:15:00-05:00">07 Jul 2016</time></span>
+              
+              <div class="article-tags__box">
+                
+                  <a href="/tag/android-dagger" class="article__tag">android-dagger</a>
+                
+              </div>
+              
+            </div>
+
+            <h1 class="hero__title">Dagger 2 Kata para android developers</h1>
+            <a href="/about/" class="article__author-link"><span>By</span> Erik Jhordan Rey</a>
+
+            
+          </div>
+
+          <div class="hero__right">
+
+            
+            <div class="hero__image">
+              <img class="lazy" data-src="/images/2016/7/mario-kart.png" alt="Dagger 2 Kata para android developers">
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->
+
+<!-- begin post -->
+<div class="container">
+  <article class="post animate">
+
+    <div class="post__content">
+      <p>En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Princesa Peach fue raptada por un degenerado Bowser quien le ha preparado una serie de planes nada buenos para ella.</p>
+
+<p>Después de un largo camino recorrido en diferentes arenas, mundos y ciudades gracias a la colaboración de Luigi han dado con el paradero de la princesa, para recuperarla esta vez no es necesario que Mario tenga pasar a través de castillos como un bandido destruyendo y derribando cuanto hongo se ponga en el camino o asesinando tortugas lanza martillos, ni mucho menos aniquilando peces voladores, esta vez se trata de ganar una carrera contra el malvado de Bowser.</p>
+
+<h2 id="mission">Mission</h2>
+
+<p>Tu misión es desarrollar una aplicación android que muestre una lista de los competidores utilizando el inyector de dependencias Dagger 2 y con ello ayudar a que Mario Bros pueda conocer las habilidades de sus rivales, sin duda alguna tu colaboración será de utilidad para recuperar a la aterrada Princesa Peach.</p>
+
+<h1 id="understanding-dagger-2-before-to-start-the-challenge">Understanding dagger 2 before to start the challenge</h1>
+
+<h2 id="introduction-to-dependency-injection">Introduction to Dependency Injection</h2>
+
+<p>En mi <a href="https://erikjhordan-rey.github.io/blog/2016/04/25/ANDROID-dependency-injection.html">capítulo anterior</a> estuve hablando sobre que era la <a href="http://martinfowler.com/bliki/InversionOfControl.html">inversión de control</a>, la inversión de dependencias y <a href="https://www.youtube.com/watch?v=plK0zyRLIP8">la inyección de dependencias</a>, que si no has leído te invito a que lo hagas antes de hacer esta <a href="http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata">kata</a>, ya que es fundamental que comprendas el porqué y la motivación de usar un <strong>inyector de dependencias</strong>.</p>
+
+<p>Pues bien hoy es el gran día para aprender <a href="http://google.github.io/dagger/">Dagger 2</a> mediante un divertido ejemplo y aunque se que usar Dagger 2  es complejo en un principio y difícil de entender, intentaré enseñarte de una forma fácil y espero lograrlo.</p>
+
+<h2 id="before-of-dagger-2">Before of Dagger 2</h2>
+
+<p>Los inyectores de dependencias en android comenzaron a tomar fuerza cuando Google lanzó <a href="https://github.com/google/guice">Guice</a> su propio inyector de dependencias, tiempo después Square vendría a proponer <a href="http://square.github.io/dagger/">Dagger 1</a> y más tarde Google apostaría por crear <a href="http://google.github.io/dagger/">Dagger 2</a> tomando como referencia a Dagger 1, aun que no quiero indagar en este tema de la historia (ya que no es el objetivo de esta kata) del por que se fueron creando cada vez una mejor alternativa, si espero que revises esta <a href="https://docs.google.com/presentation/d/1fby5VeGU9CN8zjw4lAb2QPPsKRxx6mSwCe9q7ECNSJQ/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g36c44a5df_0295">presentación</a> que describe perfectamente el cómo llegamos a Dagger 2 y lo más importante es que si
+deseas utilizar otro inyector de dependencias asegurate que cuente con el estándar de notaciones <a href="https://jcp.org/en/jsr/detail?id=330">“JSR-330”</a> ya que permitirá a tu codigo ser reutilizable, testable y mantenible.</p>
+
+<h2 id="dagger-2">Dagger 2</h2>
+
+<p>Es un framework que permite aplicar el patrón de inyección de dependencias en java y android viene a solucionar algunos problemas de otros inyectores y sobre todo con la intención de mejorar la experiencia de los desarrolladores la usar un inyector.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Configuración basada en Componentes, adiós a los grafos.</li>
+  <li>El código generado es legible y fácil de entender.</li>
+  <li>No usa reflexión.</li>
+  <li>No se de desarrolla sobre el framework.</li>
+  <li>El grafo no es compuesto en tiempo de ejecución.</li>
+  <li>Incrementa el performance 13% de acuerdo con Gegrory Kick.</li>
+  <li>El grafo es validado en tiempo de build.</li>
+</ul>
+
+<p>Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa <a href="https://en.wikipedia.org/wiki/Reflection_(computer_programming)">reflexión</a>.</p>
+
+<h3 id="setup-dagger-2">Setup Dagger 2</h3>
+
+<p>Para poder hacer uso de Dagger 2 en android studio necesitamos configurar el procesador de anotaciones simplemente usando el plugin de gradle <code class="language-plaintext highlighter-rouge">android-apt</code> afortunadamente con la versión <code class="language-plaintext highlighter-rouge">android gradle plugin 2.2</code> ya que viene contenido.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+    <span class="n">annotationProcessor</span> <span class="s1">'com.google.dagger:dagger-compiler:2.8'</span>
+    <span class="n">compile</span> <span class="s1">'com.google.dagger:dagger:2.8'</span>
+    <span class="n">provided</span> <span class="s1">'javax.annotation:jsr250-api:1.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El compilador de Dagger 2 genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa <code class="language-plaintext highlighter-rouge">provided</code> para referenciar las dependencias que son necesitadas en tiempo de compilación y <code class="language-plaintext highlighter-rouge">annotationProcessor</code> procesa las notaciones de nuestras clases  sin agregarlas al <a href="https://docs.oracle.com/javase/tutorial/essential/environment/paths.html">class path</a>.</p>
+
+<h3 id="annotations-of-dagger-2">Annotations of Dagger 2</h3>
+
+<ul>
+  <li><strong>@Module</strong></li>
+</ul>
+
+<p>Se usa para marcar una clase como proveedora de dependencias ya que dentro contendrá métodos con la notación <strong>@Provides</strong> de tal forma que al momento de crear una instancia de una clase y esta requiera dependencias dagger sabrá en qué lugar ir a buscar dichos objetos.</p>
+
+<ul>
+  <li><strong>@Provides</strong></li>
+</ul>
+
+<p>Cada método utilizando para proveer dependencias deben ser marcados con esta anotación ya que serán los objetos que usará dagger para resolver las dependencias entre nuestras clases. Para evitar el exceso de métodos con esta anotación dagger 2 puede buscar una dependencia en el constructor de la clase simplemente marcándolo con la anotación <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Inject</strong></li>
+</ul>
+
+<p>Es la forma en que pedimos dependencias y le comunicamos a Dagger que la clase o campo marcado con esta anotación será parte de la inyección de dependencias. Así, Dagger construirá instancias de estas clases anotadas y satisfará sus dependencias.</p>
+
+<ul>
+  <li><strong>@Component</strong></li>
+</ul>
+
+<p>Se usa para marcar a una interfaz como un componente ya que es necesario para que Dagger pueda generar código o mejor dicho una clase con el prefijo <em>Dagger</em> (Si tu declaras un component ExampleApiComponent dagger te va a generar DaggerExampleApiComponent) esta clase generada es la responsable de instanciar una dependencia de nuestro grafo y usarla para inyectarla en los fields marcados con <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Singleton</strong></li>
+</ul>
+
+<p>Simplemente se usa para decirle a Dagger que debe crear una sola instancia de un objeto, tal cual el patrón de diseño <a href="http://www.oodesign.com/singleton-pattern.html">singleton</a>.</p>
+
+<ul>
+  <li><strong>@Named</strong></li>
+</ul>
+
+<p>Hay veces en que debes proveer una misma dependencia con diferentes implementaciones para ello hay que decirle a dagger que instancia es la que necesitamos que sea inyectada.</p>
+
+<p>Básicamente es una forma de nombrar nuestras dependencias y así poder diferenciarlas se deben nombrar en donde se proveen <strong>@Provides</strong> y en donde se inyectarán <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Scope</strong></li>
+</ul>
+
+<p>Es de las anotaciones más poderosas de dagger 2 ya que permite crear custom scopes que son algo parecido a un <strong>@Singleton</strong> solo que van relacionadas al ciclo de vida de un componente no de la aplicación. Por ejemplo podría crear un <strong>@LifeActivity</strong> annotation y se usaría para que una instancia viva solo mientras una activity sea requerida.</p>
+
+<ul>
+  <li><strong>@Qualifier</strong></li>
+</ul>
+
+<p>El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean de una misma interfaz. Imagina que debes proveer un una instancia de MusicApi y esta tiene dos clases hijas Spotify Api y otra por SoundCloud Api usando qualifier te ayuda a identificar cada una <strong>@SpotifyApi</strong> <strong>@SoundCloudApi</strong> y de esta forma decirle a dagger cual es la que debe proveer ya que ambas son del tipo <strong>MusicApi</strong>. Recuerda que se deben nombrar en donde se proveen <strong>@Provides</strong> y en donde se inyectarán <strong>@Inject</strong>.</p>
+
+<h3 id="injections-overview">Injections Overview</h3>
+
+<p>Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.</p>
+
+<p><img src="/images/2016/7/dagger_general.png" alt="dagger2" class="center-image" /></p>
+
+<h3 id="putting-everything-together">Putting everything together</h3>
+
+<p>Ya que hemos comprendido para qué sirven algunos de los elementos veamos un simple ejemplo para reafirmar el conocimiento adquirido ya que te será de utilidad para resolver la kata que he preparado para tí.</p>
+
+<p><strong>Objetivo:</strong> Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach.</p>
+
+<p>Empezamos creando el objeto <strong>PrincessPeach</strong> con dos atributos un nombre y una foto de perfil ambos los obtenemos usando resources.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeach</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">photo</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">PrincessPeach</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">princess_name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">photo</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">ic_peach</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPhoto</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">photo</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Simularemos que estamos haciendo una llamada a una api y devolveremos una instancia de tipo <strong>PrincessPeach</strong> con un simple método llamado <strong>getPrincesPeach()</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApi</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="nc">PrincessPeach</span> <span class="nf">getPrincesPeach</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">PrincessPeach</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>@Module, @Provides</strong></p>
+
+<p>Definimos un módulo que será el encargado de proveer una instancia de <strong>PrincessPeach</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Module</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApiModule</span> <span class="o">{</span>
+
+  <span class="nd">@Provides</span> <span class="nd">@Singleton</span> <span class="nc">PrincessPeachApi</span> <span class="nf">providesPeachApi</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">PrincessPeachApi</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>@Component, @Singleton</strong></p>
+
+<p>Creamos un componente para indicarle a Dagger en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Singleton</span> <span class="nd">@Component</span><span class="o">(</span><span class="n">modules</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">PrincessPeachApiModule</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PrincessPeachComponent</span> <span class="o">{</span>
+
+  <span class="kt">void</span> <span class="nf">inject</span><span class="o">(</span><span class="nc">PrincessPeachActivity</span> <span class="n">princessPeachActivity</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Es necesario crear una clase que herede de <a href="https://developer.android.com/reference/android/app/Application.html">Application</a> para que dagger pueda inicializar el grafo y asegurarnos que nuestra instancia está creada durante el ciclo de vida de nuestra aplicación.</p>
+
+<p>Asegúrate dar un rebuild project en caso de que no puedas referenciar el componente de dagger en nuestro caso <strong>DaggerPrincessPeachComponent</strong> (Android Studio, select Build &gt; Rebuild Project).</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApplication</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="nc">PrincessPeachComponent</span> <span class="n">princessPeachComponent</span><span class="o">;</span>
+
+  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+    <span class="n">initializeInjector</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initializeInjector</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">princessPeachComponent</span> <span class="o">=</span> <span class="nc">DaggerPrincessPeachComponent</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">princessPeachApiModule</span><span class="o">(</span><span class="k">new</span> <span class="nc">PrincessPeachApiModule</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">PrincessPeachComponent</span> <span class="nf">getPrincessPeachComponent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">princessPeachComponent</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Por supuesto también es necesario declarar el nombre de nuestro application en el manifest.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;application</span>
+     <span class="na">android:name=</span><span class="s">".PrincessPeachApplication"</span>
+     <span class="na">android:allowBackup=</span><span class="s">"true"</span>
+     <span class="na">android:icon=</span><span class="s">"@mipmap/ic_launcher"</span>
+     <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+     <span class="na">android:supportsRtl=</span><span class="s">"true"</span>
+     <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<p><strong>@Inject</strong></p>
+
+<p>Lo único por hacer es inyectar nuestra dependencia en nuestra actividad <strong>PrincessPeachActivity</strong> como se lo indicamos al componente <strong>PrincessPeachComponent</strong> que a su vez este hará uso del módulo <strong>PrincessPeachApiModule</strong> para obtener la instancia de la clase solicitada <strong>PrincessPeachApi</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachActivity</span> <span class="kd">extends</span> <span class="nc">BaseActivity</span> <span class="o">{</span>
+
+  <span class="nd">@Inject</span> <span class="nc">PrincessPeachApi</span> <span class="n">princessPeachApi</span><span class="o">;</span>
+
+  <span class="nd">@BindView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">label_peach</span><span class="o">)</span> <span class="nc">MarioKartLabel</span> <span class="n">peachLabel</span><span class="o">;</span>
+  <span class="nd">@BindView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">picture_peach</span><span class="o">)</span> <span class="nc">ImageView</span> <span class="n">peachImage</span><span class="o">;</span>
+
+  <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">int</span> <span class="nf">getLayoutResID</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_princess_peach</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPrepareActivity</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onPrepareActivity</span><span class="o">();</span>
+    <span class="n">initializeDagger</span><span class="o">();</span>
+    <span class="nc">PrincessPeach</span> <span class="n">princessPeach</span> <span class="o">=</span> <span class="n">getPrincesPeachFromApi</span><span class="o">();</span>
+    <span class="n">renderPrincesPeach</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderPrincesPeach</span><span class="o">(</span><span class="nc">PrincessPeach</span> <span class="n">princessPeach</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">renderName</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="n">renderPicture</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">.</span><span class="na">getPhoto</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderName</span><span class="o">(</span><span class="nd">@StringRes</span> <span class="kt">int</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">peachLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderPicture</span><span class="o">(</span><span class="nd">@DrawableRes</span> <span class="kt">int</span> <span class="n">picture</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">peachImage</span><span class="o">.</span><span class="na">setImageDrawable</span><span class="o">(</span><span class="nc">ContextCompat</span><span class="o">.</span><span class="na">getDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">picture</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="nc">PrincessPeach</span> <span class="nf">getPrincesPeachFromApi</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">princessPeachApi</span><span class="o">.</span><span class="na">getPrincesPeach</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initializeDagger</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">PrincessPeachApplication</span> <span class="n">application</span> <span class="o">=</span> <span class="o">(</span><span class="nc">PrincessPeachApplication</span><span class="o">)</span> <span class="n">getApplication</span><span class="o">();</span>
+    <span class="n">application</span><span class="o">.</span><span class="na">getPrincessPeachComponent</span><span class="o">().</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><img src="/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;" /></p>
+
+<h4 id="el-código-está-disponible">El código está disponible</h4>
+
+<p>Este ejemplo puedes encontrarlo en el <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart">mismo</a> repositorio en el que se encuentra la kata en el <em>branch</em> <strong>sample/princess-peach-dagger2</strong> <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/tree/sample/princess-peach-dagger2">Sample-Princess-Peach en Github</a>.</p>
+
+<h1 id="great-moment-to-start-the-challenge">Great moment to start the challenge</h1>
+
+<h3 id="task-1">Task 1</h3>
+
+<ul>
+  <li>Leer sobre <a href="https://erikjhordan-rey.github.io/blog/2016/01/27/ANDROID-clean-architecture.html">clean architecture</a> ya que esta kata sigue sus principios (solo si no sabes nada de Clean Architecture).</li>
+  <li>Crea un proyecto nuevo de android en android studio</li>
+  <li>Configura tu proyecto para poder hacer uso de la librería de dagger 2</li>
+</ul>
+
+<h3 id="task-2">Task 2</h3>
+
+<ul>
+  <li>Implementa tu objeto de dominio de nombre <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.kt">Character</a> con los siguientes atributos name, photo, cover, description.</li>
+  <li>Implementa un objeto de dominio de nombre <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.kt">Abilities</a> con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;</li>
+  <li>Agrega a tu objeto Character un atributo de tipo Abilities</li>
+</ul>
+
+<h3 id="task-3">Task 3</h3>
+
+<ul>
+  <li>Implementa una clase <code class="language-plaintext highlighter-rouge">FAKE DATA SOURCE</code> responsable de generar una lista de personajes</li>
+  <li>Implementa una clase <code class="language-plaintext highlighter-rouge">REPOSITORY</code> que tendrá una dependencia con <code class="language-plaintext highlighter-rouge">FAKE DATA SOURCE</code></li>
+  <li>Implementa un modulo de dagger para proveer una dependencia de tu <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+  <li>Implementa un componente para especificar en donde se van a inyectar tus dependencias.</li>
+</ul>
+
+<h3 id="task-4">Task 4</h3>
+
+<ul>
+  <li>Implementa un <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code> que obtenga <code class="language-plaintext highlighter-rouge">TODOS</code> los personajes con dependencia a <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+  <li>Configura tu caso de uso para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+</ul>
+
+<h3 id="task-5">Task 5</h3>
+
+<ul>
+  <li>Implementa un <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code> para mostrar una lista de personajes en una vista con dependencia a <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code></li>
+  <li>Configura tu presenter para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code></li>
+</ul>
+
+<h3 id="task-6">Task 6</h3>
+
+<ul>
+  <li>Implementa una vista android activity, fragment u otra con dependencia a <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code></li>
+  <li>Configura tu vista android para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code></li>
+  <li>Muestra a los personajes de la forma que mas te guste.</li>
+</ul>
+
+<h3 id="demo">Demo</h3>
+
+<h4 id="el-código-está-disponible-1">El código está disponible</h4>
+
+<p><a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart">Kata-Dagger2-MarioKart en Github</a></p>
+
+<p><img src="/images/2016/7/Telecine_2017-01-29-22-52-19.gif" alt="" /></p>
+
+<h3 id="resources">Resources</h3>
+<ul>
+  <li><strong>Gregory Kick</strong> - <a href="https://www.youtube.com/watch?v=oK_XtfXPkqw">DAGGER 2 - A New Type of dependency injection</a></li>
+  <li><strong>Fernando Cejas</strong> - <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/">Tasting Dagger 2 on Android</a></li>
+  <li><strong>Jake Wharton</strong> - <a href="https://www.youtube.com/watch?v=plK0zyRLIP8">The Future of Dependency Injection with Dagger 2</a></li>
+  <li><strong>Daniel Lew</strong> - <a href="https://realm.io/news/daniel-lew-dependency-injection-dagger/">Dependency Injection Made Simple</a></li>
+  <li><strong>Pedro Gómez</strong> - <a href="https://www.youtube.com/watch?v=XY2fHxqEBeo">Dependency Injection on Android</a></li>
+</ul>
+
+<p><strong>“Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie”</strong></p>
+
+    </div>
+
+    <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=/ANDROID-kata-dagger2"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Dagger%202%20Kata%20para%20android%20developers&url=/ANDROID-kata-dagger2"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/ANDROID-kata-dagger2&title=Dagger%202%20Kata%20para%20android%20developers&summary=&source=Erik%20Jhordan%20Rey"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <!-- <li class="share__item">
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=/ANDROID-kata-dagger2&amp;media=/images/2016/7/mario-kart.png&amp;description=Dagger%202%20Kata%20para%20android%20developers"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
+      rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li> -->
+  </ul>
+</div>
+
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/ANDROID-dependency-injection">
+    <div class="prev__image">
+      <img class="lazy" data-src="/images/2016/4/depen.png" alt="Dagger 2 Kata para android developers">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Older post</span>
+      <h2 class="post__nav__title">Una aplicación android utilizando Inyección de dependencias</h2>
+    </div>
+  </a>
+  
+
+  
+  <a class="post__next" href="/ANDROID-kotlin-arch-components">
+    <div class="next__box">
+      <span class="post__nav post__nav__next">Newer post</span>
+      <h2 class="post__nav__title">Support of Kotlin & Architecture Components</h2>
+    </div>
+    <div class="next__image">
+      <img class="lazy" data-src="/images/2017/5/kotlin-arch.png" alt="Dagger 2 Kata para android developers">
+    </div>
+  </a>
+  
+</div>
+
+     <!-- begin comments -->
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'erikjhordanrey-dev',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- end comments --> 
+
+  </article>
+</div>
+<!-- end post -->
+      </div>
+      <!-- end wrapper-page -->
+    </main>
+    <!-- end content -->
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-round-up"></i></div>
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12 col-m-12">
+        <div class="footer__inner">
+
+          <div class="footer__head">
+            <div class="row">
+              <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-recent">
+    <div class="widget__head">
+      <h3 class="widget__title">Latest Posts</h3>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <a class="recent-posts__image" href="/ANDROID-launch-android-apps">
+        <img class="lazy" data-src="/images/2020/3/launch-workflow.png" alt="Distribuye una Android App (Part 2)">
+      </a>
+      
+      <div class="recent-posts__content">
+        <div class="recent-posts__date">
+          <time class="timeago" datetime="2020-03-15T12:15:00-06:00">Mar 15, 2020</time>
+        </div>
+        <h4 class="recent-posts__title"><a href="/ANDROID-launch-android-apps">Distribuye una Android App (Part 2)</a></h4>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <a class="recent-posts__image" href="/ANDROID-automate-deploy-and-test-android-apps">
+        <img class="lazy" data-src="/images/2020/3/automate-part1.jpg" alt="Automatiza y Prueba una Android App (Part 1)">
+      </a>
+      
+      <div class="recent-posts__content">
+        <div class="recent-posts__date">
+          <time class="timeago" datetime="2020-03-15T12:15:00-06:00">Mar 15, 2020</time>
+        </div>
+        <h4 class="recent-posts__title"><a href="/ANDROID-automate-deploy-and-test-android-apps">Automatiza y Prueba una Android App (Part 1)</a></h4>
+      </div>
+    </div>
+    
+  </div>
+</div>
+              <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-gallery">
+    <div class="widget__head">
+      <h3 class="widget__title">Recent Episode</h3>
+    </div>
+    
+    <div class="gallery-box gallery-footer">
+      <iframe src="https://open.spotify.com/embed/show/1j0I5AO7Xb6TY0pq8cDLVQ" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+    
+  </div>
+</div>
+              <!-- <div class="col col-4 col-d-6 col-t-12">
+  <div class="widget widget-subscribe">
+    <div class="widget__head">
+      <h3 class="widget__title">Subscribe to new posts</h3>
+    </div>
+    <div class="subscribe__inner">
+      <div class="subscribe__group">
+        <div class="subscribe__description">Subscribe to our newsletter and we’ll send you the emails of latest posts.</div>
+      </div>
+      <form class="subscribe-form validate"
+        action="#" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+        <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+        <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL"
+          placeholder="Your email address">
+        <button class="button subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div> -->
+            </div>
+          </div>
+        </div>
+
+        
+  <div class="social">
+    <ul class="social__list list-reset">
+      
+      <li class="social__item">
+        <a class="social__link" href="https://twitter.com/ErikJhordan_Rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-twitter"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://github.com/erikjhordan-rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-github"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="linkedin.com/in/erik-jhordan-rey" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-linkedin"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://youtube.com/UC4IXcI9YWmMWoF6Yrdvrq5g" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-youtube"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://www.instagram.com/erikjhordanpodcast/" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-instagram"></i></a>
+      </li>
+      
+      <li class="social__item">
+        <a class="social__link" href="https://www.facebook.com/erikjhordanpodcast" target="_blank" rel="noopener" aria-label="social icon"><i class="ion ion-logo-facebook"></i></a>
+      </li>
+      
+    </ul>
+  </div>
+
+        <div class="copyright">2021 &copy; <a href="/">Erik Jhordan Rey</a>. ♡ </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/js/scripts.js"></script>
+</body>
+
+</html>

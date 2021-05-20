@@ -1,10 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2017/12/gradle.png
-title: Migrate to New Android Plugin for Gradle 3.?.?
-date: 2017-12-01 00:00:00 +0545
-categories: blog
-author: erik
+title:  Migrate to New Android Plugin for Gradle 3.?.?
+date:   2017-12-01 00:00:00 +0545
+image:  '/images/2017/12/gradle.png'
+tags:   android-old-school
 ---
 
 Our happy history migrating an existing android project using gradle 2.3 to new gradle version.

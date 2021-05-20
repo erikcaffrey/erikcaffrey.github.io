@@ -1,19 +1,17 @@
 ---
 layout: default
 ---
-<section>
-    <div class="section-title">
-        <center><h2><span>{{ page.title }}</span></h2></center>
+
+{% include hero.html %}
+
+<!-- begin page -->
+<div class="container">
+  <article class="page animate">
+
+    <div class="page__content">
+      {{ content }}
     </div>
 
-    <div class="article-post">
-        {{content}}
-    </div>
-    {% if page.comments == true %}
-        <div id="comments" >
-            <div>
-                {% include disqus.html %}
-            </div>
-        </div>
-    {% endif %}
-</section>
+  </article>
+</div>
+<!-- end page -->

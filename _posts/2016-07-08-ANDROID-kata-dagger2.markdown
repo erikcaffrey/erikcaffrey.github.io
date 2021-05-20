@@ -1,10 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2016/7/mario-kart.png
-title: Dagger 2 Kata para android developers
-date: 2016-07-08 00:00:00 +0545
-categories: blog
-author: erik
+title:  Dagger 2 Kata para android developers
+date:   2016-07-08 00:00:00 +0545
+image:  '/images/2016/7/mario-kart.png'
+tags:   android-dagger
 ---
 
 En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Princesa Peach fue raptada por un degenerado Bowser quien le ha preparado una serie de planes nada buenos para ella.
@@ -98,7 +97,7 @@ El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean
 
 Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.
 
-![dagger2](/assets/images/2016/7/dagger_general.png){: .center-image }
+![dagger2](/images/2016/7/dagger_general.png){: .center-image }
 
 ### Putting everything together
 
@@ -251,7 +250,7 @@ public class PrincessPeachActivity extends BaseActivity {
 }
 {% endhighlight %}
 
-<img src="/assets/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;"/>
+<img src="/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;"/>
 
 #### El código está disponible
 
@@ -301,7 +300,7 @@ Este ejemplo puedes encontrarlo en el [mismo](https://github.com/erikjhordan-rey
 [Kata-Dagger2-MarioKart en Github](https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart)
 
 
-![](/assets/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
+![](/images/2016/7/Telecine_2017-01-29-22-52-19.gif)
 
 ### Resources
 * **Gregory Kick** - [DAGGER 2 - A New Type of dependency injection](https://www.youtube.com/watch?v=oK_XtfXPkqw)

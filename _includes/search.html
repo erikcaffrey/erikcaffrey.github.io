@@ -1,17 +1,30 @@
-<!-- Html Elements for Search -->
-<div id="search-container">
-  <input type="text" style="width: 100%;
-  padding: 8px;
-  border: 1px solid black;" id="search-input" placeholder="Search posts here...">
-<ul id="results-container"></ul>
+<!-- begin search -->
+<div class="search">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="search__box">
+          <div class="search__group">
+            <div class="search__close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <label for="js-search-input" class="screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="search__text" autocomplete="off" placeholder="Type to search...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="row search-results-list" id="js-results-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-<!-- Script pointing to search-script.js -->
-<script src="/assets/js/search.js" type="text/javascript"></script>
-<!-- Configuration -->
-<script>
-SimpleJekyllSearch({
-searchInput: document.getElementById('search-input'),
-resultsContainer: document.getElementById('results-container'),
-json: '/search.json'
-})
-</script>
+<!-- end search -->

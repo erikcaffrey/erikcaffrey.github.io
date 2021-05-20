@@ -1,0 +1,16 @@
+current directory: /Users/jhordan/Documents/Atega/Atega/vendor/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+/usr/local/opt/ruby@2.6/bin/ruby -I /usr/local/Cellar/ruby@2.6/2.6.7/lib/ruby/2.6.0 -r ./siteconf20210517-42889-1blc0dg.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jhordan/Documents/Atega/Atega/vendor/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" clean
+
+current directory: /Users/jhordan/Documents/Atega/Atega/vendor/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR="
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/jhordan/Documents/Atega/Atega/vendor/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20210517-42889-37skjo

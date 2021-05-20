@@ -1,10 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2015/12/mvvm.png
-title: Escribiendo android apps con Data Binding
-date: 2015-12-16 00:00:00 +0545
-categories: blog
-author: erik
+title:  Escribiendo android apps con Data Binding
+date:   2015-12-16 00:00:00 +0545
+image:  '/images/2015/12/mvvm.png'
+tags:   android-patterns
 ---
 
 En la actualidad como lo he mencionado en mi artículo anterior la comunidad está en el punto de madurez en donde todos o gran parte de los desarrolladores queremos hacer software [S.O.L.I.D](http://devexperto.com/principio-responsabilidad-unica/), aplicaciones que no se rompan, que funcionen, que sean mantenibles  y sobre todo testables lo que contrae a crear productos de calidad, a elevar el nivel técnico de la discusión dentro de la comunidad y sobre todo a mejorar el desarrollo de aplicaciones en este grandioso ecosistema android.
@@ -17,7 +16,7 @@ Es una derivación del patrón [Presentation Model](http://martinfowler.com/eaaD
 
 MVVM se enfoca en abstraer la implementación concreta de la vista, es decir su comportamiento y estado, lo que nos permitirá separar las vistas de nuestra lógica de negocio y capa de datos. Básicamente la forma en que se logra es mediante un ViewModel que permite exponer los objetos de datos de un modelo y maneja la lógica de cómo se tienen que pintar nuestros datos dentro de las vistas.
 
-![mvvm](/assets/images/2015/12/mvvm_flow.png){: .center-image }
+![mvvm](/images/2015/12/mvvm_flow.png){: .center-image }
 
 Al igual que **MVC** y [MVP](https://erikjhordan-rey.github.io/blog/2015/11/02/ANDROID-mvp.html) el **MVVM** se compone de tres componentes principales:
 
@@ -47,13 +46,13 @@ Es un ejemplo de Model View View Model que lo cree con la intención de explicar
 
 También lo utilice para una plática que di hace unos dias en el  [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) que organizó en la Ciudad de México, aquí puedes encontrar los [slides](https://speakerdeck.com/erikjhordan_rey/mvvm-android) y por supuesto el código esta disponible esta en la parte final del post.
 
-![people](/assets/images/2015/12/people.png){: .center-image }
+![people](/images/2015/12/people.png){: .center-image }
 
 Para dar un pequeño contexto y entender cómo funciona el data binding explicare brevemente únicamente como funciona el [item_people.xml](https://github.com/erikjhordan-rey/People-MVVM/blob/master/app/src/main/res/layout/item_people.xm) de la lista recuerda que en el código podrás verlo más de cerca.
 
 Cada instancia **People** se muestra mediante una vista dentro del Recyclerview.
 
-![item_people](/assets/images/2015/12/item_people.png){: .center-image }
+![item_people](/images/2015/12/item_people.png){: .center-image }
 
 #### Model
 
@@ -240,7 +239,7 @@ He dado una pequeña charla hablando sobre estos temas que puedes ver aquí [GDG
 
 [People-MVVM en Github](https://github.com/erikjhordan-rey/People-MVVM)
 
-![](/assets/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
+![](/images/2015/12/Telecine_2016-03-15-23-23-27.gif)
 
 ### Resources
 * **Microsoft** - [The MVVM Pattern](https://msdn.microsoft.com/en-us/library/hh848246.aspx)

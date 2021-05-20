@@ -1,165 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico">
-<title>{{ page.title }} | {{site.name}}</title>
-{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/css/theme.css" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/css/user.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-{% seo %}
+{% include head.html %}
 
-{{site.sharethis}}
+<body class="{% if site.blog-theme == 'light' %}light{% elsif site.blog-theme == 'dark' %}dark{% else %}light{% endif %}">
 
-{% if jekyll.environment == 'production' %}
+  {% if site.google-analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '{{site.google_analytics}}', 'auto');
-  ga('send', 'pageview');
-</script>
-
-{% endif %}
-
-</head>
-
-{% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{ layout }}">
-
-<!-- Begin Menu Navigation
-================================================== -->
-<header class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsWow" aria-controls="navbarsWow" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="container">
-
-        <!-- Begin Logo -->
-        <a class="navbar-brand" href="{{ site.baseurl }}/">
-            {% if site.logo == true %}
-        <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-            {% else %}
-            Erik Jhordan Rey
-            {% endif %}
-        </a>
-        <!-- End Logo -->
-
-        <!-- Begin Menu -->
-        <div class="collapse navbar-collapse" id="navbarsWow">
-
-            <!-- Begin Menu -->
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item">
-                <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ site.baseurl }}/me">Me</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ site.baseurl }}/talks">Talks</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ site.baseurl }}/podcast">Podcast</a>
-                </li>
-
-            </ul>
-            <!-- End Menu -->
-        </div>
-    </div>
-</header>
-
-
-
-<!-- End Menu Navigation
-================================================== -->
-
-<div class="site-content">
-
-    <div class="container">
-
-    <!-- Site Title
-    ================================================== -->
-
-    <div class="mainheading" style="display:none;">
-        <h1 class="sitetitle">{{ site.name }}</h1>
-        <p class="lead">
-             {{ site.description }}
-        </p>
-    </div>
-
-    <!-- Content
-    ================================================== -->
-    <div class="main-content">
+    {% include header.html %}
+    <!-- begin content -->
+    <main class="content" aria-label="Content">
+      <!-- begin wrapper-page -->
+      <div class="wrapper-page">
         {{ content }}
-    </div>
+      </div>
+      <!-- end wrapper-page -->
+    </main>
+    <!-- end content -->
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-round-up"></i></div>
+    {% include footer.html %}
 
-    </div><!-- /.container -->
-
-    <!-- Before Footer
-    ================================================== -->
-    <div class="beforefooter">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <h3>Philosophy</h3>
-                    <center><p>"Software Engineer interested in share experiences, techniques, and lessons learned, so other developers can use them in their daily work."</p></center>
-                </div>
-                <div class="col-md-4 text-right footersocial">
-                    <h5>Connect with me</h5>
-                    <a href="https://twitter.com/ErikJhordan_Rey" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/erik-jhordan-rey/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/erikjhordan-rey" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Begin Footer
-    ================================================== -->
-    <footer class="footer">
-            <div class="copyright">
-                <p class="pull-right">
-                  Copyright  ©  {{ site.time | date: "%Y" }} {{ site.name }}
-                </p>
-                <div class="clearfix"></div>
-            </div>
-    </footer>
-    <!-- End Footer
-    ================================================== -->
-
-</div> <!-- /.site-content> -->
-
-<!-- JavaScript-->
-<!--================================================== -->
-
-<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-
-<script src="{{ site.baseurl }}/assets/js/user.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-<script type='text/javascript' src='{{ site.baseurl }}/assets/js/masonry.pkgd.min.js'></script>
-
-<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{ site.baseurl }}/js/scripts.js"></script>
 </body>
 
 </html>

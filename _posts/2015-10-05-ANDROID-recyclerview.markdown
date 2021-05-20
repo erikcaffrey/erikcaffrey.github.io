@@ -1,10 +1,9 @@
 ---
 layout: post
-cover:  assets/images/2015/10/recycler_view_concep.jpg
-title: ¿Por qué deberíamos usar un RecyclerView?
-date: 2015-10-05 00:00:00 +0545
-categories: blog
-author: erik
+title:  ¿Por qué deberíamos usar un RecyclerView?
+date:   2015-10-05 00:00:00 +0545
+image:  '/images/2015/10/recycler_view_concep.jpg'
+tags:   android-old-school
 ---
 
 El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un [RecyclerView](https://developer.android.com/training/material/lists-cards.html) he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.
@@ -49,7 +48,7 @@ Existen tres implementaciones diferentes de LayoutManager que vienen incluidos d
 
 #### LinearLayoutManager
 
-![linearLayoutManager](/assets/images/2015/10/linear.png){: .center-image }
+![linearLayoutManager](/images/2015/10/linear.png){: .center-image }
 
 
 ```java
@@ -63,7 +62,7 @@ LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
 
 #### GridLayoutManager
 
-![GridLayoutManager](/assets/images/2015/10/grid.png){: .center-image }
+![GridLayoutManager](/images/2015/10/grid.png){: .center-image }
 
 
 ```java
@@ -80,7 +79,7 @@ GridLayoutManager gridLayoutManager = new GridLayoutManager(
 
 Usando el metodo `setSpanSizeLookup(SpanSizeLookup spanSizeLookup)` establecemos la cantidad de spans que debe ocupar cada elemento en el adaptador.
 
-![CustomGridLayoutManager](/assets/images/2015/10/custom_grid.png){: .center-image }
+![CustomGridLayoutManager](/images/2015/10/custom_grid.png){: .center-image }
 
 
 ```java
@@ -103,7 +102,7 @@ gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
 #### StaggeredGridLayoutManager
 
-![StaggeredGridLayoutManager](/assets/images/2015/10/staggered.png){: .center-image }
+![StaggeredGridLayoutManager](/images/2015/10/staggered.png){: .center-image }
 
 
 ```java
@@ -137,7 +136,7 @@ setView(recyclerView);
 
 RecyclerView nos brinda un nuevo componente de nombre [Recycler](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Recycler.html) una clase encargada de gestionar si una vista será (desechada o separada) `scrapped or detached` para su reutilización.
 
-![recycler](/assets/images/2015/10/recycler.png){: .center-image }
+![recycler](/images/2015/10/recycler.png){: .center-image }
 
 [Recordarás que un ListView o GridView](https://docs.google.com/document/d/1htu3vMmFMdMIUF-eg8JALXd9XijuR-OQ2ABxIUV42Ls/edit?usp=sharing) es quien tiene que interactuar de forma directa con el adapter para obtener las vistas que debería renderizar con RecyclerView esto ya sucede así. Esto quiere decir que un `LayoutManager` será quien interactúa de forma directa con el Recycler para obtener una nueva vista o reciclar una vista y `Recycler` será quien esté hablando con él adapter.
 
@@ -314,7 +313,7 @@ RecyclerView es una vista con mucho potencial que fue incorporada con el propós
 
 [RecyclerView-Examples en Github](https://github.com/erikcaffrey/RecyclerView-Examples)
 
-![](/assets/images/2015/10/Telecine_2015-10-18-21-56-43.gif){: .center-image }
+![](/images/2015/10/Telecine_2015-10-18-21-56-43.gif){: .center-image }
 
 ### Resources
 
