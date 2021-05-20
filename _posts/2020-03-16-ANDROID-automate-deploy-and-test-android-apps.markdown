@@ -112,9 +112,9 @@ Usamos un branch **master** es el lugar donde se encuentra todo el proyecto, par
 
 ### Conclusion
 
-El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el [siguiente post](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html) compartiré algunos tips para que puedas implementarlo en tu proyecto. 
+El objetivo de este primer post es entender los problemas a los que nos enfrentamos en el día a día como mobile developers al momento de generar un release, mostrar las estrategias que podemos utilizar para resolverlo y los problemas que nos trae el no tener un flujo de liberación definido. En el [siguiente post](https://erikjhordanrey.dev/android-launch-android-apps) compartiré algunos tips para que puedas implementarlo en tu proyecto. 
 
-[Leer Parte 2](https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-launch-android-apps.html)
+[Leer Parte 2](https://erikjhordanrey.dev/android-launch-android-apps)
 
 **¡Espero que sea de ayuda y si lo encuentras interesante ayúdame a compartirlo!**
 

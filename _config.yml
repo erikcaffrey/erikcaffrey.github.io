@@ -4,7 +4,7 @@ title: Erik Jhordan Rey
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Erik Jhordan Rey - Creative Personal Blog 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://erikjhordanrey.dev" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
 
 
