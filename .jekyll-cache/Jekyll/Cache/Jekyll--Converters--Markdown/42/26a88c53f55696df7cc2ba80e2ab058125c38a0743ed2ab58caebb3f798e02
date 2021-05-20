@@ -1,0 +1,303 @@
+I"5�<p>El día de hoy quiero incitar al debate y mostrar mediante algunos ejemplos la importancia que tiene usar un <a href="https://developer.android.com/training/material/lists-cards.html">RecyclerView</a> he visto personas que aún se rehúsan a usarlo y otras más que no aprovechan al máximo todos los recursos que provee.</p>
+
+<p>Sabemos que muchas personas están familiarizadas con este componente debido a que fue integrado al SDK de android con la llegada de la nueva versión android 5.0 “L” “Lollipop”, la cual fue anunciada en el <a href="https://www.youtube.com/watch?v=wtLJPvx7-ys">Google I/O 2014</a> lo que significa que estamos hablando que esto tiene ya poco más de un año.</p>
+
+<p>Pues bien ya has tenido tiempo para explorar a fondo este nuevo control, si lo has usado me gustaria que te preguntaras:</p>
+
+<ul>
+  <li><strong>¿Ya utilizas RecyclerView en tus proyectos, has dado el cambio y dejaste de usar ListView o GridView?</strong>.</li>
+  <li>Si si lo usas <strong>¿Aprovechas todos los recursos que te brinda este componente?</strong>.</li>
+  <li>Si no lo usas <strong>¿Qué esperas para hacer la transición?</strong> esto tiene más de un año no te quedes atrás!!.</li>
+  <li>Aun te preguntas <strong>¿Porque es más complicado usar un RecyclerView?</strong> piensas que es más sencillo y conveniente usar alguna librería que facilite esta tarea.</li>
+  <li><strong>¿Ya entendiste la importancia que tiene el utilizar un RecyclerView?</strong> o aun piensas que el equipo de android solo complicó la forma de mostrar un conjunto de datos.</li>
+  <li><strong>¿Como haces que tus listas se adapten de acuerdo al tamaño de pantalla del dispositivo?</strong></li>
+</ul>
+
+<p>Si no sabes las respuestas en este artículo intentaremos contestarlas.</p>
+
+<h1 id="recyclerview">RecyclerView</h1>
+
+<p>Para usar <strong>Recyclerview-v7</strong> recordar que hay que agregar la libreria mediante gradle <code class="language-plaintext highlighter-rouge">com.android.support:recyclerview-v7:+</code> es recomendable sustituir el símbolo “+” por el número especifico de versión.</p>
+
+<p>Sabemos que un <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html">RecyclerView</a> es una clase que hereda de <a href="http://developer.android.com/reference/android/view/ViewGroup.html">ViewGroup</a>, que al igual que <a href="http://developer.android.com/guide/topics/ui/layout/listview.html">ListView</a> y <a href="http://developer.android.com/guide/topics/ui/layout/gridview.html">GridView</a> nos va permitir mostrar grandes colecciones o conjuntos de datos con la única diferencia que solo se dedica a <em>reciclar</em> vistas delegando la tarea de renderizado a otros componentes que serán los que determinen la forma de acceder a los datos y cómo mostrarlos.</p>
+
+<h3 id="layoutmanager">LayoutManager</h3>
+
+<p>Es una clase estática abstracta que se encuentra dentro de la clase RecyclerView su tarea es definir el orden en que se mostrarán nuestras vistas de elementos y determinar la política de cuándo reciclar las vistas que ya no son visibles para el usuario.</p>
+
+<h3 id="filosofía">Filosofía</h3>
+
+<p>Ha dejado de ser una patrón por extensión recordar que las clases ListView y GridView heredan de la clase abstracta <a href="http://developer.android.com/reference/android/widget/AbsListView.html">AbsListView</a> (que a su vez está hereda de la clase abstracta <a href="http://developer.android.com/reference/android/widget/AdapterView.html">AdapterView</a> la cual hereda de ViewGroup.)  quien es la encargada de virtualizar una lista de elementos y delegar a sus subclases la decisión de cómo mostrar sus elementos, por esta razón un <a href="http://developer.android.com/reference/android/widget/ListView.html">ListView</a> es quien decide que los elementos deben ser mostrados de forma lineal y  en forma de cuadrícula en el caso de <a href="http://developer.android.com/reference/android/widget/GridView.html">GridView</a>.</p>
+
+<p>RecyclerView necesita del método <code class="language-plaintext highlighter-rouge">setLayoutManager(LayoutManager layout)</code> para asignar un tipo de layout que le indique cómo debe renderizar, dando origen a un patrón por composición.</p>
+
+<p>Es sensato mencionar que con la llegada de <strong>RecyclerView</strong> y la forma en que fue diseñada su implementación se cumple un Design Principle <em>“Favor composition over inheritance.”</em> el cual tiene como objetivo dar flexibilidad.</p>
+
+<h3 id="tipos-de-layoutmanager">Tipos de LayoutManager</h3>
+
+<p>Existen tres implementaciones diferentes de LayoutManager que vienen incluidos dentro de la librería <code class="language-plaintext highlighter-rouge">Recyclerview-v7</code> <a href="https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html">LinearLayoutManager</a>, <a href="https://developer.android.com/reference/android/support/v7/widget/GridLayoutManager.html">GridLayoutManager</a> y <a href="https://developer.android.com/reference/android/support/v7/widget/StaggeredGridLayoutManager.html">StaggeredGridLayoutManager</a>, tienen la habilidad de facilitar el uso de RecyclerView indicando la forma en que los elementos deben ser mostrados.</p>
+
+<h4 id="linearlayoutmanager">LinearLayoutManager</h4>
+
+<p><img src="/images/2015/10/linear.png" alt="linearLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">LinearLayoutManager</span> <span class="n">linearLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinearLayoutManager</span><span class="o">(</span>
+            <span class="k">this</span><span class="o">,</span>
+            <span class="nc">LinearLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+            <span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h4 id="gridlayoutmanager">GridLayoutManager</h4>
+
+<p><img src="/images/2015/10/grid.png" alt="GridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+              <span class="k">this</span><span class="o">,</span>
+              <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+              <span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h4 id="gridlayoutmanager--spansizelookup">GridLayoutManager + SpanSizeLookup</h4>
+
+<p>Usando el metodo <code class="language-plaintext highlighter-rouge">setSpanSizeLookup(SpanSizeLookup spanSizeLookup)</code> establecemos la cantidad de spans que debe ocupar cada elemento en el adaptador.</p>
+
+<p><img src="/images/2015/10/custom_grid.png" alt="CustomGridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+               <span class="k">this</span><span class="o">,</span>
+               <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+               <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+               <span class="kc">false</span><span class="o">);</span>
+
+<span class="n">gridLayoutManager</span><span class="o">.</span><span class="na">setSpanSizeLookup</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">SpanSizeLookup</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSpanSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">//stagger rows custom</span>
+      <span class="k">return</span> <span class="o">(</span><span class="n">position</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+</code></pre></div></div>
+
+<h4 id="staggeredgridlayoutmanager">StaggeredGridLayoutManager</h4>
+
+<p><img src="/images/2015/10/staggered.png" alt="StaggeredGridLayoutManager" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">StaggeredGridLayoutManager</span> <span class="n">staggeredGridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StaggeredGridLayoutManager</span><span class="o">(</span>
+              <span class="mi">2</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">);</span>
+
+<span class="c1">//Sets the gap handling strategy for StaggeredGridLayoutManager</span>
+<span class="n">staggeredGridLayoutManager</span><span class="o">.</span><span class="na">setGapStrategy</span><span class="o">(</span><span class="nc">StaggeredGridLayoutManager</span><span class="o">.</span><span class="na">GAP_HANDLING_NONE</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<p>El potencial que brindan estos layouts por defecto es mas que suficiente para ser usados de forma directa en un RecyclerView, también puedes implementar un estilo de renderizado diferente a los que el framework te provee <a href="http://wiresareobsolete.com/2014/09/building-a-recyclerview-layoutmanager-part-1/">creando tu propio LayoutManager</a> que se adapte a tu necesidad.</p>
+
+<h3 id="utiliza-un-tipo-de-layoutmanager">Utiliza un tipo de LayoutManager</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nc">RecyclerView</span> <span class="n">recyclerView</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RecyclerView</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">recyclerView</span><span class="o">.</span><span class="na">setLayoutManager</span><span class="o">(...);</span> <span class="c1">// sets the type of layout (LayoutManager)</span>
+<span class="n">setView</span><span class="o">(</span><span class="n">recyclerView</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h3 id="recyclerviewrecycler">RecyclerView.Recycler</h3>
+
+<p>RecyclerView nos brinda un nuevo componente de nombre <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Recycler.html">Recycler</a> una clase encargada de gestionar si una vista será (desechada o separada) <code class="language-plaintext highlighter-rouge">scrapped or detached</code> para su reutilización.</p>
+
+<p><img src="/images/2015/10/recycler.png" alt="recycler" class="center-image" /></p>
+
+<p><a href="https://docs.google.com/document/d/1htu3vMmFMdMIUF-eg8JALXd9XijuR-OQ2ABxIUV42Ls/edit?usp=sharing">Recordarás que un ListView o GridView</a> es quien tiene que interactuar de forma directa con el adapter para obtener las vistas que debería renderizar con RecyclerView esto ya sucede así. Esto quiere decir que un <code class="language-plaintext highlighter-rouge">LayoutManager</code> será quien interactúa de forma directa con el Recycler para obtener una nueva vista o reciclar una vista y <code class="language-plaintext highlighter-rouge">Recycler</code> será quien esté hablando con él adapter.</p>
+
+<p>Si un vista es <code class="language-plaintext highlighter-rouge">scrapped</code> indica que continúa enlazada con el RecyclerView pero se ha marcado para su posible eliminación o reutilización. Cuando es reutilizada es considerada <code class="language-plaintext highlighter-rouge">dirty</code> y el adaptador es quien debe volver a enlazarla antes de ser mostrada.
+Recycler implementa toda esa lógica de cuando un <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.Adapter.html">Adapter</a> debe crear una nueva vista o volver a enlazar datos a una ya existente y lo más importante aquí es que el LayoutManager nunca debe tocar el adapter y debe ser el <code class="language-plaintext highlighter-rouge">Recycler</code> quien esté interactuando con el.</p>
+
+<h3 id="filosofía-1">Filosofía</h3>
+
+<p>Existen dos puntos importantes dentro de recycler que le permiten trabajar de manera eficiente.</p>
+
+<h4 id="scrap-heap">Scrap Heap</h4>
+
+<p>Es el lugar donde puedes interactuar con las vistas que no estás utilizando en el momento pero vas a volver a utilizar de forma inmediata y se consigue mediante el método
+<code class="language-plaintext highlighter-rouge">detachAndScrapView(View child, Recycler recycler)</code> tener en mente que una vista <code class="language-plaintext highlighter-rouge">Scrapping</code> permitirá ser reutilizada para mostrar datos actualizados o diferentes.</p>
+
+<h4 id="recyler-pool">Recyler Pool</h4>
+
+<p>Básicamente es donde encuentran las vistas que no necesitamos más y utilizando el método <code class="language-plaintext highlighter-rouge">removeAndRecycleView(View child, Recycler recycler)</code> removemos las vistas que no necesitamos con el diseño actual para que el método <code class="language-plaintext highlighter-rouge">recycleView(View view)</code> pueda re-enlazar y re-utilizar esas mismas vistas, cabe resaltar que siempre estarán pasando a través del adaptador para asegurar que los datos se encuentran enlazados a la vista  antes de que se devuelvan al LayoutManager.</p>
+
+<p>El uso de Recycler mejora el performance ya que estamos reutilizando vistas en lugar de crear nuevas vistas cada vez que el usuario está trayendo más elementos (haciendo scroll).</p>
+
+<h3 id="recyclerviewadapter">RecyclerView.Adapter</h3>
+
+<p>Adapter es una clase estática abstracta su principal objetivo es crear vistas para cada elemento de un RecyclerView.
+La novedad radica en el uso obligatorio del patrón <a href="http://developer.android.com/training/improving-layouts/smooth-scrolling.html">ViewHolder</a>  <code class="language-plaintext highlighter-rouge">Adapter&lt;VH extends ViewHolder&gt;</code> ya que siempre debe ser indicado en la declaración de la clase y dejar en claro que este patrón ya tiene su tiempo solo que esta vez no tenemos opción de elegir si se usa o no.</p>
+
+<p>Sin embargo podrías no usar este patrón quizas e intentarlo mediante otro patrón o una combinación de patrones de diseño ;pero no creo que sea necesario ya que cumple con su objetivo. En el caso de ListView y GridView no es obligatorio el uso de <code class="language-plaintext highlighter-rouge">ViewHolder</code> pero muy recomendado para tener un buen performance y evitar el uso frecuente de <code class="language-plaintext highlighter-rouge">findViewById</code> el uso de <code class="language-plaintext highlighter-rouge">ViewHolder</code> es la pura vitamina de las listas de acuerdo con Google.</p>
+
+<h4 id="oncreateviewholder">onCreateViewHolder</h4>
+
+<p>Se llama cuando RecyclerView necesita un nuevo <code class="language-plaintext highlighter-rouge">ViewHolder</code> del tipo dado para representar un elemento. <code class="language-plaintext highlighter-rouge">onCreateViewHolder(ViewGroup parent,int viewType)</code> es el encargado de inicializar y crear nuevos objetos ViewHolder para los elementos de una colección.</p>
+
+<h4 id="onbindviewholder">onBindViewHolder</h4>
+
+<p>Su tarea de este método <code class="language-plaintext highlighter-rouge">onBindViewHolder(ViewHolder holder, int position)</code> es mostrar los datos de una posición especificada, también configura el contenido de las vistas y actualiza los datos de un ViewHolder ya existente.</p>
+
+<p>Existe una librería muy chula de nombre <a href="https://github.com/pedrovgs/Renderers">Renderers</a> evita todo el boilerplate necesario al utilizar un RecyclerView o ListView con adaptadores, si tienes interés en usarla siempre recomiendo entender primero su funcionamiento a bajo nivel.</p>
+
+<h3 id="recyclerviewitemdecoration">RecyclerView.ItemDecoration</h3>
+
+<p><a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration.html">ItemDecoration</a> una super clase que permite agregar un decorator a cada elemento o todos los elementos de un RecyclerView mediante el método <code class="language-plaintext highlighter-rouge">addItemDecoration(ItemDecoration decor)</code>, existen muchas formas para crear un ItemDecoration lo más importante es que siempre hay que heredar de <code class="language-plaintext highlighter-rouge">RecyclerView.ItemDecoration</code>.</p>
+
+<p>Un ejemplo sencillo podría ser usando el método <code class="language-plaintext highlighter-rouge">outRect.set(int left, int top, int right, int bottom)</code> para insertar algo similar a un padding o margin a cada vista de nuestro RecyclerView sin necesidad de modificar los parámetros de un layout.</p>
+
+<p>Pensarás que no tiene nada de importancia crear un divider cuando el ListView ya tenia por defecto su propio divider  (esa famosa línea gris). Te haz preguntado o has visto <em>¿Qué sucede cuando querías tener un divider diferente para algún ítem o un conjunto de ellos dentro de un ListView?</em> la respuesta es que se se hacían o se hacen cosas espantosas como añadir un elemento <code class="language-plaintext highlighter-rouge">&lt;View … /&gt;</code> como parte de nuestro ItemView y era manipulado en el adapter para cumplir con los objetivos que el Product Manager requiere.</p>
+
+<p>Básicamente es decirle adiós a los dividers con el uso de los decoradores ya que
+proveen mucha flexibilidad permitiendo decorar un ítem o un conjunto de ellos de una manera elegante y si es importante saber que el uso de decoradores no es trivial pero sin duda un componente con mucha potencia.</p>
+
+<ul>
+  <li>ItemDecoration para mostrar la famosa línea gris del ListView en un RecyclerView <a href="https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/DividerDecoration.java">aquí</a>.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">addItemDecoration</span><span class="o">(</span><span class="nc">ItemDecoration</span> <span class="n">decor</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="recyclerviewitemanimator">RecyclerView.ItemAnimator</h3>
+
+<p>Un clase abstracta encargada de reflejar los cambios que se hacen a un adapter, permitiendo definir las animaciones que serán visualizadas en nuestro RecyclerView al crear un ItemAnimator.</p>
+
+<p>Este componente no es sencillo de implementar al igual que <code class="language-plaintext highlighter-rouge">ItemDecoration</code>, pero existe una implementación por defecto de nombre <code class="language-plaintext highlighter-rouge">DefaultItemAnimator</code> una clase que hereda de <code class="language-plaintext highlighter-rouge">RecyclerView.ItemAnimator</code> (la forma en que se crea un ItemAnimator) que permite mostrar una animación al realizar alguna acción sobre un ítem. Para asignar un ItemAnimator a un RecyclerView basta con usar el método <code class="language-plaintext highlighter-rouge">setItemAnimator()</code>.</p>
+
+<p>Es importante mencionar que el feedback que se percibe al tocar un row ya no está por defecto como sucedía en ListView ;pero basta con crear un <a href="http://developer.android.com/guide/topics/resources/drawable-resource.html">Selector</a> y asignarlo como background de nuestro itemView, con la llegada de material design ahora trae un efecto muy interesanté de nombre <a href="http://android-developers.blogspot.mx/2014/10/implementing-material-design-in-your.html">ripple</a> que seguro ya haz trabajado con el.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">setItemAnimator</span><span class="o">(</span><span class="nc">ItemAnimator</span> <span class="n">animator</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="itemtypes">ItemTypes</h3>
+
+<p>En algunas ocasiones es necesario tener listas con diferentes tipos de rows con la llegada de los <code class="language-plaintext highlighter-rouge">ItemTypes</code> será más fácil realizar esta tarea, esta nueva forma de trabajar implica dejar de usar el famoso Header y Footer que se encontraban en un ListView o gridview.
+Lo que han hecho es que ahora es que mediante el método <code class="language-plaintext highlighter-rouge">getItemViewType(int position)</code> para indicar que tipo de vista que debe renderizar en un RecyclerView de acuerdo a una posición validando en el <code class="language-plaintext highlighter-rouge">createViewHolder(ViewGroup parent, int viewType)</code> el tipo de vista recibido <code class="language-plaintext highlighter-rouge">viewType</code>.</p>
+
+<h3 id="onitemclick-doesnt-exist-any-more">OnItemClick doesn´t exist any more</h3>
+
+<p>Ahora somos los encargados de crear un listener para cada elemento de una colección, generalmente se implementa en el <code class="language-plaintext highlighter-rouge">ViewHolder</code> ya que en esa clase tenemos acceso al método <code class="language-plaintext highlighter-rouge">getAdapterPosition()</code> que devolverá la posición del item asociado al ViewHolder en la colección del Adapter.
+Debido a que este evento no viene más por defecto como sucedía en <code class="language-plaintext highlighter-rouge">ListView</code> usando <a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">AdapterView.OnItemClickListener</a>, esto no quiere decir que el código que se tenía en un activity o Fragment deba ser movido a un adaptador si no que debe ser delegado esta funcionalidad a nuestro ViewHolder para que se comunique con estas vistas.</p>
+
+<h3 id="recyclerview-using-responsive-grid">RecyclerView using Responsive grid</h3>
+
+<p>Los recursos son una de las herramientas más potentes que tiene Android para trabajar con UI y el uso de qualifiers permitirá aplicar diferentes configuraciones de recursos en función de densidad de pantalla, idioma, orientación, etc.
+Para definir la medida que cada elemento debe ocupar en relación al tamaño de pantalla se puede conseguir de diferentes formas yo me enfocaré en dos
+que son con las que he trabajado en donde GridLayoutManager juega un maginifico papel.</p>
+
+<h4 id="resources--qualifiers">Resources &amp; Qualifiers</h4>
+
+<p>Una forma fácil y sencilla para determinar el <code class="language-plaintext highlighter-rouge">spanCount</code> puede ser usando qualifiers, es tan simple como crear diferentes configuraciones tomando en cuenta el ancho mínimo , alto disponible y orientación del dispositivo .</p>
+
+<ul>
+  <li><strong>values</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>values-sw600dp</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>values-sw600dp-land</strong>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;integer</span> <span class="na">name=</span><span class="s">"number_of_columns"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/integer&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">spans</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getInteger</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">integer</span><span class="o">.</span><span class="na">number_of_columns</span><span class="o">);</span>
+<span class="nc">GridLayoutManager</span> <span class="n">gridLayoutManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GridLayoutManager</span><span class="o">(</span>
+              <span class="k">this</span><span class="o">,</span>
+              <span class="n">spans</span><span class="o">,</span> <span class="c1">//number of grid columns</span>
+              <span class="nc">GridLayoutManager</span><span class="o">.</span><span class="na">VERTICAL</span><span class="o">,</span>
+              <span class="kc">false</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Por ejemplo si es un dispositivo como un <strong>Moto E</strong> hará uso de la carpeta <em>values</em> mostrando solo una columna ;pero si usamos una <strong>Nexus 9</strong> ahora mostrará dos columnas en orientación vertical usando la carpeta <em>values-sw600dp</em> y si el dispositivo es rotado quedando una orientación horizontal se hace uso <em>values-sw600dp-land</em> para mostrar tres columnas.</p>
+
+<h4 id="custom-recyclerview">Custom RecyclerView</h4>
+
+<p>Debemos crear una <a href="https://developer.android.com/intl/es/training/custom-views/index.html">CustomView</a>, es decir crearemos una clase que herede de <code class="language-plaintext highlighter-rouge">RecyclerView</code> y definir el tamaño de cada elemento calculando el <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/GridLayoutManager.SpanSizeLookup.html">spanCount</a> automáticamente.</p>
+
+<p>La forma en que funciona es que al heredar de RecyclerView estamos accediendo a su width, recordar que <em>GridView</em> tiene acceso al atributo <code class="language-plaintext highlighter-rouge">android:numColumns="auto_fit"</code> que a su vez utiliza <code class="language-plaintext highlighter-rouge">android:columnWidth</code> para calcular el número de columnas, nosotros haremos uso de este atributo para leer el valor de <code class="language-plaintext highlighter-rouge">android:columnWidth</code> mediante el constructor y asignarlo en una variable miembro <code class="language-plaintext highlighter-rouge">columnWidth</code>.</p>
+
+<p>Sabemos que necesitamos establecer <code class="language-plaintext highlighter-rouge">columnWidth</code>en el método <code class="language-plaintext highlighter-rouge">onMeasure(int widthSpec, int heightSpec)</code> para calcular el <code class="language-plaintext highlighter-rouge">spanCount</code> de forma automática ;pero la aplicación podría tener un crash si esperamos hasta que se defina un <code class="language-plaintext highlighter-rouge">GridLayoutManager</code> por esta razón lo creamos en esta clase y de esta forma también accederemos a su método <code class="language-plaintext highlighter-rouge">setSpanCount(int spanCount)</code> para determinar el <code class="language-plaintext highlighter-rouge">spanCount</code>.</p>
+
+<p>Puedes ver el código  de <a href="https://github.com/erikcaffrey/RecyclerView-Examples/blob/master/app/src/main/java/androidtitlan/gdg/recyclerview_examples/widget/ResponsiveRecyclerView.java">ResponsiveRecyclerView.java</a>.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;your.package.widget.ResponsiveRecyclerView</span>
+        <span class="na">android:id=</span><span class="s">"@+id/recycler_view"</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+        <span class="na">android:columnWidth=</span><span class="s">"@dimen/column_width"</span>
+        <span class="na">android:clipToPadding=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h3 id="recyclerview-new-features">RecyclerView new Features</h3>
+
+<p>Con la última versión de <a href="https://developer.android.com/intl/es/tools/support-library/index.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">Android Support Library (23.1)</a> trae algunas mejoras para RecyclerView.</p>
+
+<p><code class="language-plaintext highlighter-rouge">compile 'com.android.support:design:23.1.0'</code></p>
+
+<ul>
+  <li>
+    <p><strong>ItemAnimator</strong> puede decidir mediante <code class="language-plaintext highlighter-rouge">canReuseUpdatedViewHolder()</code> si quiere volver a utilizar el mismo ViewHolder para animaciones o si RecyclerView debe crear una copia del ítem, dando como resultado que <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/RecyclerView.ItemAnimator.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">ItemAnimator</a> utilice ambos al mismo tiempo para ejecutar una animación.</p>
+  </li>
+  <li>
+    <p><a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/RecyclerView.ItemAnimator.ItemHolderInfo.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">ItemHolderInfo</a> es otra de las aportaciones en esta versión y es definida como una estructura de datos que contiene información acerca de los enlaces de un elemento. Esta información se utiliza en el cálculo de las animaciones de los ítems.</p>
+  </li>
+  <li>
+    <p>Si antes heredabas de la clase ItemAnimator ahora puedes hacer uso de <a href="https://developer.android.com/intl/es/reference/android/support/v7/widget/SimpleItemAnimator.html?utm_campaign=android_update_important_bug_fixes_101515&amp;utm_source=anddev&amp;utm_medium=blog">SimpleItemAnimator</a> un wrapper para ItemAnimator que decide si debe ejecutar mover, cambiar, añadir o eliminar una animacion.</p>
+  </li>
+  <li>
+    <p>Ahora se provee un camino para el <em>backward-incompatible</em> de esta api y te darás cuenta de que algunos métodos se han eliminado por completo de ItemAnimator uno de ellos fue:</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recyclerView</span><span class="o">.</span><span class="na">getItemAnimator</span><span class="o">().</span><span class="na">setSupportsChangeAnimations</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Fue reemplazado por:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ItemAnimator</span> <span class="n">animator</span> <span class="o">=</span> <span class="n">recyclerView</span><span class="o">.</span><span class="na">getItemAnimator</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">animator</span> <span class="k">instanceof</span> <span class="nc">SimpleItemAnimator</span><span class="o">)</span>
+   <span class="o">((</span><span class="nc">SimpleItemAnimator</span><span class="o">)</span> <span class="n">animator</span><span class="o">).</span><span class="na">setSupportsChangeAnimations</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h3 id="conclusión">Conclusión</h3>
+
+<p>RecyclerView es una vista con mucho potencial que fue incorporada con el propósito de mostrar vistas de una forma sencilla y eficiente. No sólo mejora las tareas de ListView y GridView sino también sustituye a estas vistas en la mayoría de ocasiones ya que aporta mucha flexibilidad que puede suplir la funcionalidad de ambos controles, si aun lo estas dudando o quieres aprovechar al máximo cada elemento que proporciona estas en el momento indicado,  aunque la curva de aprendizaje de este control no ha sido tarea sencilla por la complejidad que tiene crear algunos de sus elementos. Solo se trata de entender cada componente que nos brinda y aprovecharlo a nuestro favor.</p>
+
+<h3 id="demo">Demo</h3>
+
+<h4 id="el-código-está-disponible">El código está disponible</h4>
+
+<p><a href="https://github.com/erikcaffrey/RecyclerView-Examples">RecyclerView-Examples en Github</a></p>
+
+<p><img src="/images/2015/10/Telecine_2015-10-18-21-56-43.gif" alt="" class="center-image" /></p>
+
+<h3 id="resources">Resources</h3>
+
+<ul>
+  <li><strong>Android</strong> - <a href="https://developer.android.com/training/material/lists-cards.html">Creating Lists and Cards</a></li>
+  <li><strong>Dave Smith</strong> - <a href="https://www.youtube.com/watch?v=gs_C1E8HwvE">Mastering RecyclerView layouts</a></li>
+  <li><strong>Fernando Cejas &amp; Jorge Barroso</strong> - <a href="http://es.slideshare.net/flipper83/material-old-school">Material for old school</a></li>
+  <li><strong>Chiu-Ki Chan</strong> - <a href="https://github.com/chiuki/android-recyclerview">android-recyclerview repository</a></li>
+</ul>
+
+<p><strong>“if you’re afraid to change something it is clearly poorly designed. by Martin Fowler”</strong></p>
+:ET

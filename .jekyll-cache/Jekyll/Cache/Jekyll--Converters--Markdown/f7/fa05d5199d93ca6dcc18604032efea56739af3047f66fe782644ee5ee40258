@@ -1,0 +1,508 @@
+I"��<p>Más que mostrar toda una integración técnica paso a paso, mi objetivo principal es compartirte algunos tips y recomendaciones de mi experiencia haciendo este tipo de implementaciones, de igual forma me gustaría recomendarte pasar por mi <a href="https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html">artículo anterior</a> para tener una visión general sobre el tema.</p>
+
+<h2 id="sign-your-app-automatically">Sign your app automatically</h2>
+
+<p>Sabemos que android requiere que todos los APK o Bundle estén firmados digitalmente con un certificado antes de que se instalen en un dispositivo o se actualicen. Firmar una aplicación se puede hacer de distintas formas; pero para poder integrar con nuestro servicio de integración continua y éste pueda generar un build de forma automática necesitamos que la configuración local del proyecto sea compatible con Travis CI.</p>
+
+<p>Usualmente lo resuelvo creando un archivo <strong>signing.gradle</strong> ubicado en <strong>/AndroidStudio/android-project/gradle-scripts/google</strong>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">ext</span> <span class="o">{</span>
+
+    <span class="n">signingDebug</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">propertiesFile</span> <span class="o">=</span> <span class="n">loadPropertiesFile</span><span class="o">(</span><span class="s2">"debug"</span><span class="o">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="na">signingConfigs</span><span class="o">.</span><span class="na">debug</span> <span class="o">{</span>
+            <span class="n">storeFile</span> <span class="nf">loadFileFromGoogleDir</span><span class="o">(</span><span class="s2">"debug.keystore"</span><span class="o">)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">propertiesFile</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                <span class="kt">def</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">loadProperties</span><span class="o">(</span><span class="n">propertiesFile</span><span class="o">)</span>
+                <span class="n">storePassword</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_DEBUG_STORE_PASSWORD</span>
+                <span class="n">keyAlias</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_DEBUG_KEY_ALIAS</span>
+                <span class="n">keyPassword</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_DEBUG_KEY_PASSWORD</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">storePassword</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_DEBUG_STORE_PASSWORD"</span><span class="o">)</span>
+                <span class="n">keyAlias</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_DEBUG_KEY_ALIAS"</span><span class="o">)</span>
+                <span class="n">keyPassword</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_DEBUG_KEY_PASSWORD"</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">signingProd</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">propertiesFile</span> <span class="o">=</span> <span class="n">loadPropertiesFile</span><span class="o">(</span><span class="s2">"release"</span><span class="o">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="na">signingConfigs</span><span class="o">.</span><span class="na">prod</span> <span class="o">{</span>
+            <span class="n">storeFile</span> <span class="nf">loadFileFromGoogleDir</span><span class="o">(</span><span class="s2">"release.keystore"</span><span class="o">)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">propertiesFile</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                <span class="kt">def</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">loadProperties</span><span class="o">(</span><span class="n">propertiesFile</span><span class="o">)</span>
+                <span class="n">storePassword</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_STORE_PASSWORD</span>
+                <span class="n">keyAlias</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_KEY_ALIAS</span>
+                <span class="n">keyPassword</span> <span class="n">properties</span><span class="o">.</span><span class="na">APP_KEY_PASSWORD</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">storePassword</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_STORE_PASSWORD"</span><span class="o">)</span>
+                <span class="n">keyAlias</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_KEY_ALIAS"</span><span class="o">)</span>
+                <span class="n">keyPassword</span> <span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">"APP_KEY_PASSWORD"</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">loadPropertiesFile</span> <span class="o">=</span> <span class="o">{</span> <span class="n">name</span> <span class="o">-&gt;</span>
+        <span class="k">return</span> <span class="nf">loadFileFromGoogleDir</span><span class="o">(</span><span class="s2">"${name}.properties"</span><span class="o">)</span>
+    <span class="o">}</span>
+
+    <span class="n">loadProperties</span> <span class="o">=</span> <span class="o">{</span> <span class="n">propertiesFile</span> <span class="o">-&gt;</span>
+        <span class="kt">def</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">()</span>
+        <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">propertiesFile</span><span class="o">))</span>
+        <span class="k">return</span> <span class="n">properties</span>
+    <span class="o">}</span>
+
+    <span class="n">loadFileFromGoogleDir</span> <span class="o">=</span> <span class="o">{</span> <span class="n">fileName</span> <span class="o">-&gt;</span>
+        <span class="kt">def</span> <span class="n">googleDirPath</span> <span class="o">=</span> <span class="s2">"gradle-scripts/google/"</span>
+        <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"${googleDirPath}${fileName}"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>En la función <strong>signingDebug</strong> y <strong>signingProduction</strong> sirven para asignar el <strong>keyAlias</strong>, <strong>storePassword</strong>, <strong>keyPassword</strong> y todo lo necesario para <a href="https://developer.android.com/studio/publish/app-signing#generate-key">firmar un build</a>. Puedes mirar que hay una validación <strong>propertiesFile.exists()</strong> encargada de validar si está ejecutando en local (AS) o en un Travis Job, ya que busca la configuración en local en el archivo <code class="language-plaintext highlighter-rouge">debug.properties</code> y <code class="language-plaintext highlighter-rouge">release.properties</code>(Estos archivos están normalmente en el .gitignore) y si no encuentra lee las <a href="https://docs.travis-ci.com/user/environment-variables/">variables de entorno declaradas</a> en Travis CI.</p>
+
+<p><code class="language-plaintext highlighter-rouge">debug.properties</code></p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">APP_DEBUG_STORE_PASSWORD</span><span class="o">=</span><span class="n">YourStorePassword</span>
+<span class="n">APP_DEBUG_KEY_ALIAS</span><span class="o">=</span><span class="n">YourAlias</span>
+<span class="n">APP_DEBUG_KEY_PASSWORD</span><span class="o">=</span><span class="n">YourkeyPassword</span>
+</code></pre></div></div>
+
+<p>Para usar el script gradle que hemos generado se aplica en el  <strong>build.gradle</strong> de <code class="language-plaintext highlighter-rouge">app</code>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.application'</span>
+<span class="c1">//...</span>
+<span class="n">apply</span> <span class="nl">from:</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/google/signing.gradle"</span><span class="o">)</span>
+
+
+<span class="n">signingConfigs</span> <span class="o">{</span>
+
+        <span class="n">debug</span> <span class="o">{</span>
+            <span class="n">signingDebug</span><span class="o">()</span>
+        <span class="o">}</span>
+
+        <span class="n">prod</span> <span class="o">{</span>
+            <span class="n">signingProd</span><span class="o">()</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+</code></pre></div></div>
+
+<h2 id="automate-versioncode-and-versionname">Automate versionCode and versionName</h2>
+
+<p>Una de las tareas que en ocasiones se vuelve tediosa de mantener es el número y nombre de una versión, cada que hacemos un release nuevo implica modificar esto de forma manual para evitarlo usualmente creamos un archivo <strong>version.properties</strong> el cual contiene el número de versión de la aplicación y un script <strong>app-distribution.gradle</strong> cuyo objetivo es leer el archivo properties y generar el nombre de la versión, ambos archivos están ubicados en <strong>/AndroidStudio/android-project/gradle-scripts/distribution</strong>.</p>
+
+<p><strong>version.properties</strong></p>
+
+<p>Cada que realices un release sólo tienes que incrementar alguno de estos valores.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MAJOR</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">MINOR</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">PATCH</span><span class="o">=</span><span class="mi">0</span>
+</code></pre></div></div>
+
+<p><strong>app-distribution.gradle</strong></p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span>
+
+<span class="n">ext</span> <span class="o">{</span>
+    <span class="n">versionMajor</span> <span class="o">=</span> <span class="n">getVersionMajor</span><span class="o">()</span>
+    <span class="n">versionMinor</span> <span class="o">=</span> <span class="n">getVersionMinor</span><span class="o">()</span>
+    <span class="n">versionPatch</span> <span class="o">=</span> <span class="n">getVersionPatch</span><span class="o">()</span>
+    <span class="n">version_name</span> <span class="o">=</span> <span class="s2">"${versionMajor}.${versionMinor}.${versionPatch}"</span>
+    <span class="n">version_code</span> <span class="o">=</span> <span class="n">versionMajor</span> <span class="o">*</span> <span class="mi">10000</span> <span class="o">+</span> <span class="n">versionMinor</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">versionPatch</span>
+    <span class="n">version_date</span> <span class="o">=</span> <span class="n">generateBuildTime</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">def</span> <span class="nf">getVersionMajor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">getVersionProperties</span><span class="o">()</span>
+    <span class="k">return</span> <span class="n">properties</span><span class="o">[</span><span class="s1">'MAJOR'</span><span class="o">].</span><span class="na">toInteger</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">def</span> <span class="nf">getVersionMinor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">getVersionProperties</span><span class="o">()</span>
+    <span class="k">return</span> <span class="n">properties</span><span class="o">[</span><span class="s1">'MINOR'</span><span class="o">].</span><span class="na">toInteger</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">def</span> <span class="nf">getVersionPatch</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">getVersionProperties</span><span class="o">()</span>
+    <span class="k">return</span> <span class="n">properties</span><span class="o">[</span><span class="s1">'PATCH'</span><span class="o">].</span><span class="na">toInteger</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">def</span> <span class="nf">getVersionProperties</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">content</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/version.properties"</span><span class="o">)</span>
+    <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">()</span>
+    <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayInputStream</span><span class="o">(</span><span class="n">content</span><span class="o">.</span><span class="na">getBytes</span><span class="o">())</span>
+    <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">is</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">properties</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">def</span> <span class="nf">generateBuildTime</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">SimpleDateFormat</span><span class="o">(</span><span class="s2">"dd/MM/yyyy - hh:mm aa"</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">())</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Para usar el script gradle que hemos generado se aplica en <strong>build.gradle</strong> del módulo <code class="language-plaintext highlighter-rouge">app</code>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.application'</span>
+<span class="c1">//...</span>
+<span class="n">apply</span> <span class="nl">from:</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/app-distribution.gradle"</span><span class="o">)</span>
+
+</code></pre></div></div>
+
+<p>Si utilizas <strong>multi-module</strong> debes proveer este script en todos los módulos del proyecto o utilizar <code class="language-plaintext highlighter-rouge">subprojects</code>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">subprojects</span> <span class="o">{</span>
+
+    <span class="n">apply</span> <span class="nl">from:</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/app-distribution.gradle"</span><span class="o">)</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Usa las variables <strong>version_code</strong> y <strong>version_name</strong> en defaultConfig.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="n">defaultConfig</span> <span class="o">{</span>
+        <span class="n">applicationId</span> <span class="o">...</span>
+        <span class="n">minSdkVersion</span> <span class="o">...</span>
+        <span class="n">targetSdkVersion</span> <span class="o">...</span>
+        <span class="n">versionCode</span> <span class="n">version_code</span>
+        <span class="n">versionName</span> <span class="n">version_name</span>
+    <span class="o">}</span>
+
+</code></pre></div></div>
+
+<h2 id="firebase-app-distribution--travis-ci">Firebase App Distribution + Travis CI</h2>
+
+<p>Para comenzar la integración mediante gradle, es necesario agregar el plugin de <code class="language-plaintext highlighter-rouge">firebase-appdistribution-gradle</code> en <code class="language-plaintext highlighter-rouge">build.gradle</code> del proyecto.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">buildscript</span> <span class="o">{</span>
+    <span class="k">repositories</span> <span class="o">{</span>
+        <span class="n">google</span><span class="o">()</span>
+    <span class="o">}</span>
+    <span class="k">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s1">'com.google.firebase:firebase-appdistribution-gradle:1.3.1'</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Aplicar el plugin en el <strong>build.gradle</strong> del módulo <code class="language-plaintext highlighter-rouge">app</code>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.application'</span>
+<span class="c1">// ...</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.google.firebase.appdistribution'</span>
+
+
+</code></pre></div></div>
+
+<h3 id="configure-firebase-app-distribution">Configure Firebase App Distribution</h3>
+
+<p>Para distribuir una aplicación en firebase es necesario configurar <a href="https://firebase.google.com/docs/app-distribution/android/distribute-gradle">firebaseAppDistribution</a>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       <span class="n">firebaseAppDistribution</span> <span class="o">{</span>
+                <span class="n">releaseNotesFile</span> <span class="o">=</span> <span class="s2">"path/release-notes.txt"</span>
+                <span class="n">groups</span> <span class="o">=</span> <span class="s2">"internal-testers"</span>
+                <span class="n">serviceCredentialsFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/service-account.json"</span><span class="o">)</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="app-distribution-build-parameters">App Distribution Build Parameters</h3>
+
+<p>En este <a href="https://firebase.google.com/docs/app-distribution/android/distribute-gradle">link</a> puedes encontrar lista completa de parámetros.</p>
+
+<p><strong>releaseNotesFile:</strong> Se usa para especificar el archivo <code class="language-plaintext highlighter-rouge">.txt</code> que contendrá nuestro release notes.</p>
+
+<p><strong>groups:</strong> Es el grupo de testers para el que va dirigido el build, podrías utilizar otro parámetro llamado <code class="language-plaintext highlighter-rouge">testers</code> aúnque implica ingresar una lista de correos, así que te recomiendo crear un grupo de testers en la consola de firebase y de esa forma controlar quienes tienen acceso a tus builds.</p>
+
+<p><strong>serviceCredentialFile:</strong> Es necesario especificar un <a href="https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts">service account</a> ya que es la forma en que hacemos la autenticación para poder deployar una aplicación en firebase y Google Play desde nuestro sistema de CI.</p>
+
+<p><strong>apkPath:</strong> Se utiliza para especificar a donde se tiene que buscar el APK generado, si no se especifica buscará en el default <strong>build/outputs/apk/debug/app-yourbuildtype.apk</strong>.</p>
+
+<h3 id="buildtypes--firebaseappdistribution">BuildTypes + FirebaseAppDistribution</h3>
+
+<h4 id="debug-build-type">Debug Build Type</h4>
+
+<p>En el <a href="https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html">flujo que definimos</a> cada merge a <strong>master</strong> tiene que distribuir un build en firebase con el último commit al termino de un Job en travis CI.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+        <span class="n">debug</span> <span class="o">{</span>
+            <span class="kt">def</span> <span class="n">type</span> <span class="o">=</span> <span class="s2">"debug"</span>
+            <span class="n">applicationIdSuffix</span> <span class="s2">".${type}"</span>
+            <span class="n">versionNameSuffix</span> <span class="s2">"-${type}"</span>
+            <span class="o">....</span>
+            <span class="n">signingConfig</span> <span class="n">signingConfigs</span><span class="o">.</span><span class="na">debug</span>
+
+            <span class="n">firebaseAppDistribution</span> <span class="o">{</span>
+                <span class="n">releaseNotesFile</span> <span class="o">=</span> <span class="s2">"./release-notes.txt"</span>
+                <span class="n">groups</span> <span class="o">=</span> <span class="s2">"internal-testers"</span>
+                <span class="n">serviceCredentialsFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/service-account.json"</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Para generar el release notes especificado en <strong>releaseNotesFile</strong> se hace mediante la task <strong>generateReleaseNotes</strong>, se encarga de crear el archivo <code class="language-plaintext highlighter-rouge">./release-notes.txt</code> con la información del commit del último merge a <strong>master</strong>.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="n">task</span> <span class="n">generateReleaseNotes</span> <span class="o">{</span>
+   <span class="n">doLast</span><span class="o">({</span>
+       <span class="kt">def</span> <span class="n">releaseNotes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s1">'release-notes.txt'</span><span class="o">)</span>
+       <span class="n">releaseNotes</span><span class="o">.</span><span class="na">delete</span><span class="o">()</span>
+       <span class="n">releaseNotes</span> <span class="o">&lt;&lt;</span> <span class="s2">"Release Notes - Version $name_version (${date_version})\n\n"</span>
+       <span class="n">releaseNotes</span> <span class="o">&lt;&lt;</span> <span class="s2">"Change Log \n\n"</span>
+       <span class="kt">def</span> <span class="n">lastCommitCommand</span> <span class="o">=</span> <span class="s2">"git log --format=%s --no-merges -n 1"</span>
+       <span class="kt">def</span> <span class="n">commitMessageLines</span> <span class="o">=</span> <span class="n">lastCommitCommand</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
+       <span class="n">commitMessageLines</span><span class="o">.</span><span class="na">in</span><span class="o">.</span><span class="na">eachLine</span> <span class="o">{</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">releaseNotes</span> <span class="o">&lt;&lt;</span> <span class="s2">"* "</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">"\n\n\n"</span> <span class="o">}</span>
+       <span class="n">releaseNotes</span> <span class="o">&lt;&lt;</span> <span class="s2">"This file was automatically generated."</span>
+   <span class="o">})</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El archivo generado contiene la siguiente información:</p>
+
+<p><strong>./release-notes.txt</strong></p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Release</span> <span class="n">Notes</span> <span class="o">-</span> <span class="n">Version</span> <span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">(</span><span class="mi">16</span><span class="s">/03/</span><span class="mi">2020</span> <span class="o">-</span> <span class="mi">01</span><span class="o">:</span><span class="mi">00</span> <span class="n">PM</span><span class="o">)</span>
+
+<span class="n">Change</span> <span class="n">Log</span> 
+
+<span class="o">*</span> <span class="n">Included</span> <span class="n">awesome</span> <span class="n">feature</span> 
+
+<span class="n">This</span> <span class="n">file</span> <span class="n">was</span> <span class="n">automatically</span> <span class="n">generated</span><span class="o">.</span>
+</code></pre></div></div>
+
+<h4 id="release-build-type">Release Build Type</h4>
+
+<p>Para el build de producción la configuración es realmente idéntica a diferencia que no generamos el release notes automáticamente, ya que la idea es que cuando creamos un release candidate lo modifiquemos con los textos necesarios y amigables dado que son los que se mostrarán en Google Play Store.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+        <span class="n">release</span> <span class="o">{</span>
+            <span class="o">...</span>
+            <span class="n">firebaseAppDistribution</span> <span class="o">{</span>
+                <span class="n">releaseNotesFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/release_notes.txt"</span><span class="o">)</span>
+                <span class="n">groups</span> <span class="o">=</span> <span class="s2">"internal-testers"</span>
+                <span class="n">serviceCredentialsFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/service-account.json"</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="configure-travis-job">Configure Travis Job</h3>
+
+<p>Una vez que tenemos la configuración en el proyecto android es posible realizar la integración con <a href="https://docs.travis-ci.com/user/languages/android/">Travis CI + Android</a>. Cada Job en Travis CI tiene un <a href="https://docs.travis-ci.com/user/job-lifecycle/">ciclo de vida</a> y la parte que necesitamos enteder es conocida como <code class="language-plaintext highlighter-rouge">deploy</code>, la cual es opcional dentro de la configuración del script, es decir no la necesitas para poder correr tu proyecto en Travis CI, sólo se agrega esta fase si se necesita automatizar un deploy.</p>
+
+<h4 id="debug-release">Debug Release</h4>
+
+<p>Como he mencionado antes en nuestro <a href="https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html">workflow</a>, cada merge a master debe hacer deploy automáticamente en firebase app distribution y para lograrlo es necesario especificarle al job de travis el branch de donde debe generar el build y el conjunto de tasks a ejecutar.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">
+deploy:
+  - provider: script
+    script:
+      ./gradlew generateReleaseNotes assembleDebug appDistributionUploadDebug
+    on:
+      branch: master
+    skip_cleanup: true
+
+</span></code></pre></div></div>
+
+<h4 id="prod-release">Prod Release</h4>
+
+<p>Para generar un build de release y distribuirlo en firebase solemos definir una condición <code class="language-plaintext highlighter-rouge">$TRAVIS_BRANCH =~ ^release-.*$</code> que lo que hace es validar que nuestro branch contenga un nombre como <strong>release-1.0</strong> para poder generar ejecutar el script. Es importante mencionar que este branch es generado a partir de <strong>master</strong> cuando el equipo decide hacer un release por lo que a partir de ese momento se convierte en un branch candidate.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">
+  - provider: script
+    script:
+      ./gradlew assembleRelease appDistributionUploadRelease
+    on:
+      all_branches: true
+</span><span class="gp">      condition: $</span>TRAVIS_BRANCH <span class="o">=</span>~ ^release-.<span class="k">*</span><span class="err">$</span>
+<span class="go">    skip_cleanup: true
+
+</span></code></pre></div></div>
+
+<h3 id="app-bundle-in-firebase-app-distribution">App Bundle in Firebase App Distribution</h3>
+
+<p>La aplicación en la que trabajo actualmente está diseñada para hacer uso de <a href="https://developer.android.com/guide/app-bundle/dynamic-delivery">dynamic features</a> por lo que en Google Play solemos distribuir un <a href="https://developer.android.com/guide/app-bundle">app bundle</a> ;pero desafortunadamente <strong>aún no</strong> es posible subir un file <code class="language-plaintext highlighter-rouge">.aab</code> en firebase app distribution, no es un formato soportado, así para darle la vuelta generamos un <strong>apk universal</strong> mediante las tasks<code class="language-plaintext highlighter-rouge">packageDebugUniversalApk</code> o <code class="language-plaintext highlighter-rouge">packageReleaseUniversalApk</code> evitando instalar el <a href="https://github.com/google/bundletool">bundletool</a>. Es una solución que nos permite hacer pruebas internas con un build de release de forma fácil sin preocuparnos del todo en este momento por cómo probar un app bundle, ya que ahora mismo la única forma de hacerlo es mediante Google Play.</p>
+
+<p>La configuración utilizada es la siguiente:</p>
+
+<p>Es importante entender que el output de ejecutar estas tareas cambia el path default por lo que es necesario utilizar el parámetro <code class="language-plaintext highlighter-rouge">apkPath</code> para especificar el lugar a donde debe ir a buscar el <code class="language-plaintext highlighter-rouge">apk</code> que normalmente es en el path <strong>app/build/outputs/universal_apk/release/app-release-universal.apk</strong> para el caso de release.</p>
+
+<p><strong>build.gradle</strong></p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+     <span class="n">firebaseAppDistribution</span> <span class="o">{</span>
+                <span class="n">releaseNotesFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/release_notes.txt"</span><span class="o">)</span>
+                <span class="n">groups</span> <span class="o">=</span> <span class="s2">"internal-testers"</span>
+                <span class="n">apkPath</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"app/build/outputs/universal_apk/release/app-release-universal.apk"</span><span class="o">)</span>
+                <span class="n">serviceCredentialsFile</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/service-account.json"</span><span class="o">)</span>
+     <span class="o">}</span>
+
+</code></pre></div></div>
+
+<p><strong>.travis.yml</strong></p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">
+script:
+  - ./gradlew packageReleaseUniversalApk
+
+deploy:
+  
+  - provider: script
+    script:
+      ./gradlew appDistributionUploadRelease
+    on:
+      all_branches: true
+</span><span class="gp">      condition: $</span>TRAVIS_BRANCH <span class="o">=</span>~ ^release-.<span class="k">*</span><span class="err">$</span>
+<span class="go">    skip_cleanup: true
+
+</span></code></pre></div></div>
+
+<h2 id="google-play--travis-ci">Google Play + Travis CI</h2>
+
+<p>Generar un release a Google Play Store es medianamente simple si utilizas el conocido plugin <a href="https://github.com/Triple-T/gradle-play-publisher">gradle-play-publisher</a>, la configuración es sencilla y se integra de una forma rápida con Travis CI. En nuestro caso lo que hacemos es liberar un <strong>app bundle</strong> en nuestro stage “internal” cuando se crea un <strong>tag</strong> release <code class="language-plaintext highlighter-rouge">1.0.0</code>. Así que puedes iniciar pruebas con usuarios reales e ir pasando de stage hasta llegar al 100% en producción.</p>
+
+<p><strong>build.gradle</strong></p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">classpath</span> <span class="s2">"com.github.triplet.gradle:play-publisher:2.7.2"</span>
+
+<span class="o">...</span>
+
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">"com.github.triplet.play"</span>
+
+<span class="o">...</span>
+
+<span class="n">play</span> <span class="o">{</span>
+    <span class="n">serviceAccountCredentials</span> <span class="o">=</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s2">"gradle-scripts/distribution/service-account.json"</span><span class="o">)</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="s2">"internal"</span>
+    <span class="n">userFraction</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">releaseStatus</span> <span class="o">=</span> <span class="s2">"inProgress"</span>
+<span class="o">}</span>
+
+
+</code></pre></div></div>
+
+<p><strong>.travis.yml</strong></p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">
+ deploy:
+
+  - provider: script
+    script:
+      ./gradlew publishReleaseBundle
+    on:
+      tags: true
+    skip_cleanup: true
+
+</span></code></pre></div></div>
+
+<h3 id="android--travis-ci">Android + Travis CI</h3>
+
+<p>Desde un enfoque más general un archivo <code class="language-plaintext highlighter-rouge">.travis.yml</code> tiene la siguiente estructura:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">
+language: android
+jdk: oraclejdk8
+
+branches:
+ only:
+  - master
+</span><span class="gp">  #</span><span class="w"> </span>Release Branches : <span class="s2">"release-0.1"</span>
+<span class="gp">  - /^release-\d+\.\d+$</span>/
+<span class="gp">  #</span><span class="w"> </span>Release Tags: <span class="s2">"0.1.0"</span>
+<span class="gp">  - /^\d+\.\d+\.\d+$</span>/
+<span class="go">
+before_cache:
+</span><span class="gp">  - rm -f  $</span>HOME/.gradle/caches/modules-2/modules-2.lock
+<span class="gp">  - rm -fr $</span>HOME/.gradle/caches/<span class="k">*</span>/plugin-resolution/
+<span class="go">
+cache:
+  directories:
+</span><span class="gp">    - $</span>HOME/.gradle/caches/
+<span class="gp">    - $</span>HOME/.gradle/wrapper/
+<span class="gp">    - $</span>HOME/.android/build-cache
+<span class="go">
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+
+android:
+  components:
+    - tools
+    - platform-tools
+</span><span class="gp">    - build-tools-$</span>ANDROID_BUILD_TOOLS_VERSION
+<span class="gp">    - android-$</span>ANDROID_API_LEVEL
+<span class="go">    - extra-android-support
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+licenses:
+  - 'android-sdk-preview-license-.+'
+  - 'android-sdk-license-.+'
+  - 'google-gdk-license-.+'
+
+script:
+</span><span class="gp">  #</span>execute checkstyles, tests suite, linters, code analysis.
+<span class="go">  - ./gradlew packageDebugUniversalApk packageReleaseUniversalApk
+
+deploy:
+  - provider: script
+    script:
+      ./gradlew generateReleaseNotes appDistributionUploadDebug
+    on:
+      branch: master
+    skip_cleanup: true
+
+  - provider: script
+    script:
+      ./gradlew appDistributionUploadRelease
+    on:
+      all_branches: true
+</span><span class="gp">      condition: $</span>TRAVIS_BRANCH <span class="o">=</span>~ ^release-.<span class="k">*</span><span class="err">$</span>
+<span class="go">    skip_cleanup: true
+
+  - provider: script
+    script:
+      ./gradlew publishReleaseBundle
+    on:
+      tags: true
+    skip_cleanup: true
+</span></code></pre></div></div>
+
+<p>Esta es una configuración que podría ayudarte de manera inicial aunque puedes mejorarla en cuanto a tiempos de build, conectar con una granja de dispositivos para ejecutar tus tests o a usar algún TestLab, meter más checkers son cosas que puedes ir agregando y mejorando a medida que tu proyecto va creciendo en conjunto con el número de contribuidores.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>La importancia de mantener un producto de software en estado liberable, en el cual obtener feedback sea simple, donde podamos responder a cualquier falla e iterar de forma rápida es una disciplina en la que se debe trabajar fuertemente como equipo para lograrlo. Asegurar la calidad de cada cosa que llega a producción, así como proveer mejores experiencias a nuestros usuarios son tareas que a veces como olvidamos; pero recuerda nuestra misión es que el usuario disfrute y se ayude del producto que desarrollamos y automatizar es un gran paso para frenar todas esas fricciones manuales que vivimos en el día a día, es mejorar los procesos internos dentro de una compañía, es hacer nuestro trabajo de forma más profesional que contribuye y genera valor para todo el equipo.</p>
+
+<p><a href="https://erikjhordan-rey.github.io/blog/2020/03/15/ANDROID-automate-deploy-and-test-android-apps.html">Leer Parte 1</a></p>
+
+<p><strong>¡Espero que sea de ayuda y si lo encuentras interesante ayúdame a compartirlo!</strong></p>
+
+<h4 id="further-reading">Further reading</h4>
+
+<ul>
+  <li><a href="https://docs.gradle.org/current/userguide/tutorial_using_tasks.html">Build Script Basics</a></li>
+  <li><a href="https://docs.travis-ci.com/user/languages/android/">Building an Android Project on Travis CI</a></li>
+  <li><a href="https://firebase.google.com/products/app-distribution">Firebase App Distribution</a></li>
+  <li><a href="https://github.com/Triple-T/gradle-play-publisher">Gradle Play Publisher</a></li>
+  <li><a href="https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html">BASH Programming - Introduction HOW-TO</a></li>
+</ul>
+
+<p><strong>Redundant comments are just places to collect lies and misinformation. by Robert C. Martin</strong></p>
+:ET

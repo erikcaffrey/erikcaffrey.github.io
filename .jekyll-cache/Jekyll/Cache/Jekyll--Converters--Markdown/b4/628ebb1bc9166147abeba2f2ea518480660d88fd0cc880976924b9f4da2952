@@ -1,0 +1,234 @@
+I"^_<h1 id="official-support-of-kotlin-on-android">Official support of Kotlin on Android</h1>
+
+<p>The last Google I/O 2017 like you know the Android team announced the <a href="https://developer.android.com/kotlin/index.html">official support of Kotlin programming language</a>. Kotlin is a JVM based object-oriented language that includes many ideas from functional programming. It is a brilliantly designed, mature language that will make Android development faster and as enjoyable and fun as possible.</p>
+
+<p><img src="/images/2017/5/kotlin_support.jpg" alt="kotlin-annunce" class="center-image" /></p>
+
+<p><a href="https://kotlinlang.org/">Kotlin</a> was created by JetBrains, the team behind IntelliJ, which is the base for Android Studio. Kotlin team started the journey 6 years ago, and 2 years ago the Android community and industry around the world started to experiment with this language. Companies like Expedia, Flipboard, Pinterest or Square are using Kotlin in their production apps already. Kotlin official support by Google is a very good news and a chance to use a modern and powerful language. It’s another way to create Android apps, that will help solving common headaches such as runtime exceptions (NPE) and source code verbosity. Kotlin is easy to get started and it has already been adopted by several major developers. It also plays well with the Java programming language; the effortless interoperation between the two languages has been a large part of Kotlin’s appeal can be introduced gradually into existing projects, which means that your existing skills and technology investments are preserved.</p>
+
+<h2 id="getting-started-with-kotlin">Getting started With Kotlin</h2>
+
+<p>The <a href="https://plugins.jetbrains.com/plugin/6954-kotlin">Kotlin plugin</a> is available for the current version Android Studio. But another good news that came up at Google I/O is that now the plugin is bundled with Android Studio 3.0, and JetBrains will continue to work on the Android Studio plugin, collaborating closely with the Android Studio team.</p>
+
+<p>If you are interested to learn more about the Kotlin programming language, I added some resources that can be useful.</p>
+
+<h4 id="resources-to-start-with-kotlin-on-android">Resources to start with Kotlin on Android</h4>
+
+<ul>
+  <li><a href="https://kotlinlang.org/docs/tutorials/kotlin-android.html">Getting started with Android and Kotlin by Jetbrains</a></li>
+  <li><a href="https://developer.android.com/kotlin/get-started.html">Get Started with Kotlin on Android by Google</a></li>
+  <li><a href="https://kotlinlang.org/docs/reference/">Kotlin Lang Reference</a></li>
+  <li><a href="https://blog.jetbrains.com/kotlin/">Kotlin Blog by Jetbrains</a></li>
+  <li><a href="https://kotlinlang.org/docs/reference/kapt.html">Kotlin Kapt Annotation processing</a></li>
+  <li><a href="https://antonioleiva.com/kotlin-android-developers-book/">Kotlin for Android Developers by Antonio Leiva</a></li>
+</ul>
+
+<h1 id="android-architecture-components">Android Architecture Components</h1>
+
+<p>We know that writing quality software is hard and complex, it is not only about satisfying requirements and features. For some time, the community has been exploring various architectures and patterns to create better apps. Google had nothing on these topics until one year ago when they released <a href="https://github.com/googlesamples/android-architecture">Android Architecture Blue Prints</a> a collection of samples to discuss and showcase different architectural tools and patterns for Android apps created by different developers round the world.</p>
+
+<p>Couple moths ago, Google Launched the <a href="https://developer.android.com/topic/libraries/architecture/index.html">Android Architecture Components Framework</a>. It is a set of libraries and guidelines that will help you design flexible, testable and maintainable apps, reduce boilerplate code, manage your UI components lifecycle and handle data, helping to create Android applications using separation of concerns (SoC).</p>
+
+<h2 id="basics-about-architecture-components">Basics about Architecture Components</h2>
+
+<ul>
+  <li><strong>Handling lifecycles:</strong> Set of classes and interfaces that allow you manage the lifecycle of an activity or fragment.</li>
+  <li><strong>Lifecycle:</strong> Is a abstract class that contains the information about the lifecycle state of a component.</li>
+  <li><strong>LifecycleRegistry:</strong> Is an explicit interface allows register an object to get the lifecycle state (looks LifecycleFragment or LifecycleActivity).</li>
+  <li><strong>LifecycleOwner:</strong> An interface with a single method to know that a component has a Lifecycle.</li>
+  <li><strong>Live Data:</strong> Observable with super powers basically keeps a value and allows this value to be observed it across lifecycle changes.</li>
+  <li><strong>ViewModel:</strong> A class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations.</li>
+  <li><strong>Room:</strong> Abstraction over SQLite to allow an easy database access (like an ORM or Object Mapping for SQLite).</li>
+</ul>
+
+<p>The libraries are available from Google’s Maven repository <code class="language-plaintext highlighter-rouge">https://maven.google.com</code> only add the artifacts that you need in your project other advantage is can be used standalone.</p>
+
+<h2 id="kotlin-devises-architecture">Kotlin Devises architecture</h2>
+
+<p>Kotlin Devises is a sample project used to practice Kotlin and Android Architecture Components.</p>
+
+<h2 id="view">View</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CurrencyFragment</span> <span class="o">:</span> <span class="nc">LifecycleFragment</span><span class="o">()</span> <span class="o">{</span>
+
+  <span class="n">companion</span> <span class="n">object</span> <span class="o">{</span>
+    <span class="n">fun</span> <span class="nf">newInstance</span><span class="o">()</span> <span class="o">=</span> <span class="nc">CurrencyFragment</span><span class="o">()</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">var</span> <span class="nl">currenciesAdapter:</span> <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;?</span> <span class="o">=</span> <span class="kc">null</span>
+  <span class="kd">private</span> <span class="kt">var</span> <span class="nl">currencyViewModel:</span> <span class="nc">CurrencyViewModel</span><span class="o">?</span> <span class="o">=</span> <span class="kc">null</span>
+
+  <span class="n">override</span> <span class="n">fun</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nl">savedInstanceState:</span> <span class="nc">Bundle</span><span class="o">?)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">)</span>
+    <span class="n">initViewModel</span><span class="o">()</span>
+    <span class="n">populateSpinnerAdapter</span><span class="o">()</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">fun</span> <span class="nf">initViewModel</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">currencyViewModel</span> <span class="o">=</span> <span class="nc">ViewModelProviders</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="nl">CurrencyViewModel:</span><span class="o">:</span><span class="kd">class</span><span class="err">.</span><span class="nc">java</span><span class="o">)</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">fun</span> <span class="nf">populateSpinnerAdapter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">val</span> <span class="n">currencies</span> <span class="o">=</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;()</span>
+    <span class="n">currenciesAdapter</span> <span class="o">=</span> <span class="nc">ArrayAdapter</span><span class="o">(</span><span class="n">activity</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item_spinner</span><span class="o">,</span> <span class="n">currencies</span><span class="o">)</span>
+    <span class="n">currencyViewModel</span><span class="o">?.</span><span class="na">getCurrencyList</span><span class="o">()?.</span><span class="na">observe</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="nc">Observer</span> <span class="o">{</span> <span class="n">currencyList</span> <span class="o">-&gt;</span>
+      <span class="n">currencyList</span><span class="o">!!.</span><span class="na">forEach</span> <span class="o">{</span>
+        <span class="n">currencies</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">code</span> <span class="o">+</span> <span class="s">"  "</span> <span class="o">+</span> <span class="n">it</span><span class="o">.</span><span class="na">country</span><span class="o">)</span>
+      <span class="o">}</span>
+      <span class="n">currenciesAdapter</span><span class="o">!!.</span><span class="na">setDropDownViewResource</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item_spinner</span><span class="o">);</span>
+      <span class="n">currenciesAdapter</span><span class="o">!!.</span><span class="na">notifyDataSetChanged</span><span class="o">()</span>
+    <span class="o">})</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<hr />
+<h2 id="viewmodel">ViewModel</h2>
+
+<p>Is an abstract class designed to store and manage UI-related data so that the data survives configuration changes such as screen rotations, which means that our activity or fragment no longer needs retaining the data state as the ViewModel takes on this responsibility basically when you rotate a device his Observer is connected with the same <code class="language-plaintext highlighter-rouge">ViewModel</code>.</p>
+
+<p>You can see the code below how create a <code class="language-plaintext highlighter-rouge">ViewModel</code> although <em>architecture components</em> provides an observable called <code class="language-plaintext highlighter-rouge">LiveData</code> which has an important role into the <em>ViewModel</em> because is a data holder class that can be observed within a given lifecycle.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">CurrencyViewModel</span> <span class="o">:</span> <span class="nc">ViewModel</span><span class="o">()</span> <span class="o">{</span>
+
+  <span class="nd">@Inject</span> <span class="n">lateinit</span> <span class="kt">var</span> <span class="nl">currencyRepository:</span> <span class="nc">CurrencyRepository</span>
+
+  <span class="kd">private</span> <span class="kt">var</span> <span class="nl">liveCurrencyData:</span> <span class="nc">LiveData</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Currency</span><span class="o">&gt;&gt;?</span> <span class="o">=</span> <span class="kc">null</span>
+
+  <span class="n">init</span> <span class="o">{</span>
+    <span class="n">initializeDagger</span><span class="o">()</span>
+    <span class="n">loadCurrencyList</span><span class="o">()</span>
+  <span class="o">}</span>
+
+  <span class="n">fun</span> <span class="nf">getCurrencyList</span><span class="o">():</span> <span class="nc">LiveData</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Currency</span><span class="o">&gt;&gt;?</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">liveCurrencyData</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">fun</span> <span class="nf">loadCurrencyList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">liveCurrencyData</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">liveCurrencyData</span> <span class="o">=</span> <span class="nc">MutableLiveData</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Currency</span><span class="o">&gt;&gt;()</span>
+      <span class="n">liveCurrencyData</span> <span class="o">=</span> <span class="n">currencyRepository</span><span class="o">.</span><span class="na">getCurrencyList</span><span class="o">()</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">fun</span> <span class="nf">initializeDagger</span><span class="o">()</span> <span class="o">=</span> <span class="nc">CurrencyApplication</span><span class="o">.</span><span class="na">appComponent</span><span class="o">.</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<hr />
+<h2 id="repository">Repository</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CurrencyRepository</span> <span class="nd">@Inject</span> <span class="n">constructor</span><span class="o">(</span>
+   <span class="n">val</span> <span class="nl">roomCurrencyDataSource:</span> <span class="nc">RoomCurrencyDataSource</span><span class="o">,</span>
+   <span class="n">val</span> <span class="nl">remoteCurrencyDataSource:</span> <span class="nc">RemoteCurrencyDataSource</span>
+<span class="o">)</span> <span class="o">:</span> <span class="nc">Repository</span> <span class="o">{</span>
+
+ <span class="n">override</span> <span class="n">fun</span> <span class="nf">getCurrencyList</span><span class="o">():</span> <span class="nc">LiveData</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Currency</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+   <span class="n">val</span> <span class="n">roomCurrencyDao</span> <span class="o">=</span> <span class="n">roomCurrencyDataSource</span><span class="o">.</span><span class="na">currencyDao</span><span class="o">()</span>
+   <span class="n">val</span> <span class="n">mutableLiveData</span> <span class="o">=</span> <span class="nc">MutableLiveData</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Currency</span><span class="o">&gt;&gt;()</span>
+   <span class="n">roomCurrencyDao</span><span class="o">.</span><span class="na">getAllCurrencies</span><span class="o">()</span>
+       <span class="o">.</span><span class="na">subscribeOn</span><span class="o">(</span><span class="nc">Schedulers</span><span class="o">.</span><span class="na">io</span><span class="o">())</span>
+       <span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="nc">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+       <span class="o">.</span><span class="na">subscribe</span> <span class="o">{</span> <span class="n">currencyList</span> <span class="o">-&gt;</span>
+         <span class="n">mutableLiveData</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">transform</span><span class="o">(</span><span class="n">currencyList</span><span class="o">)</span>
+       <span class="o">}</span>
+
+   <span class="k">return</span> <span class="n">mutableLiveData</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<hr />
+<h2 id="room">Room</h2>
+
+<p>Room is a new powerful object Mapping for SQLite to allow easy databases access in android applications.</p>
+
+<h3 id="room-features">Room Features</h3>
+
+<ul>
+  <li>Boilerplate free code</li>
+  <li>Type Adapters (<code class="language-plaintext highlighter-rouge">@TypeConverters</code> to convert object types that aren’t supported by sqlite)</li>
+  <li>Supports LiveData objects wich means you can subscribe to receive updates.</li>
+  <li>Support Rx Java (only can return a Flowable)</li>
+  <li>Room understand what you are trying to do (Query’s)</li>
+  <li>Room doesn’t allow you to access to database on the main thread</li>
+</ul>
+
+<h3 id="room-components">Room Components</h3>
+
+<h3 id="database">Database</h3>
+
+<p>It’s the way to define our database basically it should be an abstract class that extends <code class="language-plaintext highlighter-rouge">RoomDatabase</code> and with annotation <code class="language-plaintext highlighter-rouge">@Database</code> to define the list of entities and expose the list of data access objects.</p>
+
+<p>In the sample I created <code class="language-plaintext highlighter-rouge">RoomsCurrencyDataSource</code> to storage all world currencies.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Database</span><span class="o">(</span>
+    <span class="n">entities</span> <span class="o">=</span> <span class="n">arrayOf</span><span class="o">(</span><span class="nl">CurrencyEntity:</span><span class="o">:</span><span class="kd">class</span><span class="err">)</span> <span class="err">,</span> <span class="nc">version</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RoomCurrencyDataSource</span> <span class="o">:</span> <span class="nc">RoomDatabase</span><span class="o">()</span> <span class="o">{</span>
+
+  <span class="kd">abstract</span> <span class="n">fun</span> <span class="nf">currencyDao</span><span class="o">():</span> <span class="nc">RoomCurrencyDao</span>
+
+  <span class="n">companion</span> <span class="n">object</span> <span class="o">{</span>
+
+    <span class="n">fun</span> <span class="nf">buildPersistentCurrency</span><span class="o">(</span><span class="nl">context:</span> <span class="nc">Context</span><span class="o">):</span> <span class="nc">RoomCurrencyDataSource</span> <span class="o">=</span> <span class="nc">Room</span><span class="o">.</span><span class="na">databaseBuilder</span><span class="o">(</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">applicationContext</span><span class="o">,</span>
+        <span class="nl">RoomCurrencyDataSource:</span><span class="o">:</span><span class="kd">class</span><span class="err">.</span><span class="nc">java</span><span class="o">,</span>
+        <span class="s">"currency.db"</span>
+    <span class="o">).</span><span class="na">build</span><span class="o">()</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<hr />
+<h3 id="entity">Entity</h3>
+
+<p>This component represents a class that holds a database row. For each class with annotation <code class="language-plaintext highlighter-rouge">@Entity</code> a database table is created to hold the items. (Use the annotation <code class="language-plaintext highlighter-rouge">@ColumnInfo</code> to customize the name of a field.)</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Entity</span><span class="o">(</span><span class="n">tableName</span> <span class="o">=</span> <span class="s">"currencies"</span><span class="o">)</span>
+<span class="n">data</span> <span class="kd">class</span> <span class="nf">CurrencyEntity</span><span class="o">(</span>
+    <span class="nd">@PrimaryKey</span><span class="o">(</span><span class="n">autoGenerate</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span> <span class="n">val</span> <span class="nl">id:</span> <span class="nc">Long</span><span class="o">,</span>
+    <span class="kt">var</span> <span class="nl">countryCode:</span> <span class="nc">String</span><span class="o">,</span>
+    <span class="kt">var</span> <span class="nl">countryName:</span> <span class="nc">String</span>
+<span class="o">)</span></code></pre></figure>
+
+<hr />
+<h3 id="data-access-object-dao">Data Access Object (DAO)</h3>
+
+<p>This component represents and define the contract to access on Database, should be an interface with annotation <code class="language-plaintext highlighter-rouge">@Dao</code>. Create a query is easy there are some already defined annotations in which you only have to create your <code class="language-plaintext highlighter-rouge">SQL query</code> like <code class="language-plaintext highlighter-rouge">@Query, @Insert, @Delete</code>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Dao</span>
+<span class="kd">interface</span> <span class="nc">RoomCurrencyDao</span> <span class="o">{</span>
+
+  <span class="nd">@Query</span><span class="o">(</span><span class="nc">RoomContract</span><span class="o">.</span><span class="na">SELECT_CURRENCIES_COUNT</span><span class="o">)</span>
+  <span class="n">fun</span> <span class="nf">getCurrenciesTotal</span><span class="o">():</span> <span class="nc">Flowable</span><span class="o">&lt;</span><span class="nc">Int</span><span class="o">&gt;</span>
+
+  <span class="nd">@Insert</span>
+  <span class="n">fun</span> <span class="nf">insertAll</span><span class="o">(</span><span class="nl">currencies:</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CurrencyEntity</span><span class="o">&gt;)</span>
+
+  <span class="nd">@Query</span><span class="o">(</span><span class="nc">RoomContract</span><span class="o">.</span><span class="na">SELECT_CURRENCIES</span><span class="o">)</span>
+  <span class="n">fun</span> <span class="nf">getAllCurrencies</span><span class="o">():</span> <span class="nc">Flowable</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">CurrencyEntity</span><span class="o">&gt;&gt;</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>I know there are a lot good libraries like realm that can help you with all this stuffs but SQLite was released since android 1 and works in all devices is a tested technology.</p>
+
+<p><strong>The following diagram shows all the modules that Google recommended and how they interact with one another:</strong></p>
+
+<p><img src="/images/2017/5/currency-arch.png" alt="kotlin-arch" class="center-image" /></p>
+
+<h3 id="demo">Demo</h3>
+<p><img src="https://raw.githubusercontent.com/erikjhordan-rey/Android-Architecture-Components-Kotlin/master/art/demo.png" alt="arch-demo" /></p>
+
+<h4 id="source-code-on-github">Source Code on Github</h4>
+<p><a href="https://github.com/erikjhordan-rey/Android-Architecture-Components-Kotlin">Android-Architecture-Components-Kotlin</a>.</p>
+
+<h4 id="resources-to-start-with-android-architecture-components">Resources to start with Android Architecture Components</h4>
+
+<ul>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/index.html">Android Architecture Components</a></li>
+  <li><a href="https://developer.android.com/topic/libraries/architecture/adding-components.html">Adding Components to your Project</a></li>
+  <li><a href="https://github.com/googlesamples/android-architecture-components">Android Architecture Components Samples</a></li>
+  <li><a href="https://codelabs.developers.google.com/?cat=Android">Android Architecture Components CodeLabs</a></li>
+  <li><a href="https://www.youtube.com/results?search_query=google+I%2FO+android+components">Android Conferences - Google I/O 2017</a></li>
+</ul>
+
+<p><strong>“Truth can only be found in one place: the code. by Robert C. Martin”</strong></p>
+:ET

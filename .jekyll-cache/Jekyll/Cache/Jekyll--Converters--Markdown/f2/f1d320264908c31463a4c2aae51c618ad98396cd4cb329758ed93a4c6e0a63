@@ -1,0 +1,90 @@
+I"`<p>Featured presentations which I’ve given at various conferences, meetups, and online events.</p>
+
+<hr />
+
+<h2 id="speaker-bio">Speaker bio</h2>
+
+<p>Erik Jhordan Rey is a Software Engineer passionate to build technology products. He worked on a variety of software projects. He loves to share experiences, and lessons learned about design software systems, patterns, and practices that make it easier to build useful software. He also enjoys managing, leading, and building engineering teams to help companies produce highly desirable and quality products that drive business impact.</p>
+
+<hr />
+
+<h2 id="slides">Slides</h2>
+
+<p><strong>Approaches to create modular architectures in Android Apps</strong> - <em>September 24, 2020</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="00609f28b7c34ff8824cf7c345d199af" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>Strategies and tools used to distribute an android app in beta and prod environments at any time.</strong> - <em>August 26, 2020</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="4d0f5f6b8f404a578fdabe262f793dcd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>Common challenges faced during app development and Recommendations when choosing an approach to build a mobile app</strong> - <em>July 04, 2020</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="0032b7bb7be14bf2a0de002c60d9ba77" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>The goal was to talk about dependency injection, show advantages, disadvantages and how it works.</strong> - <em>December 14, 2019</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="f392f1b2f09c4650856c7eeee71f4f90" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>Experiences using modular arquitectures in android.</strong> - <em>June 26, 2019</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="04a35e4868284e5dabf17a9ae9b7f285" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>As software engineers, we found problems to write automated tests, this talk it’s about strategies to ensure write reliable tests.</strong> - <em>September 25, 2018</em>
+<script async="" class="speakerdeck-embed" data-id="76ea5dd88e85466cbf99f085dfa145dd" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script></p>
+
+<hr />
+
+<p><strong>This talk is about how to write software that can be maintained, verifiable, and flexible enough to adapt to growth and change following a series of patterns and guidelines that I and my team believe that can be applied to the daily work of a software developer.</strong> - <em>March 06, 2017</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="83393110e62a4b33b8f94a14af309a88" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>We know that writing quality software is hard and complex: It is not only about satisfying requirements, also should be maintainable, testable, and flexible enough to adapt to growth and change.
+Clean architecture comes up and could be a good approach for using when developing any software application.</strong> - <em>February 22, 2017</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="22cc72fea90043ff8b190e65d4c32a85" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<p><strong>Dependencies coupled are dangerous because we couple both modules in a way that if we need to change one module with another, we necessarily need to modify the code of the coupled module that’s really bad if we want to create a testable app because unit testing requires that when we are testing a module, it is isolated from the rest of modules in our app. The solution is Depend upon abstractions. Do not depend upon concrete classes.</strong> - <em>November 07, 2016</em></p>
+
+<script async="" class="speakerdeck-embed" data-id="eecdf1515c7b4fb593cbf7cfb4fc8c5b" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<hr />
+
+<h2 id="where-to-see">Where to See</h2>
+
+<p><strong>See all my talks on</strong> <a href="https://speakerdeck.com/erikjhordan_rey">speakerdeck.com/erikjhordan_rey</a></p>
+
+<hr />
+
+<h2 id="videos">Videos</h2>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLhCQFuqStgeSnjVcwqIizgtPzBpOB8Nf4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<hr />
+
+<blockquote>
+  <p>Sometimes it is the people no one imagines anything of who do the things that no one can imagine</p>
+
+  <p><cite>Alan Turing</cite></p>
+</blockquote>
+
+<hr />
+
+<h2 id="contact">Contact</h2>
+
+<p>Feel free to reach out to me on <a href="https://twitter.com/ErikJhordan_Rey">@ErikJhordan_Rey</a> twitter. I’ll happy to help you or answer any questions you may have. Also you can send me an email at <em>erikjhordan.rey@gmail.com</em> 👨‍💻.</p>
+:ET

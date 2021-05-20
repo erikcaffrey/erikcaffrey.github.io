@@ -1,0 +1,131 @@
+I"�6<p>Después de unas semanas con jornadas de trabajo intensas, hoy he vuelto con un tema muy interesante y que desde hace un tiempo he tenido muchas ganas de escribir ya que pienso que es la base y una de las partes fundamentales para escribir un buen software ;pero en el caso de android su uso no es tan común es por eso que quiero hablar sobre esos beneficios que contrae el usar la inyección de dependencias.</p>
+
+<p>Antes de comenzar con la Inyección de dependencias hay dos principios que debemos conocer para comprender mejor la motivación de usar este patrón y recordar que esto puede ser aplicado en alguna otra plataforma dentro del mundo del software.</p>
+
+<h2 id="inversion-of-control-ioc">Inversion of Control (IoC)</h2>
+
+<p>En los comienzos del desarrollo software cuando los programas eran lineales el flujo de ejecución estaba bajo control absoluto del programador, ya que él era la persona que especificaba la secuencia y los procedimientos que se tenían que ejecutar con el paso del tiempo comenzaron a aparecer librerías y frameworks con la finalidad de diseñar de una forma modular y reutilizable lo que dio origen a la inversión de control.</p>
+
+<p>La <strong>IoC (Inversión de control)</strong> es cuando el flujo de ejecución de un software está bajo el control de algún framework o librería y ya no por el desarrollador. En el caso de android la inversión de control se da en los métodos del ciclo de vida de una <a href="https://developer.android.com/training/basics/activity-lifecycle/starting.html">Activity</a>, <a href="https://developer.android.com/guide/components/fragments.html">Fragment</a> y un <a href="https://developer.android.com/guide/components/services.html">Service</a>, ya que son los que dirigen cómo se deben ir ejecutando ciertas partes de una aplicación. Lo que realmente debemos entender es que todo el software que escribimos nosotros o al menos en android no somos nosotros los desarrolladores quien tenemos el control completo del flujo de ejecución si no el framework y será él mismo quien nos esté diciendo: el usuario ha lanzando una activity, el usuario pulsó un checkbox, el usuario pulso un botón, etc.</p>
+
+<p>En un <a href="http://martinfowler.com/bliki/InversionOfControl.html">post del gran Martin Fowler</a> llama a este fenómeno como el
+<strong>Hollywood Principle “Don’t call us, we’ll call you”</strong> una famosa frase que se les dice a los actores de hollywood tras presentar una audición y que ejemplifica bastante bien a la <a href="https://es.wikipedia.org/wiki/Inversi%C3%B3n_de_control">IoC</a>.</p>
+
+<h2 id="dependency-inversion">Dependency Inversion</h2>
+
+<p>El principio de Inversión de Dependencias es uno de los cinco componentes de <a href="http://devexperto.com/principio-responsabilidad-unica">SOLID</a> que si no habías oído hablar de ellos o ya los conoces sabrás que son un conjunto de principios que aplicados correctamente, te ayudarán a escribir software de calidad crearás código que será más fácil de testear y mantener.</p>
+
+<p>La palabra <strong>“inversión”</strong> dentro del principio de <strong>Inversión de Dependencias</strong> viene dentro del término porque se invierte el camino en el cual pensamos típicamente el diseño de la OO ya que los componentes de bajo nivel dependen de las abstracciones de alto nivel.</p>
+
+<p><em>“Las clases de alto nivel no deberían depender de las clases de bajo nivel. Ambas deberían depender de las abstracciones.”</em></p>
+
+<p>La idea de este principio es la reducción de dependencias a clases concretas dentro de nuestra aplicación, es decir el código que es la parte más importante no debe depender de los detalles de implementación como pueden ser algún framework o alguna librería externa que se utilice. Todos estos aspectos se especificarán mediante interfaces y esa parte importante no tendrá que conocer cuál es la implementación real para funcionar.</p>
+
+<p><em>“Las abstracciones no deberían depender de los detalles. Los detalles deberían depender de las abstracciones.”</em></p>
+
+<h2 id="coupled-classes">Coupled classes</h2>
+
+<p>Cuando tenemos dos componentes (clases) y uno de ellos depende del otro lo que solemos hacer de forma habitual es crear una instancia dentro de esa clase y hacer lo que tengamos que hacer de una forma muy natural, se ve como algo normal y es que en verdad está cumpliendo el objetivo (aunque no de la mejor forma) proveer de sus implementaciones a el componente que las necesite por medio de la creación de una instancia.</p>
+
+<p><strong>¿Pero cuál es el verdadero problema de hacer esto?</strong></p>
+
+<ul>
+  <li>El principal problema de hacer esto es que comenzamos a acoplar nuestras clases y el acoplamiento es uno de los mayores problemas del   software, ya que la idea es que una clase no tenga que crear sus propios objetos.</li>
+  <li>Nuestras clases no son flexibles porque no podemos sustituir componentes de forma sencilla.</li>
+  <li>No se puede testar una clase acoplada si no hay forma de sustituir su comportamiento por test doubles y por ende no se podrá testar una clase acoplada de forma aislada.</li>
+  <li>Si es un proyecto en el cual se necesitan cambios constantes la mantenibilidad de nuestro software va  a ser un tanto doloroso.</li>
+</ul>
+
+<h2 id="what-is-a-dependency">What is a Dependency?</h2>
+
+<p>Es el acoplamiento entre dos módulos de nuestro código en nuestro caso clases y se manifiesta cuando un módulo necesita de otro para realizar algo.</p>
+
+<h2 id="dependency-injection">Dependency Injection</h2>
+
+<p>La inyección de dependencias es un patrón de diseño de software que facilita la inversión de dependencias y se encarga de proveer dependencias en lugar de ser la propia clase quien cree el objeto.
+Cuando hablamos de depender de abstracciones estamos haciendo referencia a depender de supertipos que comúnmente se consigue mediante una clase abstracta o una interfaz de las cuales no podemos crear una instancia por lo que tenemos que ser capaces de crear la implementación concreta y pasarsela al objeto que la necesite mediante un constructor o un setter.</p>
+
+<p>La clase <strong>WeatherForecaster</strong> necesita el objeto <strong>LocationService.</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WeatherForecaster</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">LocationService</span> <span class="n">locationService</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">WeatherForecaster</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">locationService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LocationService</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>La idea es que una clase no tenga que crear sus propios objetos como lo he mencionado arriba esto puede ser un gran problema al momento que nuestro software comienza a crecer ya que testar y mantener se va volver muy complejo.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WeatherForecaster</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">LocationService</span> <span class="n">locationService</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">WeatherForecaster</span><span class="o">(</span><span class="nc">LocationService</span> <span class="n">locationService</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">locationService</span> <span class="o">=</span> <span class="n">locationService</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Al obtener una dependencia por medio del constructor nos va proveer más flexibilidad al momento de necesitar diferentes implementaciones, durante el testing es una gran ventaja ya que permitirá reemplazar de manera sencilla por algún test double.</p>
+
+<p>En concreto la inyección de dependencias nos permite proveer una dependencia fuera del objeto que la necesita.</p>
+
+<h2 id="what-is-a-dependency-injector">What is a dependency injector?</h2>
+
+<p>La Inyección de dependencias en algunas ocasiones puede contraer nuevos problemas y es que si he logrado transmitirte bien los conceptos esperaria que te estés haciendo estas preguntas:</p>
+
+<ul>
+  <li>Si una clase no puede crear sus propios objetos, ¿Entonces debería existir un lugar en donde se crean instancias de los módulos?</li>
+  <li>¿Qué hago si un módulo tiene un montón de dependencias?</li>
+  <li>¿Puedo tener constructores con muchas dependencias?</li>
+  <li>¿Cómo reutilizar dependencias entre objetos ?</li>
+</ul>
+
+<p>Un <strong>inyector de dependencias</strong> es aquel que se va encargar de administrar y proveer todas las dependencias que le configuremos y que haremos uso dentro de nuestra aplicación.</p>
+
+<p>En android especialmente son de gran utilidad y aportan grandes beneficios, ya que nosotros no podemos acceder al constructor de una Activity o un  Fragment por ejemplo lo que inyectar una dependencia mediante un constructor sería casi imposible, aun que se puede tambien simular un inyector otras desventajas de no usar un inyector es que nuestro código se vuelve sucio e ilegible más cuando se tiene un exceso de dependencias pasadas por el constructor (si cuando ves clases con muchos “new”) y otra cosa importante es que permite proveer objetos que se utilizan por toda la aplicación de una forma simple.</p>
+
+<p>Yo te recomiendo que utilices el inyector que más te guste y mejor entiendas de preferencia que cumpla con el estándar  <em>javax.inject annotations (JSR-330)</em> algunos de los más conocidos que funcionan en android son <a href="https://github.com/google/guice">Guice</a>,  <a href="http://square.github.io/dagger/">Dagger</a>, <a href="http://google.github.io/dagger/">Dagger2</a>(yo uso este).</p>
+
+<p><strong>Algo que quiero que tengas en mente y muy claro es que no es obligatorio el uso de un inyector de dependencias para aplicar la inyección de dependencias, ya que solo es una herramienta más que facilita la aplicación de este patrón te recomiendo usar un inyector si en verdad lo necesitas y si lo entiendes completamente (es complicado pero no imposible la curva de aprendizaje de dagger 2 por ejemplo no es del todo simple pero es cuestión de dedicarle tiempo) de lo contrario se podría convertir en un anti patrón.</strong></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Particularmente desde mi punto de vista es la parte más complicada de entender en el mundo del software, ya que requiere un nivel de abstracción complejo por eso te invito a que tengas paciencia cuando vayas aprendiendo ;pero una vez que lo entiendes te darás cuenta que la parte más importante de aplicar IoC, Dependency Inversion y Dependency Injection es que te va proveer desacoplamiento, modularidad, mantenibilidad, testabilidad lo que es magnífico para nuestro software haciendo tu día a día como desarrollador más sencillo.</p>
+
+<p>En este post solo quería demostrar y dejar muy claros algunos conceptos antes de utilizar un inyector de dependencias sin tener idea del por qué lo usamos y terminar haciéndolo sólo porque está de moda para mí la parte más interesante es conocer la motivación del por qué usarlo.</p>
+
+<p>Si quieres aprender a usar el inyector de dependencias Dagger2 entonces no te pierdas <a href="https://erikjhordan-rey.github.io/blog/2016/07/07/ANDROID-kata-dagger2.html">mi siguiente artículo</a> que he preparado para tí en donde mediante una kata explico el uso de Dagger2.</p>
+
+<h3 id="demo">Demo</h3>
+
+<h4 id="el-código-está-disponible">El código está disponible</h4>
+
+<p><a href="https://github.com/erikjhordan-rey/Dependency-Injection-Android">Dependency-Injection-Android en Github</a></p>
+
+<p><img src="/images/2016/4/battery.png" alt="" /></p>
+
+<h2 id="acknowledgment">Acknowledgment</h2>
+
+<p>Un especial agradecimiento a <a href="https://developers.google.com/experts/people/chiu-ki-chan">Chiu-Ki Chan</a> Google Developer Expert por su gran trabajo en <a href="https://github.com/chiuki/daggerless-di-testing/tree/master">Daggerless Dependency Injection for Testing</a> de donde he tomado su genial ejemplo haciendole unas pequeñas modificaciones.</p>
+
+<h3 id="bonus">Bonus</h3>
+
+<p>if you want to learn how to apply DI using Dagger2 framework.</p>
+
+<p><img src="https://raw.githubusercontent.com/erikjhordan-rey/Dagger2-MVP-Sample/master/art/2015-12-15.png" alt="dagger2-demo" /></p>
+
+<p><a href="https://github.com/erikjhordan-rey/Dagger2-MVP-Sample">Dagger2-MVP-Sample- Github</a></p>
+
+<h3 id="resources">Resources</h3>
+<ul>
+  <li><strong>Martin Fowler</strong> - <a href="http://martinfowler.com/bliki/InversionOfControl.html">InversionOfControl</a></li>
+  <li><strong>Chiu-Ki Chan</strong> - <a href="https://github.com/chiuki/daggerless-di-testing/tree/master">Daggerless Dependency Injection for Testing</a></li>
+  <li><strong>Jake Wharton</strong> - <a href="https://www.youtube.com/watch?v=plK0zyRLIP8">The Future of Dependency Injection with Dagger 2</a></li>
+  <li><strong>Antonio Leiva</strong> - <a href="http://antonioleiva.com/dependency-injection-android-dagger-part-1/">Dependency Injection-android-dagger</a></li>
+  <li><strong>Pedro Gómez</strong> - <a href="https://www.youtube.com/watch?v=XY2fHxqEBeo">Dependency Injection on Android</a></li>
+</ul>
+
+<p><strong>“Depend upon abstractions. Do not depend upon concrete classes”</strong></p>
+:ET

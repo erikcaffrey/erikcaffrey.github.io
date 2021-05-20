@@ -1,0 +1,320 @@
+I"Nn<p>En el mundo 2 mientras Mario Bros se encontraba en su misión de recolectar monedas y conseguir estrellas, la famosa Princesa Peach fue raptada por un degenerado Bowser quien le ha preparado una serie de planes nada buenos para ella.</p>
+
+<p>Después de un largo camino recorrido en diferentes arenas, mundos y ciudades gracias a la colaboración de Luigi han dado con el paradero de la princesa, para recuperarla esta vez no es necesario que Mario tenga pasar a través de castillos como un bandido destruyendo y derribando cuanto hongo se ponga en el camino o asesinando tortugas lanza martillos, ni mucho menos aniquilando peces voladores, esta vez se trata de ganar una carrera contra el malvado de Bowser.</p>
+
+<h2 id="mission">Mission</h2>
+
+<p>Tu misión es desarrollar una aplicación android que muestre una lista de los competidores utilizando el inyector de dependencias Dagger 2 y con ello ayudar a que Mario Bros pueda conocer las habilidades de sus rivales, sin duda alguna tu colaboración será de utilidad para recuperar a la aterrada Princesa Peach.</p>
+
+<h1 id="understanding-dagger-2-before-to-start-the-challenge">Understanding dagger 2 before to start the challenge</h1>
+
+<h2 id="introduction-to-dependency-injection">Introduction to Dependency Injection</h2>
+
+<p>En mi <a href="https://erikjhordan-rey.github.io/blog/2016/04/25/ANDROID-dependency-injection.html">capítulo anterior</a> estuve hablando sobre que era la <a href="http://martinfowler.com/bliki/InversionOfControl.html">inversión de control</a>, la inversión de dependencias y <a href="https://www.youtube.com/watch?v=plK0zyRLIP8">la inyección de dependencias</a>, que si no has leído te invito a que lo hagas antes de hacer esta <a href="http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata">kata</a>, ya que es fundamental que comprendas el porqué y la motivación de usar un <strong>inyector de dependencias</strong>.</p>
+
+<p>Pues bien hoy es el gran día para aprender <a href="http://google.github.io/dagger/">Dagger 2</a> mediante un divertido ejemplo y aunque se que usar Dagger 2  es complejo en un principio y difícil de entender, intentaré enseñarte de una forma fácil y espero lograrlo.</p>
+
+<h2 id="before-of-dagger-2">Before of Dagger 2</h2>
+
+<p>Los inyectores de dependencias en android comenzaron a tomar fuerza cuando Google lanzó <a href="https://github.com/google/guice">Guice</a> su propio inyector de dependencias, tiempo después Square vendría a proponer <a href="http://square.github.io/dagger/">Dagger 1</a> y más tarde Google apostaría por crear <a href="http://google.github.io/dagger/">Dagger 2</a> tomando como referencia a Dagger 1, aun que no quiero indagar en este tema de la historia (ya que no es el objetivo de esta kata) del por que se fueron creando cada vez una mejor alternativa, si espero que revises esta <a href="https://docs.google.com/presentation/d/1fby5VeGU9CN8zjw4lAb2QPPsKRxx6mSwCe9q7ECNSJQ/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g36c44a5df_0295">presentación</a> que describe perfectamente el cómo llegamos a Dagger 2 y lo más importante es que si
+deseas utilizar otro inyector de dependencias asegurate que cuente con el estándar de notaciones <a href="https://jcp.org/en/jsr/detail?id=330">“JSR-330”</a> ya que permitirá a tu codigo ser reutilizable, testable y mantenible.</p>
+
+<h2 id="dagger-2">Dagger 2</h2>
+
+<p>Es un framework que permite aplicar el patrón de inyección de dependencias en java y android viene a solucionar algunos problemas de otros inyectores y sobre todo con la intención de mejorar la experiencia de los desarrolladores la usar un inyector.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Configuración basada en Componentes, adiós a los grafos.</li>
+  <li>El código generado es legible y fácil de entender.</li>
+  <li>No usa reflexión.</li>
+  <li>No se de desarrolla sobre el framework.</li>
+  <li>El grafo no es compuesto en tiempo de ejecución.</li>
+  <li>Incrementa el performance 13% de acuerdo con Gegrory Kick.</li>
+  <li>El grafo es validado en tiempo de build.</li>
+</ul>
+
+<p>Dagger 1 construye su grafo de dependencias en tiempo de ejecución haciendo uso de reflexión para conseguirlo lo que lo volvía lento y difícil de depurar, Dagger 2 soluciona este problema construyendo el grafo en tiempo de compilación y sin reflexión lo que lo hace mas rapido pero menos flexible que Dagger 1 ya que no usa <a href="https://en.wikipedia.org/wiki/Reflection_(computer_programming)">reflexión</a>.</p>
+
+<h3 id="setup-dagger-2">Setup Dagger 2</h3>
+
+<p>Para poder hacer uso de Dagger 2 en android studio necesitamos configurar el procesador de anotaciones simplemente usando el plugin de gradle <code class="language-plaintext highlighter-rouge">android-apt</code> afortunadamente con la versión <code class="language-plaintext highlighter-rouge">android gradle plugin 2.2</code> ya que viene contenido.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+    <span class="n">annotationProcessor</span> <span class="s1">'com.google.dagger:dagger-compiler:2.8'</span>
+    <span class="n">compile</span> <span class="s1">'com.google.dagger:dagger:2.8'</span>
+    <span class="n">provided</span> <span class="s1">'javax.annotation:jsr250-api:1.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El compilador de Dagger 2 genera código que es usado para crear un grafo, el cual se encargara de resolver nuestras dependencias estas clases son agregadas al class path del IDE durante la compilación usa <code class="language-plaintext highlighter-rouge">provided</code> para referenciar las dependencias que son necesitadas en tiempo de compilación y <code class="language-plaintext highlighter-rouge">annotationProcessor</code> procesa las notaciones de nuestras clases  sin agregarlas al <a href="https://docs.oracle.com/javase/tutorial/essential/environment/paths.html">class path</a>.</p>
+
+<h3 id="annotations-of-dagger-2">Annotations of Dagger 2</h3>
+
+<ul>
+  <li><strong>@Module</strong></li>
+</ul>
+
+<p>Se usa para marcar una clase como proveedora de dependencias ya que dentro contendrá métodos con la notación <strong>@Provides</strong> de tal forma que al momento de crear una instancia de una clase y esta requiera dependencias dagger sabrá en qué lugar ir a buscar dichos objetos.</p>
+
+<ul>
+  <li><strong>@Provides</strong></li>
+</ul>
+
+<p>Cada método utilizando para proveer dependencias deben ser marcados con esta anotación ya que serán los objetos que usará dagger para resolver las dependencias entre nuestras clases. Para evitar el exceso de métodos con esta anotación dagger 2 puede buscar una dependencia en el constructor de la clase simplemente marcándolo con la anotación <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Inject</strong></li>
+</ul>
+
+<p>Es la forma en que pedimos dependencias y le comunicamos a Dagger que la clase o campo marcado con esta anotación será parte de la inyección de dependencias. Así, Dagger construirá instancias de estas clases anotadas y satisfará sus dependencias.</p>
+
+<ul>
+  <li><strong>@Component</strong></li>
+</ul>
+
+<p>Se usa para marcar a una interfaz como un componente ya que es necesario para que Dagger pueda generar código o mejor dicho una clase con el prefijo <em>Dagger</em> (Si tu declaras un component ExampleApiComponent dagger te va a generar DaggerExampleApiComponent) esta clase generada es la responsable de instanciar una dependencia de nuestro grafo y usarla para inyectarla en los fields marcados con <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Singleton</strong></li>
+</ul>
+
+<p>Simplemente se usa para decirle a Dagger que debe crear una sola instancia de un objeto, tal cual el patrón de diseño <a href="http://www.oodesign.com/singleton-pattern.html">singleton</a>.</p>
+
+<ul>
+  <li><strong>@Named</strong></li>
+</ul>
+
+<p>Hay veces en que debes proveer una misma dependencia con diferentes implementaciones para ello hay que decirle a dagger que instancia es la que necesitamos que sea inyectada.</p>
+
+<p>Básicamente es una forma de nombrar nuestras dependencias y así poder diferenciarlas se deben nombrar en donde se proveen <strong>@Provides</strong> y en donde se inyectarán <strong>@Inject</strong>.</p>
+
+<ul>
+  <li><strong>@Scope</strong></li>
+</ul>
+
+<p>Es de las anotaciones más poderosas de dagger 2 ya que permite crear custom scopes que son algo parecido a un <strong>@Singleton</strong> solo que van relacionadas al ciclo de vida de un componente no de la aplicación. Por ejemplo podría crear un <strong>@LifeActivity</strong> annotation y se usaría para que una instancia viva solo mientras una activity sea requerida.</p>
+
+<ul>
+  <li><strong>@Qualifier</strong></li>
+</ul>
+
+<p>El uso de esta anotación tiene sentido cuando tenemos dependencias que se crean de una misma interfaz. Imagina que debes proveer un una instancia de MusicApi y esta tiene dos clases hijas Spotify Api y otra por SoundCloud Api usando qualifier te ayuda a identificar cada una <strong>@SpotifyApi</strong> <strong>@SoundCloudApi</strong> y de esta forma decirle a dagger cual es la que debe proveer ya que ambas son del tipo <strong>MusicApi</strong>. Recuerda que se deben nombrar en donde se proveen <strong>@Provides</strong> y en donde se inyectarán <strong>@Inject</strong>.</p>
+
+<h3 id="injections-overview">Injections Overview</h3>
+
+<p>Ahora que tenemos un panorama de cómo funciona dagger o mejor dicho lo que necesita para funcionar me gustaría que te tomaras un momento para analizar esta imagen que muestra de cómo interactúan cada una de sus piezas para lograr la inyección de dependencias.</p>
+
+<p><img src="/images/2016/7/dagger_general.png" alt="dagger2" class="center-image" /></p>
+
+<h3 id="putting-everything-together">Putting everything together</h3>
+
+<p>Ya que hemos comprendido para qué sirven algunos de los elementos veamos un simple ejemplo para reafirmar el conocimiento adquirido ya que te será de utilidad para resolver la kata que he preparado para tí.</p>
+
+<p><strong>Objetivo:</strong> Crear una aplicación que muestre una imagen y el nombre de la Princesa Peach.</p>
+
+<p>Empezamos creando el objeto <strong>PrincessPeach</strong> con dos atributos un nombre y una foto de perfil ambos los obtenemos usando resources.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeach</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">photo</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">PrincessPeach</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">princess_name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">photo</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">ic_peach</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPhoto</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">photo</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Simularemos que estamos haciendo una llamada a una api y devolveremos una instancia de tipo <strong>PrincessPeach</strong> con un simple método llamado <strong>getPrincesPeach()</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApi</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="nc">PrincessPeach</span> <span class="nf">getPrincesPeach</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">PrincessPeach</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>@Module, @Provides</strong></p>
+
+<p>Definimos un módulo que será el encargado de proveer una instancia de <strong>PrincessPeach</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Module</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApiModule</span> <span class="o">{</span>
+
+  <span class="nd">@Provides</span> <span class="nd">@Singleton</span> <span class="nc">PrincessPeachApi</span> <span class="nf">providesPeachApi</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">PrincessPeachApi</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>@Component, @Singleton</strong></p>
+
+<p>Creamos un componente para indicarle a Dagger en qué lugar debemos inyectar la dependencia y en qué módulo debe ir a buscarla.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Singleton</span> <span class="nd">@Component</span><span class="o">(</span><span class="n">modules</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">PrincessPeachApiModule</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PrincessPeachComponent</span> <span class="o">{</span>
+
+  <span class="kt">void</span> <span class="nf">inject</span><span class="o">(</span><span class="nc">PrincessPeachActivity</span> <span class="n">princessPeachActivity</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Es necesario crear una clase que herede de <a href="https://developer.android.com/reference/android/app/Application.html">Application</a> para que dagger pueda inicializar el grafo y asegurarnos que nuestra instancia está creada durante el ciclo de vida de nuestra aplicación.</p>
+
+<p>Asegúrate dar un rebuild project en caso de que no puedas referenciar el componente de dagger en nuestro caso <strong>DaggerPrincessPeachComponent</strong> (Android Studio, select Build &gt; Rebuild Project).</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachApplication</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="nc">PrincessPeachComponent</span> <span class="n">princessPeachComponent</span><span class="o">;</span>
+
+  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+    <span class="n">initializeInjector</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initializeInjector</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">princessPeachComponent</span> <span class="o">=</span> <span class="nc">DaggerPrincessPeachComponent</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">princessPeachApiModule</span><span class="o">(</span><span class="k">new</span> <span class="nc">PrincessPeachApiModule</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">PrincessPeachComponent</span> <span class="nf">getPrincessPeachComponent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">princessPeachComponent</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Por supuesto también es necesario declarar el nombre de nuestro application en el manifest.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;application</span>
+     <span class="na">android:name=</span><span class="s">".PrincessPeachApplication"</span>
+     <span class="na">android:allowBackup=</span><span class="s">"true"</span>
+     <span class="na">android:icon=</span><span class="s">"@mipmap/ic_launcher"</span>
+     <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+     <span class="na">android:supportsRtl=</span><span class="s">"true"</span>
+     <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<p><strong>@Inject</strong></p>
+
+<p>Lo único por hacer es inyectar nuestra dependencia en nuestra actividad <strong>PrincessPeachActivity</strong> como se lo indicamos al componente <strong>PrincessPeachComponent</strong> que a su vez este hará uso del módulo <strong>PrincessPeachApiModule</strong> para obtener la instancia de la clase solicitada <strong>PrincessPeachApi</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrincessPeachActivity</span> <span class="kd">extends</span> <span class="nc">BaseActivity</span> <span class="o">{</span>
+
+  <span class="nd">@Inject</span> <span class="nc">PrincessPeachApi</span> <span class="n">princessPeachApi</span><span class="o">;</span>
+
+  <span class="nd">@BindView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">label_peach</span><span class="o">)</span> <span class="nc">MarioKartLabel</span> <span class="n">peachLabel</span><span class="o">;</span>
+  <span class="nd">@BindView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">picture_peach</span><span class="o">)</span> <span class="nc">ImageView</span> <span class="n">peachImage</span><span class="o">;</span>
+
+  <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">int</span> <span class="nf">getLayoutResID</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_princess_peach</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span> <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPrepareActivity</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onPrepareActivity</span><span class="o">();</span>
+    <span class="n">initializeDagger</span><span class="o">();</span>
+    <span class="nc">PrincessPeach</span> <span class="n">princessPeach</span> <span class="o">=</span> <span class="n">getPrincesPeachFromApi</span><span class="o">();</span>
+    <span class="n">renderPrincesPeach</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderPrincesPeach</span><span class="o">(</span><span class="nc">PrincessPeach</span> <span class="n">princessPeach</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">renderName</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="n">renderPicture</span><span class="o">(</span><span class="n">princessPeach</span><span class="o">.</span><span class="na">getPhoto</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderName</span><span class="o">(</span><span class="nd">@StringRes</span> <span class="kt">int</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">peachLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">renderPicture</span><span class="o">(</span><span class="nd">@DrawableRes</span> <span class="kt">int</span> <span class="n">picture</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">peachImage</span><span class="o">.</span><span class="na">setImageDrawable</span><span class="o">(</span><span class="nc">ContextCompat</span><span class="o">.</span><span class="na">getDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">picture</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="nc">PrincessPeach</span> <span class="nf">getPrincesPeachFromApi</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">princessPeachApi</span><span class="o">.</span><span class="na">getPrincesPeach</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initializeDagger</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">PrincessPeachApplication</span> <span class="n">application</span> <span class="o">=</span> <span class="o">(</span><span class="nc">PrincessPeachApplication</span><span class="o">)</span> <span class="n">getApplication</span><span class="o">();</span>
+    <span class="n">application</span><span class="o">.</span><span class="na">getPrincessPeachComponent</span><span class="o">().</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><img src="/images/2016/7/device-peach-sample.png" alt="Drawing" style="width: 330px;" /></p>
+
+<h4 id="el-código-está-disponible">El código está disponible</h4>
+
+<p>Este ejemplo puedes encontrarlo en el <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart">mismo</a> repositorio en el que se encuentra la kata en el <em>branch</em> <strong>sample/princess-peach-dagger2</strong> <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/tree/sample/princess-peach-dagger2">Sample-Princess-Peach en Github</a>.</p>
+
+<h1 id="great-moment-to-start-the-challenge">Great moment to start the challenge</h1>
+
+<h3 id="task-1">Task 1</h3>
+
+<ul>
+  <li>Leer sobre <a href="https://erikjhordan-rey.github.io/blog/2016/01/27/ANDROID-clean-architecture.html">clean architecture</a> ya que esta kata sigue sus principios (solo si no sabes nada de Clean Architecture).</li>
+  <li>Crea un proyecto nuevo de android en android studio</li>
+  <li>Configura tu proyecto para poder hacer uso de la librería de dagger 2</li>
+</ul>
+
+<h3 id="task-2">Task 2</h3>
+
+<ul>
+  <li>Implementa tu objeto de dominio de nombre <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Character.kt">Character</a> con los siguientes atributos name, photo, cover, description.</li>
+  <li>Implementa un objeto de dominio de nombre <a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart/blob/master/app/src/main/java/io/github/erikcaffrey/kata_dagger2_mariokart/domain/model/Abilities.kt">Abilities</a> con los siguientes atributos: accelerate, steer, brake, reverse, lookBehind, drift;</li>
+  <li>Agrega a tu objeto Character un atributo de tipo Abilities</li>
+</ul>
+
+<h3 id="task-3">Task 3</h3>
+
+<ul>
+  <li>Implementa una clase <code class="language-plaintext highlighter-rouge">FAKE DATA SOURCE</code> responsable de generar una lista de personajes</li>
+  <li>Implementa una clase <code class="language-plaintext highlighter-rouge">REPOSITORY</code> que tendrá una dependencia con <code class="language-plaintext highlighter-rouge">FAKE DATA SOURCE</code></li>
+  <li>Implementa un modulo de dagger para proveer una dependencia de tu <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+  <li>Implementa un componente para especificar en donde se van a inyectar tus dependencias.</li>
+</ul>
+
+<h3 id="task-4">Task 4</h3>
+
+<ul>
+  <li>Implementa un <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code> que obtenga <code class="language-plaintext highlighter-rouge">TODOS</code> los personajes con dependencia a <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+  <li>Configura tu caso de uso para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">REPOSITORY</code></li>
+</ul>
+
+<h3 id="task-5">Task 5</h3>
+
+<ul>
+  <li>Implementa un <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code> para mostrar una lista de personajes en una vista con dependencia a <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code></li>
+  <li>Configura tu presenter para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">GET ALL CHARACTERS USE CASE</code></li>
+</ul>
+
+<h3 id="task-6">Task 6</h3>
+
+<ul>
+  <li>Implementa una vista android activity, fragment u otra con dependencia a <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code></li>
+  <li>Configura tu vista android para que dagger pueda inyectar una dependencia de <code class="language-plaintext highlighter-rouge">CHARACTERS PRESENTER</code></li>
+  <li>Muestra a los personajes de la forma que mas te guste.</li>
+</ul>
+
+<h3 id="demo">Demo</h3>
+
+<h4 id="el-código-está-disponible-1">El código está disponible</h4>
+
+<p><a href="https://github.com/erikjhordan-rey/Kata-Dagger2-MarioKart">Kata-Dagger2-MarioKart en Github</a></p>
+
+<p><img src="/images/2016/7/Telecine_2017-01-29-22-52-19.gif" alt="" /></p>
+
+<h3 id="resources">Resources</h3>
+<ul>
+  <li><strong>Gregory Kick</strong> - <a href="https://www.youtube.com/watch?v=oK_XtfXPkqw">DAGGER 2 - A New Type of dependency injection</a></li>
+  <li><strong>Fernando Cejas</strong> - <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/">Tasting Dagger 2 on Android</a></li>
+  <li><strong>Jake Wharton</strong> - <a href="https://www.youtube.com/watch?v=plK0zyRLIP8">The Future of Dependency Injection with Dagger 2</a></li>
+  <li><strong>Daniel Lew</strong> - <a href="https://realm.io/news/daniel-lew-dependency-injection-dagger/">Dependency Injection Made Simple</a></li>
+  <li><strong>Pedro Gómez</strong> - <a href="https://www.youtube.com/watch?v=XY2fHxqEBeo">Dependency Injection on Android</a></li>
+</ul>
+
+<p><strong>“Complexity kills. It suck the life out of developers it makes products difficult to plan, build and test. by Ray Ozzie”</strong></p>
+:ET
